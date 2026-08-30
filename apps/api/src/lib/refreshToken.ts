@@ -93,7 +93,13 @@ async function issueRefreshTokenInFamily(
   const expiresAt = newExpiry();
 
   await prisma.refreshToken.create({
-    data: { userId, tokenHash: hashToken(rawToken), familyId, expiresAt, createdByIp: createdByIp ?? null },
+    data: {
+      userId,
+      tokenHash: hashToken(rawToken),
+      familyId,
+      expiresAt,
+      createdByIp: createdByIp ?? null,
+    },
   });
 
   return { rawToken, familyId, expiresAt };

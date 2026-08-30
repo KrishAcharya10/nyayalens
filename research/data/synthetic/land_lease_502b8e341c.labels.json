@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_502b8e341c",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Kolkata between:\n\nLESSOR: Oscar Karan, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Arin Dhingra, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Bihar.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 870/2, admeasuring 1819 sq. ft., classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹200,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹113,000 payable on or before November each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 870/2, is unencumbered and free from any third-party claims.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kolkata.\n\n8. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Kolkata"
+    },
+    {
+      "start": 77,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Oscar Karan"
+    },
+    {
+      "start": 145,
+      "end": 157,
+      "label": "LESSEE",
+      "text": "Arin Dhingra"
+    },
+    {
+      "start": 318,
+      "end": 323,
+      "label": "SURVEY_NUMBER",
+      "text": "870/2"
+    },
+    {
+      "start": 337,
+      "end": 349,
+      "label": "LAND_AREA",
+      "text": "1819 sq. ft."
+    },
+    {
+      "start": 365,
+      "end": 395,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 541,
+      "end": 549,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 652,
+      "end": 660,
+      "label": "LEASE_PREMIUM",
+      "text": "₹200,000"
+    },
+    {
+      "start": 805,
+      "end": 813,
+      "label": "RENT",
+      "text": "₹113,000"
+    },
+    {
+      "start": 930,
+      "end": 959,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1115,
+      "end": 1120,
+      "label": "SURVEY_NUMBER",
+      "text": "870/2"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 474,
+      "end": 586,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 586,
+      "end": 705,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹200,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 705,
+      "end": 856,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹113,000 payable on or before November each year.\n\n"
+    },
+    {
+      "start": 856,
+      "end": 1025,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1025,
+      "end": 1177,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 870/2, is unencumbered and free from any third-party claims.\n\n"
+    },
+    {
+      "start": 1177,
+      "end": 1325,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1325,
+      "end": 1480,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kolkata.\n\n"
+    },
+    {
+      "start": 1480,
+      "end": 1598,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Kolkata",
+    "state": "Bihar",
+    "schema_version": "1.0"
+  }
+}

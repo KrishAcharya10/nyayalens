@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_3680bb9f26",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Ahmedabad between:\n\nLESSOR: Anvi Dara, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Aashi D’Alia, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Delhi.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 347/3, admeasuring 16793 sq. ft., classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,170,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹30,000 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 347/3 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Ahmedabad.\n\n8. JURISDICTION\nThe courts at Ahmedabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Ahmedabad"
+    },
+    {
+      "start": 79,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Anvi Dara"
+    },
+    {
+      "start": 145,
+      "end": 157,
+      "label": "LESSEE",
+      "text": "Aashi D’Alia"
+    },
+    {
+      "start": 318,
+      "end": 323,
+      "label": "SURVEY_NUMBER",
+      "text": "347/3"
+    },
+    {
+      "start": 337,
+      "end": 350,
+      "label": "LAND_AREA",
+      "text": "16793 sq. ft."
+    },
+    {
+      "start": 366,
+      "end": 387,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 533,
+      "end": 540,
+      "label": "DURATION",
+      "text": "5 years"
+    },
+    {
+      "start": 643,
+      "end": 653,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,170,000"
+    },
+    {
+      "start": 734,
+      "end": 741,
+      "label": "RENT",
+      "text": "₹30,000"
+    },
+    {
+      "start": 921,
+      "end": 950,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1108,
+      "end": 1113,
+      "label": "SURVEY_NUMBER",
+      "text": "347/3"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 466,
+      "end": 577,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 577,
+      "end": 698,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,170,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 698,
+      "end": 847,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹30,000 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n"
+    },
+    {
+      "start": 847,
+      "end": 1016,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1016,
+      "end": 1166,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 347/3 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1166,
+      "end": 1314,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1314,
+      "end": 1471,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Ahmedabad.\n\n"
+    },
+    {
+      "start": 1471,
+      "end": 1591,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Ahmedabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Ahmedabad",
+    "state": "Delhi",
+    "schema_version": "1.0"
+  }
+}

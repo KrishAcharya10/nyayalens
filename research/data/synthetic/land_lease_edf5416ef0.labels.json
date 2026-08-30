@@ -1,0 +1,125 @@
+{
+  "doc_id": "land_lease_edf5416ef0",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Bengaluru between:\n\nLESSOR: Siddharth Peri, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Yauvani Ganesh, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Gujarat.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 790/1, admeasuring 23 guntha, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹4,750,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹218,500 payable on or before January each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThe courts at Bengaluru shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Bengaluru"
+    },
+    {
+      "start": 79,
+      "end": 93,
+      "label": "LESSOR",
+      "text": "Siddharth Peri"
+    },
+    {
+      "start": 150,
+      "end": 164,
+      "label": "LESSEE",
+      "text": "Yauvani Ganesh"
+    },
+    {
+      "start": 327,
+      "end": 332,
+      "label": "SURVEY_NUMBER",
+      "text": "790/1"
+    },
+    {
+      "start": 346,
+      "end": 355,
+      "label": "LAND_AREA",
+      "text": "23 guntha"
+    },
+    {
+      "start": 371,
+      "end": 392,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 538,
+      "end": 546,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 638,
+      "end": 648,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,750,000"
+    },
+    {
+      "start": 826,
+      "end": 834,
+      "label": "RENT",
+      "text": "₹218,500"
+    },
+    {
+      "start": 950,
+      "end": 979,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 471,
+      "end": 583,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 583,
+      "end": 726,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹4,750,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 726,
+      "end": 876,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹218,500 payable on or before January each year.\n\n"
+    },
+    {
+      "start": 876,
+      "end": 1045,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1045,
+      "end": 1193,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1193,
+      "end": 1341,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1341,
+      "end": 1461,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Bengaluru shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Bengaluru",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

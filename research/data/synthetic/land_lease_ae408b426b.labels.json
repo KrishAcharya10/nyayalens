@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_ae408b426b",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Lucknow between:\n\nLESSOR: Lucky Anand, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Dev Panchal, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Tamil Nadu.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 686/A, admeasuring 1219 sq. ft., classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,530,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹144,500 payable on or before October each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 686/A is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Lucknow alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Lucknow"
+    },
+    {
+      "start": 77,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Lucky Anand"
+    },
+    {
+      "start": 145,
+      "end": 156,
+      "label": "LESSEE",
+      "text": "Dev Panchal"
+    },
+    {
+      "start": 322,
+      "end": 327,
+      "label": "SURVEY_NUMBER",
+      "text": "686/A"
+    },
+    {
+      "start": 341,
+      "end": 353,
+      "label": "LAND_AREA",
+      "text": "1219 sq. ft."
+    },
+    {
+      "start": 369,
+      "end": 390,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 536,
+      "end": 544,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 636,
+      "end": 646,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,530,000"
+    },
+    {
+      "start": 824,
+      "end": 832,
+      "label": "RENT",
+      "text": "₹144,500"
+    },
+    {
+      "start": 948,
+      "end": 972,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1130,
+      "end": 1135,
+      "label": "SURVEY_NUMBER",
+      "text": "686/A"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 469,
+      "end": 581,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 581,
+      "end": 724,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,530,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 724,
+      "end": 874,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹144,500 payable on or before October each year.\n\n"
+    },
+    {
+      "start": 874,
+      "end": 1038,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1038,
+      "end": 1188,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 686/A is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1188,
+      "end": 1336,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1336,
+      "end": 1484,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1484,
+      "end": 1609,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Lucknow alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Lucknow",
+    "state": "Tamil Nadu",
+    "schema_version": "1.0"
+  }
+}

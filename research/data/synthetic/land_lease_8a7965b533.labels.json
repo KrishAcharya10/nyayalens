@@ -1,0 +1,131 @@
+{
+  "doc_id": "land_lease_8a7965b533",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nagercoil between:\n\nLESSOR: Sathvik Walla, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Urishilla Issac, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Gujarat.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 810/2, admeasuring 35 guntha, classified as Commercial land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,960,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹278,500 for the leased land shall be paid by the Lessee to the Lessor on or before July of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 810/2 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nagercoil alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Nagercoil"
+    },
+    {
+      "start": 79,
+      "end": 92,
+      "label": "LESSOR",
+      "text": "Sathvik Walla"
+    },
+    {
+      "start": 149,
+      "end": 164,
+      "label": "LESSEE",
+      "text": "Urishilla Issac"
+    },
+    {
+      "start": 327,
+      "end": 332,
+      "label": "SURVEY_NUMBER",
+      "text": "810/2"
+    },
+    {
+      "start": 346,
+      "end": 355,
+      "label": "LAND_AREA",
+      "text": "35 guntha"
+    },
+    {
+      "start": 371,
+      "end": 381,
+      "label": "LAND_USE_TYPE",
+      "text": "Commercial"
+    },
+    {
+      "start": 527,
+      "end": 535,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 627,
+      "end": 637,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,960,000"
+    },
+    {
+      "start": 751,
+      "end": 759,
+      "label": "RENT",
+      "text": "₹278,500"
+    },
+    {
+      "start": 939,
+      "end": 975,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "construction of a warehouse facility"
+    },
+    {
+      "start": 1133,
+      "end": 1138,
+      "label": "SURVEY_NUMBER",
+      "text": "810/2"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 460,
+      "end": 572,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 572,
+      "end": 715,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,960,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 715,
+      "end": 865,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹278,500 for the leased land shall be paid by the Lessee to the Lessor on or before July of every calendar year.\n\n"
+    },
+    {
+      "start": 865,
+      "end": 1041,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1041,
+      "end": 1191,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 810/2 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1191,
+      "end": 1323,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1323,
+      "end": 1450,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nagercoil alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Nagercoil",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

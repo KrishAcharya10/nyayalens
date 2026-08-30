@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_56ee9d1185",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nagercoil between:\n\nLESSOR: Chanakya Ranganathan, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Hamsini Pandya, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Gujarat.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 569/2, admeasuring 24 guntha, classified as Commercial land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,740,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹167,500 for the leased land shall be paid by the Lessee to the Lessor on or before October of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 569/2 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Nagercoil shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Nagercoil"
+    },
+    {
+      "start": 79,
+      "end": 99,
+      "label": "LESSOR",
+      "text": "Chanakya Ranganathan"
+    },
+    {
+      "start": 156,
+      "end": 170,
+      "label": "LESSEE",
+      "text": "Hamsini Pandya"
+    },
+    {
+      "start": 333,
+      "end": 338,
+      "label": "SURVEY_NUMBER",
+      "text": "569/2"
+    },
+    {
+      "start": 352,
+      "end": 361,
+      "label": "LAND_AREA",
+      "text": "24 guntha"
+    },
+    {
+      "start": 377,
+      "end": 387,
+      "label": "LAND_USE_TYPE",
+      "text": "Commercial"
+    },
+    {
+      "start": 533,
+      "end": 541,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 644,
+      "end": 654,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,740,000"
+    },
+    {
+      "start": 735,
+      "end": 743,
+      "label": "RENT",
+      "text": "₹167,500"
+    },
+    {
+      "start": 926,
+      "end": 950,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1108,
+      "end": 1113,
+      "label": "SURVEY_NUMBER",
+      "text": "569/2"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 466,
+      "end": 578,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 578,
+      "end": 699,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,740,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 699,
+      "end": 852,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹167,500 for the leased land shall be paid by the Lessee to the Lessor on or before October of every calendar year.\n\n"
+    },
+    {
+      "start": 852,
+      "end": 1016,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1016,
+      "end": 1166,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 569/2 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1166,
+      "end": 1298,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1298,
+      "end": 1446,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1446,
+      "end": 1566,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Nagercoil shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Nagercoil",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

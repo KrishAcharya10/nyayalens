@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_72b4ccb51e",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Hyderabad between:\n\nLESSOR: Vidhi Mangal, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Jagat Singhal, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Maharashtra.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 350/B, admeasuring 15916 sq. ft., classified as Commercial land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹940,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹240,000 payable on or before May each year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of dairy farming operations and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 350/B is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Hyderabad alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Hyderabad"
+    },
+    {
+      "start": 79,
+      "end": 91,
+      "label": "LESSOR",
+      "text": "Vidhi Mangal"
+    },
+    {
+      "start": 148,
+      "end": 161,
+      "label": "LESSEE",
+      "text": "Jagat Singhal"
+    },
+    {
+      "start": 328,
+      "end": 333,
+      "label": "SURVEY_NUMBER",
+      "text": "350/B"
+    },
+    {
+      "start": 347,
+      "end": 360,
+      "label": "LAND_AREA",
+      "text": "15916 sq. ft."
+    },
+    {
+      "start": 376,
+      "end": 386,
+      "label": "LAND_USE_TYPE",
+      "text": "Commercial"
+    },
+    {
+      "start": 532,
+      "end": 540,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 643,
+      "end": 651,
+      "label": "LEASE_PREMIUM",
+      "text": "₹940,000"
+    },
+    {
+      "start": 796,
+      "end": 804,
+      "label": "RENT",
+      "text": "₹240,000"
+    },
+    {
+      "start": 922,
+      "end": 946,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "dairy farming operations"
+    },
+    {
+      "start": 1096,
+      "end": 1101,
+      "label": "SURVEY_NUMBER",
+      "text": "350/B"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 465,
+      "end": 577,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 577,
+      "end": 696,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹940,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 696,
+      "end": 842,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹240,000 payable on or before May each year.\n\n"
+    },
+    {
+      "start": 842,
+      "end": 1004,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of dairy farming operations and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1004,
+      "end": 1154,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 350/B is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1154,
+      "end": 1286,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1286,
+      "end": 1434,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1434,
+      "end": 1561,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Hyderabad alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Hyderabad",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "doc_id": "land_lease_85d3c28f7e",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Thane between:\n\nLESSOR: Tanay Sidhu, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Idika Barad, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Telangana.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 865/B, admeasuring 3.99 acres, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,800,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹47,000 payable on or before November each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 865/B is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Thane alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Thane"
+    },
+    {
+      "start": 75,
+      "end": 86,
+      "label": "LESSOR",
+      "text": "Tanay Sidhu"
+    },
+    {
+      "start": 143,
+      "end": 154,
+      "label": "LESSEE",
+      "text": "Idika Barad"
+    },
+    {
+      "start": 319,
+      "end": 324,
+      "label": "SURVEY_NUMBER",
+      "text": "865/B"
+    },
+    {
+      "start": 338,
+      "end": 348,
+      "label": "LAND_AREA",
+      "text": "3.99 acres"
+    },
+    {
+      "start": 364,
+      "end": 394,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 540,
+      "end": 548,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 651,
+      "end": 661,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,800,000"
+    },
+    {
+      "start": 806,
+      "end": 813,
+      "label": "RENT",
+      "text": "₹47,000"
+    },
+    {
+      "start": 930,
+      "end": 954,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1112,
+      "end": 1117,
+      "label": "SURVEY_NUMBER",
+      "text": "865/B"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 473,
+      "end": 585,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 585,
+      "end": 706,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,800,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 706,
+      "end": 856,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹47,000 payable on or before November each year.\n\n"
+    },
+    {
+      "start": 856,
+      "end": 1020,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1020,
+      "end": 1170,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 865/B is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1170,
+      "end": 1302,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1302,
+      "end": 1425,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Thane alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Thane",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

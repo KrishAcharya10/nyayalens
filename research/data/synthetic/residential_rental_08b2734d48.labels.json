@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_08b2734d48",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Hyderabad between:\n\nLANDLORD: Viraj Sharma, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Ayaan Patel, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹66,500 per calendar month, payable in advance by the 5th of the month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹199,500 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 15 days' written notice to the other party.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Hyderabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Hyderabad"
+    },
+    {
+      "start": 97,
+      "end": 109,
+      "label": "LANDLORD",
+      "text": "Viraj Sharma"
+    },
+    {
+      "start": 168,
+      "end": 179,
+      "label": "TENANT",
+      "text": "Ayaan Patel"
+    },
+    {
+      "start": 510,
+      "end": 519,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 625,
+      "end": 632,
+      "label": "RENT",
+      "text": "₹66,500"
+    },
+    {
+      "start": 738,
+      "end": 746,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹199,500"
+    },
+    {
+      "start": 933,
+      "end": 940,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 442,
+      "end": 567,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 567,
+      "end": 698,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹66,500 per calendar month, payable in advance by the 5th of the month.\n\n"
+    },
+    {
+      "start": 698,
+      "end": 859,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹199,500 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 859,
+      "end": 978,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 15 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 978,
+      "end": 1124,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1124,
+      "end": 1256,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1256,
+      "end": 1404,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1404,
+      "end": 1524,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Hyderabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

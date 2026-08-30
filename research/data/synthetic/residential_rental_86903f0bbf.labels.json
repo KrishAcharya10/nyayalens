@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_86903f0bbf",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Jaipur between:\n\nLANDLORD: Bhavani Dey, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Rishi Bhatti, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Maharashtra.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹72,500 per calendar month, payable in advance by the 10th of the month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹217,500 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Jaipur.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Jaipur"
+    },
+    {
+      "start": 94,
+      "end": 105,
+      "label": "LANDLORD",
+      "text": "Bhavani Dey"
+    },
+    {
+      "start": 164,
+      "end": 176,
+      "label": "TENANT",
+      "text": "Rishi Bhatti"
+    },
+    {
+      "start": 511,
+      "end": 520,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 626,
+      "end": 633,
+      "label": "RENT",
+      "text": "₹72,500"
+    },
+    {
+      "start": 789,
+      "end": 797,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹217,500"
+    },
+    {
+      "start": 946,
+      "end": 953,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 443,
+      "end": 568,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 568,
+      "end": 700,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹72,500 per calendar month, payable in advance by the 10th of the month.\n\n"
+    },
+    {
+      "start": 700,
+      "end": 843,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹217,500 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 843,
+      "end": 967,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n"
+    },
+    {
+      "start": 967,
+      "end": 1115,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1115,
+      "end": 1269,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Jaipur.\n\n"
+    },
+    {
+      "start": 1269,
+      "end": 1393,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Jaipur",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  }
+}

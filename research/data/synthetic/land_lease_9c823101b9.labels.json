@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_9c823101b9",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Vadodara between:\n\nLESSOR: Varsha Tella, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Brijesh Sandal, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Telangana.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 913/A, admeasuring 5.53 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,760,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹33,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 913/A, is unencumbered and free from any third-party claims.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 59,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 78,
+      "end": 90,
+      "label": "LESSOR",
+      "text": "Varsha Tella"
+    },
+    {
+      "start": 147,
+      "end": 161,
+      "label": "LESSEE",
+      "text": "Brijesh Sandal"
+    },
+    {
+      "start": 326,
+      "end": 331,
+      "label": "SURVEY_NUMBER",
+      "text": "913/A"
+    },
+    {
+      "start": 345,
+      "end": 355,
+      "label": "LAND_AREA",
+      "text": "5.53 acres"
+    },
+    {
+      "start": 371,
+      "end": 383,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 529,
+      "end": 537,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 640,
+      "end": 650,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,760,000"
+    },
+    {
+      "start": 731,
+      "end": 738,
+      "label": "RENT",
+      "text": "₹33,000"
+    },
+    {
+      "start": 926,
+      "end": 950,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1098,
+      "end": 1103,
+      "label": "SURVEY_NUMBER",
+      "text": "913/A"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 462,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 695,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,760,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 695,
+      "end": 846,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹33,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 846,
+      "end": 1008,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1008,
+      "end": 1160,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 913/A, is unencumbered and free from any third-party claims.\n\n"
+    },
+    {
+      "start": 1160,
+      "end": 1292,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1292,
+      "end": 1448,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n"
+    },
+    {
+      "start": 1448,
+      "end": 1574,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

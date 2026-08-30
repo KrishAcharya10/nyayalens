@@ -1,0 +1,22 @@
+name: nyayalens
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nyayalens
+      POSTGRES_PASSWORD: nyayalens_dev_password
+      POSTGRES_DB: nyayalens_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - nyayalens_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nyayalens -d nyayalens_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  nyayalens_pgdata:

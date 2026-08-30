@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_d9982ed59f",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Patna between:\n\nLANDLORD: Yagnesh Srinivasan, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Aadhya Karpe, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Rajasthan.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹71,000 per month towards rent, such payment to be made no later than the 10th of each month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹142,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Patna alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Patna"
+    },
+    {
+      "start": 93,
+      "end": 111,
+      "label": "LANDLORD",
+      "text": "Yagnesh Srinivasan"
+    },
+    {
+      "start": 170,
+      "end": 182,
+      "label": "TENANT",
+      "text": "Aadhya Karpe"
+    },
+    {
+      "start": 515,
+      "end": 524,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 624,
+      "end": 631,
+      "label": "RENT",
+      "text": "₹71,000"
+    },
+    {
+      "start": 759,
+      "end": 767,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹142,000"
+    },
+    {
+      "start": 914,
+      "end": 921,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 447,
+      "end": 572,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 572,
+      "end": 719,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹71,000 per month towards rent, such payment to be made no later than the 10th of each month.\n\n"
+    },
+    {
+      "start": 719,
+      "end": 880,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹142,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 880,
+      "end": 996,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 996,
+      "end": 1151,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1151,
+      "end": 1283,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1283,
+      "end": 1431,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1431,
+      "end": 1554,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Patna alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Patna",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  }
+}

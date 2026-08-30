@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_4cea606e60",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Patna between:\n\nLANDLORD: Jack Pall, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Jackson Mishra, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹26,000 to the Lessor/Landlord on or before the 1st day of each calendar month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹52,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Patna.\n\n7. JURISDICTION\nThe courts at Patna shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Patna"
+    },
+    {
+      "start": 93,
+      "end": 102,
+      "label": "LANDLORD",
+      "text": "Jack Pall"
+    },
+    {
+      "start": 161,
+      "end": 175,
+      "label": "TENANT",
+      "text": "Jackson Mishra"
+    },
+    {
+      "start": 506,
+      "end": 515,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 625,
+      "end": 632,
+      "label": "RENT",
+      "text": "₹26,000"
+    },
+    {
+      "start": 746,
+      "end": 753,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹52,000"
+    },
+    {
+      "start": 900,
+      "end": 907,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 438,
+      "end": 563,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 563,
+      "end": 706,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹26,000 to the Lessor/Landlord on or before the 1st day of each calendar month.\n\n"
+    },
+    {
+      "start": 706,
+      "end": 866,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹52,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 866,
+      "end": 982,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 982,
+      "end": 1130,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1130,
+      "end": 1283,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Patna.\n\n"
+    },
+    {
+      "start": 1283,
+      "end": 1399,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Patna shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Patna",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

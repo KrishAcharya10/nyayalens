@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_5b5e38deae",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Nashik between:\n\nLANDLORD: Unni Raj, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Aradhana Malhotra, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Delhi.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹73,500, due on or before the 10th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹441,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 45 days' written notice to the other party.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nashik.\n\n7. JURISDICTION\nThe courts at Nashik shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Nashik"
+    },
+    {
+      "start": 94,
+      "end": 102,
+      "label": "LANDLORD",
+      "text": "Unni Raj"
+    },
+    {
+      "start": 161,
+      "end": 178,
+      "label": "TENANT",
+      "text": "Aradhana Malhotra"
+    },
+    {
+      "start": 507,
+      "end": 516,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 631,
+      "end": 638,
+      "label": "RENT",
+      "text": "₹73,500"
+    },
+    {
+      "start": 799,
+      "end": 807,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹441,000"
+    },
+    {
+      "start": 927,
+      "end": 934,
+      "label": "NOTICE_PERIOD",
+      "text": "45 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 439,
+      "end": 564,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 564,
+      "end": 710,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹73,500, due on or before the 10th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 710,
+      "end": 853,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹441,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 853,
+      "end": 972,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 45 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 972,
+      "end": 1104,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1104,
+      "end": 1258,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nashik.\n\n"
+    },
+    {
+      "start": 1258,
+      "end": 1375,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Nashik shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Nashik",
+    "state": "Delhi",
+    "schema_version": "1.0"
+  }
+}

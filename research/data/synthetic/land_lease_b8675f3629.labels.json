@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_b8675f3629",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Pune between:\n\nLESSOR: Hema Ahluwalia, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Yachana Peri, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 730/1, admeasuring 5.38 acres, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,610,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹106,500 payable on or before June each year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 730/1, is unencumbered and free from any third-party claims.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Pune.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Pune alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 55,
+      "label": "ADDRESS",
+      "text": "Pune"
+    },
+    {
+      "start": 74,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Hema Ahluwalia"
+    },
+    {
+      "start": 145,
+      "end": 157,
+      "label": "LESSEE",
+      "text": "Yachana Peri"
+    },
+    {
+      "start": 327,
+      "end": 332,
+      "label": "SURVEY_NUMBER",
+      "text": "730/1"
+    },
+    {
+      "start": 346,
+      "end": 356,
+      "label": "LAND_AREA",
+      "text": "5.38 acres"
+    },
+    {
+      "start": 372,
+      "end": 402,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 548,
+      "end": 556,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 659,
+      "end": 669,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,610,000"
+    },
+    {
+      "start": 814,
+      "end": 822,
+      "label": "RENT",
+      "text": "₹106,500"
+    },
+    {
+      "start": 941,
+      "end": 965,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1113,
+      "end": 1118,
+      "label": "SURVEY_NUMBER",
+      "text": "730/1"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 481,
+      "end": 593,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 593,
+      "end": 714,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,610,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 714,
+      "end": 861,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹106,500 payable on or before June each year.\n\n"
+    },
+    {
+      "start": 861,
+      "end": 1023,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1023,
+      "end": 1175,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 730/1, is unencumbered and free from any third-party claims.\n\n"
+    },
+    {
+      "start": 1175,
+      "end": 1307,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1307,
+      "end": 1459,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Pune.\n\n"
+    },
+    {
+      "start": 1459,
+      "end": 1581,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Pune alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Pune",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_c40e370d88",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Patna between:\n\nLESSOR: Ekaja Ramaswamy, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Chanakya Sharma, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 23/A, admeasuring 11379 sq. ft., classified as Commercial land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,930,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹250,500 for the leased land shall be paid by the Lessee to the Lessor on or before February of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 23/A is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Patna shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Patna"
+    },
+    {
+      "start": 75,
+      "end": 90,
+      "label": "LESSOR",
+      "text": "Ekaja Ramaswamy"
+    },
+    {
+      "start": 147,
+      "end": 162,
+      "label": "LESSEE",
+      "text": "Chanakya Sharma"
+    },
+    {
+      "start": 331,
+      "end": 335,
+      "label": "SURVEY_NUMBER",
+      "text": "23/A"
+    },
+    {
+      "start": 349,
+      "end": 362,
+      "label": "LAND_AREA",
+      "text": "11379 sq. ft."
+    },
+    {
+      "start": 378,
+      "end": 388,
+      "label": "LAND_USE_TYPE",
+      "text": "Commercial"
+    },
+    {
+      "start": 534,
+      "end": 542,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 645,
+      "end": 655,
+      "label": "LEASE_PREMIUM",
+      "text": "₹2,930,000"
+    },
+    {
+      "start": 736,
+      "end": 744,
+      "label": "RENT",
+      "text": "₹250,500"
+    },
+    {
+      "start": 928,
+      "end": 957,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "agricultural storage purposes"
+    },
+    {
+      "start": 1115,
+      "end": 1119,
+      "label": "SURVEY_NUMBER",
+      "text": "23/A"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 467,
+      "end": 579,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 579,
+      "end": 700,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,930,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 700,
+      "end": 854,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹250,500 for the leased land shall be paid by the Lessee to the Lessor on or before February of every calendar year.\n\n"
+    },
+    {
+      "start": 854,
+      "end": 1023,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1023,
+      "end": 1172,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 23/A is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1172,
+      "end": 1304,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1304,
+      "end": 1452,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1452,
+      "end": 1568,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Patna shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Patna",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "doc_id": "residential_rental_7fa49d4922",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Hyderabad between:\n\nLANDLORD: Aarnav Rattan, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Ekalinga Karnik, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Tamil Nadu.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹50,000 to the Lessor/Landlord on or before the 7th day of each calendar month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹150,000 to the Landlord prior to taking possession.\n\n4. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. JURISDICTION\nThe courts at Hyderabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Hyderabad"
+    },
+    {
+      "start": 97,
+      "end": 110,
+      "label": "LANDLORD",
+      "text": "Aarnav Rattan"
+    },
+    {
+      "start": 169,
+      "end": 184,
+      "label": "TENANT",
+      "text": "Ekalinga Karnik"
+    },
+    {
+      "start": 518,
+      "end": 527,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 637,
+      "end": 644,
+      "label": "RENT",
+      "text": "₹50,000"
+    },
+    {
+      "start": 807,
+      "end": 815,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹150,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 450,
+      "end": 575,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 575,
+      "end": 718,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹50,000 to the Lessor/Landlord on or before the 7th day of each calendar month.\n\n"
+    },
+    {
+      "start": 718,
+      "end": 861,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹150,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 861,
+      "end": 1016,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1016,
+      "end": 1164,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1164,
+      "end": 1284,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThe courts at Hyderabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Hyderabad",
+    "state": "Tamil Nadu",
+    "schema_version": "1.0"
+  }
+}

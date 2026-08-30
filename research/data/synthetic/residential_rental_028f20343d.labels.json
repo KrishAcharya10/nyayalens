@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_028f20343d",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Kolkata between:\n\nLANDLORD: Aadi Dave, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Tristan Singhal, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Maharashtra.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹35,500 per calendar month, payable in advance by the 7th of the month.\n\n3. SECURITY DEPOSIT\nA sum of ₹106,500 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 45 days in writing.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 74,
+      "label": "ADDRESS",
+      "text": "Kolkata"
+    },
+    {
+      "start": 95,
+      "end": 104,
+      "label": "LANDLORD",
+      "text": "Aadi Dave"
+    },
+    {
+      "start": 163,
+      "end": 178,
+      "label": "TENANT",
+      "text": "Tristan Singhal"
+    },
+    {
+      "start": 513,
+      "end": 522,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 628,
+      "end": 635,
+      "label": "RENT",
+      "text": "₹35,500"
+    },
+    {
+      "start": 730,
+      "end": 738,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹106,500"
+    },
+    {
+      "start": 965,
+      "end": 972,
+      "label": "NOTICE_PERIOD",
+      "text": "45 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 445,
+      "end": 570,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 570,
+      "end": 701,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹35,500 per calendar month, payable in advance by the 7th of the month.\n\n"
+    },
+    {
+      "start": 701,
+      "end": 862,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nA sum of ₹106,500 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n"
+    },
+    {
+      "start": 862,
+      "end": 986,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 45 days in writing.\n\n"
+    },
+    {
+      "start": 986,
+      "end": 1132,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1132,
+      "end": 1264,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1264,
+      "end": 1412,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1412,
+      "end": 1530,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Kolkata",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  }
+}

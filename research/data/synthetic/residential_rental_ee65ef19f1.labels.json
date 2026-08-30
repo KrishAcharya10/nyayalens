@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_ee65ef19f1",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Bhopal between:\n\nLANDLORD: Tanay Gole, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Anika Bobal, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹42,000 per calendar month, payable in advance by the 7th of the month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹420,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Bhopal.\n\n8. JURISDICTION\nThe courts at Bhopal shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Bhopal"
+    },
+    {
+      "start": 94,
+      "end": 104,
+      "label": "LANDLORD",
+      "text": "Tanay Gole"
+    },
+    {
+      "start": 163,
+      "end": 174,
+      "label": "TENANT",
+      "text": "Anika Bobal"
+    },
+    {
+      "start": 512,
+      "end": 521,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 627,
+      "end": 634,
+      "label": "RENT",
+      "text": "₹42,000"
+    },
+    {
+      "start": 789,
+      "end": 797,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹420,000"
+    },
+    {
+      "start": 946,
+      "end": 953,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 444,
+      "end": 569,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 569,
+      "end": 700,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹42,000 per calendar month, payable in advance by the 7th of the month.\n\n"
+    },
+    {
+      "start": 700,
+      "end": 843,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹420,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 843,
+      "end": 967,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n"
+    },
+    {
+      "start": 967,
+      "end": 1122,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1122,
+      "end": 1254,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1254,
+      "end": 1408,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Bhopal.\n\n"
+    },
+    {
+      "start": 1408,
+      "end": 1525,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Bhopal shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

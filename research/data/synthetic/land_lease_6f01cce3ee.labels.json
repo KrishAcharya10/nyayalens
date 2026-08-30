@@ -1,0 +1,118 @@
+{
+  "doc_id": "land_lease_6f01cce3ee",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Patna between:\n\nLESSOR: Daksh Dada, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Hemal Baria, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Karnataka.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 910/2, admeasuring 8.76 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,370,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹119,500 payable on or before January each year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of construction of a warehouse facility and for no other purpose without prior written consent.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Patna alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Patna"
+    },
+    {
+      "start": 75,
+      "end": 85,
+      "label": "LESSOR",
+      "text": "Daksh Dada"
+    },
+    {
+      "start": 142,
+      "end": 153,
+      "label": "LESSEE",
+      "text": "Hemal Baria"
+    },
+    {
+      "start": 318,
+      "end": 323,
+      "label": "SURVEY_NUMBER",
+      "text": "910/2"
+    },
+    {
+      "start": 337,
+      "end": 347,
+      "label": "LAND_AREA",
+      "text": "8.76 acres"
+    },
+    {
+      "start": 363,
+      "end": 375,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 521,
+      "end": 528,
+      "label": "DURATION",
+      "text": "5 years"
+    },
+    {
+      "start": 631,
+      "end": 641,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,370,000"
+    },
+    {
+      "start": 786,
+      "end": 794,
+      "label": "RENT",
+      "text": "₹119,500"
+    },
+    {
+      "start": 916,
+      "end": 952,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "construction of a warehouse facility"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 454,
+      "end": 565,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 565,
+      "end": 686,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,370,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 686,
+      "end": 836,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹119,500 payable on or before January each year.\n\n"
+    },
+    {
+      "start": 836,
+      "end": 1010,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of construction of a warehouse facility and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1010,
+      "end": 1158,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1158,
+      "end": 1281,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Patna alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Patna",
+    "state": "Karnataka",
+    "schema_version": "1.0"
+  }
+}

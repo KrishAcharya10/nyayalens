@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_f864392dc9",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Vadodara between:\n\nLANDLORD: Jacob Nayar, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Aradhana Srinivasan, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Rajasthan.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹19,500, due on or before the 5th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nA sum of ₹58,500 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n8. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 75,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 96,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Jacob Nayar"
+    },
+    {
+      "start": 166,
+      "end": 185,
+      "label": "TENANT",
+      "text": "Aradhana Srinivasan"
+    },
+    {
+      "start": 518,
+      "end": 527,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 642,
+      "end": 649,
+      "label": "RENT",
+      "text": "₹19,500"
+    },
+    {
+      "start": 749,
+      "end": 756,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹58,500"
+    },
+    {
+      "start": 954,
+      "end": 961,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 450,
+      "end": 575,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 575,
+      "end": 720,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹19,500, due on or before the 5th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 720,
+      "end": 880,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nA sum of ₹58,500 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n"
+    },
+    {
+      "start": 880,
+      "end": 999,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 999,
+      "end": 1145,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1145,
+      "end": 1277,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1277,
+      "end": 1433,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n"
+    },
+    {
+      "start": 1433,
+      "end": 1552,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_56c553641f",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Lucknow between:\n\nLANDLORD: Manthan Thaman, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Raagini Shere, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹20,500 to the Lessor/Landlord on or before the 7th day of each calendar month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹123,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Lucknow alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 74,
+      "label": "ADDRESS",
+      "text": "Lucknow"
+    },
+    {
+      "start": 95,
+      "end": 109,
+      "label": "LANDLORD",
+      "text": "Manthan Thaman"
+    },
+    {
+      "start": 168,
+      "end": 181,
+      "label": "TENANT",
+      "text": "Raagini Shere"
+    },
+    {
+      "start": 518,
+      "end": 527,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 637,
+      "end": 644,
+      "label": "RENT",
+      "text": "₹20,500"
+    },
+    {
+      "start": 807,
+      "end": 815,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹123,000"
+    },
+    {
+      "start": 964,
+      "end": 971,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 450,
+      "end": 575,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 575,
+      "end": 718,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹20,500 to the Lessor/Landlord on or before the 7th day of each calendar month.\n\n"
+    },
+    {
+      "start": 718,
+      "end": 861,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹123,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 861,
+      "end": 985,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n"
+    },
+    {
+      "start": 985,
+      "end": 1131,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1131,
+      "end": 1263,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1263,
+      "end": 1388,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Lucknow alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  }
+}

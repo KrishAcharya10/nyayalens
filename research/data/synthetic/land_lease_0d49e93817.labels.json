@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_0d49e93817",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nagpur between:\n\nLESSOR: Jagrati Majumdar, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Gavin Yohannan, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of West Bengal.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 185/B, admeasuring 3.29 hectares, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,810,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹64,500 for the leased land shall be paid by the Lessee to the Lessor on or before September of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 185/B is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Nagpur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Nagpur"
+    },
+    {
+      "start": 76,
+      "end": 92,
+      "label": "LESSOR",
+      "text": "Jagrati Majumdar"
+    },
+    {
+      "start": 149,
+      "end": 163,
+      "label": "LESSEE",
+      "text": "Gavin Yohannan"
+    },
+    {
+      "start": 330,
+      "end": 335,
+      "label": "SURVEY_NUMBER",
+      "text": "185/B"
+    },
+    {
+      "start": 349,
+      "end": 362,
+      "label": "LAND_AREA",
+      "text": "3.29 hectares"
+    },
+    {
+      "start": 378,
+      "end": 399,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 545,
+      "end": 553,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 645,
+      "end": 655,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,810,000"
+    },
+    {
+      "start": 769,
+      "end": 776,
+      "label": "RENT",
+      "text": "₹64,500"
+    },
+    {
+      "start": 967,
+      "end": 991,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1141,
+      "end": 1146,
+      "label": "SURVEY_NUMBER",
+      "text": "185/B"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 478,
+      "end": 590,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 590,
+      "end": 733,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,810,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 733,
+      "end": 887,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹64,500 for the leased land shall be paid by the Lessee to the Lessor on or before September of every calendar year.\n\n"
+    },
+    {
+      "start": 887,
+      "end": 1049,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1049,
+      "end": 1199,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 185/B is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1199,
+      "end": 1347,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1347,
+      "end": 1495,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1495,
+      "end": 1612,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Nagpur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Nagpur",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  }
+}

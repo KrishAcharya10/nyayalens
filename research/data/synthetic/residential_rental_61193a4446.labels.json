@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_61193a4446",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Jaipur between:\n\nLANDLORD: Zehaan Prasad, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Indali Bakshi, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Rajasthan.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹62,500 per month towards rent, such payment to be made no later than the 10th of each month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹375,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 90 days in writing.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Jaipur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Jaipur"
+    },
+    {
+      "start": 94,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Zehaan Prasad"
+    },
+    {
+      "start": 166,
+      "end": 179,
+      "label": "TENANT",
+      "text": "Indali Bakshi"
+    },
+    {
+      "start": 512,
+      "end": 521,
+      "label": "DURATION",
+      "text": "12 months"
+    },
+    {
+      "start": 621,
+      "end": 628,
+      "label": "RENT",
+      "text": "₹62,500"
+    },
+    {
+      "start": 756,
+      "end": 764,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹375,000"
+    },
+    {
+      "start": 980,
+      "end": 987,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 444,
+      "end": 569,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 569,
+      "end": 716,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹62,500 per month towards rent, such payment to be made no later than the 10th of each month.\n\n"
+    },
+    {
+      "start": 716,
+      "end": 877,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹375,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 877,
+      "end": 1001,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 90 days in writing.\n\n"
+    },
+    {
+      "start": 1001,
+      "end": 1156,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1156,
+      "end": 1288,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1288,
+      "end": 1436,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1436,
+      "end": 1553,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Jaipur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  }
+}

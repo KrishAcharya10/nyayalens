@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_dcc285eff8",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Vadodara between:\n\nLESSOR: Janaki Yogi, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Faras Kanda, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Maharashtra.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 853/3, admeasuring 2.92 hectares, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹4,540,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹48,000 payable on or before July each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 853/3 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 59,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 78,
+      "end": 89,
+      "label": "LESSOR",
+      "text": "Janaki Yogi"
+    },
+    {
+      "start": 146,
+      "end": 157,
+      "label": "LESSEE",
+      "text": "Faras Kanda"
+    },
+    {
+      "start": 324,
+      "end": 329,
+      "label": "SURVEY_NUMBER",
+      "text": "853/3"
+    },
+    {
+      "start": 343,
+      "end": 356,
+      "label": "LAND_AREA",
+      "text": "2.92 hectares"
+    },
+    {
+      "start": 372,
+      "end": 402,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 548,
+      "end": 556,
+      "label": "DURATION",
+      "text": "15 years"
+    },
+    {
+      "start": 648,
+      "end": 658,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,540,000"
+    },
+    {
+      "start": 836,
+      "end": 843,
+      "label": "RENT",
+      "text": "₹48,000"
+    },
+    {
+      "start": 956,
+      "end": 985,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "agricultural storage purposes"
+    },
+    {
+      "start": 1143,
+      "end": 1148,
+      "label": "SURVEY_NUMBER",
+      "text": "853/3"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 481,
+      "end": 593,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 593,
+      "end": 736,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹4,540,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 736,
+      "end": 882,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹48,000 payable on or before July each year.\n\n"
+    },
+    {
+      "start": 882,
+      "end": 1051,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1051,
+      "end": 1201,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 853/3 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1201,
+      "end": 1333,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1333,
+      "end": 1481,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1481,
+      "end": 1607,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  }
+}

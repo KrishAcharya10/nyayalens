@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_9f404b4a7f",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Kolkata between:\n\nLANDLORD: Lekha Sarkar, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Yashoda Ramachandran, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Telangana.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹75,000 to the Lessor/Landlord on or before the 5th day of each calendar month.\n\n3. SECURITY DEPOSIT\nA sum of ₹150,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 74,
+      "label": "ADDRESS",
+      "text": "Kolkata"
+    },
+    {
+      "start": 95,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Lekha Sarkar"
+    },
+    {
+      "start": 166,
+      "end": 186,
+      "label": "TENANT",
+      "text": "Yashoda Ramachandran"
+    },
+    {
+      "start": 519,
+      "end": 528,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 638,
+      "end": 645,
+      "label": "RENT",
+      "text": "₹75,000"
+    },
+    {
+      "start": 748,
+      "end": 756,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹150,000"
+    },
+    {
+      "start": 954,
+      "end": 961,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 451,
+      "end": 576,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 576,
+      "end": 719,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹75,000 to the Lessor/Landlord on or before the 5th day of each calendar month.\n\n"
+    },
+    {
+      "start": 719,
+      "end": 880,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nA sum of ₹150,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n"
+    },
+    {
+      "start": 880,
+      "end": 999,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 999,
+      "end": 1145,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1145,
+      "end": 1277,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1277,
+      "end": 1395,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Kolkata",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

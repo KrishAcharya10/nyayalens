@@ -1,0 +1,118 @@
+{
+  "doc_id": "land_lease_c30bf0ddec",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Vadodara between:\n\nLESSOR: Vritti Chaudry, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Caleb Om, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Telangana.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 853/B, admeasuring 22 guntha, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹860,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹258,000 payable on or before September each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 59,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 78,
+      "end": 92,
+      "label": "LESSOR",
+      "text": "Vritti Chaudry"
+    },
+    {
+      "start": 149,
+      "end": 157,
+      "label": "LESSEE",
+      "text": "Caleb Om"
+    },
+    {
+      "start": 322,
+      "end": 327,
+      "label": "SURVEY_NUMBER",
+      "text": "853/B"
+    },
+    {
+      "start": 341,
+      "end": 350,
+      "label": "LAND_AREA",
+      "text": "22 guntha"
+    },
+    {
+      "start": 366,
+      "end": 387,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 533,
+      "end": 541,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 633,
+      "end": 641,
+      "label": "LEASE_PREMIUM",
+      "text": "₹860,000"
+    },
+    {
+      "start": 819,
+      "end": 827,
+      "label": "RENT",
+      "text": "₹258,000"
+    },
+    {
+      "start": 945,
+      "end": 974,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "agricultural storage purposes"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 466,
+      "end": 578,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 578,
+      "end": 719,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹860,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 719,
+      "end": 871,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹258,000 payable on or before September each year.\n\n"
+    },
+    {
+      "start": 871,
+      "end": 1040,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1040,
+      "end": 1172,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1172,
+      "end": 1291,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

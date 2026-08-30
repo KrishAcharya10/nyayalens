@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_97b92f3621",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Nagercoil between:\n\nLANDLORD: Saanvi Acharya, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Girish Pathak, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹19,000, due on or before the 1st of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹190,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 60 days' written notice to the other party.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagercoil.\n\n7. JURISDICTION\nThe courts at Nagercoil shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Nagercoil"
+    },
+    {
+      "start": 97,
+      "end": 111,
+      "label": "LANDLORD",
+      "text": "Saanvi Acharya"
+    },
+    {
+      "start": 170,
+      "end": 183,
+      "label": "TENANT",
+      "text": "Girish Pathak"
+    },
+    {
+      "start": 521,
+      "end": 530,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 645,
+      "end": 652,
+      "label": "RENT",
+      "text": "₹19,000"
+    },
+    {
+      "start": 812,
+      "end": 820,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹190,000"
+    },
+    {
+      "start": 940,
+      "end": 947,
+      "label": "NOTICE_PERIOD",
+      "text": "60 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 453,
+      "end": 578,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 578,
+      "end": 723,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹19,000, due on or before the 1st of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 723,
+      "end": 866,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹190,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 866,
+      "end": 985,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 60 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 985,
+      "end": 1117,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1117,
+      "end": 1274,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagercoil.\n\n"
+    },
+    {
+      "start": 1274,
+      "end": 1394,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Nagercoil shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Nagercoil",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

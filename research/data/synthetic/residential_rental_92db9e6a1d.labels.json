@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_92db9e6a1d",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Nagercoil between:\n\nLANDLORD: Agastya Rajan, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Ryan Char, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Rajasthan.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹51,500 per calendar month, payable in advance by the 1st of the month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹154,500 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagercoil.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nagercoil alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Nagercoil"
+    },
+    {
+      "start": 97,
+      "end": 110,
+      "label": "LANDLORD",
+      "text": "Agastya Rajan"
+    },
+    {
+      "start": 169,
+      "end": 178,
+      "label": "TENANT",
+      "text": "Ryan Char"
+    },
+    {
+      "start": 511,
+      "end": 520,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 626,
+      "end": 633,
+      "label": "RENT",
+      "text": "₹51,500"
+    },
+    {
+      "start": 739,
+      "end": 747,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹154,500"
+    },
+    {
+      "start": 894,
+      "end": 901,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 443,
+      "end": 568,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 568,
+      "end": 699,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹51,500 per calendar month, payable in advance by the 1st of the month.\n\n"
+    },
+    {
+      "start": 699,
+      "end": 860,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹154,500 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 860,
+      "end": 976,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 976,
+      "end": 1131,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1131,
+      "end": 1279,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1279,
+      "end": 1436,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagercoil.\n\n"
+    },
+    {
+      "start": 1436,
+      "end": 1563,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nagercoil alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Nagercoil",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  }
+}

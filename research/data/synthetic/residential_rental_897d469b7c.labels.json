@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_897d469b7c",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Vadodara between:\n\nLANDLORD: Unni Subramaniam, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Gunbir Dara, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹55,500, due on or before the 5th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹111,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 75,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 96,
+      "end": 112,
+      "label": "LANDLORD",
+      "text": "Unni Subramaniam"
+    },
+    {
+      "start": 171,
+      "end": 182,
+      "label": "TENANT",
+      "text": "Gunbir Dara"
+    },
+    {
+      "start": 513,
+      "end": 522,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 637,
+      "end": 644,
+      "label": "RENT",
+      "text": "₹55,500"
+    },
+    {
+      "start": 755,
+      "end": 763,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹111,000"
+    },
+    {
+      "start": 979,
+      "end": 986,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 445,
+      "end": 570,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 570,
+      "end": 715,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹55,500, due on or before the 5th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 715,
+      "end": 876,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹111,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 876,
+      "end": 1000,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n"
+    },
+    {
+      "start": 1000,
+      "end": 1146,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1146,
+      "end": 1294,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1294,
+      "end": 1450,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n"
+    },
+    {
+      "start": 1450,
+      "end": 1576,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

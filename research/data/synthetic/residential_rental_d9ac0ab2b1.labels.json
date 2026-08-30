@@ -1,0 +1,100 @@
+{
+  "doc_id": "residential_rental_d9ac0ab2b1",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Hyderabad between:\n\nLANDLORD: Bhavini Sridhar, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Teerth Varughese, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Maharashtra.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹41,000 per calendar month, payable in advance by the 1st of the month.\n\n3. SECURITY DEPOSIT\nA sum of ₹82,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 60 days' written notice to the other party.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. JURISDICTION\nThe courts at Hyderabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Hyderabad"
+    },
+    {
+      "start": 97,
+      "end": 112,
+      "label": "LANDLORD",
+      "text": "Bhavini Sridhar"
+    },
+    {
+      "start": 171,
+      "end": 187,
+      "label": "TENANT",
+      "text": "Teerth Varughese"
+    },
+    {
+      "start": 522,
+      "end": 531,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 637,
+      "end": 644,
+      "label": "RENT",
+      "text": "₹41,000"
+    },
+    {
+      "start": 739,
+      "end": 746,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹82,000"
+    },
+    {
+      "start": 944,
+      "end": 951,
+      "label": "NOTICE_PERIOD",
+      "text": "60 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 454,
+      "end": 579,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 579,
+      "end": 710,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹41,000 per calendar month, payable in advance by the 1st of the month.\n\n"
+    },
+    {
+      "start": 710,
+      "end": 870,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nA sum of ₹82,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n"
+    },
+    {
+      "start": 870,
+      "end": 989,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 60 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 989,
+      "end": 1121,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1121,
+      "end": 1241,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThe courts at Hyderabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Hyderabad",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  }
+}

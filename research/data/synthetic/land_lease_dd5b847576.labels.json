@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_dd5b847576",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Bengaluru between:\n\nLESSOR: Daksha Lata, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Yochana Chaudhary, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Karnataka.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 868/A, admeasuring 13 guntha, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹570,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹203,000 for the leased land shall be paid by the Lessee to the Lessor on or before November of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 868/A, is unencumbered and free from any third-party claims.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Bengaluru"
+    },
+    {
+      "start": 79,
+      "end": 90,
+      "label": "LESSOR",
+      "text": "Daksha Lata"
+    },
+    {
+      "start": 147,
+      "end": 164,
+      "label": "LESSEE",
+      "text": "Yochana Chaudhary"
+    },
+    {
+      "start": 329,
+      "end": 334,
+      "label": "SURVEY_NUMBER",
+      "text": "868/A"
+    },
+    {
+      "start": 348,
+      "end": 357,
+      "label": "LAND_AREA",
+      "text": "13 guntha"
+    },
+    {
+      "start": 373,
+      "end": 403,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 549,
+      "end": 557,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 660,
+      "end": 668,
+      "label": "LEASE_PREMIUM",
+      "text": "₹570,000"
+    },
+    {
+      "start": 749,
+      "end": 757,
+      "label": "RENT",
+      "text": "₹203,000"
+    },
+    {
+      "start": 941,
+      "end": 965,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "dairy farming operations"
+    },
+    {
+      "start": 1121,
+      "end": 1126,
+      "label": "SURVEY_NUMBER",
+      "text": "868/A"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 482,
+      "end": 594,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 594,
+      "end": 713,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹570,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 713,
+      "end": 867,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹203,000 for the leased land shall be paid by the Lessee to the Lessor on or before November of every calendar year.\n\n"
+    },
+    {
+      "start": 867,
+      "end": 1031,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1031,
+      "end": 1183,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 868/A, is unencumbered and free from any third-party claims.\n\n"
+    },
+    {
+      "start": 1183,
+      "end": 1331,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1331,
+      "end": 1479,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1479,
+      "end": 1606,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "schema_version": "1.0"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_53b3bceece",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Delhi between:\n\nLANDLORD: Yashodhara Hegde, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: William Saini, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Telangana.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹29,500, due on or before the 10th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nA sum of ₹88,500 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 90 days' written notice to the other party.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Delhi"
+    },
+    {
+      "start": 93,
+      "end": 109,
+      "label": "LANDLORD",
+      "text": "Yashodhara Hegde"
+    },
+    {
+      "start": 168,
+      "end": 181,
+      "label": "TENANT",
+      "text": "William Saini"
+    },
+    {
+      "start": 514,
+      "end": 523,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 638,
+      "end": 645,
+      "label": "RENT",
+      "text": "₹29,500"
+    },
+    {
+      "start": 746,
+      "end": 753,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹88,500"
+    },
+    {
+      "start": 951,
+      "end": 958,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 446,
+      "end": 571,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 571,
+      "end": 717,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹29,500, due on or before the 10th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 717,
+      "end": 877,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nA sum of ₹88,500 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n"
+    },
+    {
+      "start": 877,
+      "end": 996,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 90 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 996,
+      "end": 1151,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1151,
+      "end": 1283,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1283,
+      "end": 1399,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Delhi",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

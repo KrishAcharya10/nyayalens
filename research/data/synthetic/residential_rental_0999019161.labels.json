@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_0999019161",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Mumbai between:\n\nLANDLORD: Ayushman Mani, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Matthew Varughese, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹46,000, due on or before the 5th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nA sum of ₹276,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n4. TERMINATION NOTICE\nA notice of 45 days shall be required from either party intending to terminate this tenancy.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Mumbai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Mumbai"
+    },
+    {
+      "start": 94,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Ayushman Mani"
+    },
+    {
+      "start": 166,
+      "end": 183,
+      "label": "TENANT",
+      "text": "Matthew Varughese"
+    },
+    {
+      "start": 514,
+      "end": 523,
+      "label": "DURATION",
+      "text": "12 months"
+    },
+    {
+      "start": 638,
+      "end": 645,
+      "label": "RENT",
+      "text": "₹46,000"
+    },
+    {
+      "start": 745,
+      "end": 753,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹276,000"
+    },
+    {
+      "start": 911,
+      "end": 918,
+      "label": "NOTICE_PERIOD",
+      "text": "45 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 446,
+      "end": 571,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 571,
+      "end": 716,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹46,000, due on or before the 5th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 716,
+      "end": 877,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nA sum of ₹276,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n"
+    },
+    {
+      "start": 877,
+      "end": 993,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 45 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 993,
+      "end": 1148,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1148,
+      "end": 1280,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1280,
+      "end": 1428,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1428,
+      "end": 1545,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Mumbai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Mumbai",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

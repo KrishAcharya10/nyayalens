@@ -1,0 +1,101 @@
+{
+  "doc_id": "residential_rental_aa190f66a7",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Bhopal between:\n\nLANDLORD: Jatin Desai, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Udyati Bhatnagar, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Karnataka.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹60,000 per month towards rent, such payment to be made no later than the 1st of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹180,000 to the Landlord prior to taking possession.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThe courts at Bhopal shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Bhopal"
+    },
+    {
+      "start": 94,
+      "end": 105,
+      "label": "LANDLORD",
+      "text": "Jatin Desai"
+    },
+    {
+      "start": 164,
+      "end": 180,
+      "label": "TENANT",
+      "text": "Udyati Bhatnagar"
+    },
+    {
+      "start": 513,
+      "end": 522,
+      "label": "DURATION",
+      "text": "12 months"
+    },
+    {
+      "start": 622,
+      "end": 629,
+      "label": "RENT",
+      "text": "₹60,000"
+    },
+    {
+      "start": 805,
+      "end": 813,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹180,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 445,
+      "end": 570,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 570,
+      "end": 716,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹60,000 per month towards rent, such payment to be made no later than the 1st of each month.\n\n"
+    },
+    {
+      "start": 716,
+      "end": 859,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹180,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 859,
+      "end": 1005,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1005,
+      "end": 1137,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1137,
+      "end": 1285,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1285,
+      "end": 1402,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Bhopal shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Bhopal",
+    "state": "Karnataka",
+    "schema_version": "1.0"
+  }
+}

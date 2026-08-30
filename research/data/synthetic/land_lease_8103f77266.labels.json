@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_8103f77266",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Vadodara between:\n\nLESSOR: Nitesh Chhabra, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Mahika Chowdhury, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Delhi.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 489/3, admeasuring 23 guntha, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,780,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹118,000 for the leased land shall be paid by the Lessee to the Lessor on or before January of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 489/3 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n8. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 59,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 78,
+      "end": 92,
+      "label": "LESSOR",
+      "text": "Nitesh Chhabra"
+    },
+    {
+      "start": 149,
+      "end": 165,
+      "label": "LESSEE",
+      "text": "Mahika Chowdhury"
+    },
+    {
+      "start": 326,
+      "end": 331,
+      "label": "SURVEY_NUMBER",
+      "text": "489/3"
+    },
+    {
+      "start": 345,
+      "end": 354,
+      "label": "LAND_AREA",
+      "text": "23 guntha"
+    },
+    {
+      "start": 370,
+      "end": 382,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 528,
+      "end": 536,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 639,
+      "end": 649,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,780,000"
+    },
+    {
+      "start": 730,
+      "end": 738,
+      "label": "RENT",
+      "text": "₹118,000"
+    },
+    {
+      "start": 921,
+      "end": 957,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "construction of a warehouse facility"
+    },
+    {
+      "start": 1115,
+      "end": 1120,
+      "label": "SURVEY_NUMBER",
+      "text": "489/3"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 461,
+      "end": 573,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 573,
+      "end": 694,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,780,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 694,
+      "end": 847,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹118,000 for the leased land shall be paid by the Lessee to the Lessor on or before January of every calendar year.\n\n"
+    },
+    {
+      "start": 847,
+      "end": 1023,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1023,
+      "end": 1173,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 489/3 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1173,
+      "end": 1305,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1305,
+      "end": 1461,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n"
+    },
+    {
+      "start": 1461,
+      "end": 1580,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Delhi",
+    "schema_version": "1.0"
+  }
+}

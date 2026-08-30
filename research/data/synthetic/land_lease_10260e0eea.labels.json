@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_10260e0eea",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Jaipur between:\n\nLESSOR: Anamika Ray, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Vaishnavi Gulati, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Gujarat.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 254/2, admeasuring 3.97 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,110,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹163,000 payable on or before October each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 254/2 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Jaipur.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Jaipur"
+    },
+    {
+      "start": 76,
+      "end": 87,
+      "label": "LESSOR",
+      "text": "Anamika Ray"
+    },
+    {
+      "start": 144,
+      "end": 160,
+      "label": "LESSEE",
+      "text": "Vaishnavi Gulati"
+    },
+    {
+      "start": 323,
+      "end": 328,
+      "label": "SURVEY_NUMBER",
+      "text": "254/2"
+    },
+    {
+      "start": 342,
+      "end": 352,
+      "label": "LAND_AREA",
+      "text": "3.97 acres"
+    },
+    {
+      "start": 368,
+      "end": 380,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 526,
+      "end": 534,
+      "label": "DURATION",
+      "text": "15 years"
+    },
+    {
+      "start": 626,
+      "end": 636,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,110,000"
+    },
+    {
+      "start": 814,
+      "end": 822,
+      "label": "RENT",
+      "text": "₹163,000"
+    },
+    {
+      "start": 938,
+      "end": 962,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1120,
+      "end": 1125,
+      "label": "SURVEY_NUMBER",
+      "text": "254/2"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 459,
+      "end": 571,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 571,
+      "end": 714,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,110,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 714,
+      "end": 864,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹163,000 payable on or before October each year.\n\n"
+    },
+    {
+      "start": 864,
+      "end": 1028,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1028,
+      "end": 1178,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 254/2 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1178,
+      "end": 1326,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1326,
+      "end": 1480,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Jaipur.\n\n"
+    },
+    {
+      "start": 1480,
+      "end": 1604,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Jaipur",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

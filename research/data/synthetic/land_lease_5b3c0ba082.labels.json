@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_5b3c0ba082",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Surat between:\n\nLESSOR: Hritik Prabhakar, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Mitesh Sehgal, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of West Bengal.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 442/A, admeasuring 7.7 acres, classified as Commercial land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,680,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹77,500 payable on or before August each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 442/A is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 75,
+      "end": 91,
+      "label": "LESSOR",
+      "text": "Hritik Prabhakar"
+    },
+    {
+      "start": 148,
+      "end": 161,
+      "label": "LESSEE",
+      "text": "Mitesh Sehgal"
+    },
+    {
+      "start": 328,
+      "end": 333,
+      "label": "SURVEY_NUMBER",
+      "text": "442/A"
+    },
+    {
+      "start": 347,
+      "end": 356,
+      "label": "LAND_AREA",
+      "text": "7.7 acres"
+    },
+    {
+      "start": 372,
+      "end": 382,
+      "label": "LAND_USE_TYPE",
+      "text": "Commercial"
+    },
+    {
+      "start": 528,
+      "end": 536,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 628,
+      "end": 638,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,680,000"
+    },
+    {
+      "start": 816,
+      "end": 823,
+      "label": "RENT",
+      "text": "₹77,500"
+    },
+    {
+      "start": 938,
+      "end": 967,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1125,
+      "end": 1130,
+      "label": "SURVEY_NUMBER",
+      "text": "442/A"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 461,
+      "end": 573,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 573,
+      "end": 716,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,680,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 716,
+      "end": 864,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹77,500 payable on or before August each year.\n\n"
+    },
+    {
+      "start": 864,
+      "end": 1033,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1033,
+      "end": 1183,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 442/A is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1183,
+      "end": 1331,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1331,
+      "end": 1479,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1479,
+      "end": 1595,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Surat",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  }
+}

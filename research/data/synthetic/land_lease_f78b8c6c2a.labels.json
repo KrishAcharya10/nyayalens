@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_f78b8c6c2a",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Kanpur between:\n\nLESSOR: Hemangini Dara, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Siddharth Rastogi, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Telangana.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 175/3, admeasuring 35 guntha, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,530,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹298,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of construction of a warehouse facility and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 175/3 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kanpur.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Kanpur alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Kanpur"
+    },
+    {
+      "start": 76,
+      "end": 90,
+      "label": "LESSOR",
+      "text": "Hemangini Dara"
+    },
+    {
+      "start": 147,
+      "end": 164,
+      "label": "LESSEE",
+      "text": "Siddharth Rastogi"
+    },
+    {
+      "start": 329,
+      "end": 334,
+      "label": "SURVEY_NUMBER",
+      "text": "175/3"
+    },
+    {
+      "start": 348,
+      "end": 357,
+      "label": "LAND_AREA",
+      "text": "35 guntha"
+    },
+    {
+      "start": 373,
+      "end": 394,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 540,
+      "end": 548,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 651,
+      "end": 661,
+      "label": "LEASE_PREMIUM",
+      "text": "₹2,530,000"
+    },
+    {
+      "start": 742,
+      "end": 750,
+      "label": "RENT",
+      "text": "₹298,500"
+    },
+    {
+      "start": 938,
+      "end": 974,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "construction of a warehouse facility"
+    },
+    {
+      "start": 1124,
+      "end": 1129,
+      "label": "SURVEY_NUMBER",
+      "text": "175/3"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 473,
+      "end": 585,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 585,
+      "end": 706,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,530,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 706,
+      "end": 858,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹298,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 858,
+      "end": 1032,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of construction of a warehouse facility and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1032,
+      "end": 1182,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 175/3 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1182,
+      "end": 1330,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1330,
+      "end": 1484,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kanpur.\n\n"
+    },
+    {
+      "start": 1484,
+      "end": 1608,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Kanpur alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Kanpur",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

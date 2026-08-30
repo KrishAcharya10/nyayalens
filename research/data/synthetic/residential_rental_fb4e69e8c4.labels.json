@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_fb4e69e8c4",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Jaipur between:\n\nLANDLORD: Max Ahluwalia, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Max Date, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹79,000 per calendar month, payable in advance by the 7th of the month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹158,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 45 days in writing.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Jaipur.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Jaipur"
+    },
+    {
+      "start": 94,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Max Ahluwalia"
+    },
+    {
+      "start": 166,
+      "end": 174,
+      "label": "TENANT",
+      "text": "Max Date"
+    },
+    {
+      "start": 511,
+      "end": 520,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 626,
+      "end": 633,
+      "label": "RENT",
+      "text": "₹79,000"
+    },
+    {
+      "start": 788,
+      "end": 796,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹158,000"
+    },
+    {
+      "start": 945,
+      "end": 952,
+      "label": "NOTICE_PERIOD",
+      "text": "45 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 443,
+      "end": 568,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 568,
+      "end": 699,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹79,000 per calendar month, payable in advance by the 7th of the month.\n\n"
+    },
+    {
+      "start": 699,
+      "end": 842,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹158,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 842,
+      "end": 966,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 45 days in writing.\n\n"
+    },
+    {
+      "start": 966,
+      "end": 1121,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1121,
+      "end": 1269,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1269,
+      "end": 1423,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Jaipur.\n\n"
+    },
+    {
+      "start": 1423,
+      "end": 1547,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Jaipur",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  }
+}

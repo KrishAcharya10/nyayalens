@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_96f3f2ce9b",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Delhi between:\n\nLESSOR: Ryan Gill, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Urmi Sha, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of West Bengal.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 23/B, admeasuring 32 guntha, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹1,890,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹164,000 payable on or before March each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 23/B, is unencumbered and free from any third-party claims.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Delhi"
+    },
+    {
+      "start": 75,
+      "end": 84,
+      "label": "LESSOR",
+      "text": "Ryan Gill"
+    },
+    {
+      "start": 141,
+      "end": 149,
+      "label": "LESSEE",
+      "text": "Urmi Sha"
+    },
+    {
+      "start": 316,
+      "end": 320,
+      "label": "SURVEY_NUMBER",
+      "text": "23/B"
+    },
+    {
+      "start": 334,
+      "end": 343,
+      "label": "LAND_AREA",
+      "text": "32 guntha"
+    },
+    {
+      "start": 359,
+      "end": 371,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 517,
+      "end": 525,
+      "label": "DURATION",
+      "text": "15 years"
+    },
+    {
+      "start": 617,
+      "end": 627,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,890,000"
+    },
+    {
+      "start": 805,
+      "end": 813,
+      "label": "RENT",
+      "text": "₹164,000"
+    },
+    {
+      "start": 927,
+      "end": 963,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "construction of a warehouse facility"
+    },
+    {
+      "start": 1119,
+      "end": 1123,
+      "label": "SURVEY_NUMBER",
+      "text": "23/B"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 450,
+      "end": 562,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 562,
+      "end": 705,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹1,890,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 705,
+      "end": 853,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹164,000 payable on or before March each year.\n\n"
+    },
+    {
+      "start": 853,
+      "end": 1029,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1029,
+      "end": 1180,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 23/B, is unencumbered and free from any third-party claims.\n\n"
+    },
+    {
+      "start": 1180,
+      "end": 1328,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1328,
+      "end": 1476,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1476,
+      "end": 1592,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Delhi",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  }
+}

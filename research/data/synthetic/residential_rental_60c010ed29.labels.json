@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_60c010ed29",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Bengaluru between:\n\nLANDLORD: Meera Wadhwa, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Kritika Rege, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Maharashtra.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹63,000, due on or before the 10th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹378,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 90 days in writing.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Bengaluru"
+    },
+    {
+      "start": 97,
+      "end": 109,
+      "label": "LANDLORD",
+      "text": "Meera Wadhwa"
+    },
+    {
+      "start": 168,
+      "end": 180,
+      "label": "TENANT",
+      "text": "Kritika Rege"
+    },
+    {
+      "start": 515,
+      "end": 524,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 639,
+      "end": 646,
+      "label": "RENT",
+      "text": "₹63,000"
+    },
+    {
+      "start": 807,
+      "end": 815,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹378,000"
+    },
+    {
+      "start": 964,
+      "end": 971,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 447,
+      "end": 572,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 572,
+      "end": 718,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹63,000, due on or before the 10th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 718,
+      "end": 861,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹378,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 861,
+      "end": 985,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 90 days in writing.\n\n"
+    },
+    {
+      "start": 985,
+      "end": 1131,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1131,
+      "end": 1279,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1279,
+      "end": 1406,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Bengaluru",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  }
+}

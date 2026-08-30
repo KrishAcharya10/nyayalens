@@ -1,0 +1,94 @@
+{
+  "doc_id": "residential_rental_bb6c35a43e",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Bhopal between:\n\nLANDLORD: Mason Tandon, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Jagvi Sarraf, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹73,000 per month towards rent, such payment to be made no later than the 7th of each month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹730,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n5. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bhopal alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Bhopal"
+    },
+    {
+      "start": 94,
+      "end": 106,
+      "label": "LANDLORD",
+      "text": "Mason Tandon"
+    },
+    {
+      "start": 165,
+      "end": 177,
+      "label": "TENANT",
+      "text": "Jagvi Sarraf"
+    },
+    {
+      "start": 514,
+      "end": 523,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 623,
+      "end": 630,
+      "label": "RENT",
+      "text": "₹73,000"
+    },
+    {
+      "start": 757,
+      "end": 765,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹730,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 446,
+      "end": 571,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 571,
+      "end": 717,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹73,000 per month towards rent, such payment to be made no later than the 7th of each month.\n\n"
+    },
+    {
+      "start": 717,
+      "end": 878,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹730,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 878,
+      "end": 1026,
+      "label": "TERMINATION",
+      "clause_number": "4",
+      "text": "4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1026,
+      "end": 1174,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "5",
+      "text": "5. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1174,
+      "end": 1298,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bhopal alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Bhopal",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  }
+}

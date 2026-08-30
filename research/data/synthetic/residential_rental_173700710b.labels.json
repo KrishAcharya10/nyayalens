@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_173700710b",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Indore between:\n\nLANDLORD: Christopher Hegde, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Vasudha Bail, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Delhi.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹36,500 per month towards rent, such payment to be made no later than the 10th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹219,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Indore alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Indore"
+    },
+    {
+      "start": 94,
+      "end": 111,
+      "label": "LANDLORD",
+      "text": "Christopher Hegde"
+    },
+    {
+      "start": 170,
+      "end": 182,
+      "label": "TENANT",
+      "text": "Vasudha Bail"
+    },
+    {
+      "start": 511,
+      "end": 520,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 620,
+      "end": 627,
+      "label": "RENT",
+      "text": "₹36,500"
+    },
+    {
+      "start": 804,
+      "end": 812,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹219,000"
+    },
+    {
+      "start": 932,
+      "end": 939,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 443,
+      "end": 568,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 568,
+      "end": 715,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹36,500 per month towards rent, such payment to be made no later than the 10th of each month.\n\n"
+    },
+    {
+      "start": 715,
+      "end": 858,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹219,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 858,
+      "end": 977,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 977,
+      "end": 1132,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1132,
+      "end": 1280,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1280,
+      "end": 1434,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n"
+    },
+    {
+      "start": 1434,
+      "end": 1558,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Indore alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Indore",
+    "state": "Delhi",
+    "schema_version": "1.0"
+  }
+}

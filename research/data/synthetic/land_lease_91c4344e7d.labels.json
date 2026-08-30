@@ -1,0 +1,131 @@
+{
+  "doc_id": "land_lease_91c4344e7d",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Indore between:\n\nLESSOR: Aarav Bora, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Samarth Guha, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Rajasthan.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 316/1, admeasuring 30 guntha, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹1,170,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹35,000 payable on or before January each year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 316/1 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThe courts at Indore shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Indore"
+    },
+    {
+      "start": 76,
+      "end": 86,
+      "label": "LESSOR",
+      "text": "Aarav Bora"
+    },
+    {
+      "start": 143,
+      "end": 155,
+      "label": "LESSEE",
+      "text": "Samarth Guha"
+    },
+    {
+      "start": 320,
+      "end": 325,
+      "label": "SURVEY_NUMBER",
+      "text": "316/1"
+    },
+    {
+      "start": 339,
+      "end": 348,
+      "label": "LAND_AREA",
+      "text": "30 guntha"
+    },
+    {
+      "start": 364,
+      "end": 385,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 531,
+      "end": 539,
+      "label": "DURATION",
+      "text": "15 years"
+    },
+    {
+      "start": 631,
+      "end": 641,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,170,000"
+    },
+    {
+      "start": 819,
+      "end": 826,
+      "label": "RENT",
+      "text": "₹35,000"
+    },
+    {
+      "start": 942,
+      "end": 966,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1124,
+      "end": 1129,
+      "label": "SURVEY_NUMBER",
+      "text": "316/1"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 464,
+      "end": 576,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 576,
+      "end": 719,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹1,170,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 719,
+      "end": 868,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹35,000 payable on or before January each year.\n\n"
+    },
+    {
+      "start": 868,
+      "end": 1032,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1032,
+      "end": 1182,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 316/1 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1182,
+      "end": 1314,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1314,
+      "end": 1431,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Indore shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Indore",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  }
+}

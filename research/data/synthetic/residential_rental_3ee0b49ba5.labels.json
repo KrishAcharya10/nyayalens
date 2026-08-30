@@ -1,0 +1,101 @@
+{
+  "doc_id": "residential_rental_3ee0b49ba5",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Vadodara between:\n\nLANDLORD: Anvi Sane, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Kamya Gara, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹61,000 per calendar month, payable in advance by the 7th of the month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹366,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 75,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 96,
+      "end": 105,
+      "label": "LANDLORD",
+      "text": "Anvi Sane"
+    },
+    {
+      "start": 164,
+      "end": 174,
+      "label": "TENANT",
+      "text": "Kamya Gara"
+    },
+    {
+      "start": 512,
+      "end": 521,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 627,
+      "end": 634,
+      "label": "RENT",
+      "text": "₹61,000"
+    },
+    {
+      "start": 740,
+      "end": 748,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹366,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 444,
+      "end": 569,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 569,
+      "end": 700,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹61,000 per calendar month, payable in advance by the 7th of the month.\n\n"
+    },
+    {
+      "start": 700,
+      "end": 861,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹366,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 861,
+      "end": 1007,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1007,
+      "end": 1139,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1139,
+      "end": 1295,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n"
+    },
+    {
+      "start": 1295,
+      "end": 1421,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

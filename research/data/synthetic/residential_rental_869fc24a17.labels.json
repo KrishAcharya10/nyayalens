@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_869fc24a17",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Vadodara between:\n\nLANDLORD: Janaki Hegde, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Wakeeta Prakash, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Telangana.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹57,000, due on or before the 10th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹114,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 60 days' written notice to the other party.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 75,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 96,
+      "end": 108,
+      "label": "LANDLORD",
+      "text": "Janaki Hegde"
+    },
+    {
+      "start": 167,
+      "end": 182,
+      "label": "TENANT",
+      "text": "Wakeeta Prakash"
+    },
+    {
+      "start": 515,
+      "end": 524,
+      "label": "DURATION",
+      "text": "12 months"
+    },
+    {
+      "start": 639,
+      "end": 646,
+      "label": "RENT",
+      "text": "₹57,000"
+    },
+    {
+      "start": 758,
+      "end": 766,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹114,000"
+    },
+    {
+      "start": 953,
+      "end": 960,
+      "label": "NOTICE_PERIOD",
+      "text": "60 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 447,
+      "end": 572,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 572,
+      "end": 718,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹57,000, due on or before the 10th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 718,
+      "end": 879,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹114,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 879,
+      "end": 998,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 60 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 998,
+      "end": 1153,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1153,
+      "end": 1285,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1285,
+      "end": 1404,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Vadodara shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

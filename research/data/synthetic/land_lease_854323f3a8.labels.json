@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_854323f3a8",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Lucknow between:\n\nLESSOR: Indrajit Agrawal, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Siddharth Sengupta, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 120/2, admeasuring 20 guntha, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹2,550,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹211,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 120/2 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Lucknow"
+    },
+    {
+      "start": 77,
+      "end": 93,
+      "label": "LESSOR",
+      "text": "Indrajit Agrawal"
+    },
+    {
+      "start": 150,
+      "end": 168,
+      "label": "LESSEE",
+      "text": "Siddharth Sengupta"
+    },
+    {
+      "start": 338,
+      "end": 343,
+      "label": "SURVEY_NUMBER",
+      "text": "120/2"
+    },
+    {
+      "start": 357,
+      "end": 366,
+      "label": "LAND_AREA",
+      "text": "20 guntha"
+    },
+    {
+      "start": 382,
+      "end": 412,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 558,
+      "end": 566,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 658,
+      "end": 668,
+      "label": "LEASE_PREMIUM",
+      "text": "₹2,550,000"
+    },
+    {
+      "start": 782,
+      "end": 790,
+      "label": "RENT",
+      "text": "₹211,500"
+    },
+    {
+      "start": 969,
+      "end": 993,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "dairy farming operations"
+    },
+    {
+      "start": 1151,
+      "end": 1156,
+      "label": "SURVEY_NUMBER",
+      "text": "120/2"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 491,
+      "end": 603,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 603,
+      "end": 746,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹2,550,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 746,
+      "end": 895,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹211,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n"
+    },
+    {
+      "start": 895,
+      "end": 1059,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1059,
+      "end": 1209,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 120/2 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1209,
+      "end": 1341,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1341,
+      "end": 1489,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1489,
+      "end": 1607,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Lucknow",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

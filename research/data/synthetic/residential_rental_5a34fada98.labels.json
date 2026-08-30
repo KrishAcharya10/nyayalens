@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_5a34fada98",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Lucknow between:\n\nLANDLORD: Brijesh Ravi, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Wriddhish Rastogi, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Bihar.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹54,000 to the Lessor/Landlord on or before the 7th day of each calendar month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹540,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 90 days' written notice to the other party.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Lucknow.\n\n8. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 74,
+      "label": "ADDRESS",
+      "text": "Lucknow"
+    },
+    {
+      "start": 95,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Brijesh Ravi"
+    },
+    {
+      "start": 166,
+      "end": 183,
+      "label": "TENANT",
+      "text": "Wriddhish Rastogi"
+    },
+    {
+      "start": 512,
+      "end": 521,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 631,
+      "end": 638,
+      "label": "RENT",
+      "text": "₹54,000"
+    },
+    {
+      "start": 752,
+      "end": 760,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹540,000"
+    },
+    {
+      "start": 947,
+      "end": 954,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 444,
+      "end": 569,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 569,
+      "end": 712,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹54,000 to the Lessor/Landlord on or before the 7th day of each calendar month.\n\n"
+    },
+    {
+      "start": 712,
+      "end": 873,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹540,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 873,
+      "end": 992,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 90 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 992,
+      "end": 1147,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1147,
+      "end": 1279,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1279,
+      "end": 1434,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Lucknow.\n\n"
+    },
+    {
+      "start": 1434,
+      "end": 1552,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Lucknow",
+    "state": "Bihar",
+    "schema_version": "1.0"
+  }
+}

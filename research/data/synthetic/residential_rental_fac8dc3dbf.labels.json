@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_fac8dc3dbf",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Thane between:\n\nLANDLORD: Mitesh Gupta, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Veda Sathe, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹19,000 to the Lessor/Landlord on or before the 10th day of each calendar month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹190,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Thane shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Thane"
+    },
+    {
+      "start": 93,
+      "end": 105,
+      "label": "LANDLORD",
+      "text": "Mitesh Gupta"
+    },
+    {
+      "start": 164,
+      "end": 174,
+      "label": "TENANT",
+      "text": "Veda Sathe"
+    },
+    {
+      "start": 505,
+      "end": 514,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 624,
+      "end": 631,
+      "label": "RENT",
+      "text": "₹19,000"
+    },
+    {
+      "start": 746,
+      "end": 754,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹190,000"
+    },
+    {
+      "start": 901,
+      "end": 908,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 437,
+      "end": 562,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 562,
+      "end": 706,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹19,000 to the Lessor/Landlord on or before the 10th day of each calendar month.\n\n"
+    },
+    {
+      "start": 706,
+      "end": 867,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹190,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 867,
+      "end": 983,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 983,
+      "end": 1138,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1138,
+      "end": 1270,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1270,
+      "end": 1418,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1418,
+      "end": 1534,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Thane shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Thane",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

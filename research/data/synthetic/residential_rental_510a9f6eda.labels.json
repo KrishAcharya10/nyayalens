@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_510a9f6eda",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Lucknow between:\n\nLANDLORD: Ijaya Krish, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Warda Mandal, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Karnataka.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹63,000, due on or before the 7th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nA sum of ₹630,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 15 days' written notice to the other party.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Lucknow.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Lucknow alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 74,
+      "label": "ADDRESS",
+      "text": "Lucknow"
+    },
+    {
+      "start": 95,
+      "end": 106,
+      "label": "LANDLORD",
+      "text": "Ijaya Krish"
+    },
+    {
+      "start": 165,
+      "end": 177,
+      "label": "TENANT",
+      "text": "Warda Mandal"
+    },
+    {
+      "start": 510,
+      "end": 519,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 634,
+      "end": 641,
+      "label": "RENT",
+      "text": "₹63,000"
+    },
+    {
+      "start": 741,
+      "end": 749,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹630,000"
+    },
+    {
+      "start": 947,
+      "end": 954,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 442,
+      "end": 567,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 567,
+      "end": 712,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹63,000, due on or before the 7th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 712,
+      "end": 873,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nA sum of ₹630,000 shall be deposited by the Lessee with the Lessor as security, refundable upon vacation subject to deductions for damages.\n\n"
+    },
+    {
+      "start": 873,
+      "end": 992,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 15 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 992,
+      "end": 1147,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1147,
+      "end": 1279,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1279,
+      "end": 1434,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Lucknow.\n\n"
+    },
+    {
+      "start": 1434,
+      "end": 1559,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Lucknow alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Lucknow",
+    "state": "Karnataka",
+    "schema_version": "1.0"
+  }
+}

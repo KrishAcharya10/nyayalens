@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_e47b2cd8fa",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Surat between:\n\nLANDLORD: Anvi Butala, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Charles Konda, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of West Bengal.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹51,000 per month towards rent, such payment to be made no later than the 10th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹153,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 93,
+      "end": 104,
+      "label": "LANDLORD",
+      "text": "Anvi Butala"
+    },
+    {
+      "start": 163,
+      "end": 176,
+      "label": "TENANT",
+      "text": "Charles Konda"
+    },
+    {
+      "start": 511,
+      "end": 520,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 620,
+      "end": 627,
+      "label": "RENT",
+      "text": "₹51,000"
+    },
+    {
+      "start": 804,
+      "end": 812,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹153,000"
+    },
+    {
+      "start": 961,
+      "end": 968,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 443,
+      "end": 568,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 568,
+      "end": 715,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹51,000 per month towards rent, such payment to be made no later than the 10th of each month.\n\n"
+    },
+    {
+      "start": 715,
+      "end": 858,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹153,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 858,
+      "end": 982,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 30 days in writing.\n\n"
+    },
+    {
+      "start": 982,
+      "end": 1137,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1137,
+      "end": 1285,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1285,
+      "end": 1401,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Surat",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  }
+}

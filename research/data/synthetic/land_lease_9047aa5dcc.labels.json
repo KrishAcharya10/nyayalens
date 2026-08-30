@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_9047aa5dcc",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nashik between:\n\nLESSOR: Champak Chada, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Shaurya Kapur, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 266/3, admeasuring 18 guntha, classified as Commercial land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹630,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹225,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 266/3 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Nashik shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Nashik"
+    },
+    {
+      "start": 76,
+      "end": 89,
+      "label": "LESSOR",
+      "text": "Champak Chada"
+    },
+    {
+      "start": 146,
+      "end": 159,
+      "label": "LESSEE",
+      "text": "Shaurya Kapur"
+    },
+    {
+      "start": 329,
+      "end": 334,
+      "label": "SURVEY_NUMBER",
+      "text": "266/3"
+    },
+    {
+      "start": 348,
+      "end": 357,
+      "label": "LAND_AREA",
+      "text": "18 guntha"
+    },
+    {
+      "start": 373,
+      "end": 383,
+      "label": "LAND_USE_TYPE",
+      "text": "Commercial"
+    },
+    {
+      "start": 529,
+      "end": 537,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 640,
+      "end": 648,
+      "label": "LEASE_PREMIUM",
+      "text": "₹630,000"
+    },
+    {
+      "start": 729,
+      "end": 737,
+      "label": "RENT",
+      "text": "₹225,000"
+    },
+    {
+      "start": 919,
+      "end": 955,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "construction of a warehouse facility"
+    },
+    {
+      "start": 1113,
+      "end": 1118,
+      "label": "SURVEY_NUMBER",
+      "text": "266/3"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 462,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 693,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹630,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 693,
+      "end": 845,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹225,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 845,
+      "end": 1021,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1021,
+      "end": 1171,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 266/3 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1171,
+      "end": 1303,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1303,
+      "end": 1451,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1451,
+      "end": 1568,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Nashik shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Nashik",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

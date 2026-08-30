@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_3151cb4256",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Kanpur between:\n\nLESSOR: Hemal Rao, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Rachana Mitter, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Telangana.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 147/A, admeasuring 36 guntha, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,560,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹148,000 payable on or before April each year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 147/A is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kanpur.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Kanpur alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Kanpur"
+    },
+    {
+      "start": 76,
+      "end": 85,
+      "label": "LESSOR",
+      "text": "Hemal Rao"
+    },
+    {
+      "start": 142,
+      "end": 156,
+      "label": "LESSEE",
+      "text": "Rachana Mitter"
+    },
+    {
+      "start": 321,
+      "end": 326,
+      "label": "SURVEY_NUMBER",
+      "text": "147/A"
+    },
+    {
+      "start": 340,
+      "end": 349,
+      "label": "LAND_AREA",
+      "text": "36 guntha"
+    },
+    {
+      "start": 365,
+      "end": 395,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 541,
+      "end": 549,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 652,
+      "end": 662,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,560,000"
+    },
+    {
+      "start": 807,
+      "end": 815,
+      "label": "RENT",
+      "text": "₹148,000"
+    },
+    {
+      "start": 935,
+      "end": 959,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    },
+    {
+      "start": 1109,
+      "end": 1114,
+      "label": "SURVEY_NUMBER",
+      "text": "147/A"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 474,
+      "end": 586,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 586,
+      "end": 707,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,560,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 707,
+      "end": 855,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹148,000 payable on or before April each year.\n\n"
+    },
+    {
+      "start": 855,
+      "end": 1017,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1017,
+      "end": 1167,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 147/A is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1167,
+      "end": 1299,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1299,
+      "end": 1453,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kanpur.\n\n"
+    },
+    {
+      "start": 1453,
+      "end": 1577,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Kanpur alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Kanpur",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

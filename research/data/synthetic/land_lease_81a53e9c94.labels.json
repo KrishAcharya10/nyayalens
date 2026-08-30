@@ -1,0 +1,125 @@
+{
+  "doc_id": "land_lease_81a53e9c94",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Chennai between:\n\nLESSOR: Bahadurjit Doctor, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Chakradhar Kara, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Bihar.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 732/3, admeasuring 3.19 hectares, classified as Commercial land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,370,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹242,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThe courts at Chennai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Chennai"
+    },
+    {
+      "start": 77,
+      "end": 94,
+      "label": "LESSOR",
+      "text": "Bahadurjit Doctor"
+    },
+    {
+      "start": 151,
+      "end": 166,
+      "label": "LESSEE",
+      "text": "Chakradhar Kara"
+    },
+    {
+      "start": 327,
+      "end": 332,
+      "label": "SURVEY_NUMBER",
+      "text": "732/3"
+    },
+    {
+      "start": 346,
+      "end": 359,
+      "label": "LAND_AREA",
+      "text": "3.19 hectares"
+    },
+    {
+      "start": 375,
+      "end": 385,
+      "label": "LAND_USE_TYPE",
+      "text": "Commercial"
+    },
+    {
+      "start": 531,
+      "end": 539,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 642,
+      "end": 652,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,370,000"
+    },
+    {
+      "start": 733,
+      "end": 741,
+      "label": "RENT",
+      "text": "₹242,500"
+    },
+    {
+      "start": 926,
+      "end": 955,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 464,
+      "end": 576,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 576,
+      "end": 697,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,370,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 697,
+      "end": 846,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹242,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n"
+    },
+    {
+      "start": 846,
+      "end": 1013,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1013,
+      "end": 1145,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1145,
+      "end": 1293,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1293,
+      "end": 1411,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Chennai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Chennai",
+    "state": "Bihar",
+    "schema_version": "1.0"
+  }
+}

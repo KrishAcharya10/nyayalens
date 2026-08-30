@@ -1,0 +1,131 @@
+{
+  "doc_id": "land_lease_3d715bedcb",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Surat between:\n\nLESSOR: Wakeeta Sibal, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Chatura Shankar, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Rajasthan.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 217/1, admeasuring 9.59 acres, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹4,810,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹38,500 for the leased land shall be paid by the Lessee to the Lessor on or before November of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 217/1 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 75,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Wakeeta Sibal"
+    },
+    {
+      "start": 145,
+      "end": 160,
+      "label": "LESSEE",
+      "text": "Chatura Shankar"
+    },
+    {
+      "start": 325,
+      "end": 330,
+      "label": "SURVEY_NUMBER",
+      "text": "217/1"
+    },
+    {
+      "start": 344,
+      "end": 354,
+      "label": "LAND_AREA",
+      "text": "9.59 acres"
+    },
+    {
+      "start": 370,
+      "end": 391,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 537,
+      "end": 544,
+      "label": "DURATION",
+      "text": "5 years"
+    },
+    {
+      "start": 636,
+      "end": 646,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,810,000"
+    },
+    {
+      "start": 760,
+      "end": 767,
+      "label": "RENT",
+      "text": "₹38,500"
+    },
+    {
+      "start": 957,
+      "end": 986,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1136,
+      "end": 1141,
+      "label": "SURVEY_NUMBER",
+      "text": "217/1"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 470,
+      "end": 581,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 581,
+      "end": 724,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹4,810,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 724,
+      "end": 877,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹38,500 for the leased land shall be paid by the Lessee to the Lessor on or before November of every calendar year.\n\n"
+    },
+    {
+      "start": 877,
+      "end": 1044,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1044,
+      "end": 1194,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 217/1 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1194,
+      "end": 1326,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1326,
+      "end": 1442,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Surat",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  }
+}

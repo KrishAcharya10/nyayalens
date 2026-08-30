@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_c510a8fb20",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Hyderabad between:\n\nLANDLORD: Orinder Manne, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Ayaan Thaker, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Maharashtra.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹25,500 per calendar month, payable in advance by the 5th of the month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹76,500 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Hyderabad alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Hyderabad"
+    },
+    {
+      "start": 97,
+      "end": 110,
+      "label": "LANDLORD",
+      "text": "Orinder Manne"
+    },
+    {
+      "start": 169,
+      "end": 181,
+      "label": "TENANT",
+      "text": "Ayaan Thaker"
+    },
+    {
+      "start": 516,
+      "end": 525,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 631,
+      "end": 638,
+      "label": "RENT",
+      "text": "₹25,500"
+    },
+    {
+      "start": 793,
+      "end": 800,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹76,500"
+    },
+    {
+      "start": 920,
+      "end": 927,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 448,
+      "end": 573,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 573,
+      "end": 704,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹25,500 per calendar month, payable in advance by the 5th of the month.\n\n"
+    },
+    {
+      "start": 704,
+      "end": 846,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹76,500 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 846,
+      "end": 965,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 965,
+      "end": 1120,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1120,
+      "end": 1252,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1252,
+      "end": 1379,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Hyderabad alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Hyderabad",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  }
+}

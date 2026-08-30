@@ -1,0 +1,94 @@
+{
+  "doc_id": "residential_rental_a6407e1e53",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Vadodara between:\n\nLANDLORD: Manan Gala, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Ucchal Thakkar, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹55,000, due on or before the 1st of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹550,000 to the Landlord prior to taking possession.\n\n4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n5. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 75,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 96,
+      "end": 106,
+      "label": "LANDLORD",
+      "text": "Manan Gala"
+    },
+    {
+      "start": 165,
+      "end": 179,
+      "label": "TENANT",
+      "text": "Ucchal Thakkar"
+    },
+    {
+      "start": 517,
+      "end": 526,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 641,
+      "end": 648,
+      "label": "RENT",
+      "text": "₹55,000"
+    },
+    {
+      "start": 808,
+      "end": 816,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹550,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 449,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 719,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹55,000, due on or before the 1st of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 719,
+      "end": 862,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹550,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 862,
+      "end": 1010,
+      "label": "TERMINATION",
+      "clause_number": "4",
+      "text": "4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1010,
+      "end": 1166,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "5",
+      "text": "5. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n"
+    },
+    {
+      "start": 1166,
+      "end": 1292,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

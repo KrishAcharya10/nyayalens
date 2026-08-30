@@ -1,0 +1,107 @@
+{
+  "doc_id": "residential_rental_2df67cdcf9",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Delhi between:\n\nLANDLORD: Bachittar Pillai, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Vedhika Majumdar, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Madhya Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹12,000, due on or before the 10th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹72,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Delhi.\n\n7. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Delhi"
+    },
+    {
+      "start": 93,
+      "end": 109,
+      "label": "LANDLORD",
+      "text": "Bachittar Pillai"
+    },
+    {
+      "start": 168,
+      "end": 184,
+      "label": "TENANT",
+      "text": "Vedhika Majumdar"
+    },
+    {
+      "start": 522,
+      "end": 531,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 646,
+      "end": 653,
+      "label": "RENT",
+      "text": "₹12,000"
+    },
+    {
+      "start": 765,
+      "end": 772,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹72,000"
+    },
+    {
+      "start": 919,
+      "end": 926,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 454,
+      "end": 579,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 579,
+      "end": 725,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹12,000, due on or before the 10th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 725,
+      "end": 885,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹72,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 885,
+      "end": 1001,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 1001,
+      "end": 1133,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1133,
+      "end": 1286,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Delhi.\n\n"
+    },
+    {
+      "start": 1286,
+      "end": 1402,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Delhi",
+    "state": "Madhya Pradesh",
+    "schema_version": "1.0"
+  }
+}

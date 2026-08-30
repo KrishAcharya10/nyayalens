@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_dea8517480",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Surat between:\n\nLANDLORD: Tristan Nazareth, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Tanay Setty, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹60,000 per month towards rent, such payment to be made no later than the 5th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹120,000 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Surat alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 93,
+      "end": 109,
+      "label": "LANDLORD",
+      "text": "Tristan Nazareth"
+    },
+    {
+      "start": 168,
+      "end": 179,
+      "label": "TENANT",
+      "text": "Tanay Setty"
+    },
+    {
+      "start": 510,
+      "end": 519,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 619,
+      "end": 626,
+      "label": "RENT",
+      "text": "₹60,000"
+    },
+    {
+      "start": 802,
+      "end": 810,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹120,000"
+    },
+    {
+      "start": 890,
+      "end": 897,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 442,
+      "end": 567,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 567,
+      "end": 713,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹60,000 per month towards rent, such payment to be made no later than the 5th of each month.\n\n"
+    },
+    {
+      "start": 713,
+      "end": 856,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹120,000 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 856,
+      "end": 972,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 15 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 972,
+      "end": 1118,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1118,
+      "end": 1266,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1266,
+      "end": 1414,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1414,
+      "end": 1537,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Surat alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Surat",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_c0038fafba",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Indore between:\n\nLANDLORD: Sanaya Dutta, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Yochana Gera, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of West Bengal.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹47,500, due on or before the 1st of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹142,500 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n8. JURISDICTION\nThe courts at Indore shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Indore"
+    },
+    {
+      "start": 94,
+      "end": 106,
+      "label": "LANDLORD",
+      "text": "Sanaya Dutta"
+    },
+    {
+      "start": 165,
+      "end": 177,
+      "label": "TENANT",
+      "text": "Yochana Gera"
+    },
+    {
+      "start": 512,
+      "end": 521,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 636,
+      "end": 643,
+      "label": "RENT",
+      "text": "₹47,500"
+    },
+    {
+      "start": 754,
+      "end": 762,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹142,500"
+    },
+    {
+      "start": 909,
+      "end": 916,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 444,
+      "end": 569,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 569,
+      "end": 714,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹47,500, due on or before the 1st of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 714,
+      "end": 875,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹142,500 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 875,
+      "end": 991,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 991,
+      "end": 1146,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1146,
+      "end": 1278,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1278,
+      "end": 1432,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n"
+    },
+    {
+      "start": 1432,
+      "end": 1549,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Indore shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Indore",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  }
+}

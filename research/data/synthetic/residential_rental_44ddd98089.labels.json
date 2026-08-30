@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_44ddd98089",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Ahmedabad between:\n\nLANDLORD: Frederick Iyengar, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Suhani Ram, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Delhi.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹63,500 to the Lessor/Landlord on or before the 5th day of each calendar month.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹381,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThe courts at Ahmedabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Ahmedabad"
+    },
+    {
+      "start": 97,
+      "end": 114,
+      "label": "LANDLORD",
+      "text": "Frederick Iyengar"
+    },
+    {
+      "start": 173,
+      "end": 183,
+      "label": "TENANT",
+      "text": "Suhani Ram"
+    },
+    {
+      "start": 512,
+      "end": 521,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 631,
+      "end": 638,
+      "label": "RENT",
+      "text": "₹63,500"
+    },
+    {
+      "start": 752,
+      "end": 760,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹381,000"
+    },
+    {
+      "start": 907,
+      "end": 914,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 444,
+      "end": 569,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 569,
+      "end": 712,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Lessee/Tenant shall pay a monthly rent of ₹63,500 to the Lessor/Landlord on or before the 5th day of each calendar month.\n\n"
+    },
+    {
+      "start": 712,
+      "end": 873,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹381,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 873,
+      "end": 989,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nA notice of 90 days shall be required from either party intending to terminate this tenancy.\n\n"
+    },
+    {
+      "start": 989,
+      "end": 1135,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1135,
+      "end": 1283,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1283,
+      "end": 1431,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1431,
+      "end": 1551,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Ahmedabad shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Ahmedabad",
+    "state": "Delhi",
+    "schema_version": "1.0"
+  }
+}

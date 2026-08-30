@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_9045d6b9d2",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Vadodara between:\n\nLESSOR: Wriddhish Bhagat, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Pratyush Dutt, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 389/2, admeasuring 13 guntha, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹450,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹287,500 for the leased land shall be paid by the Lessee to the Lessor on or before February of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of dairy farming operations and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 389/2 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 59,
+      "label": "ADDRESS",
+      "text": "Vadodara"
+    },
+    {
+      "start": 78,
+      "end": 94,
+      "label": "LESSOR",
+      "text": "Wriddhish Bhagat"
+    },
+    {
+      "start": 151,
+      "end": 164,
+      "label": "LESSEE",
+      "text": "Pratyush Dutt"
+    },
+    {
+      "start": 333,
+      "end": 338,
+      "label": "SURVEY_NUMBER",
+      "text": "389/2"
+    },
+    {
+      "start": 352,
+      "end": 361,
+      "label": "LAND_AREA",
+      "text": "13 guntha"
+    },
+    {
+      "start": 377,
+      "end": 398,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 544,
+      "end": 551,
+      "label": "DURATION",
+      "text": "5 years"
+    },
+    {
+      "start": 654,
+      "end": 662,
+      "label": "LEASE_PREMIUM",
+      "text": "₹450,000"
+    },
+    {
+      "start": 743,
+      "end": 751,
+      "label": "RENT",
+      "text": "₹287,500"
+    },
+    {
+      "start": 941,
+      "end": 965,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "dairy farming operations"
+    },
+    {
+      "start": 1115,
+      "end": 1120,
+      "label": "SURVEY_NUMBER",
+      "text": "389/2"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 477,
+      "end": 588,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 588,
+      "end": 707,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹450,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 707,
+      "end": 861,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹287,500 for the leased land shall be paid by the Lessee to the Lessor on or before February of every calendar year.\n\n"
+    },
+    {
+      "start": 861,
+      "end": 1023,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of dairy farming operations and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1023,
+      "end": 1173,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 389/2 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1173,
+      "end": 1305,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1305,
+      "end": 1461,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Vadodara.\n\n"
+    },
+    {
+      "start": 1461,
+      "end": 1587,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Vadodara alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Vadodara",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  }
+}

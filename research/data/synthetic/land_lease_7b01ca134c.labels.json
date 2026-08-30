@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_7b01ca134c",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Pune between:\n\nLESSOR: Sai Wable, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Ekantika Jani, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Telangana.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 590/2, admeasuring 0.3 hectares, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹450,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹123,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 590/2, is unencumbered and free from any third-party claims.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Pune.\n\n8. JURISDICTION\nThe courts at Pune shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 55,
+      "label": "ADDRESS",
+      "text": "Pune"
+    },
+    {
+      "start": 74,
+      "end": 83,
+      "label": "LESSOR",
+      "text": "Sai Wable"
+    },
+    {
+      "start": 140,
+      "end": 153,
+      "label": "LESSEE",
+      "text": "Ekantika Jani"
+    },
+    {
+      "start": 318,
+      "end": 323,
+      "label": "SURVEY_NUMBER",
+      "text": "590/2"
+    },
+    {
+      "start": 337,
+      "end": 349,
+      "label": "LAND_AREA",
+      "text": "0.3 hectares"
+    },
+    {
+      "start": 365,
+      "end": 395,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 541,
+      "end": 548,
+      "label": "DURATION",
+      "text": "5 years"
+    },
+    {
+      "start": 651,
+      "end": 659,
+      "label": "LEASE_PREMIUM",
+      "text": "₹450,000"
+    },
+    {
+      "start": 740,
+      "end": 748,
+      "label": "RENT",
+      "text": "₹123,500"
+    },
+    {
+      "start": 936,
+      "end": 965,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1113,
+      "end": 1118,
+      "label": "SURVEY_NUMBER",
+      "text": "590/2"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 474,
+      "end": 585,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 585,
+      "end": 704,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹450,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 704,
+      "end": 856,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹123,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 856,
+      "end": 1023,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1023,
+      "end": 1175,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor confirms that the land described herein, Survey No. 590/2, is unencumbered and free from any third-party claims.\n\n"
+    },
+    {
+      "start": 1175,
+      "end": 1307,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1307,
+      "end": 1459,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Pune.\n\n"
+    },
+    {
+      "start": 1459,
+      "end": 1574,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Pune shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Pune",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  }
+}

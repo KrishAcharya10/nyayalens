@@ -1,0 +1,125 @@
+{
+  "doc_id": "land_lease_0e1accf860",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nagercoil between:\n\nLESSOR: Dakshesh Goswami, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Neelima Sheth, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Tamil Nadu.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 143/1, admeasuring 2.03 hectares, classified as Residential Conversion Pending land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,250,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹157,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagercoil.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nagercoil alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Nagercoil"
+    },
+    {
+      "start": 79,
+      "end": 95,
+      "label": "LESSOR",
+      "text": "Dakshesh Goswami"
+    },
+    {
+      "start": 152,
+      "end": 165,
+      "label": "LESSEE",
+      "text": "Neelima Sheth"
+    },
+    {
+      "start": 331,
+      "end": 336,
+      "label": "SURVEY_NUMBER",
+      "text": "143/1"
+    },
+    {
+      "start": 350,
+      "end": 363,
+      "label": "LAND_AREA",
+      "text": "2.03 hectares"
+    },
+    {
+      "start": 379,
+      "end": 409,
+      "label": "LAND_USE_TYPE",
+      "text": "Residential Conversion Pending"
+    },
+    {
+      "start": 555,
+      "end": 563,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 655,
+      "end": 665,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,250,000"
+    },
+    {
+      "start": 779,
+      "end": 787,
+      "label": "RENT",
+      "text": "₹157,500"
+    },
+    {
+      "start": 975,
+      "end": 999,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 488,
+      "end": 600,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 600,
+      "end": 743,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹3,250,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 743,
+      "end": 895,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹157,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 895,
+      "end": 1057,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of horticultural plantation and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1057,
+      "end": 1189,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1189,
+      "end": 1346,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagercoil.\n\n"
+    },
+    {
+      "start": 1346,
+      "end": 1473,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nagercoil alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Nagercoil",
+    "state": "Tamil Nadu",
+    "schema_version": "1.0"
+  }
+}

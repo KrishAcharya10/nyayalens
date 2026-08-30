@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_4b6f04fbcc",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Delhi between:\n\nLANDLORD: Nirja Sachdev, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Urmi Sawhney, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Bihar.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nRent for the demised premises is fixed at ₹10,500 per calendar month, payable in advance by the 7th of the month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹31,500 to the Landlord prior to taking possession.\n\n4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 90 days in writing.\n\n5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Delhi.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Delhi alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Delhi"
+    },
+    {
+      "start": 93,
+      "end": 106,
+      "label": "LANDLORD",
+      "text": "Nirja Sachdev"
+    },
+    {
+      "start": 165,
+      "end": 177,
+      "label": "TENANT",
+      "text": "Urmi Sawhney"
+    },
+    {
+      "start": 506,
+      "end": 515,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 621,
+      "end": 628,
+      "label": "RENT",
+      "text": "₹10,500"
+    },
+    {
+      "start": 783,
+      "end": 790,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹31,500"
+    },
+    {
+      "start": 939,
+      "end": 946,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 438,
+      "end": 563,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 563,
+      "end": 694,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nRent for the demised premises is fixed at ₹10,500 per calendar month, payable in advance by the 7th of the month.\n\n"
+    },
+    {
+      "start": 694,
+      "end": 836,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹31,500 to the Landlord prior to taking possession.\n\n"
+    },
+    {
+      "start": 836,
+      "end": 960,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nThis Agreement may be terminated by either party upon serving a notice period of 90 days in writing.\n\n"
+    },
+    {
+      "start": 960,
+      "end": 1115,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nDay-to-day upkeep of the premises shall be the responsibility of the Tenant; major structural repairs shall be undertaken by the Landlord.\n\n"
+    },
+    {
+      "start": 1115,
+      "end": 1247,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1247,
+      "end": 1400,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Delhi.\n\n"
+    },
+    {
+      "start": 1400,
+      "end": 1523,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Delhi alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Delhi",
+    "state": "Bihar",
+    "schema_version": "1.0"
+  }
+}

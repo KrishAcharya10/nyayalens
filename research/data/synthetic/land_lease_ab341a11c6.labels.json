@@ -1,0 +1,131 @@
+{
+  "doc_id": "land_lease_ab341a11c6",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Delhi between:\n\nLESSOR: Samar Balakrishnan, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Damini Narayanan, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of West Bengal.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 381/B, admeasuring 2.57 hectares, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,400,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹162,000 payable on or before April each year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 381/B is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Delhi alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Delhi"
+    },
+    {
+      "start": 75,
+      "end": 93,
+      "label": "LESSOR",
+      "text": "Samar Balakrishnan"
+    },
+    {
+      "start": 150,
+      "end": 166,
+      "label": "LESSEE",
+      "text": "Damini Narayanan"
+    },
+    {
+      "start": 333,
+      "end": 338,
+      "label": "SURVEY_NUMBER",
+      "text": "381/B"
+    },
+    {
+      "start": 352,
+      "end": 365,
+      "label": "LAND_AREA",
+      "text": "2.57 hectares"
+    },
+    {
+      "start": 381,
+      "end": 402,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 548,
+      "end": 556,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 659,
+      "end": 669,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,400,000"
+    },
+    {
+      "start": 814,
+      "end": 822,
+      "label": "RENT",
+      "text": "₹162,000"
+    },
+    {
+      "start": 942,
+      "end": 971,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1121,
+      "end": 1126,
+      "label": "SURVEY_NUMBER",
+      "text": "381/B"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 481,
+      "end": 593,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 593,
+      "end": 714,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,400,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 714,
+      "end": 862,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹162,000 payable on or before April each year.\n\n"
+    },
+    {
+      "start": 862,
+      "end": 1029,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of cultivation of seasonal crops and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1029,
+      "end": 1179,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 381/B is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1179,
+      "end": 1327,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1327,
+      "end": 1450,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Delhi alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Delhi",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  }
+}

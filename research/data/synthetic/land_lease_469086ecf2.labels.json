@@ -1,0 +1,138 @@
+{
+  "doc_id": "land_lease_469086ecf2",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Kolkata between:\n\nLESSOR: Daksh Bava, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Gauri Zacharia, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 529/3, admeasuring 2.85 hectares, classified as Non-Agricultural (NA) land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹1,380,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹194,000 payable on or before November each year.\n\n4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of agricultural storage purposes and for no other purpose without prior written consent.\n\n5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 529/3 is free from all encumbrances, charges, and liens.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kolkata.\n\n8. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Kolkata"
+    },
+    {
+      "start": 77,
+      "end": 87,
+      "label": "LESSOR",
+      "text": "Daksh Bava"
+    },
+    {
+      "start": 144,
+      "end": 158,
+      "label": "LESSEE",
+      "text": "Gauri Zacharia"
+    },
+    {
+      "start": 327,
+      "end": 332,
+      "label": "SURVEY_NUMBER",
+      "text": "529/3"
+    },
+    {
+      "start": 346,
+      "end": 359,
+      "label": "LAND_AREA",
+      "text": "2.85 hectares"
+    },
+    {
+      "start": 375,
+      "end": 396,
+      "label": "LAND_USE_TYPE",
+      "text": "Non-Agricultural (NA)"
+    },
+    {
+      "start": 542,
+      "end": 550,
+      "label": "DURATION",
+      "text": "15 years"
+    },
+    {
+      "start": 642,
+      "end": 652,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,380,000"
+    },
+    {
+      "start": 830,
+      "end": 838,
+      "label": "RENT",
+      "text": "₹194,000"
+    },
+    {
+      "start": 961,
+      "end": 990,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "agricultural storage purposes"
+    },
+    {
+      "start": 1140,
+      "end": 1145,
+      "label": "SURVEY_NUMBER",
+      "text": "529/3"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 475,
+      "end": 587,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 587,
+      "end": 730,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nAn upfront lease premium amounting to ₹1,380,000 shall be payable by the Lessee prior to handover of possession of the land.\n\n"
+    },
+    {
+      "start": 730,
+      "end": 881,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nIn addition to the lease premium, the Lessee shall pay an annual lease rent of ₹194,000 payable on or before November each year.\n\n"
+    },
+    {
+      "start": 881,
+      "end": 1048,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe Lessee shall use the leased land solely for the purpose of agricultural storage purposes and for no other purpose without prior written consent.\n\n"
+    },
+    {
+      "start": 1048,
+      "end": 1198,
+      "label": "ENCUMBRANCE_DECLARATION",
+      "clause_number": "5",
+      "text": "5. ENCUMBRANCE DECLARATION\nThe Lessor hereby declares that the said land bearing Survey No. 529/3 is free from all encumbrances, charges, and liens.\n\n"
+    },
+    {
+      "start": 1198,
+      "end": 1330,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1330,
+      "end": 1485,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kolkata.\n\n"
+    },
+    {
+      "start": 1485,
+      "end": 1603,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "city": "Kolkata",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  }
+}

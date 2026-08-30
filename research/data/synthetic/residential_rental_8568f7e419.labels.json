@@ -1,0 +1,114 @@
+{
+  "doc_id": "residential_rental_8568f7e419",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Nashik between:\n\nLANDLORD: Charles Comar, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Chameli Shukla, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹54,500, due on or before the 10th of every month, payable via bank transfer.\n\n3. SECURITY DEPOSIT\nSecurity deposit of ₹545,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 90 days' written notice to the other party.\n\n5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nashik.\n\n8. JURISDICTION\nThe courts at Nashik shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Nashik"
+    },
+    {
+      "start": 94,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Charles Comar"
+    },
+    {
+      "start": 166,
+      "end": 180,
+      "label": "TENANT",
+      "text": "Chameli Shukla"
+    },
+    {
+      "start": 517,
+      "end": 526,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 641,
+      "end": 648,
+      "label": "RENT",
+      "text": "₹54,500"
+    },
+    {
+      "start": 760,
+      "end": 768,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹545,000"
+    },
+    {
+      "start": 955,
+      "end": 962,
+      "label": "NOTICE_PERIOD",
+      "text": "90 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 449,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 720,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nMonthly rent payable under this Agreement shall be ₹54,500, due on or before the 10th of every month, payable via bank transfer.\n\n"
+    },
+    {
+      "start": 720,
+      "end": 881,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nSecurity deposit of ₹545,000 shall be paid at the time of execution of this Agreement and refunded within 30 days of vacating the premises.\n\n"
+    },
+    {
+      "start": 881,
+      "end": 1000,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. TERMINATION NOTICE\nEither party may terminate this Agreement by giving 90 days' written notice to the other party.\n\n"
+    },
+    {
+      "start": 1000,
+      "end": 1146,
+      "label": "MAINTENANCE",
+      "clause_number": "5",
+      "text": "5. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1146,
+      "end": 1278,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1278,
+      "end": 1432,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nashik.\n\n"
+    },
+    {
+      "start": 1432,
+      "end": 1549,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Nashik shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "city": "Nashik",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  }
+}

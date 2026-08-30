@@ -1,0 +1,9 @@
+# Force LF line endings for all text files regardless of the cloning
+# machine's core.autocrlf setting. Without this, a Windows clone with
+# autocrlf=true rewrites every file to CRLF on checkout, which then fails
+# `prettier --check` (Prettier normalizes to LF) even though the file was
+# correctly formatted when committed.
+* text=auto eol=lf
+
+*.pdf -text binary
+*.docx -text binary

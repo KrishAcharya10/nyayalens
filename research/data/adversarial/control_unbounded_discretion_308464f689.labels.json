@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_unbounded_discretion_308464f689",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Surat between:\n\nLANDLORD: Darsh Patel, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Quincy Bal, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of West Bengal.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹52,000 per month towards rent, such payment to be made no later than the 1st of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹89,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Surat.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Surat alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 93,
+      "end": 104,
+      "label": "LANDLORD",
+      "text": "Darsh Patel"
+    },
+    {
+      "start": 163,
+      "end": 173,
+      "label": "TENANT",
+      "text": "Quincy Bal"
+    },
+    {
+      "start": 508,
+      "end": 517,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 617,
+      "end": 624,
+      "label": "RENT",
+      "text": "₹52,000"
+    },
+    {
+      "start": 800,
+      "end": 807,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹89,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 440,
+      "end": 565,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 565,
+      "end": 711,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹52,000 per month towards rent, such payment to be made no later than the 1st of each month.\n\n"
+    },
+    {
+      "start": 711,
+      "end": 980,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹89,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 980,
+      "end": 1126,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1126,
+      "end": 1258,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1258,
+      "end": 1411,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Surat.\n\n"
+    },
+    {
+      "start": 1411,
+      "end": 1534,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Surat alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Surat",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_unbounded_discretion_671ee484ed",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Bengaluru between:\n\nLANDLORD: Naveen Doctor, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Devika Sem, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of West Bengal.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹11,500 per month towards rent, such payment to be made no later than the 7th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹69,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Bengaluru"
+    },
+    {
+      "start": 97,
+      "end": 110,
+      "label": "LANDLORD",
+      "text": "Naveen Doctor"
+    },
+    {
+      "start": 169,
+      "end": 179,
+      "label": "TENANT",
+      "text": "Devika Sem"
+    },
+    {
+      "start": 514,
+      "end": 523,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 623,
+      "end": 630,
+      "label": "RENT",
+      "text": "₹11,500"
+    },
+    {
+      "start": 806,
+      "end": 813,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹69,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 446,
+      "end": 571,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 571,
+      "end": 717,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹11,500 per month towards rent, such payment to be made no later than the 7th of each month.\n\n"
+    },
+    {
+      "start": 717,
+      "end": 986,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹69,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 986,
+      "end": 1132,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1132,
+      "end": 1264,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1264,
+      "end": 1412,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1412,
+      "end": 1539,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Bengaluru",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

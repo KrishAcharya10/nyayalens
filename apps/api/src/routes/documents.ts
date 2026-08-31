@@ -202,6 +202,30 @@ documentsRouter.get("/:id/clauses", requireAuth, async (req, res, next) => {
   }
 });
 
+// Risk findings for one document (Phase 6). Every finding carries its
+// pass (1 or 2) and model_source explicitly - see risk_engine.md.
+documentsRouter.get("/:id/risks", requireAuth, async (req, res, next) => {
+  try {
+    const documentId = getIdParam(req.params.id);
+    if (!documentId) {
+      res.status(400).json({ error: "Invalid document id" });
+      return;
+    }
+    const ownedId = await findOwnedDocumentId(documentId, req.auth!.userId);
+    if (!ownedId) {
+      res.status(404).json({ error: "Document not found" });
+      return;
+    }
+    const risks = await prisma.risk.findMany({
+      where: { documentId: ownedId },
+      orderBy: { createdAt: "asc" },
+    });
+    res.status(200).json({ risks });
+  } catch (err) {
+    next(err);
+  }
+});
+
 documentsRouter.delete("/:id", requireAuth, async (req, res, next) => {
   try {
     const documentId = getIdParam(req.params.id);

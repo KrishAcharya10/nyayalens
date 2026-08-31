@@ -35,6 +35,7 @@ __pycache__/
 apps/api/storage/
 apps/api/.tesseract-cache/
 apps/api/.phase4b-eval-credentials.json
+apps/api/.phase6-adversarial-eval-credentials.json
 services/ml/.venv/
 services/ml/models/
 research/eval_results/

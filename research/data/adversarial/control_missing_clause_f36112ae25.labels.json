@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_missing_clause_f36112ae25",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Jaipur between:\n\nLANDLORD: Joshua Kara, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Tanvi Andra, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Maharashtra.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹40,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹58,500 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThe courts at Jaipur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Jaipur"
+    },
+    {
+      "start": 94,
+      "end": 105,
+      "label": "LANDLORD",
+      "text": "Joshua Kara"
+    },
+    {
+      "start": 164,
+      "end": 175,
+      "label": "TENANT",
+      "text": "Tanvi Andra"
+    },
+    {
+      "start": 510,
+      "end": 519,
+      "label": "DURATION",
+      "text": "11 months"
+    },
+    {
+      "start": 619,
+      "end": 626,
+      "label": "RENT",
+      "text": "₹40,500"
+    },
+    {
+      "start": 802,
+      "end": 809,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹58,500"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 442,
+      "end": 567,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 11 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 567,
+      "end": 713,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹40,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n"
+    },
+    {
+      "start": 713,
+      "end": 982,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹58,500 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 982,
+      "end": 1128,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1128,
+      "end": 1276,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1276,
+      "end": 1424,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1424,
+      "end": 1541,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Jaipur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Jaipur",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

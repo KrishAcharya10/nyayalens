@@ -1,0 +1,131 @@
+{
+  "doc_id": "control_land_use_contradiction_8156113e7e",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nashik between:\n\nLESSOR: Netra Patel, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Sara Swamy, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Karnataka.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 853/A, admeasuring 7.54 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,910,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹262,500 for the leased land shall be paid by the Lessee to the Lessor on or before January of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nashik alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Nashik"
+    },
+    {
+      "start": 76,
+      "end": 87,
+      "label": "LESSOR",
+      "text": "Netra Patel"
+    },
+    {
+      "start": 144,
+      "end": 154,
+      "label": "LESSEE",
+      "text": "Sara Swamy"
+    },
+    {
+      "start": 319,
+      "end": 324,
+      "label": "SURVEY_NUMBER",
+      "text": "853/A"
+    },
+    {
+      "start": 338,
+      "end": 348,
+      "label": "LAND_AREA",
+      "text": "7.54 acres"
+    },
+    {
+      "start": 364,
+      "end": 376,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 522,
+      "end": 530,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 633,
+      "end": 643,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,910,000"
+    },
+    {
+      "start": 724,
+      "end": 732,
+      "label": "RENT",
+      "text": "₹262,500"
+    },
+    {
+      "start": 915,
+      "end": 939,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "dairy farming operations"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 455,
+      "end": 567,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 567,
+      "end": 688,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,910,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 688,
+      "end": 841,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹262,500 for the leased land shall be paid by the Lessee to the Lessor on or before January of every calendar year.\n\n"
+    },
+    {
+      "start": 841,
+      "end": 1005,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1005,
+      "end": 1137,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1137,
+      "end": 1285,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1285,
+      "end": 1409,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nashik alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Nashik",
+    "state": "Karnataka",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

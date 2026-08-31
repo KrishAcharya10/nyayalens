@@ -1,0 +1,131 @@
+{
+  "doc_id": "control_land_use_contradiction_dd6bb97387",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Indore between:\n\nLESSOR: Ansh Krishna, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Zilmil Sawhney, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of West Bengal.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 662/3, admeasuring 11 guntha, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,840,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹190,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Indore alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Indore"
+    },
+    {
+      "start": 76,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Ansh Krishna"
+    },
+    {
+      "start": 145,
+      "end": 159,
+      "label": "LESSEE",
+      "text": "Zilmil Sawhney"
+    },
+    {
+      "start": 326,
+      "end": 331,
+      "label": "SURVEY_NUMBER",
+      "text": "662/3"
+    },
+    {
+      "start": 345,
+      "end": 354,
+      "label": "LAND_AREA",
+      "text": "11 guntha"
+    },
+    {
+      "start": 370,
+      "end": 382,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 528,
+      "end": 536,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 639,
+      "end": 649,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,840,000"
+    },
+    {
+      "start": 730,
+      "end": 738,
+      "label": "RENT",
+      "text": "₹190,000"
+    },
+    {
+      "start": 920,
+      "end": 944,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 461,
+      "end": 573,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 573,
+      "end": 694,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,840,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 694,
+      "end": 846,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹190,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 846,
+      "end": 1010,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1010,
+      "end": 1142,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1142,
+      "end": 1296,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n"
+    },
+    {
+      "start": 1296,
+      "end": 1420,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Indore alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Indore",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

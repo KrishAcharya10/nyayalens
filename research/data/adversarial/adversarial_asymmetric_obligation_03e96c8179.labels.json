@@ -1,0 +1,131 @@
+{
+  "doc_id": "adversarial_asymmetric_obligation_03e96c8179",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Jaipur between:\n\nLANDLORD: Pranav Andra, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Harsh Tak, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹43,500 per month towards rent, such payment to be made no later than the 7th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹120,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. NOTICE PERIOD - LANDLORD\nThe Landlord may terminate this Agreement by serving a notice period of 15 days in writing to the Tenant.\n\n5. NOTICE PERIOD - TENANT\nThe Tenant may terminate this Agreement by serving a notice period of 60 days in writing to the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Jaipur"
+    },
+    {
+      "start": 94,
+      "end": 106,
+      "label": "LANDLORD",
+      "text": "Pranav Andra"
+    },
+    {
+      "start": 165,
+      "end": 174,
+      "label": "TENANT",
+      "text": "Harsh Tak"
+    },
+    {
+      "start": 505,
+      "end": 514,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 614,
+      "end": 621,
+      "label": "RENT",
+      "text": "₹43,500"
+    },
+    {
+      "start": 797,
+      "end": 805,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹120,000"
+    },
+    {
+      "start": 1078,
+      "end": 1085,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    },
+    {
+      "start": 1209,
+      "end": 1216,
+      "label": "NOTICE_PERIOD",
+      "text": "60 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 437,
+      "end": 562,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 562,
+      "end": 708,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹43,500 per month towards rent, such payment to be made no later than the 7th of each month.\n\n"
+    },
+    {
+      "start": 708,
+      "end": 978,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹120,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 978,
+      "end": 1113,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. NOTICE PERIOD - LANDLORD\nThe Landlord may terminate this Agreement by serving a notice period of 15 days in writing to the Tenant.\n\n"
+    },
+    {
+      "start": 1113,
+      "end": 1246,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "5",
+      "text": "5. NOTICE PERIOD - TENANT\nThe Tenant may terminate this Agreement by serving a notice period of 60 days in writing to the Landlord.\n\n"
+    },
+    {
+      "start": 1246,
+      "end": 1378,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1378,
+      "end": 1526,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1526,
+      "end": 1650,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Jaipur alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Jaipur",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "ASYMMETRIC_OBLIGATION",
+    "detail": {
+      "clause_numbers": [
+        "4",
+        "5"
+      ]
+    },
+    "is_control": false
+  }
+}

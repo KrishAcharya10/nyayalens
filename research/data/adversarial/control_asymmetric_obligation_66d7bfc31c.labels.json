@@ -1,0 +1,157 @@
+{
+  "doc_id": "control_asymmetric_obligation_66d7bfc31c",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nagpur between:\n\nLESSOR: Oeshi Sathe, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Yashodhara Baria, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Rajasthan.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 975/A, admeasuring 6.77 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,330,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹188,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 30 days in writing to the Lessee.\n\n6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 30 days in writing to the Lessor.\n\n7. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n8. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n9. JURISDICTION\nThe courts at Nagpur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Nagpur"
+    },
+    {
+      "start": 76,
+      "end": 87,
+      "label": "LESSOR",
+      "text": "Oeshi Sathe"
+    },
+    {
+      "start": 144,
+      "end": 160,
+      "label": "LESSEE",
+      "text": "Yashodhara Baria"
+    },
+    {
+      "start": 325,
+      "end": 330,
+      "label": "SURVEY_NUMBER",
+      "text": "975/A"
+    },
+    {
+      "start": 344,
+      "end": 354,
+      "label": "LAND_AREA",
+      "text": "6.77 acres"
+    },
+    {
+      "start": 370,
+      "end": 382,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 528,
+      "end": 535,
+      "label": "DURATION",
+      "text": "5 years"
+    },
+    {
+      "start": 638,
+      "end": 648,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,330,000"
+    },
+    {
+      "start": 729,
+      "end": 737,
+      "label": "RENT",
+      "text": "₹188,000"
+    },
+    {
+      "start": 919,
+      "end": 948,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1105,
+      "end": 1112,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    },
+    {
+      "start": 1231,
+      "end": 1238,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 461,
+      "end": 572,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 5 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 572,
+      "end": 693,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,330,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 693,
+      "end": 845,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹188,000 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 845,
+      "end": 1014,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1014,
+      "end": 1140,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "5",
+      "text": "5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 30 days in writing to the Lessee.\n\n"
+    },
+    {
+      "start": 1140,
+      "end": 1266,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "6",
+      "text": "6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 30 days in writing to the Lessor.\n\n"
+    },
+    {
+      "start": 1266,
+      "end": 1398,
+      "label": "TERMINATION",
+      "clause_number": "7",
+      "text": "7. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1398,
+      "end": 1546,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "8",
+      "text": "8. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1546,
+      "end": 1663,
+      "label": "JURISDICTION",
+      "clause_number": "9",
+      "text": "9. JURISDICTION\nThe courts at Nagpur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Nagpur",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "doc_id": "adversarial_unbounded_discretion_e9679e329e",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Ahmedabad between:\n\nLANDLORD: Aishani Bawa, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Abhiram Roy, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Delhi.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹26,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹580,000 to the Landlord prior to taking possession, refundable subject to deductions as determined solely by the Landlord.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Ahmedabad alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 76,
+      "label": "ADDRESS",
+      "text": "Ahmedabad"
+    },
+    {
+      "start": 97,
+      "end": 109,
+      "label": "LANDLORD",
+      "text": "Aishani Bawa"
+    },
+    {
+      "start": 168,
+      "end": 179,
+      "label": "TENANT",
+      "text": "Abhiram Roy"
+    },
+    {
+      "start": 508,
+      "end": 517,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 617,
+      "end": 624,
+      "label": "RENT",
+      "text": "₹26,500"
+    },
+    {
+      "start": 800,
+      "end": 808,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹580,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 440,
+      "end": 565,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 565,
+      "end": 711,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹26,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n"
+    },
+    {
+      "start": 711,
+      "end": 925,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹580,000 to the Landlord prior to taking possession, refundable subject to deductions as determined solely by the Landlord.\n\n"
+    },
+    {
+      "start": 925,
+      "end": 1071,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1071,
+      "end": 1219,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1219,
+      "end": 1367,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1367,
+      "end": 1494,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Ahmedabad alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Ahmedabad",
+    "state": "Delhi",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "UNBOUNDED_DISCRETION",
+    "detail": {
+      "clause_number": "3"
+    },
+    "is_control": false
+  }
+}

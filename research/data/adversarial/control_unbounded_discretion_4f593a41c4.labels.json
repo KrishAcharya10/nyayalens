@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_unbounded_discretion_4f593a41c4",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Nagpur between:\n\nLANDLORD: Urmi Agarwal, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Imaran Deshmukh, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of West Bengal.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹56,000 per month towards rent, such payment to be made no later than the 7th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹250,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagpur.\n\n7. JURISDICTION\nThe courts at Nagpur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Nagpur"
+    },
+    {
+      "start": 94,
+      "end": 106,
+      "label": "LANDLORD",
+      "text": "Urmi Agarwal"
+    },
+    {
+      "start": 165,
+      "end": 180,
+      "label": "TENANT",
+      "text": "Imaran Deshmukh"
+    },
+    {
+      "start": 515,
+      "end": 524,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 624,
+      "end": 631,
+      "label": "RENT",
+      "text": "₹56,000"
+    },
+    {
+      "start": 807,
+      "end": 815,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹250,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 447,
+      "end": 572,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 572,
+      "end": 718,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹56,000 per month towards rent, such payment to be made no later than the 7th of each month.\n\n"
+    },
+    {
+      "start": 718,
+      "end": 988,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹250,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 988,
+      "end": 1134,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1134,
+      "end": 1266,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1266,
+      "end": 1420,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Nagpur.\n\n"
+    },
+    {
+      "start": 1420,
+      "end": 1537,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Nagpur shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Nagpur",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

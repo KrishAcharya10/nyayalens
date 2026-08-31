@@ -8,6 +8,7 @@ import {
 import { runRuleBasedNer } from "../ner/rulePatterns.js";
 import { rasterizePdfPage } from "../ocr/rasterizePdfPage.js";
 import { runOcrOnImage } from "../ocr/runOcr.js";
+import { runRiskEngine } from "../risk/runRiskEngine.js";
 import { getStorage } from "../storage/index.js";
 
 const prisma = getPrismaClient();
@@ -21,6 +22,7 @@ export const JOB_TYPES = {
   RULE_BASED_NER: "rule_based_ner",
   GENERIC_TRANSFORMER_NER: "generic_transformer_ner",
   CLAUSE_CLASSIFICATION: "clause_classification",
+  RISK_ENGINE: "risk_engine",
 } as const;
 
 // True when a document is deleted (e.g. DELETE /documents/:id) while its
@@ -272,4 +274,12 @@ async function runPipelineStages(documentId: string): Promise<void> {
     // as a FAILED ProcessingJob with the reason; don't crash the whole
     // pipeline over an optional baseline.
   }
+
+  // Runs last, per docs/architecture/schema.md's key_findings ordering
+  // note - it consumes rule_based clauses/entities, which are already
+  // final by this point regardless of whether generic_transformer_ner
+  // above succeeded or not.
+  await runStage(documentId, JOB_TYPES.RISK_ENGINE, () =>
+    runRiskEngine(documentId).then(() => undefined),
+  );
 }

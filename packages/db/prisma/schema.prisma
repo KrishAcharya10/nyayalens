@@ -4,9 +4,11 @@
 // text extraction (documents.storage_key/mime_type/file_size_bytes,
 // document_pages.extraction_method). Phase 4A added rule-based +
 // generic-transformer NER and clause classification
-// (entities/document_clauses.model_source). document_sections, relations,
-// risks, obligations, and embeddings remain reserved-but-unpopulated for
-// later phases (relation extraction, risk engine, embeddings).
+// (entities/document_clauses.model_source). Phase 6 added the risk engine
+// (risks.category/severity/pass/model_source/evidence,
+// documents.is_adversarial/is_adversarial_control). document_sections,
+// relations, obligations, and embeddings remain reserved-but-unpopulated
+// for later phases (relation extraction, embeddings).
 //
 // See docs/architecture/database.md, docs/architecture/schema.md,
 // docs/architecture/provenance.md, docs/architecture/document_ingestion.md
@@ -80,6 +82,41 @@ enum ModelSource {
   @@map("model_source")
 }
 
+// The five risk categories from docs/research/adversarial_test_design.md,
+// unchanged by Phase 6 (that design note is authoritative - this enum just
+// makes it a controlled vocabulary instead of free text). MISSING_CLAUSE
+// is category 5 ("clean absence").
+enum RiskCategory {
+  LIABILITY_SHIFT
+  ASYMMETRIC_OBLIGATION
+  UNBOUNDED_DISCRETION
+  LAND_USE_CONTRADICTION
+  MISSING_CLAUSE
+
+  @@map("risk_category")
+}
+
+// See docs/architecture/risk_engine.md for the rubric each category maps
+// to - this is a fixed lookup, not inferred per-finding.
+enum RiskSeverity {
+  LOW
+  MEDIUM
+  HIGH
+
+  @@map("risk_severity")
+}
+
+// Which risk-engine pass produced a finding - see risk_engine.md. Pass 1
+// (per-clause) never needs more than one clause's context; Pass 2
+// (cross-clause/cross-entity) always compares two or more spans, which is
+// why Risk.evidence is an array, not a single text_start/text_end pair.
+enum RiskPass {
+  PASS_1
+  PASS_2
+
+  @@map("risk_pass")
+}
+
 // ---------------------------------------------------------------------
 // Auth
 // ---------------------------------------------------------------------
@@ -138,6 +175,16 @@ model Document {
   // real-document results must never be blended or presented as
   // equivalent evidence of real-world generalization.
   isSynthetic    Boolean      @default(false) @map("is_synthetic")
+  // Phase 6: true for research/data/adversarial/ documents (both the
+  // injected-risk positives and their matched controls) - kept distinctly
+  // tagged from the ordinary bulk synthetic set so neither is ever used to
+  // train/fine-tune anything, and so adversarial-set performance is never
+  // blended with bulk-set numbers. See docs/architecture/adversarial_evaluation_results.md.
+  isAdversarial  Boolean      @default(false) @map("is_adversarial")
+  // True for a matched control (expected_flag = NONE - same structure/
+  // vocabulary as its category's positive cases, minus the injected risk
+  // condition). Only meaningful when isAdversarial is true.
+  isAdversarialControl Boolean @default(false) @map("is_adversarial_control")
   sourceFilename String?      @map("source_filename")
   // Where the uploaded original file lives in the storage adapter (see
   // apps/api/src/storage/), the client-reported MIME type, and its size in
@@ -297,16 +344,37 @@ model Relation {
   @@map("relations")
 }
 
-// A flagged risk finding. severity/category are free text in this phase;
-// controlled vocabularies land with the risk engine.
+// A flagged risk finding (Phase 6). Always framed as "potentially
+// unfavorable / requires review" in `reason` - never a definitive legal
+// judgment ("is illegal"/"is invalid"/"is void") - enforced by the risk
+// engine's templates and tested, not just documented; see risk_engine.md.
 model Risk {
-  id       String  @id @default(uuid())
-  documentId String @map("document_id")
-  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  severity String?
-  category String?
-  reason   String?
+  id         String       @id @default(uuid())
+  documentId String       @map("document_id")
+  document   Document     @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  category   RiskCategory
+  severity   RiskSeverity
+  reason     String
+  pass       RiskPass
+  // Which entities'/clauses' model_source this finding was computed from -
+  // explicit and visible, never assumed. Defaults to rule_based (the only
+  // currently-reliable source - see extraction_pipeline.md /
+  // evaluation_results.md) but is not hardcoded to it.
+  modelSource ModelSource @map("model_source")
 
+  // Full evidence: one element per clause/entity this finding is anchored
+  // to. Pass 1 findings always have exactly one; Pass 2 findings have two
+  // or more (e.g. both compared NOTICE_PERIOD clauses). Each element:
+  // {sourceTable: "document_clauses"|"entities", sourceId, documentId,
+  // textStart, textEnd, text} - the same provenance shape used elsewhere
+  // (see provenance.md), just as an array since a single text_start/
+  // text_end pair can't represent multi-span evidence.
+  evidence Json
+
+  // First evidence span, duplicated here for simple filtering/consistency
+  // with the single-span provenance shape every other table uses (see
+  // provenance.md) - `evidence` above is authoritative for anything
+  // needing more than one span.
   textStart Int? @map("text_start")
   textEnd   Int? @map("text_end")
 
@@ -323,6 +391,7 @@ model Risk {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@index([documentId])
+  @@index([category])
   @@map("risks")
 }
 

@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_liability_shift_aa16bccab6",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Surat between:\n\nLANDLORD: Hitesh Bhavsar, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Rohan Kadakia, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Bihar.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹77,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹198,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 93,
+      "end": 107,
+      "label": "LANDLORD",
+      "text": "Hitesh Bhavsar"
+    },
+    {
+      "start": 166,
+      "end": 179,
+      "label": "TENANT",
+      "text": "Rohan Kadakia"
+    },
+    {
+      "start": 508,
+      "end": 517,
+      "label": "DURATION",
+      "text": "12 months"
+    },
+    {
+      "start": 617,
+      "end": 624,
+      "label": "RENT",
+      "text": "₹77,500"
+    },
+    {
+      "start": 800,
+      "end": 808,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹198,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 440,
+      "end": 565,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 12 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 565,
+      "end": 711,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹77,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n"
+    },
+    {
+      "start": 711,
+      "end": 981,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹198,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 981,
+      "end": 1127,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1127,
+      "end": 1259,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1259,
+      "end": 1407,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1407,
+      "end": 1523,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Surat",
+    "state": "Bihar",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

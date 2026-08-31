@@ -1,0 +1,162 @@
+{
+  "doc_id": "adversarial_asymmetric_obligation_e9f056f60c",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Lucknow between:\n\nLESSOR: Wyatt Dara, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Kabir Gala, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Maharashtra.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 621/A, admeasuring 1.53 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,550,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹82,000 for the leased land shall be paid by the Lessee to the Lessor on or before February of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 15 days in writing to the Lessee.\n\n6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 60 days in writing to the Lessor.\n\n7. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n8. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n9. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Lucknow"
+    },
+    {
+      "start": 77,
+      "end": 87,
+      "label": "LESSOR",
+      "text": "Wyatt Dara"
+    },
+    {
+      "start": 144,
+      "end": 154,
+      "label": "LESSEE",
+      "text": "Kabir Gala"
+    },
+    {
+      "start": 321,
+      "end": 326,
+      "label": "SURVEY_NUMBER",
+      "text": "621/A"
+    },
+    {
+      "start": 340,
+      "end": 350,
+      "label": "LAND_AREA",
+      "text": "1.53 acres"
+    },
+    {
+      "start": 366,
+      "end": 378,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 524,
+      "end": 532,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 635,
+      "end": 645,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,550,000"
+    },
+    {
+      "start": 726,
+      "end": 733,
+      "label": "RENT",
+      "text": "₹82,000"
+    },
+    {
+      "start": 917,
+      "end": 946,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1103,
+      "end": 1110,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    },
+    {
+      "start": 1229,
+      "end": 1236,
+      "label": "NOTICE_PERIOD",
+      "text": "60 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 457,
+      "end": 569,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 569,
+      "end": 690,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,550,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 690,
+      "end": 843,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹82,000 for the leased land shall be paid by the Lessee to the Lessor on or before February of every calendar year.\n\n"
+    },
+    {
+      "start": 843,
+      "end": 1012,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1012,
+      "end": 1138,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "5",
+      "text": "5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 15 days in writing to the Lessee.\n\n"
+    },
+    {
+      "start": 1138,
+      "end": 1264,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "6",
+      "text": "6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 60 days in writing to the Lessor.\n\n"
+    },
+    {
+      "start": 1264,
+      "end": 1396,
+      "label": "TERMINATION",
+      "clause_number": "7",
+      "text": "7. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1396,
+      "end": 1544,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "8",
+      "text": "8. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1544,
+      "end": 1662,
+      "label": "JURISDICTION",
+      "clause_number": "9",
+      "text": "9. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Lucknow",
+    "state": "Maharashtra",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "ASYMMETRIC_OBLIGATION",
+    "detail": {
+      "clause_numbers": [
+        "5",
+        "6"
+      ]
+    },
+    "is_control": false
+  }
+}

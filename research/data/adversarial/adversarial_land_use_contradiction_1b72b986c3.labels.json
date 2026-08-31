@@ -1,0 +1,134 @@
+{
+  "doc_id": "adversarial_land_use_contradiction_1b72b986c3",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Nashik between:\n\nLESSOR: Indira Lal, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Rudra Sharaf, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Rajasthan.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 867/1, admeasuring 4.65 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,180,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹277,000 for the leased land shall be paid by the Lessee to the Lessor on or before March of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nashik alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Nashik"
+    },
+    {
+      "start": 76,
+      "end": 86,
+      "label": "LESSOR",
+      "text": "Indira Lal"
+    },
+    {
+      "start": 143,
+      "end": 155,
+      "label": "LESSEE",
+      "text": "Rudra Sharaf"
+    },
+    {
+      "start": 320,
+      "end": 325,
+      "label": "SURVEY_NUMBER",
+      "text": "867/1"
+    },
+    {
+      "start": 339,
+      "end": 349,
+      "label": "LAND_AREA",
+      "text": "4.65 acres"
+    },
+    {
+      "start": 365,
+      "end": 377,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 523,
+      "end": 531,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 634,
+      "end": 644,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,180,000"
+    },
+    {
+      "start": 725,
+      "end": 733,
+      "label": "RENT",
+      "text": "₹277,000"
+    },
+    {
+      "start": 914,
+      "end": 950,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "construction of a warehouse facility"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 456,
+      "end": 568,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 568,
+      "end": 689,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,180,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 689,
+      "end": 840,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹277,000 for the leased land shall be paid by the Lessee to the Lessor on or before March of every calendar year.\n\n"
+    },
+    {
+      "start": 840,
+      "end": 1016,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for construction of a warehouse facility; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1016,
+      "end": 1148,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1148,
+      "end": 1296,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1296,
+      "end": 1420,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Nashik alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Nashik",
+    "state": "Rajasthan",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "LAND_USE_CONTRADICTION",
+    "detail": {
+      "clause_number": "4",
+      "permitted_use": "construction of a warehouse facility"
+    },
+    "is_control": false
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "doc_id": "adversarial_land_use_contradiction_431f64dbb1",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Lucknow between:\n\nLESSOR: Rishi Trivedi, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Bahadurjit Suri, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of West Bengal.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 690/B, admeasuring 2.73 hectares, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,580,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹253,500 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for commercial retail development; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Lucknow.\n\n7. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Lucknow"
+    },
+    {
+      "start": 77,
+      "end": 90,
+      "label": "LESSOR",
+      "text": "Rishi Trivedi"
+    },
+    {
+      "start": 147,
+      "end": 162,
+      "label": "LESSEE",
+      "text": "Bahadurjit Suri"
+    },
+    {
+      "start": 329,
+      "end": 334,
+      "label": "SURVEY_NUMBER",
+      "text": "690/B"
+    },
+    {
+      "start": 348,
+      "end": 361,
+      "label": "LAND_AREA",
+      "text": "2.73 hectares"
+    },
+    {
+      "start": 377,
+      "end": 389,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 535,
+      "end": 543,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 646,
+      "end": 656,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,580,000"
+    },
+    {
+      "start": 737,
+      "end": 745,
+      "label": "RENT",
+      "text": "₹253,500"
+    },
+    {
+      "start": 925,
+      "end": 954,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "commercial retail development"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 468,
+      "end": 580,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 580,
+      "end": 701,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,580,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 701,
+      "end": 851,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹253,500 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n"
+    },
+    {
+      "start": 851,
+      "end": 1020,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for commercial retail development; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1020,
+      "end": 1168,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1168,
+      "end": 1323,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Lucknow.\n\n"
+    },
+    {
+      "start": 1323,
+      "end": 1441,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Lucknow shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "LAND_USE_CONTRADICTION",
+    "detail": {
+      "clause_number": "4",
+      "permitted_use": "commercial retail development"
+    },
+    "is_control": false
+  }
+}

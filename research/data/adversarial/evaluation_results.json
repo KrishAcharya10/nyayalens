@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-08-31T10:09:47.953Z",
+  "total_documents": 150,
+  "per_category": {
+    "liability_shift": {
+      "category": "LIABILITY_SHIFT",
+      "n_positive": 15,
+      "n_detected": 15,
+      "detection_rate": 1,
+      "n_control": 15,
+      "n_control_false_positive": 0,
+      "control_false_positive_rate": 0,
+      "cross_category_false_positives_on_positive_docs": {
+        "ASYMMETRIC_OBLIGATION": 0,
+        "UNBOUNDED_DISCRETION": 0,
+        "LAND_USE_CONTRADICTION": 0,
+        "MISSING_CLAUSE": 0
+      }
+    },
+    "asymmetric_obligation": {
+      "category": "ASYMMETRIC_OBLIGATION",
+      "n_positive": 15,
+      "n_detected": 15,
+      "detection_rate": 1,
+      "n_control": 15,
+      "n_control_false_positive": 0,
+      "control_false_positive_rate": 0,
+      "cross_category_false_positives_on_positive_docs": {
+        "LIABILITY_SHIFT": 0,
+        "UNBOUNDED_DISCRETION": 0,
+        "LAND_USE_CONTRADICTION": 0,
+        "MISSING_CLAUSE": 0
+      },
+      "evidence_checked": 15,
+      "evidence_correct": 15,
+      "evidence_correctness_rate": 1
+    },
+    "unbounded_discretion": {
+      "category": "UNBOUNDED_DISCRETION",
+      "n_positive": 15,
+      "n_detected": 15,
+      "detection_rate": 1,
+      "n_control": 15,
+      "n_control_false_positive": 0,
+      "control_false_positive_rate": 0,
+      "cross_category_false_positives_on_positive_docs": {
+        "LIABILITY_SHIFT": 0,
+        "ASYMMETRIC_OBLIGATION": 0,
+        "LAND_USE_CONTRADICTION": 0,
+        "MISSING_CLAUSE": 0
+      }
+    },
+    "land_use_contradiction": {
+      "category": "LAND_USE_CONTRADICTION",
+      "n_positive": 15,
+      "n_detected": 15,
+      "detection_rate": 1,
+      "n_control": 15,
+      "n_control_false_positive": 0,
+      "control_false_positive_rate": 0,
+      "cross_category_false_positives_on_positive_docs": {
+        "LIABILITY_SHIFT": 0,
+        "ASYMMETRIC_OBLIGATION": 0,
+        "UNBOUNDED_DISCRETION": 0,
+        "MISSING_CLAUSE": 0
+      },
+      "evidence_checked": 15,
+      "evidence_correct": 15,
+      "evidence_correctness_rate": 1
+    },
+    "missing_clause": {
+      "category": "MISSING_CLAUSE",
+      "n_positive": 15,
+      "n_detected": 15,
+      "detection_rate": 1,
+      "n_control": 15,
+      "n_control_false_positive": 0,
+      "control_false_positive_rate": 0,
+      "cross_category_false_positives_on_positive_docs": {
+        "LIABILITY_SHIFT": 0,
+        "ASYMMETRIC_OBLIGATION": 0,
+        "UNBOUNDED_DISCRETION": 0,
+        "LAND_USE_CONTRADICTION": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "doc_id": "adversarial_asymmetric_obligation_41d6a7d4f5",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Surat between:\n\nLESSOR: Triveni Korpal, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Maanas Uppal, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Delhi.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 633/A, admeasuring 8.71 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,420,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹33,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 15 days in writing to the Lessee.\n\n6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 60 days in writing to the Lessor.\n\n7. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n8. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Surat.\n\n9. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Surat alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 75,
+      "end": 89,
+      "label": "LESSOR",
+      "text": "Triveni Korpal"
+    },
+    {
+      "start": 146,
+      "end": 158,
+      "label": "LESSEE",
+      "text": "Maanas Uppal"
+    },
+    {
+      "start": 319,
+      "end": 324,
+      "label": "SURVEY_NUMBER",
+      "text": "633/A"
+    },
+    {
+      "start": 338,
+      "end": 348,
+      "label": "LAND_AREA",
+      "text": "8.71 acres"
+    },
+    {
+      "start": 364,
+      "end": 376,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 522,
+      "end": 530,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 633,
+      "end": 643,
+      "label": "LEASE_PREMIUM",
+      "text": "₹2,420,000"
+    },
+    {
+      "start": 724,
+      "end": 731,
+      "label": "RENT",
+      "text": "₹33,500"
+    },
+    {
+      "start": 910,
+      "end": 939,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    },
+    {
+      "start": 1096,
+      "end": 1103,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    },
+    {
+      "start": 1222,
+      "end": 1229,
+      "label": "NOTICE_PERIOD",
+      "text": "60 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 455,
+      "end": 567,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 567,
+      "end": 688,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,420,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 688,
+      "end": 836,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹33,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n"
+    },
+    {
+      "start": 836,
+      "end": 1005,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1005,
+      "end": 1131,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "5",
+      "text": "5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 15 days in writing to the Lessee.\n\n"
+    },
+    {
+      "start": 1131,
+      "end": 1257,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "6",
+      "text": "6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 60 days in writing to the Lessor.\n\n"
+    },
+    {
+      "start": 1257,
+      "end": 1405,
+      "label": "TERMINATION",
+      "clause_number": "7",
+      "text": "7. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1405,
+      "end": 1558,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "8",
+      "text": "8. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Surat.\n\n"
+    },
+    {
+      "start": 1558,
+      "end": 1681,
+      "label": "JURISDICTION",
+      "clause_number": "9",
+      "text": "9. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Surat alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Surat",
+    "state": "Delhi",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "ASYMMETRIC_OBLIGATION",
+    "detail": {
+      "clause_numbers": [
+        "5",
+        "6"
+      ]
+    },
+    "is_control": false
+  }
+}

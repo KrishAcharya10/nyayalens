@@ -1,0 +1,131 @@
+{
+  "doc_id": "control_land_use_contradiction_b317fb9c05",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Mumbai between:\n\nLESSOR: Bhavna Keer, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Warhi Raghavan, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Karnataka.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 303/A, admeasuring 2.63 hectares, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,410,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹84,000 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Mumbai.\n\n7. JURISDICTION\nThe courts at Mumbai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Mumbai"
+    },
+    {
+      "start": 76,
+      "end": 87,
+      "label": "LESSOR",
+      "text": "Bhavna Keer"
+    },
+    {
+      "start": 144,
+      "end": 158,
+      "label": "LESSEE",
+      "text": "Warhi Raghavan"
+    },
+    {
+      "start": 323,
+      "end": 328,
+      "label": "SURVEY_NUMBER",
+      "text": "303/A"
+    },
+    {
+      "start": 342,
+      "end": 355,
+      "label": "LAND_AREA",
+      "text": "2.63 hectares"
+    },
+    {
+      "start": 371,
+      "end": 383,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 529,
+      "end": 537,
+      "label": "DURATION",
+      "text": "15 years"
+    },
+    {
+      "start": 640,
+      "end": 650,
+      "label": "LEASE_PREMIUM",
+      "text": "₹1,410,000"
+    },
+    {
+      "start": 731,
+      "end": 738,
+      "label": "RENT",
+      "text": "₹84,000"
+    },
+    {
+      "start": 918,
+      "end": 947,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 462,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 15 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 695,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹1,410,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 695,
+      "end": 844,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹84,000 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n"
+    },
+    {
+      "start": 844,
+      "end": 1013,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1013,
+      "end": 1145,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1145,
+      "end": 1299,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Mumbai.\n\n"
+    },
+    {
+      "start": 1299,
+      "end": 1416,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Mumbai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Mumbai",
+    "state": "Karnataka",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

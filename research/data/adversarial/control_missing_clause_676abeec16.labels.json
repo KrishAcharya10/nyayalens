@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_missing_clause_676abeec16",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Surat between:\n\nLANDLORD: Ekta Murthy, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Chaitaly Hari, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of West Bengal.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹22,000 per month towards rent, such payment to be made no later than the 5th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹305,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Surat.\n\n7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 72,
+      "label": "ADDRESS",
+      "text": "Surat"
+    },
+    {
+      "start": 93,
+      "end": 104,
+      "label": "LANDLORD",
+      "text": "Ekta Murthy"
+    },
+    {
+      "start": 163,
+      "end": 176,
+      "label": "TENANT",
+      "text": "Chaitaly Hari"
+    },
+    {
+      "start": 511,
+      "end": 520,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 620,
+      "end": 627,
+      "label": "RENT",
+      "text": "₹22,000"
+    },
+    {
+      "start": 803,
+      "end": 811,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹305,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 443,
+      "end": 568,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 568,
+      "end": 714,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹22,000 per month towards rent, such payment to be made no later than the 5th of each month.\n\n"
+    },
+    {
+      "start": 714,
+      "end": 984,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹305,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 984,
+      "end": 1130,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1130,
+      "end": 1278,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1278,
+      "end": 1431,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Surat.\n\n"
+    },
+    {
+      "start": 1431,
+      "end": 1547,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Surat shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Surat",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

@@ -6,15 +6,20 @@ information — entities, clauses, relations, risks, and (eventually) a
 knowledge graph, with every extracted fact carrying provenance back to
 its source document.
 
-**This repository currently implements Phase 1-4B**: repository
+**This repository currently implements Phase 1-6**: repository
 scaffolding, the database schema, authentication (Phase 1-2); document
 upload, storage, and canonical-text extraction (Phase 3); OCR, rule-based
 NER, a generic-transformer NER baseline, and rule-based clause
 classification (Phase 4A); InLegalBERT fine-tuning and StratifiedGroupKFold
 evaluation across all three model sources (Phase 4B — real, measured
-results in `docs/architecture/evaluation_results.md`, synthetic-only).
-Relation extraction, embeddings, RAG, knowledge graph, and risk detection
-do not exist yet — see `docs/architecture/*.md` for what's
+results in `docs/architecture/evaluation_results.md`, synthetic-only); a
+two-pass cross-clause/cross-entity risk engine covering five risk
+categories plus an adversarial synthetic test generator and evaluation
+(Phase 6 — real, measured results in
+`docs/architecture/adversarial_evaluation_results.md`, synthetic-only).
+Relation extraction, embeddings, RAG, knowledge graph construction, legal
+question answering, and the frontend legal-intelligence workspace do not
+exist yet — see `docs/architecture/*.md` for what's
 reserved-but-unimplemented and why.
 
 Commercial leases and general contracts are explicitly out of scope for
@@ -31,8 +36,11 @@ apps/
     src/ocr/          PDF page rasterization + Tesseract OCR
     src/ner/          Rule-based NER + generic-transformer NER subprocess call
     src/clauses/      Rule-based clause segmentation/classification
+    src/risk/         Phase 6 risk engine (Pass 1 per-clause, Pass 2 cross-clause/entity registry)
     src/jobs/         In-process async pipeline (queue, stages, startup recovery)
-    scripts/          validate-extraction-sample.mjs (Phase 4A pipeline sanity check)
+    scripts/          validate-extraction-sample.mjs (Phase 4A pipeline sanity check),
+                       bulk-upload-adversarial.mjs / evaluate-adversarial.mjs /
+                       evaluate-ordinary-control-fp.mjs (Phase 6)
 packages/
   db/       Prisma schema, migrations, seed script, shared DB client
 services/
@@ -41,13 +49,15 @@ research/
   data/
     synthetic/   300 synthetic documents (150 residential rental, 150 land lease)
     real/        Empty - real documents (target 15+15) not yet collected
-    adversarial/ Empty - adversarial risk-engine test cases, later phase
-  generator/     Python source that generated the synthetic dataset
+    adversarial/ 150 adversarial + matched-control risk-engine test documents (Phase 6)
+  generator/     Python source that generated the synthetic dataset, plus
+                 adversarial_generator.py / generate_adversarial_batch.py (Phase 6)
 docs/
   full_spec.md            Placeholder - see note inside
   architecture/           Design docs (database, auth, migrations, provenance, schema,
                            evaluation_design, document_ingestion, extraction_pipeline,
-                           evaluation_results - the real Phase 4B numbers)
+                           evaluation_results - the real Phase 4B numbers, risk_engine,
+                           adversarial_evaluation_results - the real Phase 6 numbers)
   research/                Adversarial test case design
 ```
 
@@ -156,6 +166,39 @@ services/ml/.venv/Scripts/python.exe services/ml/score_generic_transformer_overl
 services/ml/.venv/Scripts/python.exe -m pytest services/ml/tests
 ```
 
+## Phase 6: risk engine + adversarial evaluation
+
+The risk engine (`apps/api/src/risk/`) runs automatically as the final
+pipeline stage on every uploaded document - `GET /documents/:id/risks`
+returns its findings. The commands below regenerate and re-score the
+dedicated 150-document adversarial + matched-control test set; see
+`docs/architecture/risk_engine.md` (Pass 1/Pass 2 architecture, severity
+rubric, evidence design, comparison-check registry) and
+`docs/architecture/adversarial_evaluation_results.md` (real detection/
+false-positive numbers, including a separate false-positive check against
+the ordinary synthetic set) for the write-up these commands reproduce.
+
+```powershell
+# Regenerate the 150-document adversarial + matched-control set
+# (15 positive + 15 control per category x 5 categories)
+python research/generator/generate_adversarial_batch.py --per-category 15 --out research/data/adversarial
+
+npm run dev:api   # in one terminal
+
+# Upload through the live pipeline and tag isAdversarial/isAdversarialControl
+cd apps/api
+npx dotenv -e ../../.env -- tsx scripts/bulk-upload-adversarial.mjs
+
+# Score detection rate / control FP rate / cross-category FP / evidence
+# correctness (categories 2 and 4) from the persisted Risk rows
+npx dotenv -e ../../.env -- tsx scripts/evaluate-adversarial.mjs
+
+# Separate false-positive check against the ordinary 300-document
+# synthetic set (per the Phase 6 build prompt's addendum - adversarial
+# controls alone aren't accepted as the only FP evidence)
+npx dotenv -e ../../.env -- tsx scripts/evaluate-ordinary-control-fp.mjs
+```
+
 ## Verifying the setup
 
 ```powershell
@@ -165,7 +208,9 @@ npm run typecheck      # tsc --noEmit, strict mode, both apps
 ruff check .           # Python lint (research/generator/, services/ml/)
 npm run test           # Prisma schema constraint tests, seed integration test,
                         # auth/RBAC tests, document upload/extraction/OCR tests,
-                        # rule-based NER/clause classification sanity checks
+                        # rule-based NER/clause classification sanity checks,
+                        # risk engine Pass 1/Pass 2 + registry-extensibility +
+                        # reason-framing tests (Phase 6)
 ```
 
 `npm run test` requires a running PostgreSQL instance reachable via
@@ -192,3 +237,8 @@ dataset's provenance and known limitations — read it before writing any
 code that consumes this data. In particular: synthetic-only results must
 never be reported as evidence of real-world performance (see
 `docs/architecture/evaluation_design.md`).
+
+`research/data/adversarial/adversarial_dataset_card.md` documents the
+Phase 6 adversarial + matched-control test set the same way — it exists
+solely to evaluate the risk engine and must never be used to train or
+fine-tune any model.

@@ -1,0 +1,131 @@
+{
+  "doc_id": "adversarial_asymmetric_obligation_49557fb307",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Indore between:\n\nLANDLORD: Faris Saraf, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Pranit Bahri, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Tamil Nadu.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹29,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹595,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. NOTICE PERIOD - LANDLORD\nThe Landlord may terminate this Agreement by serving a notice period of 15 days in writing to the Tenant.\n\n5. NOTICE PERIOD - TENANT\nThe Tenant may terminate this Agreement by serving a notice period of 60 days in writing to the Landlord.\n\n6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n8. JURISDICTION\nThe courts at Indore shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Indore"
+    },
+    {
+      "start": 94,
+      "end": 105,
+      "label": "LANDLORD",
+      "text": "Faris Saraf"
+    },
+    {
+      "start": 164,
+      "end": 176,
+      "label": "TENANT",
+      "text": "Pranit Bahri"
+    },
+    {
+      "start": 510,
+      "end": 519,
+      "label": "DURATION",
+      "text": "24 months"
+    },
+    {
+      "start": 619,
+      "end": 626,
+      "label": "RENT",
+      "text": "₹29,500"
+    },
+    {
+      "start": 802,
+      "end": 810,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹595,000"
+    },
+    {
+      "start": 1083,
+      "end": 1090,
+      "label": "NOTICE_PERIOD",
+      "text": "15 days"
+    },
+    {
+      "start": 1214,
+      "end": 1221,
+      "label": "NOTICE_PERIOD",
+      "text": "60 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 442,
+      "end": 567,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 24 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 567,
+      "end": 713,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹29,500 per month towards rent, such payment to be made no later than the 5th of each month.\n\n"
+    },
+    {
+      "start": 713,
+      "end": 983,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹595,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 983,
+      "end": 1118,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "4",
+      "text": "4. NOTICE PERIOD - LANDLORD\nThe Landlord may terminate this Agreement by serving a notice period of 15 days in writing to the Tenant.\n\n"
+    },
+    {
+      "start": 1118,
+      "end": 1251,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "5",
+      "text": "5. NOTICE PERIOD - TENANT\nThe Tenant may terminate this Agreement by serving a notice period of 60 days in writing to the Landlord.\n\n"
+    },
+    {
+      "start": 1251,
+      "end": 1383,
+      "label": "TERMINATION",
+      "clause_number": "6",
+      "text": "6. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1383,
+      "end": 1537,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "7",
+      "text": "7. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Indore.\n\n"
+    },
+    {
+      "start": 1537,
+      "end": 1654,
+      "label": "JURISDICTION",
+      "clause_number": "8",
+      "text": "8. JURISDICTION\nThe courts at Indore shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Indore",
+    "state": "Tamil Nadu",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "ASYMMETRIC_OBLIGATION",
+    "detail": {
+      "clause_numbers": [
+        "4",
+        "5"
+      ]
+    },
+    "is_control": false
+  }
+}

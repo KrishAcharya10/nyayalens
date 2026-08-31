@@ -1,0 +1,355 @@
+{
+  "generated_at": "2026-08-31T10:10:18.595Z",
+  "n_documents": 300,
+  "n_documents_with_any_finding": 57,
+  "overall_false_positive_rate": 0.19,
+  "findings_per_category": {
+    "MISSING_CLAUSE": 47,
+    "LAND_USE_CONTRADICTION": 11
+  },
+  "flagged_document_ids": [
+    {
+      "documentId": "660ca136-a58f-4ca7-b57f-d7ea5d68b041",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "9ed3314d-5f96-4edb-ae69-161cbb676c41",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "11d57ec1-19d8-47c4-aaf3-cabe7df4374d",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "578feb92-f2d9-43e7-a75c-785c19fb9d74",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "14c14b7b-74f7-41be-8fea-474bef9be258",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "a669e440-d31f-45b6-b981-836ef354f0ec",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "a62ee53d-ad9d-4a19-8535-f9a05e851955",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "703f3281-b708-4633-a8e8-73119d9fa3f7",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "4448986a-7fa1-4f06-b5bf-4c1faba97e96",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "f72136ee-bc41-499f-af24-e58ba2f867f3",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "01e67ddf-3329-459c-8bae-c9fe79d3f60b",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "47980cc7-aad6-4042-9244-5a12c24fb4e0",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "334b3ba3-a680-42a4-abbb-082b8c05da9b",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "5a9d3f81-8514-4b30-b9af-0b9e0238aac6",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "4b11a36e-e1ce-4b9d-ab74-c6a094fb829b",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "5061f38e-905e-44ac-9abf-948f93bb27ba",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "aa17f1bd-96da-4c1b-ae85-34ca0c68b9f6",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "daf5fe06-b9b7-492c-8d6a-b94a389379f8",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "903181da-c65a-4183-bd05-f8efaafc47c8",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "7590c77b-e433-45bc-bdb8-2e8d318fcf56",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "6f23b9f3-f086-4eb1-8b35-8716ff28412c",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "0754b5ef-3f0e-49e7-b669-89e4006978fc",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "de347663-0a97-4468-8905-c6fe6de6f4e2",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "33b96a20-c9b2-4243-b91c-9427f7ca4069",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "56d33bb3-f9e7-464a-84ec-2db03400a214",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "9b29eb39-2714-4787-b9c3-d10520721ebf",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "2ff57552-7bac-4b6e-91dc-7f601f21a3ba",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "8da8832f-b0a2-430f-82d6-01201f023d0c",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "c3aa576d-9c67-4ec6-9ba6-b592989a4e92",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "5ca1d0de-bb4e-4758-bfa9-936a70b787b9",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "c09b855d-641f-48f8-ba3c-9192c8163242",
+      "categories": [
+        "MISSING_CLAUSE",
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "cc92bed4-0e4f-4055-81b4-7491c47523c9",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "a0785531-b3d3-40f5-bcaf-83b402857f22",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "90b64dab-ad6b-4482-81b4-65e7fd3c509b",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "e246b8df-4b4a-4384-b2a7-87449353fd1f",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "c8b53acc-9403-430e-9c32-73456bff11b8",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "02d22ceb-cabc-446a-a99d-3da517441928",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "ee62f1c1-7214-4980-ae1f-1e79458b808b",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "06322ab4-cfae-480c-a40b-0c2cd8b69774",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "d620c3cd-2584-49db-b77d-8c1608607fe4",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "e1dac746-cf94-4d6a-ac82-29c603dc5c49",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "59538e71-55be-439d-8433-2d85ce3bd4fc",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "3a31c63e-7c51-494e-882a-4cc70dd764a8",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "0ca36a31-da12-41d6-96cf-23f3aae7f02c",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "d3031e1a-5bd4-4346-bf6c-414120af1a26",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "922cda2b-ca2d-424c-a6e9-9a5da3a26573",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "9f7e9d9a-a288-4bc5-b275-392df782c0a0",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "741f9122-a8f6-4fcc-aa7b-8f60f08e0951",
+      "categories": [
+        "LAND_USE_CONTRADICTION"
+      ]
+    },
+    {
+      "documentId": "8d40ea2d-05d7-49f8-88f3-389b18d386a7",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "f80d86bd-01da-475d-9259-0ae6f827c4d8",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "6ed3cdef-fe7a-4bbc-bed6-fad0a13c14b6",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "24e22658-dcac-46c7-aa05-88845affc470",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "86fd7be3-084f-4b76-94a9-de34187294df",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "526773b2-0f4d-45f3-b043-3c53986238ca",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "15b645c5-5f4d-4fdf-9243-6bf60c186e11",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "a93056c3-7ce8-4497-a9bd-a7fa46539543",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    },
+    {
+      "documentId": "b1524196-68eb-42e3-ac06-b960c00b0219",
+      "categories": [
+        "MISSING_CLAUSE"
+      ]
+    }
+  ]
+}

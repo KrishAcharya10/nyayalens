@@ -1,0 +1,120 @@
+{
+  "doc_id": "adversarial_missing_clause_e08193ad60",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Bengaluru between:\n\nLESSOR: Ansh Chakraborty, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Balendra Dayal, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of West Bengal.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 12/1, admeasuring 3.18 hectares, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n2. ANNUAL LEASE RENT\nAnnual rent of ₹49,000 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n3. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n5. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Bengaluru.\n\n6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 60,
+      "label": "ADDRESS",
+      "text": "Bengaluru"
+    },
+    {
+      "start": 79,
+      "end": 95,
+      "label": "LESSOR",
+      "text": "Ansh Chakraborty"
+    },
+    {
+      "start": 152,
+      "end": 166,
+      "label": "LESSEE",
+      "text": "Balendra Dayal"
+    },
+    {
+      "start": 333,
+      "end": 337,
+      "label": "SURVEY_NUMBER",
+      "text": "12/1"
+    },
+    {
+      "start": 351,
+      "end": 364,
+      "label": "LAND_AREA",
+      "text": "3.18 hectares"
+    },
+    {
+      "start": 380,
+      "end": 392,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 538,
+      "end": 546,
+      "label": "DURATION",
+      "text": "30 years"
+    },
+    {
+      "start": 619,
+      "end": 626,
+      "label": "RENT",
+      "text": "₹49,000"
+    },
+    {
+      "start": 806,
+      "end": 835,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "cultivation of seasonal crops"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 471,
+      "end": 583,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 583,
+      "end": 732,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. ANNUAL LEASE RENT\nAnnual rent of ₹49,000 for the leased land shall be paid by the Lessee to the Lessor on or before June of every calendar year.\n\n"
+    },
+    {
+      "start": 732,
+      "end": 901,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "3",
+      "text": "3. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for cultivation of seasonal crops; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 901,
+      "end": 1049,
+      "label": "TERMINATION",
+      "clause_number": "4",
+      "text": "4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1049,
+      "end": 1206,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "5",
+      "text": "5. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Bengaluru.\n\n"
+    },
+    {
+      "start": 1206,
+      "end": 1333,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bengaluru alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Bengaluru",
+    "state": "West Bengal",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "MISSING_CLAUSE",
+    "detail": {
+      "missing_clause_type": "LEASE_PREMIUM"
+    },
+    "is_control": false
+  }
+}

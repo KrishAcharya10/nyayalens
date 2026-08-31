@@ -1,0 +1,131 @@
+{
+  "doc_id": "control_land_use_contradiction_87234eea64",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Kolkata between:\n\nLESSOR: Devika Devi, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Yahvi Maharaj, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Telangana.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 264/B, admeasuring 18217 sq. ft., classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,770,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹137,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kolkata.\n\n7. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 58,
+      "label": "ADDRESS",
+      "text": "Kolkata"
+    },
+    {
+      "start": 77,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Devika Devi"
+    },
+    {
+      "start": 145,
+      "end": 158,
+      "label": "LESSEE",
+      "text": "Yahvi Maharaj"
+    },
+    {
+      "start": 323,
+      "end": 328,
+      "label": "SURVEY_NUMBER",
+      "text": "264/B"
+    },
+    {
+      "start": 342,
+      "end": 355,
+      "label": "LAND_AREA",
+      "text": "18217 sq. ft."
+    },
+    {
+      "start": 371,
+      "end": 383,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 529,
+      "end": 537,
+      "label": "DURATION",
+      "text": "20 years"
+    },
+    {
+      "start": 640,
+      "end": 650,
+      "label": "LEASE_PREMIUM",
+      "text": "₹3,770,000"
+    },
+    {
+      "start": 731,
+      "end": 739,
+      "label": "RENT",
+      "text": "₹137,500"
+    },
+    {
+      "start": 921,
+      "end": 950,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "agricultural storage purposes"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 462,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 695,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹3,770,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 695,
+      "end": 847,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹137,500 for the leased land shall be paid by the Lessee to the Lessor on or before August of every calendar year.\n\n"
+    },
+    {
+      "start": 847,
+      "end": 1016,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for agricultural storage purposes; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1016,
+      "end": 1164,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1164,
+      "end": 1319,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Kolkata.\n\n"
+    },
+    {
+      "start": 1319,
+      "end": 1437,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Kolkata shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Kolkata",
+    "state": "Telangana",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

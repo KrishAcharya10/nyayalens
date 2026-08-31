@@ -1,0 +1,131 @@
+{
+  "doc_id": "control_land_use_contradiction_58b0ea9e06",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Patna between:\n\nLESSOR: Amruta Ramesh, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Bhavika Hayre, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Gujarat.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 178/B, admeasuring 14508 sq. ft., classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,490,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹291,000 for the leased land shall be paid by the Lessee to the Lessor on or before July of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThe courts at Patna shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Patna"
+    },
+    {
+      "start": 75,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Amruta Ramesh"
+    },
+    {
+      "start": 145,
+      "end": 158,
+      "label": "LESSEE",
+      "text": "Bhavika Hayre"
+    },
+    {
+      "start": 321,
+      "end": 326,
+      "label": "SURVEY_NUMBER",
+      "text": "178/B"
+    },
+    {
+      "start": 340,
+      "end": 353,
+      "label": "LAND_AREA",
+      "text": "14508 sq. ft."
+    },
+    {
+      "start": 369,
+      "end": 381,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 527,
+      "end": 535,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 638,
+      "end": 648,
+      "label": "LEASE_PREMIUM",
+      "text": "₹2,490,000"
+    },
+    {
+      "start": 729,
+      "end": 737,
+      "label": "RENT",
+      "text": "₹291,000"
+    },
+    {
+      "start": 917,
+      "end": 941,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "horticultural plantation"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 460,
+      "end": 572,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 572,
+      "end": 693,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹2,490,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 693,
+      "end": 843,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹291,000 for the leased land shall be paid by the Lessee to the Lessor on or before July of every calendar year.\n\n"
+    },
+    {
+      "start": 843,
+      "end": 1007,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for horticultural plantation; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1007,
+      "end": 1139,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two consecutive months.\n\n"
+    },
+    {
+      "start": 1139,
+      "end": 1287,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1287,
+      "end": 1403,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Patna shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Patna",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

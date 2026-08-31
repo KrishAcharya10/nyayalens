@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_unbounded_discretion_bb5f9e9af9",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Indore between:\n\nLANDLORD: Lohit Gupta, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Krish Sur, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Gujarat.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹39,000 per month towards rent, such payment to be made no later than the 1st of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹550,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Indore alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Indore"
+    },
+    {
+      "start": 94,
+      "end": 105,
+      "label": "LANDLORD",
+      "text": "Lohit Gupta"
+    },
+    {
+      "start": 164,
+      "end": 173,
+      "label": "TENANT",
+      "text": "Krish Sur"
+    },
+    {
+      "start": 504,
+      "end": 513,
+      "label": "DURATION",
+      "text": "60 months"
+    },
+    {
+      "start": 613,
+      "end": 620,
+      "label": "RENT",
+      "text": "₹39,000"
+    },
+    {
+      "start": 796,
+      "end": 804,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹550,000"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 436,
+      "end": 561,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 60 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 561,
+      "end": 707,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹39,000 per month towards rent, such payment to be made no later than the 1st of each month.\n\n"
+    },
+    {
+      "start": 707,
+      "end": 977,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹550,000 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 977,
+      "end": 1123,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1123,
+      "end": 1271,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1271,
+      "end": 1419,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1419,
+      "end": 1543,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Indore alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Indore",
+    "state": "Gujarat",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

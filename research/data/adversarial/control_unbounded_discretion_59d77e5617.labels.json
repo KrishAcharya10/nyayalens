@@ -1,0 +1,107 @@
+{
+  "doc_id": "control_unbounded_discretion_59d77e5617",
+  "document_type": "residential_rental",
+  "text": "RESIDENTIAL RENTAL AGREEMENT\n\nThis Rental Agreement is executed at Mumbai between:\n\nLANDLORD: Omya Dutta, hereinafter referred to as the 'Landlord',\n\nAND\n\nTENANT: Triveni Ahluwalia, hereinafter referred to as the 'Tenant'.\n\nThis Agreement is governed by the laws of Tamil Nadu.\n\nWHEREAS the Landlord is the owner of the residential premises situated at the above address, and has agreed to let out the same to the Tenant on the following terms:\n\n1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹48,500 per month towards rent, such payment to be made no later than the 10th of each month.\n\n3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹88,500 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Mumbai.\n\n7. JURISDICTION\nThe courts at Mumbai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have signed this Agreement on the date first above written.\n",
+  "entities": [
+    {
+      "start": 67,
+      "end": 73,
+      "label": "ADDRESS",
+      "text": "Mumbai"
+    },
+    {
+      "start": 94,
+      "end": 104,
+      "label": "LANDLORD",
+      "text": "Omya Dutta"
+    },
+    {
+      "start": 163,
+      "end": 180,
+      "label": "TENANT",
+      "text": "Triveni Ahluwalia"
+    },
+    {
+      "start": 514,
+      "end": 523,
+      "label": "DURATION",
+      "text": "36 months"
+    },
+    {
+      "start": 623,
+      "end": 630,
+      "label": "RENT",
+      "text": "₹48,500"
+    },
+    {
+      "start": 807,
+      "end": 814,
+      "label": "SECURITY_DEPOSIT",
+      "text": "₹88,500"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 446,
+      "end": 571,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Agreement shall remain valid for a period of 36 months commencing from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 571,
+      "end": 718,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. RENT PAYMENT\nThe Tenant agrees to remit a sum of ₹48,500 per month towards rent, such payment to be made no later than the 10th of each month.\n\n"
+    },
+    {
+      "start": 718,
+      "end": 987,
+      "label": "SECURITY_DEPOSIT",
+      "clause_number": "3",
+      "text": "3. SECURITY DEPOSIT\nThe Tenant shall pay an interest-free refundable security deposit of ₹88,500 to the Landlord prior to taking possession, refundable within 30 days of vacating the premises subject to an itemized list of deductions not exceeding 10% of the deposit.\n\n"
+    },
+    {
+      "start": 987,
+      "end": 1133,
+      "label": "MAINTENANCE",
+      "clause_number": "4",
+      "text": "4. MAINTENANCE\nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs shall be borne by the Landlord.\n\n"
+    },
+    {
+      "start": 1133,
+      "end": 1281,
+      "label": "TERMINATION",
+      "clause_number": "5",
+      "text": "5. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1281,
+      "end": 1435,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "6",
+      "text": "6. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Mumbai.\n\n"
+    },
+    {
+      "start": 1435,
+      "end": 1552,
+      "label": "JURISDICTION",
+      "clause_number": "7",
+      "text": "7. JURISDICTION\nThe courts at Mumbai shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "residential_rental",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

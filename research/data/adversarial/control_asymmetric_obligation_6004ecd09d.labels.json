@@ -1,0 +1,157 @@
+{
+  "doc_id": "control_asymmetric_obligation_6004ecd09d",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Bhopal between:\n\nLESSOR: Kavya Chakraborty, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Girik Bajaj, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Karnataka.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 734/2, admeasuring 5.01 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,620,000 to the Lessor upon execution of this Deed.\n\n3. ANNUAL LEASE RENT\nAnnual rent of ₹298,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 30 days in writing to the Lessee.\n\n6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 30 days in writing to the Lessor.\n\n7. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n8. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n9. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bhopal alone shall have jurisdiction.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 57,
+      "label": "ADDRESS",
+      "text": "Bhopal"
+    },
+    {
+      "start": 76,
+      "end": 93,
+      "label": "LESSOR",
+      "text": "Kavya Chakraborty"
+    },
+    {
+      "start": 150,
+      "end": 161,
+      "label": "LESSEE",
+      "text": "Girik Bajaj"
+    },
+    {
+      "start": 326,
+      "end": 331,
+      "label": "SURVEY_NUMBER",
+      "text": "734/2"
+    },
+    {
+      "start": 345,
+      "end": 355,
+      "label": "LAND_AREA",
+      "text": "5.01 acres"
+    },
+    {
+      "start": 371,
+      "end": 383,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 529,
+      "end": 537,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 640,
+      "end": 650,
+      "label": "LEASE_PREMIUM",
+      "text": "₹4,620,000"
+    },
+    {
+      "start": 731,
+      "end": 739,
+      "label": "RENT",
+      "text": "₹298,500"
+    },
+    {
+      "start": 918,
+      "end": 942,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "dairy farming operations"
+    },
+    {
+      "start": 1099,
+      "end": 1106,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    },
+    {
+      "start": 1225,
+      "end": 1232,
+      "label": "NOTICE_PERIOD",
+      "text": "30 days"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 462,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 695,
+      "label": "LEASE_PREMIUM",
+      "clause_number": "2",
+      "text": "2. LEASE PREMIUM\nThe Lessee shall pay a one-time lease premium of ₹4,620,000 to the Lessor upon execution of this Deed.\n\n"
+    },
+    {
+      "start": 695,
+      "end": 844,
+      "label": "RENT_PAYMENT",
+      "clause_number": "3",
+      "text": "3. ANNUAL LEASE RENT\nAnnual rent of ₹298,500 for the leased land shall be paid by the Lessee to the Lessor on or before May of every calendar year.\n\n"
+    },
+    {
+      "start": 844,
+      "end": 1008,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "4",
+      "text": "4. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 1008,
+      "end": 1134,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "5",
+      "text": "5. NOTICE PERIOD - LESSOR\nThe Lessor may terminate this Deed by serving a notice period of 30 days in writing to the Lessee.\n\n"
+    },
+    {
+      "start": 1134,
+      "end": 1260,
+      "label": "NOTICE_PERIOD",
+      "clause_number": "6",
+      "text": "6. NOTICE PERIOD - LESSEE\nThe Lessee may terminate this Deed by serving a notice period of 30 days in writing to the Lessor.\n\n"
+    },
+    {
+      "start": 1260,
+      "end": 1408,
+      "label": "TERMINATION",
+      "clause_number": "7",
+      "text": "7. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1408,
+      "end": 1556,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "8",
+      "text": "8. DISPUTE RESOLUTION\nAny dispute arising out of this Agreement shall be referred to arbitration under the Arbitration and Conciliation Act, 1996.\n\n"
+    },
+    {
+      "start": 1556,
+      "end": 1680,
+      "label": "JURISDICTION",
+      "clause_number": "9",
+      "text": "9. JURISDICTION\nThis Agreement shall be governed by the laws of India, and courts at Bhopal alone shall have jurisdiction.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Bhopal",
+    "state": "Karnataka",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": null,
+    "detail": {},
+    "is_control": true
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "doc_id": "adversarial_missing_clause_ab2dfac0ad",
+  "document_type": "land_lease",
+  "text": "LAND LEASE DEED\n\nThis Deed of Lease is executed at Delhi between:\n\nLESSOR: Lajita Mandal, hereinafter referred to as the 'Lessor',\n\nAND\n\nLESSEE: Indira Murty, hereinafter referred to as the 'Lessee'.\n\nThis Deed is governed by the laws of Uttar Pradesh.\n\nWHEREAS the Lessor is the absolute owner of the land bearing Survey No. 921/3, admeasuring 4.22 acres, classified as Agricultural land, and has agreed to lease the same to the Lessee on the following terms:\n\n1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n2. ANNUAL LEASE RENT\nAnnual rent of ₹178,500 for the leased land shall be paid by the Lessee to the Lessor on or before April of every calendar year.\n\n3. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n5. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Delhi.\n\n6. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n\nIN WITNESS WHEREOF, the parties have executed this Deed on the date first above written.\n",
+  "entities": [
+    {
+      "start": 51,
+      "end": 56,
+      "label": "ADDRESS",
+      "text": "Delhi"
+    },
+    {
+      "start": 75,
+      "end": 88,
+      "label": "LESSOR",
+      "text": "Lajita Mandal"
+    },
+    {
+      "start": 145,
+      "end": 157,
+      "label": "LESSEE",
+      "text": "Indira Murty"
+    },
+    {
+      "start": 326,
+      "end": 331,
+      "label": "SURVEY_NUMBER",
+      "text": "921/3"
+    },
+    {
+      "start": 345,
+      "end": 355,
+      "label": "LAND_AREA",
+      "text": "4.22 acres"
+    },
+    {
+      "start": 371,
+      "end": 383,
+      "label": "LAND_USE_TYPE",
+      "text": "Agricultural"
+    },
+    {
+      "start": 529,
+      "end": 537,
+      "label": "DURATION",
+      "text": "10 years"
+    },
+    {
+      "start": 610,
+      "end": 618,
+      "label": "RENT",
+      "text": "₹178,500"
+    },
+    {
+      "start": 799,
+      "end": 823,
+      "label": "LAND_USE_RESTRICTION",
+      "text": "dairy farming operations"
+    }
+  ],
+  "clauses": [
+    {
+      "start": 462,
+      "end": 574,
+      "label": "LEASE_DURATION",
+      "clause_number": "1",
+      "text": "1. LEASE DURATION\nThis Lease shall remain in force for a period of 10 years from the date of execution hereof.\n\n"
+    },
+    {
+      "start": 574,
+      "end": 725,
+      "label": "RENT_PAYMENT",
+      "clause_number": "2",
+      "text": "2. ANNUAL LEASE RENT\nAnnual rent of ₹178,500 for the leased land shall be paid by the Lessee to the Lessor on or before April of every calendar year.\n\n"
+    },
+    {
+      "start": 725,
+      "end": 889,
+      "label": "LAND_USE_RESTRICTION",
+      "clause_number": "3",
+      "text": "3. PERMITTED USE\nThe land hereby leased shall be utilised exclusively for dairy farming operations; any change in use shall require the Lessor's written approval.\n\n"
+    },
+    {
+      "start": 889,
+      "end": 1037,
+      "label": "TERMINATION",
+      "clause_number": "4",
+      "text": "4. TERMINATION\nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the Agreement after serving due notice.\n\n"
+    },
+    {
+      "start": 1037,
+      "end": 1190,
+      "label": "DISPUTE_RESOLUTION",
+      "clause_number": "5",
+      "text": "5. DISPUTE RESOLUTION\nAll disputes shall first be attempted to be resolved amicably, failing which the matter shall be subject to arbitration in Delhi.\n\n"
+    },
+    {
+      "start": 1190,
+      "end": 1306,
+      "label": "JURISDICTION",
+      "clause_number": "6",
+      "text": "6. JURISDICTION\nThe courts at Delhi shall have exclusive jurisdiction over any matter arising from this Agreement.\n\n"
+    }
+  ],
+  "metadata": {
+    "document_type": "land_lease",
+    "is_synthetic": true,
+    "is_adversarial": true,
+    "city": "Delhi",
+    "state": "Uttar Pradesh",
+    "schema_version": "1.0"
+  },
+  "expected_flag": {
+    "category": "MISSING_CLAUSE",
+    "detail": {
+      "missing_clause_type": "LEASE_PREMIUM"
+    },
+    "is_control": false
+  }
+}

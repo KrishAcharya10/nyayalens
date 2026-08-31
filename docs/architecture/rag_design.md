@@ -6,34 +6,78 @@ provenance-backed, grounded-only, never a general legal chatbot. See
 `docs/architecture/rag_evaluation_results.md` for the measured numbers
 this design produces.
 
-## Chunking: one chunk per clause
+## Chunking: one chunk per clause, plus preamble-entity chunks (addendum)
 
-`apps/api/src/rag/chunking.ts` - a chunk is exactly one persisted
-`DocumentClause` row (`RULE_BASED` by default): `chunkId` = the clause's
-id, `text`/`textStart`/`textEnd` copied directly. Deterministic (same
-clause rows always produce the same chunk list, sorted by document
-position - `apps/api/tests/chunking.test.ts`), and reuses Phase 4A's
-existing clause segmentation rather than inventing a new scheme, per the
-build prompt's own stated preference.
+`apps/api/src/rag/chunking.ts` - two chunk sources, combined by
+`buildChunks(documentId, clauses, entities)` and sorted by document
+position:
 
-### A real, honest limitation this choice produces
+- **`chunkType: "clause"`** (`buildChunksFromClauses`, original Phase
+  7A scheme) - one chunk per persisted `DocumentClause` row (`RULE_BASED`
+  by default): `chunkId` = the clause's id, `text`/`textStart`/`textEnd`
+  copied directly. Reuses Phase 4A's existing clause segmentation rather
+  than inventing a new scheme, per the build prompt's own stated
+  preference.
+- **`chunkType: "entity"`** (`buildChunksFromEntities`, added in the
+  Phase 7A addendum) - one small synthesized chunk per persisted
+  `Entity` row that is **not** already contained within a clause's span
+  (`chunkId` = the entity's id, `text` = `"<humanized label>: <entity
+  text>"`, e.g. `"Landlord: Peter Majumdar"`, offsets copied directly
+  from the entity - genuine provenance, never fabricated).
 
-Clause segmentation (`clauseSegmenter.ts`) only ever spans from one
-numbered heading to the next - text **before the first heading**
-(the preamble: party names, address, survey number, land area, land use
-classification) is never part of any clause, so it never becomes a
-chunk. This means questions whose answer lives only in the preamble
-(`"Who is the landlord?"`) are **not answerable by this RAG system as
-designed**, even though the fact is genuinely in `canonical_text` and
-even has its own correctly-extracted `Entity` row. This is not
-theoretical - `rag_evaluation_results.md`'s test case **U5** measures it
-directly: the system does not refuse this question, it false-grounds by
-quoting an unrelated clause that happens to contain the word "Landlord."
-A future phase could add a synthetic "preamble chunk" (offset 0 to the
-first heading) to close this gap; not done here, since the build prompt
-asks for reusing existing segmentation, not extending it, and the honest
-option was to measure and report the resulting gap rather than silently
-patch around it mid-evaluation.
+Both are deterministic (`apps/api/tests/chunking.test.ts`): same input
+rows in any order always produce the same sorted chunk list.
+
+### Why entity chunks, not raw-preamble-text re-parsing (the addendum's investigation)
+
+The original Phase 7A limitation: clause segmentation
+(`clauseSegmenter.ts`) only ever spans from one numbered heading to the
+next - text **before the first heading** (the preamble: party names,
+property/land address, survey number, land area, land use
+classification) is never part of any clause, so it never became a
+chunk, even though it's genuinely present in `canonical_text` (Phase 3).
+This was measured directly: the original test case **U5**
+(`"Who is the landlord?"`) false-grounded by quoting an unrelated clause
+that happened to contain the word "Landlord," rather than refusing.
+
+**Investigation finding, checked directly before writing any fix code**:
+`rulePatterns.ts`'s rule-based NER (`runRuleBasedNer(canonicalText)`)
+runs over the **entire** `canonicalText`, completely independent of
+clause segmentation - so `LANDLORD`/`TENANT`/`LESSOR`/`LESSEE`/`ADDRESS`/
+`SURVEY_NUMBER`/`LAND_AREA`/`LAND_USE_TYPE` entities are already
+extracted from the preamble, with real, correct offsets, by existing,
+unmodified Phase 4A code. This meant the fix didn't need new text
+parsing - it needed to expose data that already existed.
+
+**Why filtering by "not already inside a clause" needs no hardcoded
+label list**: every other entity type this generator produces (`RENT`,
+`SECURITY_DEPOSIT`, `DURATION`, `NOTICE_PERIOD`, `LEASE_PREMIUM`) is
+always inside its clause's span. The co-location check alone (the same
+rule `buildGraph.ts`'s `REFERENCES` edges use, deliberately
+reimplemented locally in `chunking.ts` rather than imported, so
+`apps/api/src/rag/` never has to depend on `apps/api/src/graph/`)
+naturally selects exactly the preamble-only entities without needing to
+enumerate which labels count as "preamble" - and it also guarantees no
+duplication: an entity already covered by a clause chunk (e.g. `RENT`
+inside `RENT_PAYMENT`) never gets a second, redundant chunk.
+
+### Before/after impact (measured, not projected)
+
+| Metric (33-case quality test set, 6 new preamble cases added) | Before addendum (27 cases) | After addendum (33 cases) |
+|---|---|---|
+| Retrieval hit rate @ k=3 (any expected) | 1.000 | 1.000 |
+| Retrieval hit rate @ k=3 (all expected) | 0.955 | 0.964 |
+| Grounded-answer rate | 0.955 | 0.964 |
+| Citation correctness | 0.857 (n=21) | 0.889 (n=27) |
+| Refusal correctness | 0.600 (3/5) | 0.800 (4/5) |
+
+All 6 new preamble questions (`P1`-`P6`: landlord name, property
+address, lessor name, survey number, land classification, land area)
+are correctly grounded **and** citation-correct in the after run - see
+`rag_evaluation_results.md`'s addendum section for the full per-case
+breakdown and an important caveat about the refusal-correctness number's
+apparent improvement (it is not evidence the underlying weak point from
+Part B was fixed).
 
 ## RetrievalProvider
 
@@ -131,7 +175,7 @@ defense leans on (see below).
 | 0.34 | 0.818 | 0.889 | 0.600 |
 | 0.45 | 0.636 | 1.000 | 0.800 |
 
-(All against the 27-case quality test set - `rag_evaluation_results.md`
+(All against the original 27-case quality test set - `rag_evaluation_results.md`
 has the full breakdown.) **0.25 was chosen** because it dominates 0.30
 and 0.34 (equal-or-better on every metric measured) - it is not,
 however, a solved trade-off against 0.45: lower values ground more
@@ -142,6 +186,42 @@ simultaneously. This is reported as a real, measured limitation, not
 tuned away by re-running until a flattering number appeared - 0.25 is
 the actual value shipped, and the actual numbers it produces are what
 `rag_evaluation_results.md` reports.
+
+### Addendum, Part B: the threshold-sweep hint above is now a proven fact, not a guess
+
+The Phase 7A addendum investigated directly - per its own instruction
+not to assume which is true going in - whether refusal-correctness is a
+tunable-threshold problem or a structural one.
+`apps/api/scripts/analyze-refusal-scores.mjs` computes the exact
+`relevance()` score (the same function `ExtractiveLLMProvider` itself
+calls, imported, not reimplemented) for every case in the 33-case
+quality test set, split by whether the case should ground or should
+refuse. **Finding: STRUCTURAL.** The "should ground" score range,
+`[0.143, 1.0]`, fully contains the "should refuse" range,
+`[0.143, 0.364]` - there is no gap anywhere a threshold could sit. A
+genuinely-answerable case (`M6`) and a genuinely-unanswerable one
+(`U1`) tied **exactly** at `0.1429` against two different real clauses
+in that run (`apps/api/rag_eval/refusal_threshold_analysis.json`).
+`apps/api/tests/llmProvider.test.ts` has a small, self-contained
+reproduction of the same phenomenon: `relevance()` against one fixed
+clause returns an **identical** score, `0.6`, for a genuinely-answerable
+question and a genuinely-unanswerable one that merely shares vocabulary
+with it.
+
+**Consequence: `MIN_RELEVANCE` was left at 0.25, unchanged.** Per the
+addendum's own instruction, a threshold change was not forced just to
+move the number - no threshold value fixes this, since the two score
+distributions overlap almost entirely. What would actually be required
+is a different relevance *signal*, not a different threshold on the
+current one - e.g. a secondary answerability classifier, or requiring
+the retrieved excerpt to contain an answer-shaped span matching the
+question's expected answer type (a date, an amount, a party name...)
+rather than just sharing vocabulary with the question. This is
+documented here as scoped future work, not implemented in the addendum
+- building either option is new infrastructure (a classifier or an
+answer-type-matching layer), which the addendum's own scope explicitly
+excludes ("do not introduce large new retrieval or answerability
+infrastructure").
 
 ### `AnthropicProvider` - implemented, NOT verified
 
@@ -266,11 +346,23 @@ for internal consistency.
 ## What Phase 7B will need from this
 
 - `POST /documents/:id/ask`'s response shape (`answer`, `sources[]` with
-  real offsets, `grounded`) is stable and ready for a chat-style UI to
-  consume directly.
-- The preamble-chunking gap (above) is worth surfacing in a future UI as
-  a known "can't answer questions about X" category, not just a silent
-  refusal.
+  real offsets, `grounded`, and now `chunkType` per source) is stable
+  and ready for a chat-style UI to consume directly. `chunkType` lets a
+  future UI distinguish "quoted from a numbered clause" vs "drawn from
+  document metadata" citations if that's ever worth surfacing visually.
+- The preamble-chunking gap is fixed for the fact types this generator's
+  ontology actually produces (party names, address, survey number, land
+  area, land use classification) - a genuinely absent fact (this
+  addendum's new `U5`, a landlord phone number) is still correctly
+  refused, not fabricated.
+- **The refusal-correctness weak point remains real and is now proven
+  structural, not a calibration gap** - a future UI should not present
+  `grounded: true` as a strong confidence signal for questions that are
+  topically adjacent to real document content but ask for something the
+  document doesn't actually state (see `U3` in
+  `rag_evaluation_results.md` - still false-grounds after this
+  addendum). Fixing it needs a different relevance signal (see above),
+  not a Phase 7B UI workaround.
 - If a real LLM key becomes available, `AnthropicProvider` exists and is
   wired to the same interface - activating it needs no RAG-pipeline
   code change, but its `grounded`/citation behavior needs the same

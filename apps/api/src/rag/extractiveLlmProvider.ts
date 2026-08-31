@@ -30,7 +30,11 @@ const NOT_ENOUGH_INFO = "The document does not contain enough information to ans
 const MIN_RELEVANCE = 0.25;
 const MAX_CITED_CHUNKS = 3;
 
-function relevance(question: string, evidenceText: string): number {
+// Exported for apps/api/scripts/analyze-refusal-scores.mjs (Phase 7A
+// addendum's refusal-correctness investigation) - the analysis needs the
+// exact same scoring function the provider itself uses, not a
+// reimplementation that could silently drift from it.
+export function relevance(question: string, evidenceText: string): number {
   const questionTokens = new Set(meaningfulTokens(question));
   if (questionTokens.size === 0) return 0;
   const evidenceTokens = new Set(meaningfulTokens(evidenceText));

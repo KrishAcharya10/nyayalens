@@ -2,10 +2,14 @@
 // to genuinely-matched chunks -> generate. model_source is an explicit
 // parameter (default RULE_BASED), same discipline as Phase 6's
 // runRiskEngine - never a hardcoded assumption.
+//
+// Addendum: chunks now come from both clauses and preamble-only entities
+// (buildChunks, not buildChunksFromClauses alone) - see chunking.ts for
+// why. Nothing else about the retrieve/generate flow changed.
 import { getPrismaClient, type ModelSource } from "@nyayalens/db";
-import { buildChunksFromClauses } from "./chunking.js";
+import { buildChunks } from "./chunking.js";
 import { RAG_SYSTEM_INSTRUCTIONS } from "./systemInstructions.js";
-import type { LLMProvider, RetrievalProvider } from "./types.js";
+import type { ChunkType, LLMProvider, RetrievalProvider } from "./types.js";
 
 const prisma = getPrismaClient();
 
@@ -19,6 +23,7 @@ const MIN_BM25_SCORE = 0;
 export interface AskSource {
   chunkId: string;
   documentId: string;
+  chunkType: ChunkType;
   textStart: number | null;
   textEnd: number | null;
   excerpt: string;
@@ -39,11 +44,17 @@ export async function runAsk(
   llmProvider: LLMProvider,
   modelSource: ModelSource = "RULE_BASED",
 ): Promise<AskResult> {
-  const clauses = await prisma.documentClause.findMany({
-    where: { documentId, modelSource },
-    select: { id: true, text: true, textStart: true, textEnd: true },
-  });
-  const chunks = buildChunksFromClauses(documentId, clauses);
+  const [clauses, entities] = await Promise.all([
+    prisma.documentClause.findMany({
+      where: { documentId, modelSource },
+      select: { id: true, text: true, textStart: true, textEnd: true },
+    }),
+    prisma.entity.findMany({
+      where: { documentId, modelSource },
+      select: { id: true, label: true, text: true, textStart: true, textEnd: true },
+    }),
+  ]);
+  const chunks = buildChunks(documentId, clauses, entities);
 
   const retrieved = retrievalProvider
     .retrieve(question, chunks, TOP_K)
@@ -52,6 +63,7 @@ export async function runAsk(
   const evidence = retrieved.map((r) => ({
     chunkId: r.chunk.chunkId,
     documentId: r.chunk.documentId,
+    chunkType: r.chunk.chunkType,
     textStart: r.chunk.textStart,
     textEnd: r.chunk.textEnd,
     text: r.chunk.text,
@@ -69,6 +81,7 @@ export async function runAsk(
     .map((e) => ({
       chunkId: e.chunkId,
       documentId: e.documentId,
+      chunkType: e.chunkType,
       textStart: e.textStart,
       textEnd: e.textEnd,
       excerpt:

@@ -1,5 +1,5 @@
 {
-  "note": "Authored by the same process that built the RAG pipeline being evaluated - see rag_evaluation_results.md's same-team-designs-both caveat. Ground truth values are copied directly from research/data/synthetic/*.labels.json, not guessed. Kept separate from any prompt/example used while debugging the pipeline itself.",
+  "note": "Authored by the same process that built the RAG pipeline being evaluated - see rag_evaluation_results.md's same-team-designs-both caveat. Ground truth values are copied directly from research/data/synthetic/*.labels.json, not guessed. Kept separate from any prompt/example used while debugging the pipeline itself. Updated for the Phase 7A addendum: the original U5 ('Who is the landlord?') was a deliberate unanswerable case probing the preamble-chunking gap - now that the addendum adds entity-derived chunks for preamble facts, that question is genuinely answerable, so it was reclassified to factual_preamble (case P1) and a new, still-genuinely-unanswerable case took its old U5 slot. P1-P6 are new preamble-fact questions added to validate the addendum's fix.",
   "documents": [
     "residential_rental_032a0ff5d4",
     "residential_rental_173700710b",
@@ -186,6 +186,62 @@
     },
 
     {
+      "id": "P1",
+      "type": "factual_preamble",
+      "doc_id": "residential_rental_032a0ff5d4",
+      "question": "Who is the landlord?",
+      "expected_answer_contains": ["Peter Majumdar"],
+      "expected_chunk_type": "entity",
+      "expected_entity_label": "LANDLORD",
+      "note": "Formerly test case U5 (deliberate unanswerable probe of the preamble-chunking gap) - reclassified here now that the addendum makes this genuinely answerable. See rag_evaluation_results.md's addendum section."
+    },
+    {
+      "id": "P2",
+      "type": "factual_preamble",
+      "doc_id": "residential_rental_032a0ff5d4",
+      "question": "What is the property address?",
+      "expected_answer_contains": ["Thane"],
+      "expected_chunk_type": "entity",
+      "expected_entity_label": "ADDRESS"
+    },
+    {
+      "id": "P3",
+      "type": "factual_preamble",
+      "doc_id": "land_lease_0a4a3a866f",
+      "question": "Who is the lessor?",
+      "expected_answer_contains": ["Siya Chahal"],
+      "expected_chunk_type": "entity",
+      "expected_entity_label": "LESSOR"
+    },
+    {
+      "id": "P4",
+      "type": "factual_preamble",
+      "doc_id": "land_lease_0a4a3a866f",
+      "question": "What is the survey number of the land?",
+      "expected_answer_contains": ["563/B"],
+      "expected_chunk_type": "entity",
+      "expected_entity_label": "SURVEY_NUMBER"
+    },
+    {
+      "id": "P5",
+      "type": "factual_preamble",
+      "doc_id": "land_lease_0a4a3a866f",
+      "question": "What is the land classified as?",
+      "expected_answer_contains": ["Agricultural"],
+      "expected_chunk_type": "entity",
+      "expected_entity_label": "LAND_USE_TYPE"
+    },
+    {
+      "id": "P6",
+      "type": "factual_preamble",
+      "doc_id": "land_lease_0c2ac30e76",
+      "question": "What is the land area?",
+      "expected_answer_contains": ["0.84 hectares"],
+      "expected_chunk_type": "entity",
+      "expected_entity_label": "LAND_AREA"
+    },
+
+    {
       "id": "U1",
       "type": "unanswerable",
       "doc_id": "residential_rental_032a0ff5d4",
@@ -217,8 +273,8 @@
       "id": "U5",
       "type": "unanswerable",
       "doc_id": "residential_rental_032a0ff5d4",
-      "question": "Who is the landlord?",
-      "note": "DELIBERATE scoping-limitation case, not a genuine ontology gap: the landlord's name IS in the document (in the preamble, before clause 1), but chunking is clause-based only (see rag_design.md), so preamble-only facts - party names, address, survey number, land area, land use classification - are never retrievable as a chunk. Included specifically to verify the system honestly refuses rather than fabricating a name, and to make this real limitation measurable rather than only documented in prose."
+      "question": "What is the landlord's contact phone number?",
+      "note": "Replaces the original U5 ('Who is the landlord?'), which the addendum's entity-derived preamble chunks now genuinely answer (see case P1). No phone-number field exists anywhere in this generator's entity/clause ontology - genuinely absent, not merely unchunked."
     }
   ]
 }

@@ -2,11 +2,17 @@
 // two swap points the build prompt requires - see rag_design.md for which
 // implementation of each is the default and why.
 
+// "clause" = one chunk per DocumentClause row (the original Phase 7A
+// scheme). "entity" = a small synthesized chunk for a preamble-only
+// entity (party names, address, survey number, ...) not covered by any
+// clause - added in the Phase 7A addendum, see chunking.ts.
+export type ChunkType = "clause" | "entity";
+
 export interface Chunk {
-  // Equal to the source DocumentClause's id - one chunk per clause (see
-  // chunking.ts for why reusing clause segmentation, not a new scheme).
+  // Equal to the source DocumentClause's or Entity's id.
   chunkId: string;
   documentId: string;
+  chunkType: ChunkType;
   text: string;
   textStart: number | null;
   textEnd: number | null;
@@ -28,6 +34,7 @@ export interface RetrievalProvider {
 export interface EvidenceItem {
   chunkId: string;
   documentId: string;
+  chunkType: ChunkType;
   textStart: number | null;
   textEnd: number | null;
   text: string;

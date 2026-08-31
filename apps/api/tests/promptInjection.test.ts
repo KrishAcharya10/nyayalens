@@ -147,6 +147,7 @@ describe("Prompt-injection defense (Phase 7A)", () => {
         {
           chunkId: "c1",
           documentId: "doc-x",
+          chunkType: "clause",
           textStart: 0,
           textEnd: ADVERSARIAL_CLAUSE_TEXT.length,
           text: ADVERSARIAL_CLAUSE_TEXT,

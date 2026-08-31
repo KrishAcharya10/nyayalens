@@ -1,0 +1,307 @@
+{
+  "generated_at": "2026-08-31T11:46:10.309Z",
+  "n_cases": 33,
+  "should_ground": {
+    "n": 28,
+    "min": 0.14285714285714285,
+    "max": 1
+  },
+  "should_refuse": {
+    "n": 5,
+    "min": 0.14285714285714285,
+    "max": 0.36363636363636365
+  },
+  "clean_separating_threshold_exists": false,
+  "finding": "STRUCTURAL",
+  "overlapping_should_refuse_cases_scoring_in_should_ground_range": [
+    {
+      "id": "U1",
+      "question": "What is the penalty for subletting the property without the landlord's consent?",
+      "maxRelevanceScore": 0.14285714285714285,
+      "topChunkText": "Property address: Thane"
+    },
+    {
+      "id": "U2",
+      "question": "Is the tenant allowed to keep pets in the flat?",
+      "maxRelevanceScore": 0.2,
+      "topChunkText": "3. SECURITY DEPOSIT \nThe Tenant shall pay an interest-free refundable security d"
+    },
+    {
+      "id": "U3",
+      "question": "What happens if the Lessee wants to convert the land from agricultural to non-agricultural use mid-lease?",
+      "maxRelevanceScore": 0.36363636363636365,
+      "topChunkText": "4. PERMITTED USE \nThe Lessee shall use the leased land solely for the purpose of"
+    },
+    {
+      "id": "U4",
+      "question": "What is the grace period for late rent payment before penalty interest applies?",
+      "maxRelevanceScore": 0.2222222222222222,
+      "topChunkText": "3. ANNUAL LEASE RENT \nAnnual rent of n 69,000 for the leased land shall be paid "
+    },
+    {
+      "id": "U5",
+      "question": "What is the landlord's contact phone number?",
+      "maxRelevanceScore": 0.2,
+      "topChunkText": "Landlord: Peter Majumdar"
+    }
+  ],
+  "overlapping_should_ground_cases_scoring_in_should_refuse_range": [
+    {
+      "id": "M2",
+      "question": "What is the security deposit amount, and what is the monthly rent it relates to?",
+      "maxRelevanceScore": 0.3333333333333333,
+      "topChunkText": "3. SECURITY DEPOSIT \nThe Tenant shall pay an interest-free refundable security d"
+    },
+    {
+      "id": "M3",
+      "question": "What one-time payment must the Lessee make, and what is the separate ongoing annual rent?",
+      "maxRelevanceScore": 0.3,
+      "topChunkText": "3. ANNUAL LEASE RENT \nIn addition to the lease premium, the Lessee shall pay an "
+    },
+    {
+      "id": "M6",
+      "question": "Under what legal framework are disputes resolved, and which court has jurisdiction?",
+      "maxRelevanceScore": 0.14285714285714285,
+      "topChunkText": "7. JURISDICTION \nThis Agreement shall be governed by the laws of India, and cour"
+    },
+    {
+      "id": "M7",
+      "question": "What are the maintenance responsibilities of each party, and what is the process for terminating over a breach?",
+      "maxRelevanceScore": 0.25,
+      "topChunkText": "6. TERMINATION \nIn case of breach of any material term of this Agreement, the ag"
+    }
+  ],
+  "rows_sorted_by_score": [
+    {
+      "id": "F7",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the lease duration?"
+    },
+    {
+      "id": "F9",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the annual lease rent?"
+    },
+    {
+      "id": "F12",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the lease premium?"
+    },
+    {
+      "id": "F13",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the annual rent for the leased land?"
+    },
+    {
+      "id": "F14",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the permitted use of the land?"
+    },
+    {
+      "id": "F15",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the lease duration?"
+    },
+    {
+      "id": "P1",
+      "type": "factual_preamble",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "Who is the landlord?"
+    },
+    {
+      "id": "P2",
+      "type": "factual_preamble",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the property address?"
+    },
+    {
+      "id": "P3",
+      "type": "factual_preamble",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "Who is the lessor?"
+    },
+    {
+      "id": "P6",
+      "type": "factual_preamble",
+      "shouldGround": true,
+      "maxRelevanceScore": 1,
+      "question": "What is the land area?"
+    },
+    {
+      "id": "F2",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.6667,
+      "question": "What is the security deposit amount?"
+    },
+    {
+      "id": "F6",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.6667,
+      "question": "What is the security deposit amount?"
+    },
+    {
+      "id": "F8",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.6667,
+      "question": "What is the lease premium amount?"
+    },
+    {
+      "id": "F11",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.6667,
+      "question": "What is the land permitted to be used for?"
+    },
+    {
+      "id": "P4",
+      "type": "factual_preamble",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.6667,
+      "question": "What is the survey number of the land?"
+    },
+    {
+      "id": "F4",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.6,
+      "question": "What notice period is required to terminate the agreement?"
+    },
+    {
+      "id": "F1",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.5,
+      "question": "What is the monthly rent?"
+    },
+    {
+      "id": "F3",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.5,
+      "question": "How long is the lease duration?"
+    },
+    {
+      "id": "F5",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.5,
+      "question": "What is the monthly rent?"
+    },
+    {
+      "id": "P5",
+      "type": "factual_preamble",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.5,
+      "question": "What is the land classified as?"
+    },
+    {
+      "id": "M5",
+      "type": "multi_clause",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.4286,
+      "question": "What is the lease duration, and what notice period is required to terminate early?"
+    },
+    {
+      "id": "F10",
+      "type": "factual",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.4,
+      "question": "How many years does the lease last?"
+    },
+    {
+      "id": "M1",
+      "type": "multi_clause",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.3846,
+      "question": "If the tenant fails to pay rent for two consecutive months, what can the landlord do, and how would a resulting dispute be resolved?"
+    },
+    {
+      "id": "M4",
+      "type": "multi_clause",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.375,
+      "question": "What upfront lease premium is required, and what is the ongoing annual rent payment?"
+    },
+    {
+      "id": "U3",
+      "type": "unanswerable",
+      "shouldGround": false,
+      "maxRelevanceScore": 0.3636,
+      "question": "What happens if the Lessee wants to convert the land from agricultural to non-agricultural use mid-lease?"
+    },
+    {
+      "id": "M2",
+      "type": "multi_clause",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.3333,
+      "question": "What is the security deposit amount, and what is the monthly rent it relates to?"
+    },
+    {
+      "id": "M3",
+      "type": "multi_clause",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.3,
+      "question": "What one-time payment must the Lessee make, and what is the separate ongoing annual rent?"
+    },
+    {
+      "id": "M7",
+      "type": "multi_clause",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.25,
+      "question": "What are the maintenance responsibilities of each party, and what is the process for terminating over a breach?"
+    },
+    {
+      "id": "U4",
+      "type": "unanswerable",
+      "shouldGround": false,
+      "maxRelevanceScore": 0.2222,
+      "question": "What is the grace period for late rent payment before penalty interest applies?"
+    },
+    {
+      "id": "U2",
+      "type": "unanswerable",
+      "shouldGround": false,
+      "maxRelevanceScore": 0.2,
+      "question": "Is the tenant allowed to keep pets in the flat?"
+    },
+    {
+      "id": "U5",
+      "type": "unanswerable",
+      "shouldGround": false,
+      "maxRelevanceScore": 0.2,
+      "question": "What is the landlord's contact phone number?"
+    },
+    {
+      "id": "M6",
+      "type": "multi_clause",
+      "shouldGround": true,
+      "maxRelevanceScore": 0.1429,
+      "question": "Under what legal framework are disputes resolved, and which court has jurisdiction?"
+    },
+    {
+      "id": "U1",
+      "type": "unanswerable",
+      "shouldGround": false,
+      "maxRelevanceScore": 0.1429,
+      "question": "What is the penalty for subletting the property without the landlord's consent?"
+    }
+  ]
+}

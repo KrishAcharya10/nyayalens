@@ -9,19 +9,23 @@ presented, quoted, or implied as evidence of real-world performance.
 `research/data/real/` is still empty.
 
 **Same-team-designs-both caveat, stated explicitly, per this phase's
-build prompt**: `apps/api/rag_eval/quality_test_set.json`'s 27 questions
-and their expected answers were authored by the same process that built
-the retrieval/grounding/citation logic being scored against them, with
-full knowledge of the chunking scheme (one chunk per clause), the
-retrieval algorithm (BM25), and the grounding heuristic (token-overlap
-threshold). **These numbers demonstrate the pipeline behaves as designed
-on cases shaped the way its own designer expected — they are not
-independent validation, and are not evidence this would perform the same
-way against questions a real user, unaware of the system's internals,
-would actually ask.** The one place this test set deliberately worked
-*against* its own designer's convenience is case U5 (below) — a
-scoping limitation that was discovered *while building the system*, and
-then turned into a measured test case rather than quietly avoided.
+build prompt**: `apps/api/rag_eval/quality_test_set.json`'s questions
+(27 originally, 33 after the Phase 7A addendum below) and their expected
+answers were authored by the same process that built the
+retrieval/grounding/citation logic being scored against them, with full
+knowledge of the chunking scheme, the retrieval algorithm (BM25), and
+the grounding heuristic (token-overlap threshold). **These numbers
+demonstrate the pipeline behaves as designed on cases shaped the way its
+own designer expected — they are not independent validation, and are
+not evidence this would perform the same way against questions a real
+user, unaware of the system's internals, would actually ask.** The
+clearest place this test set worked *against* its own designer's
+convenience: the original case U5 was a deliberate probe of a real
+scoping limitation (preamble facts weren't chunked), discovered *while
+building the system* and turned into a measured test case rather than
+quietly avoided - and the addendum below documents its full arc
+honestly (fixed, reclassified, replaced) rather than editing the record
+to look cleaner in hindsight.
 
 ## Quality evaluation (27 cases: 15 factual, 7 multi-clause, 5 unanswerable)
 
@@ -101,6 +105,129 @@ build prompt's explicit instruction.
   real, reportable weak points, both traced to a specific, named
   mechanism rather than left as an unexplained number.
 
+## Phase 7A addendum: preamble chunking + refusal-correctness investigation
+
+Everything above this section is the original Phase 7A result, left
+intact as the historical record of what that run measured. This section
+reports the addendum's actual before/after numbers and investigation
+finding on top of it - the quality test set grew from 27 to 33 cases (6
+new preamble questions added; the original `U5` was reclassified, see
+below), so **the 27-case numbers above and the 33-case numbers here are
+not directly comparable row-for-row** without accounting for that
+change - each metric's own before/after story is explained individually.
+
+### Part A: preamble chunking - before/after
+
+Investigation (reported before any fix code was written, per the
+addendum's own requirement): `canonicalText` genuinely contains the
+preamble text (Phase 3), but clause segmentation only ever spans from
+the first numbered heading onward, so preamble text was never part of
+any clause chunk. Checking whether preamble facts already existed as
+structured entities confirmed they do - `rulePatterns.ts`'s rule-based
+NER runs over the entire `canonicalText`, independent of clause
+boundaries, so `LANDLORD`/`TENANT`/`LESSOR`/`LESSEE`/`ADDRESS`/
+`SURVEY_NUMBER`/`LAND_AREA`/`LAND_USE_TYPE` entities were already
+correctly extracted with real offsets. **Fix implemented: entity-derived
+chunks** (`buildChunksFromEntities` in `chunking.ts`), not raw-text
+re-parsing - see `rag_design.md` for the full design.
+
+**A consequence worth stating plainly**: the original `U5`
+("Who is the landlord?") was a *deliberate* unanswerable test case
+probing exactly this gap. The fix makes it genuinely answerable, so it
+no longer belongs in the unanswerable bucket - it was reclassified to
+`P1` (type `factual_preamble`), and a new, still-genuinely-unanswerable
+question ("What is the landlord's contact phone number?") took the
+`U5` slot so the unanswerable set still has 5 cases. This is a
+legitimate test-set maintenance event caused by a real capability
+improvement, not a quiet swap to inflate a number - both old and new
+`U5` questions are named explicitly here.
+
+| Metric | Before (27 cases, no preamble chunks) | After (33 cases, +6 preamble questions) |
+|---|---|---|
+| Retrieval hit rate @ k=3 (any expected) | 1.000 | 1.000 |
+| Retrieval hit rate @ k=3 (all expected) | 0.955 | 0.964 |
+| Grounded-answer rate | 0.955 | 0.964 |
+| Citation correctness | 0.857 (n=21) | 0.889 (n=27) |
+| Refusal correctness | 0.600 (3/5) | 0.800 (4/5) |
+
+Raw output: `apps/api/rag_eval/quality_results.json` (regenerated by
+`evaluate-rag.mjs`, now updated to build chunks from both clauses and
+entities). All 6 new preamble cases (`P1`-`P6`: landlord name, property
+address, lessor name, survey number, land classification, land area)
+are grounded **and** citation-correct.
+
+**Important caveat on the refusal-correctness row**: it improved from
+0.600 to 0.800, but **not because Part A fixed anything about
+refusal** - it improved purely because the reclassified `U5` moved out
+of the unanswerable bucket into an answerable one where it now
+(correctly) grounds. The new `U5` (phone number) refuses correctly, same
+as before. **`U3` - the other original false-grounding case - is
+untouched by Part A and still fails** (see Part B immediately below).
+Reporting the number without this caveat would misrepresent what
+actually improved.
+
+### Part B: refusal-correctness investigation - threshold or structural?
+
+**Method** (per the addendum's explicit instruction not to assume the
+answer going in): `apps/api/scripts/analyze-refusal-scores.mjs` computes
+the exact `relevance()` score `ExtractiveLLMProvider` itself uses (same
+function, imported) for every retrieved chunk against all 33 quality
+test set cases, and checks whether a single threshold value could
+cleanly separate cases that should ground from cases that should
+refuse.
+
+**Finding: STRUCTURAL**, not a tunable-threshold problem. Raw output:
+`apps/api/rag_eval/refusal_threshold_analysis.json`.
+
+| | n | score range |
+|---|---|---|
+| Should ground (`factual`/`factual_preamble`/`multi_clause`) | 28 | `[0.1429, 1.0]` |
+| Should refuse (`unanswerable`) | 5 | `[0.1429, 0.3636]` |
+
+The "should refuse" range is **entirely contained within** the "should
+ground" range - there is no threshold value with every should-ground
+case above it and every should-refuse case below it.
+`clean_separating_threshold_exists: false`. The starkest single data
+point: **`M6`** (a genuinely-answerable multi-clause case) and **`U1`**
+(a genuinely-unanswerable case) scored **exactly the same**, `0.1429`,
+against two different real clauses in this run. `M2`, `M3`, `M6`, and
+`M7` (all should-ground) score *lower* than `U3` (should-refuse, at
+`0.3636`) - a higher threshold to catch `U3` would refuse four
+legitimately-answerable cases first.
+
+`apps/api/tests/llmProvider.test.ts` has a small, self-contained,
+database-independent reproduction of the same mechanism: `relevance()`
+against one fixed clause (`"4. TERMINATION NOTICE\nEither party may
+terminate this Agreement by giving 30 days' written notice..."`) returns
+an **identical** score, `0.6`, for `"What notice period is required to
+terminate the agreement?"` (answerable) and `"What is the fee charged
+for giving termination notice?"` (not answerable - no fee is ever
+mentioned) - both share "termination"/"notice" equally, and lexical
+overlap alone cannot see that only one of them is actually asking about
+something the clause states.
+
+**Consequence, per the addendum's explicit instruction**: `MIN_RELEVANCE`
+was **not** changed - no threshold value fixes an overlapping
+distribution, and forcing a change that only superficially moved a
+number would misrepresent the finding. **Documented future work
+(not implemented here, since it requires new infrastructure the
+addendum's scope explicitly excludes)**: a different relevance signal
+entirely - e.g. a secondary answerability classifier, or requiring the
+retrieved excerpt to contain an answer-shaped span matching the
+question's expected answer type (an amount, a date, a party name...)
+rather than just vocabulary overlap with the question.
+
+### Security test set after all addendum changes
+
+Re-run in full after Part A and Part B: **5/5 still pass**
+(`apps/api/rag_eval/security_results.json`, regenerated). Part A only
+added a new, inert data source (entity-derived chunks, which
+`ExtractiveLLMProvider` treats exactly like clause chunks - text to
+quote or ignore, never instructions); Part B added no runtime code
+change at all (`MIN_RELEVANCE` unchanged, only a new read-only analysis
+script and an exported `relevance` function). Neither could plausibly
+regress injection resistance, and the re-run confirms it didn't.
+
 ## Security evaluation (5 prompt-injection cases) — separate section, not blended into quality metrics
 
 Reproduce: `dotenv -e ../../.env -- tsx apps/api/scripts/evaluate-rag-security.mjs`
@@ -152,4 +279,8 @@ npx dotenv -e ../../.env -- tsx scripts/evaluate-rag-security.mjs
 
 # Knowledge graph correctness spot-check against real uploaded documents
 npx dotenv -e ../../.env -- tsx scripts/evaluate-graph.mjs 450
+
+# Phase 7A addendum: refusal-correctness threshold-vs-structural analysis
+# (relevance-score tabulation across all 33 quality test set cases)
+npx dotenv -e ../../.env -- tsx scripts/analyze-refusal-scores.mjs
 ```

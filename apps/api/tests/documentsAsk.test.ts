@@ -86,6 +86,31 @@ describe("POST /documents/:id/ask (Phase 7A)", () => {
     }
   });
 
+  it("answers a preamble-only question (party name) via an entity-derived chunk - Phase 7A addendum", async () => {
+    const user = await registerUser();
+    const documentId = await uploadAndProcess(user.accessToken);
+
+    const entitiesRes = await request(app)
+      .get(`/documents/${documentId}/entities`)
+      .set("Authorization", `Bearer ${user.accessToken}`);
+    const landlordEntity = (
+      entitiesRes.body.entities as { label: string; text: string; modelSource: string }[]
+    ).find((e) => e.label === "LANDLORD" && e.modelSource === "RULE_BASED");
+    expect(landlordEntity).toBeDefined();
+
+    const res = await request(app)
+      .post(`/documents/${documentId}/ask`)
+      .set("Authorization", `Bearer ${user.accessToken}`)
+      .send({ question: "Who is the landlord?" });
+
+    expect(res.status).toBe(200);
+    expect(res.body.grounded).toBe(true);
+    expect(res.body.answer).toContain(landlordEntity!.text);
+    expect(res.body.sources.some((s: { chunkType: string }) => s.chunkType === "entity")).toBe(
+      true,
+    );
+  });
+
   it("returns grounded:false rather than a fabricated answer for a genuinely unanswerable question", async () => {
     const user = await registerUser();
     const documentId = await uploadAndProcess(user.accessToken);

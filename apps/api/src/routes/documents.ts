@@ -7,8 +7,21 @@ import { sniffMimeType } from "../extraction/sniffFileType.js";
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE } from "../extraction/extractText.js";
 import { enqueue } from "../jobs/queue.js";
 import { runExtractionPipeline } from "../jobs/pipeline.js";
+import { loadDocumentGraph } from "../graph/loadDocumentGraph.js";
 import { requireAuth } from "../middleware/auth.js";
+import { askRateLimiter } from "../middleware/rateLimit.js";
+import { getActiveLLMProvider } from "../rag/llmProviderFactory.js";
+import { getActiveRetrievalProvider } from "../rag/retrievalProviderFactory.js";
+import { runAsk } from "../rag/runAsk.js";
 import { getStorage } from "../storage/index.js";
+
+const MODEL_SOURCE_VALUES = ["RULE_BASED", "GENERIC_TRANSFORMER", "FINE_TUNED"] as const;
+const modelSourceQuerySchema = z.object({
+  model_source: z.enum(MODEL_SOURCE_VALUES).default("RULE_BASED"),
+});
+const askBodySchema = z.object({
+  question: z.string().min(1).max(2000),
+});
 
 const prisma = getPrismaClient();
 export const documentsRouter = Router();
@@ -221,6 +234,68 @@ documentsRouter.get("/:id/risks", requireAuth, async (req, res, next) => {
       orderBy: { createdAt: "asc" },
     });
     res.status(200).json({ risks });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Knowledge graph for one document (Phase 7A). Built at read-time from
+// already-persisted entities/document_clauses/risks - see
+// docs/architecture/knowledge_graph.md. model_source is explicit and
+// query-configurable, defaulting to RULE_BASED like every other Phase 6/7A
+// consumer of these tables.
+documentsRouter.get("/:id/graph", requireAuth, async (req, res, next) => {
+  try {
+    const documentId = getIdParam(req.params.id);
+    if (!documentId) {
+      res.status(400).json({ error: "Invalid document id" });
+      return;
+    }
+    const ownedId = await findOwnedDocumentId(documentId, req.auth!.userId);
+    if (!ownedId) {
+      res.status(404).json({ error: "Document not found" });
+      return;
+    }
+    const parsedQuery = modelSourceQuerySchema.safeParse(req.query);
+    if (!parsedQuery.success) {
+      res.status(400).json({ error: parsedQuery.error.flatten() });
+      return;
+    }
+    const graph = await loadDocumentGraph(ownedId, parsedQuery.data.model_source);
+    res.status(200).json({ graph });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// RAG question answering over one document's clauses (Phase 7A). Grounded
+// strictly in retrieved evidence - see docs/architecture/rag_design.md.
+// Rate-limited (askRateLimiter, new in this phase - see
+// middleware/rateLimit.ts) since this calls an LLM provider per request.
+documentsRouter.post("/:id/ask", requireAuth, askRateLimiter, async (req, res, next) => {
+  try {
+    const documentId = getIdParam(req.params.id);
+    if (!documentId) {
+      res.status(400).json({ error: "Invalid document id" });
+      return;
+    }
+    const ownedId = await findOwnedDocumentId(documentId, req.auth!.userId);
+    if (!ownedId) {
+      res.status(404).json({ error: "Document not found" });
+      return;
+    }
+    const parsedBody = askBodySchema.safeParse(req.body);
+    if (!parsedBody.success) {
+      res.status(400).json({ error: parsedBody.error.flatten() });
+      return;
+    }
+    const result = await runAsk(
+      ownedId,
+      parsedBody.data.question,
+      getActiveRetrievalProvider(),
+      getActiveLLMProvider(),
+    );
+    res.status(200).json(result);
   } catch (err) {
     next(err);
   }

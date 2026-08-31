@@ -28,6 +28,16 @@ const envSchema = z.object({
   // dropped) - lets the rest of the pipeline run in environments where
   // the ML venv hasn't been set up (see services/ml/README.md).
   ML_SERVICE_PYTHON: z.string().default(""),
+
+  // Phase 7A: which LLMProvider answers /documents/:id/ask questions.
+  // "extractive" (default) is the verified-working implementation - see
+  // docs/architecture/rag_design.md. "anthropic" activates
+  // AnthropicProvider only if ANTHROPIC_API_KEY is also set; otherwise the
+  // factory falls back to "extractive" with a logged warning rather than
+  // failing startup, since no key is configured in this environment.
+  LLM_PROVIDER: z.enum(["extractive", "anthropic"]).default("extractive"),
+  ANTHROPIC_API_KEY: z.string().default(""),
+  ANTHROPIC_MODEL: z.string().default("claude-3-5-sonnet-20241022"),
 });
 
 export type Env = z.infer<typeof envSchema>;

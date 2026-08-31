@@ -1,0 +1,277 @@
+{
+  "generated_at": "2026-08-31T10:52:14.787Z",
+  "n_cases": 27,
+  "n_factual_and_multi_clause": 22,
+  "n_unanswerable": 5,
+  "retrieval_hit_rate_at_k": {
+    "k": 3,
+    "any_expected_clause": 1,
+    "all_expected_clauses": 0.9545454545454546
+  },
+  "grounded_answer_rate": 0.9545454545454546,
+  "citation_correctness_rate": 0.8571428571428571,
+  "citation_correctness_n": 21,
+  "refusal_correctness_rate": 0.6,
+  "per_case": [
+    {
+      "id": "F1",
+      "type": "factual",
+      "question": "What is the monthly rent?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"2. RENT PAYMENT \nRent for the demised premises is fixed at n 57,000 per calendar month, payable in advance by the\n10th of the month.\" | \"6. TERMINATION \nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two\nconsecutive months.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F2",
+      "type": "factual",
+      "question": "What is the security deposit amount?",
+      "grounded": true,
+      "answer": "\"3. SECURITY DEPOSIT \nA sum of n 342,000 shall be deposited by the Lessee with the Lessor as security, refundable upon\nvacation subject to deductions for damages.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F3",
+      "type": "factual",
+      "question": "How long is the lease duration?",
+      "grounded": true,
+      "answer": "\"1. LEASE DURATION \nThis Agreement shall remain valid for a period of 24 months commencing from the date of\nexecution hereof.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F4",
+      "type": "factual",
+      "question": "What notice period is required to terminate the agreement?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"4. TERMINATION NOTICE \nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\" | \"1. LEASE DURATION \nThis Agreement shall remain valid for a period of 24 months commencing from the date of\nexecution hereof.\" | \"6. TERMINATION \nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two\nconsecutive months.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F5",
+      "type": "factual",
+      "question": "What is the monthly rent?",
+      "grounded": true,
+      "answer": "\"2. RENT PAYMENT \nThe Tenant agrees to remit a sum of n 36,500 per month towards rent, such payment to be made\nno later than the 10th of each month.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F6",
+      "type": "factual",
+      "question": "What is the security deposit amount?",
+      "grounded": true,
+      "answer": "\"3. SECURITY DEPOSIT \nThe Tenant shall pay an interest-free refundable security deposit of n 219,000 to the Landlord prior\nto taking possession.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F7",
+      "type": "factual",
+      "question": "What is the lease duration?",
+      "grounded": true,
+      "answer": "\"1. LEASE DURATION \nThis Agreement shall remain valid for a period of 60 months commencing from the date of\nexecution hereof.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F8",
+      "type": "factual",
+      "question": "What is the lease premium amount?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"2. LEASE PREMIUM \nThe Lessee shall pay a one-time lease premium of n 510,000 to the Lessor upon execution of this\nDeed.\" | \"3. ANNUAL LEASE RENT \nIn addition to the lease premium, the Lessee shall pay an annual lease rent of n 128,000 payable\non or before October each year.\" | \"1. LEASE DURATION \nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F9",
+      "type": "factual",
+      "question": "What is the annual lease rent?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"3. ANNUAL LEASE RENT \nIn addition to the lease premium, the Lessee shall pay an annual lease rent of n 128,000 payable\non or before October each year.\" | \"5. TERMINATION \nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two\nconsecutive months.\" | \"1. LEASE DURATION \nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F10",
+      "type": "factual",
+      "question": "How many years does the lease last?",
+      "grounded": true,
+      "answer": "\"1. LEASE DURATION \nThis Lease shall remain in force for a period of 30 years from the date of execution hereof.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F11",
+      "type": "factual",
+      "question": "What is the land permitted to be used for?",
+      "grounded": true,
+      "answer": "\"4. PERMITTED USE \nThe Lessee shall use the leased land solely for the purpose of agricultural storage purposes and for\nno other purpose without prior written consent.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F12",
+      "type": "factual",
+      "question": "What is the lease premium?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"2. LEASE PREMIUM \nAn upfront lease premium amounting to n 750,000 shall be payable by the Lessee prior to handover\nof possession of the land.\" | \"1. LEASE DURATION \nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\" | \"3. ANNUAL LEASE RENT \nAnnual rent of n 69,000 for the leased land shall be paid by the Lessee to the Lessor on or before\nJuly of every calendar year.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F13",
+      "type": "factual",
+      "question": "What is the annual rent for the leased land?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"3. ANNUAL LEASE RENT \nAnnual rent of n 69,000 for the leased land shall be paid by the Lessee to the Lessor on or before\nJuly of every calendar year.\" | \"4. PERMITTED USE \nThe Lessee shall use the leased land solely for the purpose of construction of a warehouse facility\nand for no other purpose without prior written consent.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F14",
+      "type": "factual",
+      "question": "What is the permitted use of the land?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"4. PERMITTED USE \nThe Lessee shall use the leased land solely for the purpose of construction of a warehouse facility\nand for no other purpose without prior written consent.\" | \"2. LEASE PREMIUM \nAn upfront lease premium amounting to n 750,000 shall be payable by the Lessee prior to handover\nof possession of the land.\" | \"3. ANNUAL LEASE RENT \nAnnual rent of n 69,000 for the leased land shall be paid by the Lessee to the Lessor on or before\nJuly of every calendar year.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "F15",
+      "type": "factual",
+      "question": "What is the lease duration?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"1. LEASE DURATION \nThis Lease shall remain in force for a period of 20 years from the date of execution hereof.\" | \"2. LEASE PREMIUM \nAn upfront lease premium amounting to n 750,000 shall be payable by the Lessee prior to handover\nof possession of the land.\" | \"3. ANNUAL LEASE RENT \nAnnual rent of n 69,000 for the leased land shall be paid by the Lessee to the Lessor on or before\nJuly of every calendar year.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "M1",
+      "type": "multi_clause",
+      "question": "If the tenant fails to pay rent for two consecutive months, what can the landlord do, and how would a resulting dispute be resolved?",
+      "grounded": true,
+      "answer": "\"6. TERMINATION \nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two\nconsecutive months.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": false
+    },
+    {
+      "id": "M2",
+      "type": "multi_clause",
+      "question": "What is the security deposit amount, and what is the monthly rent it relates to?",
+      "grounded": true,
+      "answer": "\"3. SECURITY DEPOSIT \nThe Tenant shall pay an interest-free refundable security deposit of n 219,000 to the Landlord prior\nto taking possession.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": false
+    },
+    {
+      "id": "M3",
+      "type": "multi_clause",
+      "question": "What one-time payment must the Lessee make, and what is the separate ongoing annual rent?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"3. ANNUAL LEASE RENT \nIn addition to the lease premium, the Lessee shall pay an annual lease rent of n 128,000 payable\non or before October each year.\" | \"2. LEASE PREMIUM \nThe Lessee shall pay a one-time lease premium of n 510,000 to the Lessor upon execution of this\nDeed.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "M4",
+      "type": "multi_clause",
+      "question": "What upfront lease premium is required, and what is the ongoing annual rent payment?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"3. ANNUAL LEASE RENT \nAnnual rent of n 69,000 for the leased land shall be paid by the Lessee to the Lessor on or before\nJuly of every calendar year.\" | \"2. LEASE PREMIUM \nAn upfront lease premium amounting to n 750,000 shall be payable by the Lessee prior to handover\nof possession of the land.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "M5",
+      "type": "multi_clause",
+      "question": "What is the lease duration, and what notice period is required to terminate early?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"1. LEASE DURATION \nThis Agreement shall remain valid for a period of 24 months commencing from the date of\nexecution hereof.\" | \"4. TERMINATION NOTICE \nEither party may terminate this Agreement by giving 30 days' written notice to the other party.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": true
+    },
+    {
+      "id": "M6",
+      "type": "multi_clause",
+      "question": "Under what legal framework are disputes resolved, and which court has jurisdiction?",
+      "grounded": false,
+      "answer": "The document does not contain enough information to answer this question.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": true,
+      "citationCorrect": null
+    },
+    {
+      "id": "M7",
+      "type": "multi_clause",
+      "question": "What are the maintenance responsibilities of each party, and what is the process for terminating over a breach?",
+      "grounded": true,
+      "answer": "\"6. TERMINATION \nIn case of breach of any material term of this Agreement, the aggrieved party may terminate the\nAgreement after serving due notice.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "retrievalHitAny": true,
+      "retrievalHitAll": false,
+      "citationCorrect": false
+    },
+    {
+      "id": "U1",
+      "type": "unanswerable",
+      "question": "What is the penalty for subletting the property without the landlord's consent?",
+      "grounded": false,
+      "answer": "The document does not contain enough information to answer this question.",
+      "refusedCorrectly": true
+    },
+    {
+      "id": "U2",
+      "type": "unanswerable",
+      "question": "Is the tenant allowed to keep pets in the flat?",
+      "grounded": false,
+      "answer": "The document does not contain enough information to answer this question.",
+      "refusedCorrectly": true
+    },
+    {
+      "id": "U3",
+      "type": "unanswerable",
+      "question": "What happens if the Lessee wants to convert the land from agricultural to non-agricultural use mid-lease?",
+      "grounded": true,
+      "answer": "\"4. PERMITTED USE \nThe Lessee shall use the leased land solely for the purpose of agricultural storage purposes and for\nno other purpose without prior written consent.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "refusedCorrectly": false
+    },
+    {
+      "id": "U4",
+      "type": "unanswerable",
+      "question": "What is the grace period for late rent payment before penalty interest applies?",
+      "grounded": false,
+      "answer": "The document does not contain enough information to answer this question.",
+      "refusedCorrectly": true
+    },
+    {
+      "id": "U5",
+      "type": "unanswerable",
+      "question": "Who is the landlord?",
+      "grounded": true,
+      "answer": "The document's relevant clauses state: \"6. TERMINATION \nThe Landlord may terminate this Agreement forthwith in the event of non-payment of rent for two\nconsecutive months.\" | \"5. MAINTENANCE \nThe Tenant shall be responsible for routine maintenance of the premises, while structural repairs\nshall be borne by the Landlord.\" This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+      "refusedCorrectly": false
+    }
+  ]
+}

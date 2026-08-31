@@ -82,6 +82,57 @@ describe("rule-based NER vs synthetic ground truth (sanity check, not an evaluat
     expect(totalHits / totalTargetEntities).toBeGreaterThanOrEqual(0.7);
   });
 
+  it("finds LESSOR and LESSEE on land lease documents, and LANDLORD/TENANT on residential rental documents", () => {
+    // Regression coverage for a real bug Phase 4B evaluation caught: the
+    // LESSEE pattern originally required a period terminator, but the
+    // generator's actual text is comma-terminated (same as LESSOR),
+    // so it silently matched nothing. This suite never exercised the
+    // party-role labels directly before that - see rulePatterns.ts.
+    const manifestPath = path.join(SYNTHETIC_DIR, "manifest.jsonl");
+    const manifestLines = readFileSync(manifestPath, "utf-8").trim().split("\n");
+    const entries = manifestLines.map(
+      (line) => JSON.parse(line) as { doc_id: string; document_type: string },
+    );
+
+    const landLeaseIds = entries
+      .filter((e) => e.document_type === "land_lease")
+      .slice(0, 10)
+      .map((e) => e.doc_id);
+    for (const docId of landLeaseIds) {
+      const labels = loadLabels(docId);
+      const predicted = runRuleBasedNer(labels.text);
+      for (const role of ["LESSOR", "LESSEE"]) {
+        const gt = labels.entities.find((e) => e.label === role);
+        expect(gt, `${docId} should have a ground-truth ${role}`).toBeDefined();
+        expect(
+          predicted.some(
+            (p) => p.label === role && p.textStart === gt!.start && p.textEnd === gt!.end,
+          ),
+          `${docId}: expected to find ${role} at [${gt!.start},${gt!.end}]`,
+        ).toBe(true);
+      }
+    }
+
+    const residentialIds = entries
+      .filter((e) => e.document_type === "residential_rental")
+      .slice(0, 10)
+      .map((e) => e.doc_id);
+    for (const docId of residentialIds) {
+      const labels = loadLabels(docId);
+      const predicted = runRuleBasedNer(labels.text);
+      for (const role of ["LANDLORD", "TENANT"]) {
+        const gt = labels.entities.find((e) => e.label === role);
+        expect(gt, `${docId} should have a ground-truth ${role}`).toBeDefined();
+        expect(
+          predicted.some(
+            (p) => p.label === role && p.textStart === gt!.start && p.textEnd === gt!.end,
+          ),
+          `${docId}: expected to find ${role} at [${gt!.start},${gt!.end}]`,
+        ).toBe(true);
+      }
+    }
+  });
+
   it("never fabricates a currency-amount label without supporting context", () => {
     const text = "The total value mentioned herein is ₹50,000 for reference purposes only.";
     const predicted = runRuleBasedNer(text);

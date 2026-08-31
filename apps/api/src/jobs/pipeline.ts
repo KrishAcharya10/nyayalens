@@ -1,4 +1,4 @@
-import { getPrismaClient } from "@nyayalens/db";
+import { Prisma, getPrismaClient } from "@nyayalens/db";
 import { runRuleBasedClauseClassification } from "../clauses/ruleBasedClauseClassifier.js";
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE, extractCanonicalText } from "../extraction/extractText.js";
 import {
@@ -23,14 +23,38 @@ export const JOB_TYPES = {
   CLAUSE_CLASSIFICATION: "clause_classification",
 } as const;
 
+// True when a document is deleted (e.g. DELETE /documents/:id) while its
+// background pipeline is still mid-flight: the delete cascades onto that
+// document's ProcessingJob rows, so a later stage's own job-status update
+// hits "record not found" (P2025) or, if the document itself vanished
+// before job creation, a foreign-key violation (P2003) on create. Neither
+// is a real processing failure - the document the job was ever going to
+// describe no longer exists to have a status - so this is not surfaced as
+// a stage FAILURE (there is nothing left to mark failed).
+function isDocumentGoneDuringProcessing(err: unknown): boolean {
+  return (
+    err instanceof Prisma.PrismaClientKnownRequestError &&
+    (err.code === "P2025" || err.code === "P2003")
+  );
+}
+
+class DocumentGoneError extends Error {}
+
 async function runStage(
   documentId: string,
   jobType: string,
   fn: () => Promise<void>,
 ): Promise<void> {
-  const job = await prisma.processingJob.create({
-    data: { documentId, jobType, status: "PENDING" },
-  });
+  let job;
+  try {
+    job = await prisma.processingJob.create({
+      data: { documentId, jobType, status: "PENDING" },
+    });
+  } catch (err) {
+    if (isDocumentGoneDuringProcessing(err)) throw new DocumentGoneError();
+    throw err;
+  }
+
   await prisma.processingJob.update({
     where: { id: job.id },
     data: { status: "RUNNING", startedAt: new Date() },
@@ -42,14 +66,19 @@ async function runStage(
       data: { status: "SUCCEEDED", finishedAt: new Date() },
     });
   } catch (err) {
-    await prisma.processingJob.update({
-      where: { id: job.id },
-      data: {
-        status: "FAILED",
-        finishedAt: new Date(),
-        errorMessage: err instanceof Error ? err.message : String(err),
-      },
-    });
+    try {
+      await prisma.processingJob.update({
+        where: { id: job.id },
+        data: {
+          status: "FAILED",
+          finishedAt: new Date(),
+          errorMessage: err instanceof Error ? err.message : String(err),
+        },
+      });
+    } catch (updateErr) {
+      if (isDocumentGoneDuringProcessing(updateErr)) throw new DocumentGoneError();
+      throw updateErr;
+    }
     throw err;
   }
 }
@@ -208,8 +237,24 @@ async function runGenericTransformerNerStage(documentId: string): Promise<void> 
 // don't depend on the generic-transformer baseline succeeding, so one
 // being unavailable in a given environment shouldn't block the others) -
 // each stage's own try/catch in runStage records its outcome and errors
-// already caught bubble no further than this function.
+// already caught bubble no further than this function. If the document
+// itself is deleted mid-pipeline (a caller can DELETE /documents/:id
+// while an earlier stage is still running), this stops quietly rather
+// than surfacing a confusing "record not found" error - see
+// isDocumentGoneDuringProcessing above.
 export async function runExtractionPipeline(documentId: string): Promise<void> {
+  try {
+    await runPipelineStages(documentId);
+  } catch (err) {
+    if (err instanceof DocumentGoneError) {
+      console.log(`Stopping pipeline for ${documentId}: document was deleted mid-processing`);
+      return;
+    }
+    throw err;
+  }
+}
+
+async function runPipelineStages(documentId: string): Promise<void> {
   await runStage(documentId, JOB_TYPES.TEXT_EXTRACTION, () => runTextExtractionStage(documentId));
   await runStage(documentId, JOB_TYPES.OCR, () => runOcrStage(documentId));
   await runStage(documentId, JOB_TYPES.RULE_BASED_NER, () => runRuleBasedNerStage(documentId));

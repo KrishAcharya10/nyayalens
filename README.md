@@ -6,12 +6,14 @@ information — entities, clauses, relations, risks, and (eventually) a
 knowledge graph, with every extracted fact carrying provenance back to
 its source document.
 
-**This repository currently implements Phase 1-4A**: repository
+**This repository currently implements Phase 1-4B**: repository
 scaffolding, the database schema, authentication (Phase 1-2); document
 upload, storage, and canonical-text extraction (Phase 3); OCR, rule-based
 NER, a generic-transformer NER baseline, and rule-based clause
-classification (Phase 4A). Fine-tuning and formal evaluation (Phase 4B),
-relation extraction, embeddings, RAG, knowledge graph, and risk detection
+classification (Phase 4A); InLegalBERT fine-tuning and StratifiedGroupKFold
+evaluation across all three model sources (Phase 4B — real, measured
+results in `docs/architecture/evaluation_results.md`, synthetic-only).
+Relation extraction, embeddings, RAG, knowledge graph, and risk detection
 do not exist yet — see `docs/architecture/*.md` for what's
 reserved-but-unimplemented and why.
 
@@ -44,7 +46,8 @@ research/
 docs/
   full_spec.md            Placeholder - see note inside
   architecture/           Design docs (database, auth, migrations, provenance, schema,
-                           evaluation_design, document_ingestion, extraction_pipeline)
+                           evaluation_design, document_ingestion, extraction_pipeline,
+                           evaluation_results - the real Phase 4B numbers)
   research/                Adversarial test case design
 ```
 
@@ -119,6 +122,34 @@ curl http://localhost:4000/documents/<id>/clauses -H "Authorization: Bearer <acc
 # (NOT a formal evaluation - see docs/architecture/extraction_pipeline.md)
 npm run dev:api   # in one terminal
 node apps/api/scripts/validate-extraction-sample.mjs 10   # 10 per doc type
+```
+
+## Phase 4B: fine-tuning + evaluation
+
+Requires the `services/ml` venv (see above). Uploads all 300 synthetic
+documents through the live API first (idempotent - safe to re-run), then
+fine-tunes InLegalBERT per StratifiedGroupKFold fold and reports
+precision/recall/F1 (mean ± std) for `rule_based`, `generic_transformer`,
+and `fine_tuned` side by side. **CPU-only in this environment - a full
+5-fold run takes hours; see `docs/architecture/evaluation_results.md`
+for the actual configuration and timing used.**
+
+```powershell
+npm run dev:api   # in one terminal
+
+# One-time (idempotent): upload + process all 300 synthetic documents
+node apps/api/scripts/bulk-upload-synthetic.mjs
+
+# Full 5-fold fine-tune + evaluate (synthetic only; --data-source real
+# fails loudly until research/data/real/*/annotated/ has real data)
+services/ml/.venv/Scripts/python.exe services/ml/evaluate.py --data-source synthetic
+
+# Recompute metrics from already-persisted predictions without re-training
+# (used after fixing a bug found mid-evaluation - see evaluation_results.md)
+services/ml/.venv/Scripts/python.exe services/ml/rescore.py
+
+# k-fold no-leakage tests
+services/ml/.venv/Scripts/python.exe -m pytest services/ml/tests
 ```
 
 ## Verifying the setup

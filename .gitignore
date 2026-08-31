@@ -34,6 +34,7 @@ __pycache__/
 # committed, see docs/architecture/document_ingestion.md
 apps/api/storage/
 apps/api/.tesseract-cache/
+apps/api/.phase4b-eval-credentials.json
 services/ml/.venv/
 services/ml/models/
 research/eval_results/

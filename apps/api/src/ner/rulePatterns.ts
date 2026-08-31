@@ -81,8 +81,15 @@ const STANDALONE_PATTERNS: StandalonePattern[] = [
     group: 1,
   },
   {
+    // Bug found via Phase 4B evaluation, not this baseline's own tests:
+    // the generator's actual text is "LESSEE: Name, hereinafter..."
+    // (comma-terminated, same as LESSOR) - this pattern originally
+    // required a period, which never matches and silently produced zero
+    // LESSEE entities. ruleBasedNer.test.ts never exercised LESSEE/LESSOR/
+    // LANDLORD/TENANT directly, which is why this shipped undetected in
+    // Phase 4A. See docs/architecture/evaluation_results.md.
     label: "LESSEE",
-    regex: /\bLESSEE:\s*([A-Z][A-Za-z.\s]*?)\./dg,
+    regex: /\bLESSEE:\s*([A-Z][A-Za-z.\s]*?),/dg,
     confidence: 0.85,
     group: 1,
   },

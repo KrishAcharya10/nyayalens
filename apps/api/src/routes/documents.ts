@@ -32,6 +32,17 @@ function getIdParam(value: string | string[] | undefined): string | null {
   return typeof value === "string" ? value : null;
 }
 
+// Confirms a document exists AND belongs to the caller in one query -
+// used by every route scoped to :id so ownership is never checked after
+// the fact.
+async function findOwnedDocumentId(documentId: string, ownerId: string): Promise<string | null> {
+  const document = await prisma.document.findFirst({
+    where: { id: documentId, ownerId },
+    select: { id: true },
+  });
+  return document?.id ?? null;
+}
+
 // Lists document metadata owned by the authenticated user only.
 documentsRouter.get("/", requireAuth, async (req, res, next) => {
   try {
@@ -138,6 +149,54 @@ documentsRouter.get("/:id", requireAuth, async (req, res, next) => {
       return;
     }
     res.status(200).json({ document });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Extracted entities for one document (Phase 4A). Includes every
+// model_source that has run (rule_based, generic_transformer, and later
+// fine_tuned) - callers filter client-side if they only want one.
+documentsRouter.get("/:id/entities", requireAuth, async (req, res, next) => {
+  try {
+    const documentId = getIdParam(req.params.id);
+    if (!documentId) {
+      res.status(400).json({ error: "Invalid document id" });
+      return;
+    }
+    const ownedId = await findOwnedDocumentId(documentId, req.auth!.userId);
+    if (!ownedId) {
+      res.status(404).json({ error: "Document not found" });
+      return;
+    }
+    const entities = await prisma.entity.findMany({
+      where: { documentId: ownedId },
+      orderBy: { textStart: "asc" },
+    });
+    res.status(200).json({ entities });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Classified clauses for one document (Phase 4A).
+documentsRouter.get("/:id/clauses", requireAuth, async (req, res, next) => {
+  try {
+    const documentId = getIdParam(req.params.id);
+    if (!documentId) {
+      res.status(400).json({ error: "Invalid document id" });
+      return;
+    }
+    const ownedId = await findOwnedDocumentId(documentId, req.auth!.userId);
+    if (!ownedId) {
+      res.status(404).json({ error: "Document not found" });
+      return;
+    }
+    const clauses = await prisma.documentClause.findMany({
+      where: { documentId: ownedId },
+      orderBy: { textStart: "asc" },
+    });
+    res.status(200).json({ clauses });
   } catch (err) {
     next(err);
   }

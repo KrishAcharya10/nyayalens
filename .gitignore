@@ -33,6 +33,7 @@ __pycache__/
 # uploaded document storage (local-disk adapter) and ML artifacts - not
 # committed, see docs/architecture/document_ingestion.md
 apps/api/storage/
+apps/api/.tesseract-cache/
 services/ml/.venv/
 services/ml/models/
 research/eval_results/

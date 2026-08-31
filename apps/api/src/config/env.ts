@@ -21,6 +21,13 @@ const envSchema = z.object({
   // unless absolute. See apps/api/src/storage/.
   STORAGE_ROOT: z.string().min(1).default("storage"),
   MAX_UPLOAD_SIZE_MB: z.coerce.number().int().positive().default(20),
+
+  // Path to the Python interpreter inside services/ml/.venv, used to run
+  // the generic-transformer NER baseline as a subprocess. Empty string =
+  // the generic_transformer stage is skipped (logged, not silently
+  // dropped) - lets the rest of the pipeline run in environments where
+  // the ML venv hasn't been set up (see services/ml/README.md).
+  ML_SERVICE_PYTHON: z.string().default(""),
 });
 
 export type Env = z.infer<typeof envSchema>;

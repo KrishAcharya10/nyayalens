@@ -23,6 +23,12 @@ export interface PdfExtractionResult {
 
 interface PdfTextItem {
   str?: string;
+  // pdfjs sets this when the text layout implies a line break after this
+  // item. Without honoring it, joining every item with a single space
+  // flattens the whole page onto one line - fine for keyword search, but
+  // it destroys the paragraph/heading structure clause segmentation
+  // (Phase 4A) depends on. See docs/architecture/extraction_pipeline.md.
+  hasEOL?: boolean;
 }
 
 // A page below this many non-whitespace characters is treated as having no
@@ -47,7 +53,10 @@ export async function extractPdfText(data: Buffer): Promise<PdfExtractionResult>
     for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
       const page = await pdf.getPage(pageNumber);
       const content = await page.getTextContent();
-      const text = (content.items as PdfTextItem[]).map((item) => item.str ?? "").join(" ");
+      let text = "";
+      for (const item of content.items as PdfTextItem[]) {
+        text += (item.str ?? "") + (item.hasEOL ? "\n" : " ");
+      }
       pages.push({ pageNumber, text });
     }
   } finally {

@@ -6,12 +6,14 @@ information — entities, clauses, relations, risks, and (eventually) a
 knowledge graph, with every extracted fact carrying provenance back to
 its source document.
 
-**This repository currently implements Phase 1-2 only: repository
-scaffolding, the database schema, and authentication.** No document
-upload, text extraction, OCR, NER, clause classification, relation
-extraction, embeddings, RAG, knowledge graph, or risk detection exists
-yet — see `docs/architecture/*.md` for what's reserved-but-unimplemented
-and why.
+**This repository currently implements Phase 1-4A**: repository
+scaffolding, the database schema, authentication (Phase 1-2); document
+upload, storage, and canonical-text extraction (Phase 3); OCR, rule-based
+NER, a generic-transformer NER baseline, and rule-based clause
+classification (Phase 4A). Fine-tuning and formal evaluation (Phase 4B),
+relation extraction, embeddings, RAG, knowledge graph, and risk detection
+do not exist yet — see `docs/architecture/*.md` for what's
+reserved-but-unimplemented and why.
 
 Commercial leases and general contracts are explicitly out of scope for
 this project.
@@ -21,9 +23,18 @@ this project.
 ```
 apps/
   web/      Next.js frontend (login/register pages calling the API)
-  api/      Node/Express + TypeScript API (auth, RBAC)
+  api/      Node/Express + TypeScript API (auth, RBAC, upload, extraction pipeline)
+    src/storage/      Local-disk storage adapter (swappable interface)
+    src/extraction/   PDF/DOCX canonical text extraction
+    src/ocr/          PDF page rasterization + Tesseract OCR
+    src/ner/          Rule-based NER + generic-transformer NER subprocess call
+    src/clauses/      Rule-based clause segmentation/classification
+    src/jobs/         In-process async pipeline (queue, stages, startup recovery)
+    scripts/          validate-extraction-sample.mjs (Phase 4A pipeline sanity check)
 packages/
   db/       Prisma schema, migrations, seed script, shared DB client
+services/
+  ml/       Python: generic-transformer NER baseline, (Phase 4B) fine-tuning + evaluation
 research/
   data/
     synthetic/   300 synthetic documents (150 residential rental, 150 land lease)
@@ -32,7 +43,8 @@ research/
   generator/     Python source that generated the synthetic dataset
 docs/
   full_spec.md            Placeholder - see note inside
-  architecture/           Design docs (database, auth, migrations, provenance, schema, evaluation)
+  architecture/           Design docs (database, auth, migrations, provenance, schema,
+                           evaluation_design, document_ingestion, extraction_pipeline)
   research/                Adversarial test case design
 ```
 
@@ -41,8 +53,10 @@ docs/
 - Node.js >= 20 and npm >= 10
 - Docker (for local PostgreSQL via `docker-compose.yml`) **or** a
   PostgreSQL 16 instance you already have running
-- Python 3.10+ only if you intend to (re)run the synthetic dataset
-  generator in `research/generator/` — not required to run the app
+- Python 3.10+ - required for `research/generator/` (dataset generation,
+  optional) and `services/ml/` (the generic-transformer NER baseline and
+  Phase 4B fine-tuning/evaluation, optional - the rest of the app runs
+  without it)
 
 ## Setup (fresh clone)
 
@@ -75,22 +89,60 @@ npm run dev:web
 The API listens on `http://localhost:4000` (see `API_PORT` in `.env`);
 the web app on `http://localhost:3000`.
 
+### Optional: the generic-transformer NER baseline (Phase 4A)
+
+```powershell
+cd services/ml
+python -m venv .venv
+.venv\Scripts\pip.exe install -r requirements.txt --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+```
+
+Then set `ML_SERVICE_PYTHON` in `.env` to the venv's `python.exe` path.
+Left empty (the default), the rest of the extraction pipeline still runs
+- see `services/ml/README.md` for why this stage is opt-in.
+
+## Using the extraction pipeline
+
+```powershell
+# Upload a document (requires a Bearer access token from /auth/login or /auth/register)
+curl -X POST http://localhost:4000/documents `
+  -H "Authorization: Bearer <accessToken>" `
+  -F "documentType=residential_rental" `
+  -F "file=@path\to\agreement.pdf"
+
+# Poll status / read results
+curl http://localhost:4000/documents/<id> -H "Authorization: Bearer <accessToken>"
+curl http://localhost:4000/documents/<id>/entities -H "Authorization: Bearer <accessToken>"
+curl http://localhost:4000/documents/<id>/clauses -H "Authorization: Bearer <accessToken>"
+
+# Pipeline correctness sanity check against real synthetic documents
+# (NOT a formal evaluation - see docs/architecture/extraction_pipeline.md)
+npm run dev:api   # in one terminal
+node apps/api/scripts/validate-extraction-sample.mjs 10   # 10 per doc type
+```
+
 ## Verifying the setup
 
 ```powershell
 npm run lint          # ESLint (TypeScript)
 npm run format         # Prettier check
 npm run typecheck      # tsc --noEmit, strict mode, both apps
-ruff check .           # Python lint (research/generator/)
-npm run test           # Prisma schema constraint tests, seed integration test, auth/RBAC tests
+ruff check .           # Python lint (research/generator/, services/ml/)
+npm run test           # Prisma schema constraint tests, seed integration test,
+                        # auth/RBAC tests, document upload/extraction/OCR tests,
+                        # rule-based NER/clause classification sanity checks
 ```
 
 `npm run test` requires a running PostgreSQL instance reachable via
 `DATABASE_URL` (the same one used for `db:migrate:deploy` above) — the
-auth, RBAC, and schema-constraint tests exercise real database behavior
-rather than mocking it, since the things they're proving (a rejected
-enum value, a revoked token actually being rejected on reuse) are exactly
-the things a mock would hide.
+auth, RBAC, schema-constraint, and extraction-pipeline tests exercise
+real database and file-system behavior rather than mocking it, since the
+things they're proving (a rejected enum value, a revoked token actually
+being rejected on reuse, a scanned page actually being left
+`extraction_method: null` until OCR runs) are exactly the things a mock
+would hide. The generic-transformer NER test is skipped unless
+`ML_SERVICE_PYTHON` is configured (see above) - it reloads a PyTorch
+model from disk and would otherwise slow down every test run.
 
 ## Database changes
 

@@ -15,7 +15,7 @@
     "format": "prettier --check .",
     "format:write": "prettier --write .",
     "typecheck": "npm run typecheck --workspace=apps/web && npm run typecheck --workspace=apps/api",
-    "test": "npm run test --workspace=packages/db && npm run test --workspace=apps/api",
+    "test": "npm run test --workspace=packages/db && npm run test --workspace=apps/api && npm run test --workspace=apps/web",
     "db:generate": "npm run generate --workspace=packages/db",
     "db:migrate": "npm run migrate:dev --workspace=packages/db",
     "db:migrate:deploy": "npm run migrate:deploy --workspace=packages/db",
@@ -27,6 +27,8 @@
     "@typescript-eslint/parser": "^8.15.0",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.3.3",
     "typescript": "^5.6.3"
   },

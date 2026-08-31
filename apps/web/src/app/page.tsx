@@ -1,13 +1,22 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/AuthProvider";
+import { Spinner } from "@/components/ui/States";
 
 export default function HomePage() {
+  const { isAuthenticated, isReady } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isReady) return;
+    router.replace(isAuthenticated ? "/documents" : "/login");
+  }, [isReady, isAuthenticated, router]);
+
   return (
-    <main style={{ maxWidth: 480, margin: "4rem auto", fontFamily: "sans-serif" }}>
-      <h1>NyayaLens</h1>
-      <p>Indian legal document intelligence platform (Phase 1-2: repository, database, auth).</p>
-      <p>
-        <Link href="/login">Log in</Link> · <Link href="/register">Register</Link>
-      </p>
+    <main className="flex min-h-screen items-center justify-center bg-paper-100">
+      <Spinner className="h-5 w-5" />
     </main>
   );
 }

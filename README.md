@@ -6,7 +6,7 @@ information — entities, clauses, relations, risks, and (eventually) a
 knowledge graph, with every extracted fact carrying provenance back to
 its source document.
 
-**This repository currently implements Phase 1-7A**: repository
+**This repository currently implements Phase 1-7B**: repository
 scaffolding, the database schema, authentication (Phase 1-2); document
 upload, storage, and canonical-text extraction (Phase 3); OCR, rule-based
 NER, a generic-transformer NER baseline, and rule-based clause
@@ -20,12 +20,15 @@ categories plus an adversarial synthetic test generator and evaluation
 read-time knowledge graph and a grounded, provenance-backed RAG
 question-answering backend with a prompt-injection defense (Phase 7A —
 real, measured results in
-`docs/architecture/rag_evaluation_results.md`, synthetic-only).
-Embeddings/vector search, real generative answer synthesis (no LLM key is
-configured in this environment - see `rag_design.md`), relation
-extraction, and the frontend legal-intelligence workspace (chat UI, graph
-visualization, risk panel) do not exist yet — see `docs/architecture/*.md`
-for what's reserved-but-unimplemented and why.
+`docs/architecture/rag_evaluation_results.md`, synthetic-only); and a
+premium document-intelligence workspace UI — document viewer with
+entity/clause highlighting, an intelligence panel (overview/entities/
+clauses/risks/graph/ask), and mandatory, permanent trust/evidence
+indicators on every risk finding and every RAG answer (Phase 7B).
+Embeddings/vector search and real generative answer synthesis (no LLM key
+is configured in this environment - see `rag_design.md`) do not exist
+yet — see `docs/architecture/*.md` for what's reserved-but-unimplemented
+and why.
 
 Commercial leases and general contracts are explicitly out of scope for
 this project.
@@ -34,7 +37,20 @@ this project.
 
 ```
 apps/
-  web/      Next.js frontend (login/register pages calling the API)
+  web/      Next.js frontend - the legal-intelligence workspace (Phase 7B)
+    src/app/documents/            Document list ("case files") + [id] workspace route
+    src/app/how-it-works/         Trust/transparency explainer page
+    src/app/api/eval-stats/       Next-internal route reading real evaluation result
+                                   files, so risk/RAG limitation copy is never stale
+    src/components/shell/         App shell (sidebar, top bar)
+    src/components/workspace/     Document viewer, intelligence panel tabs
+                                   (Overview/Entities/Clauses/Risks/Graph/Ask),
+                                   evidence-focus navigation, graph view (reactflow)
+    src/components/ui/            Design-token-driven primitives (Button, Badge,
+                                   Tabs, PermanentNotice, empty/loading/error states)
+    src/lib/spans.ts               Overlap-safe clause/entity span segmentation
+                                   (Section 11) - the document viewer's core logic
+    tailwind.config.ts             Centralized color/type/spacing design tokens
   api/      Node/Express + TypeScript API (auth, RBAC, upload, extraction pipeline)
     src/storage/      Local-disk storage adapter (swappable interface)
     src/extraction/   PDF/DOCX canonical text extraction
@@ -252,6 +268,36 @@ npx dotenv -e ../../.env -- tsx scripts/evaluate-rag-security.mjs
 npx dotenv -e ../../.env -- tsx scripts/analyze-refusal-scores.mjs
 ```
 
+## Phase 7B: legal-intelligence workspace
+
+`npm run dev:web` (after `npm run dev:api` in another terminal) serves the
+full workspace at `http://localhost:3000`: register/sign in →
+`/documents` (case-file list, upload) → `/documents/:id` (three-zone
+workspace - document viewer, left outline/search, right intelligence
+panel with Overview/Entities/Clauses/Risks/Graph/Ask tabs).
+
+`GET /documents/summary` is a new, purely-additive endpoint (composes
+`Document` + its `ProcessingJob` rows into a per-document
+`processingStatus`) the document list uses to avoid an N+1 fetch per row -
+see `apps/api/src/routes/documents.ts`. It does not change the shape or
+semantics of any existing endpoint.
+
+Design tokens (`apps/web/tailwind.config.ts`), the risk panel's
+permanent, non-definitive-language-only notices, and the Ask panel's
+mandatory, non-dismissible evidence-status indicator on every answer are
+documented in the Phase 7B section of this README's `docs/` links below
+and verified by `apps/web`'s own test suite.
+
+```powershell
+npm run dev:api    # in one terminal
+npm run dev:web    # in another - http://localhost:3000
+
+# Frontend test suite (component tests: highlighting/overlap, risk
+# language integrity, mandatory evidence-status indicator, refusal state,
+# graph rendering, ownership 403/404 handling, empty/loading/error states)
+npm run test --workspace=apps/web
+```
+
 ## Verifying the setup
 
 ```powershell
@@ -266,7 +312,11 @@ npm run test           # Prisma schema constraint tests, seed integration test,
                         # reason-framing tests (Phase 6), knowledge-graph fixture
                         # tests, chunking determinism, RetrievalProvider/LLMProvider
                         # swappability, /graph + /ask ownership + grounding tests,
-                        # prompt-injection defense tests (Phase 7A)
+                        # prompt-injection defense tests (Phase 7A), and the
+                        # apps/web frontend suite - highlighting/overlap, risk
+                        # language integrity, mandatory evidence-status indicator,
+                        # refusal state, graph rendering, ownership handling,
+                        # empty/loading/error states (Phase 7B)
 ```
 
 `npm run test` requires a running PostgreSQL instance reachable via

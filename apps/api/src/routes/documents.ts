@@ -78,6 +78,58 @@ documentsRouter.get("/", requireAuth, async (req, res, next) => {
   }
 });
 
+// Phase 7B: purely-additive convenience endpoint composing existing data
+// (Document + its ProcessingJob rows) into one summary per document, so
+// the document list UI can show real processing status without an N+1
+// GET /documents/:id fetch per row. Does not change GET /documents' shape
+// or semantics - this is a new, separate endpoint. required stages
+// mirror the same set validate-extraction-sample.mjs/bulk-upload-*.mjs
+// treat as pass/fail-relevant (generic_transformer_ner excluded - it's
+// documented-optional, see extraction_pipeline.md).
+const REQUIRED_JOB_TYPES = [
+  "text_extraction",
+  "rule_based_ner",
+  "clause_classification",
+  "risk_engine",
+];
+type SummaryStatus = "NOT_STARTED" | "PROCESSING" | "READY" | "FAILED";
+
+function computeSummaryStatus(jobs: { jobType: string; status: string }[]): SummaryStatus {
+  if (jobs.length === 0) return "NOT_STARTED";
+  const relevant = jobs.filter((j) => REQUIRED_JOB_TYPES.includes(j.jobType));
+  if (relevant.some((j) => j.status === "FAILED")) return "FAILED";
+  if (relevant.some((j) => j.status === "PENDING" || j.status === "RUNNING")) return "PROCESSING";
+  const doneTypes = new Set(relevant.filter((j) => j.status === "SUCCEEDED").map((j) => j.jobType));
+  if (REQUIRED_JOB_TYPES.every((t) => doneTypes.has(t))) return "READY";
+  return "PROCESSING";
+}
+
+documentsRouter.get("/summary", requireAuth, async (req, res, next) => {
+  try {
+    const documents = await prisma.document.findMany({
+      where: { ownerId: req.auth!.userId },
+      select: {
+        id: true,
+        title: true,
+        documentType: true,
+        isSynthetic: true,
+        mimeType: true,
+        fileSizeBytes: true,
+        createdAt: true,
+        processingJobs: { select: { jobType: true, status: true } },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    const summaries = documents.map(({ processingJobs, ...doc }) => ({
+      ...doc,
+      processingStatus: computeSummaryStatus(processingJobs),
+    }));
+    res.status(200).json({ documents: summaries });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // Uploads a document (.pdf or .docx), persists it via the storage adapter,
 // and kicks off the extraction pipeline in the background. Responds as
 // soon as the row + job exist - the caller polls GET /documents/:id (or

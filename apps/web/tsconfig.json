@@ -15,5 +15,15 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  // Test files are excluded the same way apps/api/tsconfig.json excludes
+  // tests/ - their correctness is verified by actually running vitest
+  // (which uses its own, separately-configured type resolution via
+  // vitest.config.ts), not by this stricter app-wide tsc --noEmit pass.
+  // This also sidesteps a real monorepo type-duplication issue: with two
+  // vitest installs at different paths (root, for apps/api/packages/db,
+  // and apps/web's own pinned version), tsc here can resolve jest-dom's
+  // Assertion<T> augmentation against a different vitest type identity
+  // than the one test files import from, so the matcher types appear
+  // missing even though the tests themselves pass correctly at runtime.
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx", "src/test/**", "vitest.config.ts"]
 }

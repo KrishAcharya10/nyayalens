@@ -2,6 +2,8 @@
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 import prettier from "eslint-config-prettier";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import reactHooks from "eslint-plugin-react-hooks";
 
 export default [
   {
@@ -33,6 +35,20 @@ export default [
       ...tseslint.configs.recommended.rules,
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
       "@typescript-eslint/no-explicit-any": "warn",
+    },
+  },
+  // apps/web (Phase 7B): accessibility and React-hooks-correctness rules,
+  // scoped to the frontend workspace only - Section 26's accessibility
+  // requirement is enforced at lint time, not just by convention.
+  {
+    files: ["apps/web/**/*.tsx", "apps/web/**/*.ts"],
+    plugins: {
+      "jsx-a11y": jsxA11y,
+      "react-hooks": reactHooks,
+    },
+    rules: {
+      ...jsxA11y.flatConfigs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
     },
   },
   prettier,

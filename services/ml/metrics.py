@@ -70,3 +70,72 @@ def compute_prf(predicted: list[tuple[str, str]], ground_truth: list[tuple[str, 
             "true_positives": true_positives,
         }
     return results
+
+
+# --- Span-overlap scoring (generic_transformer only - see the Phase 4B ---
+# addendum this was added for). compute_prf above is label-exact and stays
+# the standard for rule_based/fine_tuned, where demanding the right label
+# is fair. generic_transformer's own labels (GENERIC_PER/LOC/ORG/MISC) are
+# a different vocabulary from the domain ontology by policy (see
+# extraction_pipeline.md - never force-mapped), which makes compute_prf
+# score it 0.000 on every domain label regardless of whether its predicted
+# span BOUNDARIES are any good. This function answers that separate
+# question label-agnostically: does some prediction's span overlap a gold
+# span, ignoring what either is labeled.
+
+IOU_THRESHOLD = 0.5
+
+
+def _iou(a: tuple[int, int], b: tuple[int, int]) -> float:
+    a_start, a_end = a
+    b_start, b_end = b
+    intersection = max(0, min(a_end, b_end) - max(a_start, b_start))
+    union = (a_end - a_start) + (b_end - b_start) - intersection
+    return intersection / union if union > 0 else 0.0
+
+
+def compute_span_overlap_prf(
+    predicted_spans: list[tuple[int, int]],
+    gold_spans: list[tuple[int, int]],
+    iou_threshold: float = IOU_THRESHOLD,
+) -> dict:
+    """Label-agnostic, IoU>=iou_threshold, greedy one-to-one matching (a
+    predicted span can satisfy at most one gold span and vice versa, so a
+    cluster of overlapping predictions - e.g. wordpiece-fragmented output
+    like "Pat"/"##na" - can't each separately "count" against the same
+    gold span and inflate recall)."""
+    pairs = sorted(
+        (
+            (_iou(gold_spans[gi], predicted_spans[pi]), gi, pi)
+            for gi in range(len(gold_spans))
+            for pi in range(len(predicted_spans))
+            if _iou(gold_spans[gi], predicted_spans[pi]) >= iou_threshold
+        ),
+        key=lambda item: -item[0],
+    )
+
+    matched_gold: set[int] = set()
+    matched_pred: set[int] = set()
+    true_positives = 0
+    for _iou_value, gi, pi in pairs:
+        if gi in matched_gold or pi in matched_pred:
+            continue
+        matched_gold.add(gi)
+        matched_pred.add(pi)
+        true_positives += 1
+
+    predicted_count = len(predicted_spans)
+    support = len(gold_spans)
+    precision = true_positives / predicted_count if predicted_count else 0.0
+    recall = true_positives / support if support else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) else 0.0
+
+    return {
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+        "support": support,
+        "predicted_count": predicted_count,
+        "true_positives": true_positives,
+        "iou_threshold": iou_threshold,
+    }

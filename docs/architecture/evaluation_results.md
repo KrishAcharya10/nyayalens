@@ -55,8 +55,68 @@ Full table (including `generic_transformer` and `fine_tuned`) in `research/eval_
 
 - **`LAND_USE_RESTRICTION` scores exactly 0 for `rule_based` - this is a real, expected gap, not a bug.** `apps/api/src/ner/rulePatterns.ts` never implemented an extraction pattern for it: the ground-truth values are open-ended free text (`"cultivation of seasonal crops"`, `"horticultural plantation"`, `"dairy farming operations"`, ...) with no regular surface form to regex against, unlike `SURVEY_NUMBER` or `LAND_AREA`. It is correctly classified as a *clause type* (`ruleBasedClauseClassifier.ts` does find `LAND_USE_RESTRICTION` clauses) but was never attempted as an *entity* pattern. Documented as unimplemented, not silently omitted.
 - **`LAND_AREA` at ~51% is a genuine partial failure, not fully root-caused.** Precision and recall are identical, meaning the extractor finds the right *count* of spans but only about half match ground truth's exact text. The most likely explanation, by analogy with the confirmed `₹`-symbol PDF-extraction bug, is a similar font/glyph-encoding artifact affecting some digit or decimal-point rendering in this PDF's specific font - but this was not confirmed by direct inspection the way the `₹` and `LESSEE` bugs were. Reporting the number rather than the confirmed cause, since the cause is genuinely unconfirmed.
-- **`generic_transformer` scores exactly 0 on every domain-ontology label - this is a structural artifact of label-vocabulary mismatch, not evidence the baseline "doesn't work".** `dslim/distilbert-NER`'s own labels (`GENERIC_PER`, `GENERIC_LOC`, `GENERIC_ORG`, `GENERIC_MISC`) never equal a domain label like `RENT` or `LESSOR` under content-match scoring - and, tellingly, those `GENERIC_*` rows themselves show `0/5 folds with support`, because ground truth (correctly) never contains a `GENERIC_*` label either. Comparing this baseline fairly against the domain ontology was out of scope for this evaluation script; it would need either a manual label-remapping step (e.g. "did a `GENERIC_PER` span overlap a `LESSOR`/`LESSEE`/`LANDLORD`/`TENANT` ground-truth span, regardless of exact role") or a separate span-only (ignore-label) recall metric. Not built here - flagged as a real methodology gap, not hidden behind a misleadingly low score.
+- **`generic_transformer` scores exactly 0 on every domain-ontology label under label-exact matching** - `dslim/distilbert-NER`'s own labels (`GENERIC_PER`, `GENERIC_LOC`, `GENERIC_ORG`, `GENERIC_MISC`) never equal a domain label like `RENT` or `LESSOR`, and those `GENERIC_*` rows themselves show `0/5 folds with support` since ground truth never contains a `GENERIC_*` label either. This alone doesn't say whether the baseline's predicted *spans* are any good, independent of labeling - see the dedicated span-overlap addendum below, which answers that directly (and the answer is more mixed than "just a vocabulary mismatch").
 - **`fine_tuned` scores exactly 0 on every label, and it is not a scoring artifact: zero `fine_tuned` entities were persisted to the database at all**, across all 300 test-document evaluations (`SELECT count(*) FROM entities WHERE model_source='fine_tuned'` returns 0). Training loss did decrease across folds (fold 3: 2.17 → fold 4: 2.06 → fold 5: 1.99, each fold's own single-epoch mean loss), showing the training loop itself works correctly, but with only ~8 gradient steps per fold (60 documents ÷ batch size 8, 1 epoch) and a classifier head starting from random initialization (`AutoModelForTokenClassification` reports `classifier.bias`/`classifier.weight` as "newly initialized" every fold, since InLegalBERT is a base language model with no NER head), the model never learns to predict anything but the majority "O" (non-entity) tag. **This is an honest negative result of this session's compute constraints, not a flaw in the fine-tuning approach or in InLegalBERT itself.** It demonstrates the full mechanism works end-to-end (data prep, BIO encoding, training, inference, decoding, persistence, evaluation) but the resulting model quality is not usable at this training scale. A properly resourced run (GPU, full ~240-document training set per fold, more epochs, likely a learning-rate schedule and warmup) would very plausibly perform far better - this was not tested, and no claim is made about what it would produce.
+
+## Addendum: `generic_transformer` span-overlap scoring
+
+The label-exact metric above cannot distinguish two structurally
+different explanations for `generic_transformer`'s 0.000 score: (a) its
+predicted span *boundaries* are fine, it's just labeled with a different
+vocabulary (`GENERIC_PER` vs `LESSOR`), or (b) the boundaries themselves
+are also off - it isn't finding plausible entity locations at all. This
+addendum adds a second, label-agnostic metric to answer that, computed
+**only** for `generic_transformer` (`rule_based`/`fine_tuned` keep the
+stricter label-exact standard above, unchanged) and **alongside**, not
+replacing, the existing metric.
+
+**Method**: `services/ml/metrics.py#compute_span_overlap_prf` - a
+predicted span counts as matching a gold span if their **IoU ≥ 0.5**
+(intersection-over-union of the two character ranges), with **greedy
+one-to-one matching** so a cluster of overlapping predictions (e.g. the
+wordpiece fragments `"Pat"`/`"##na"` both overlapping gold `"Patna"`,
+which is exactly the fragmentation issue `extraction_pipeline.md`
+documented) can't each separately count against the same gold span. Gold
+entities are mapped into `canonical_text`'s coordinate space (the same
+space `generic_transformer`'s persisted offsets use) by locating each
+entity's text content there (`services/ml/span_alignment.py`) - 36 of
+2653 gold entities (1.4%) couldn't be located this way (mostly the same
+currency-symbol extraction artifact documented above) and were excluded
+from scoring rather than assigned a guessed position. No re-inference
+was needed - `generic_transformer`'s `text_start`/`text_end` were already
+persisted in Postgres from the original Phase 4A pipeline runs.
+
+**Result** (5/5 folds, mean ± std, `services/ml/score_generic_transformer_overlap.py`):
+
+| Metric | Label-exact (existing) | Span-overlap (IoU ≥ 0.5, this addendum) |
+|---|---|---|
+| Precision | 0.000 | 0.210 ± 0.005 |
+| Recall | 0.000 | 0.299 ± 0.007 |
+| F1 | 0.000 | 0.247 ± 0.004 |
+
+**Honest interpretation**: the data does **not** cleanly support "it's
+just a vocabulary mismatch, the spans are fine" - that hypothesis is only
+*partially* borne out. Recall does rise substantially (0.000 → 0.299)
+once label agreement is no longer required, showing the model *is*
+finding plausible entity-shaped spans some of the time. But 0.299 recall
+means over two-thirds of gold entities have **no** overlapping prediction
+at all, even under this generous a standard - genuinely weak span-finding
+for this document type, not merely a labeling disagreement. Precision
+(0.210) is lower still: `generic_transformer` predicts far more spans
+per document (720-776 pooled per fold) than there are gold entities
+(517-528), because a general-purpose PER/LOC/ORG/MISC tagger fires on
+every plausible-looking name, place, or organization in the document
+(witnesses, court names, state names) - the large majority of which
+aren't entities NyayaLens's ontology cares about at all, which the
+label-exact metric couldn't reveal since it never got past 0.000 either
+way. **Conclusion: both explanations are true simultaneously** - label
+vocabulary mismatch guarantees 0.000 under exact matching regardless of
+span quality, *and* the underlying span quality is itself modest, not
+"fine." The original framing in this document's first-pass "Honest
+findings" section overstated the vocabulary-mismatch explanation before
+this was measured; this addendum's numbers are the correction.
+
+Reproduce: `services/ml/.venv/Scripts/python.exe services/ml/score_generic_transformer_overlap.py`
 
 ## `--data-source real`
 
@@ -74,4 +134,7 @@ services/ml/.venv/Scripts/python.exe services/ml/evaluate.py --data-source synth
 
 # Rescore already-persisted predictions without re-training (used here after the two bug fixes)
 services/ml/.venv/Scripts/python.exe services/ml/rescore.py
+
+# generic_transformer span-overlap addendum (label-agnostic, IoU>=0.5)
+services/ml/.venv/Scripts/python.exe services/ml/score_generic_transformer_overlap.py
 ```

@@ -148,7 +148,11 @@ services/ml/.venv/Scripts/python.exe services/ml/evaluate.py --data-source synth
 # (used after fixing a bug found mid-evaluation - see evaluation_results.md)
 services/ml/.venv/Scripts/python.exe services/ml/rescore.py
 
-# k-fold no-leakage tests
+# generic_transformer span-overlap addendum (label-agnostic, IoU>=0.5 -
+# see evaluation_results.md's addendum section)
+services/ml/.venv/Scripts/python.exe services/ml/score_generic_transformer_overlap.py
+
+# k-fold no-leakage + span-scoring unit tests
 services/ml/.venv/Scripts/python.exe -m pytest services/ml/tests
 ```
 

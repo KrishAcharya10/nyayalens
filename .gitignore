@@ -29,3 +29,10 @@ __pycache__/
 *.pyc
 .venv/
 .ruff_cache/
+
+# uploaded document storage (local-disk adapter) and ML artifacts - not
+# committed, see docs/architecture/document_ingestion.md
+apps/api/storage/
+services/ml/.venv/
+services/ml/models/
+research/eval_results/

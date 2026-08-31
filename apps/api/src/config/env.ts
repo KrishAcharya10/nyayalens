@@ -16,6 +16,11 @@ const envSchema = z.object({
   ARGON2_MEMORY_COST_KIB: z.coerce.number().int().positive().default(19456),
   ARGON2_TIME_COST: z.coerce.number().int().positive().default(2),
   ARGON2_PARALLELISM: z.coerce.number().int().positive().default(1),
+
+  // Local-disk storage adapter root, relative to the API process's cwd
+  // unless absolute. See apps/api/src/storage/.
+  STORAGE_ROOT: z.string().min(1).default("storage"),
+  MAX_UPLOAD_SIZE_MB: z.coerce.number().int().positive().default(20),
 });
 
 export type Env = z.infer<typeof envSchema>;

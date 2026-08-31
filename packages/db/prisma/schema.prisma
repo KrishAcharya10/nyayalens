@@ -1,16 +1,16 @@
-// NyayaLens database schema (Phase 1-2).
+// NyayaLens database schema.
 //
-// Scope note: this schema covers repository/database/auth setup only.
-// Tables that will eventually hold ML-derived output (document_pages,
-// document_sections, document_clauses, entities, relations, risks,
-// obligations, embeddings) are reserved here with a `documentId` foreign
-// key and nullable provenance fields so later phases (NER, clause
-// classification, relation extraction, risk engine, embeddings) can
-// populate them without a breaking schema migration. No extraction,
-// NER, embedding, or risk-detection logic is implemented in this phase.
+// Phase 1-2 established repository/database/auth. Phase 3 added upload +
+// text extraction (documents.storage_key/mime_type/file_size_bytes,
+// document_pages.extraction_method). Phase 4A added rule-based +
+// generic-transformer NER and clause classification
+// (entities/document_clauses.model_source). document_sections, relations,
+// risks, obligations, and embeddings remain reserved-but-unpopulated for
+// later phases (relation extraction, risk engine, embeddings).
 //
-// See docs/architecture/database.md, docs/architecture/schema.md and
-// docs/architecture/provenance.md for the design rationale.
+// See docs/architecture/database.md, docs/architecture/schema.md,
+// docs/architecture/provenance.md, docs/architecture/document_ingestion.md
+// and docs/architecture/extraction_pipeline.md for design rationale.
 
 generator client {
   provider = "prisma-client-js"
@@ -53,6 +53,31 @@ enum ProcessingJobStatus {
   FAILED
 
   @@map("processing_job_status")
+}
+
+// How a DocumentPage's text was obtained. NATIVE = extracted directly from
+// the PDF/DOCX's embedded text layer (pdfjs-dist / mammoth). OCR = the page
+// had no usable native text (a scanned/image-only page) and was run through
+// an OCR engine in Phase 4A. A page whose extraction_method is still NULL
+// has native text pending-or-absent and has not been OCR'd yet - see
+// docs/architecture/document_ingestion.md.
+enum ExtractionMethod {
+  NATIVE
+  OCR
+
+  @@map("extraction_method")
+}
+
+// Which extraction approach produced an Entity/DocumentClause row. Required
+// on every row (Phase 3 never creates entities/clauses - only Phase 4A+
+// does), so downstream evaluation code can group/compare by method without
+// guessing. See docs/architecture/evaluation_design.md.
+enum ModelSource {
+  RULE_BASED          @map("rule_based")
+  GENERIC_TRANSFORMER @map("generic_transformer")
+  FINE_TUNED          @map("fine_tuned")
+
+  @@map("model_source")
 }
 
 // ---------------------------------------------------------------------
@@ -114,7 +139,14 @@ model Document {
   // equivalent evidence of real-world generalization.
   isSynthetic    Boolean      @default(false) @map("is_synthetic")
   sourceFilename String?      @map("source_filename")
-  // Canonical extracted text. Populated by a future ingestion phase.
+  // Where the uploaded original file lives in the storage adapter (see
+  // apps/api/src/storage/), the client-reported MIME type, and its size in
+  // bytes. Set at upload time by Phase 3; null for rows that never went
+  // through upload (e.g. synthetic seed metadata, which has no stored file).
+  storageKey     String?      @map("storage_key")
+  mimeType       String?      @map("mime_type")
+  fileSizeBytes  Int?         @map("file_size_bytes")
+  // Canonical extracted text. Populated by Phase 3's extraction job.
   canonicalText  String?      @map("canonical_text")
   // Reserved for the top-level "key findings" digest (spec Section 11).
   // Shape documented in docs/architecture/schema.md. Not populated until
@@ -144,6 +176,11 @@ model DocumentPage {
   document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
   pageNumber Int      @map("page_number")
   text       String?
+  // NULL = no usable native text found yet and not OCR'd (deferred to
+  // Phase 4A). Set to NATIVE or OCR once text is actually populated.
+  extractionMethod ExtractionMethod? @map("extraction_method")
+  // Only meaningful when extractionMethod = OCR.
+  ocrConfidence     Float?            @map("ocr_confidence")
   createdAt  DateTime @default(now()) @map("created_at")
 
   @@unique([documentId, pageNumber])
@@ -187,6 +224,10 @@ model DocumentClause {
   bboxWidth  Float? @map("bbox_width")
   bboxHeight Float? @map("bbox_height")
 
+  // Which extraction approach produced this row (required - only Phase 4A+
+  // code creates clause rows, and every path there is required to tag one).
+  modelSource ModelSource @map("model_source")
+
   confidence   Float?
   modelName    String? @map("model_name")
   modelVersion String? @map("model_version")
@@ -194,6 +235,7 @@ model DocumentClause {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@index([documentId])
+  @@index([modelSource])
   @@map("document_clauses")
 }
 
@@ -214,6 +256,10 @@ model Entity {
   bboxWidth  Float? @map("bbox_width")
   bboxHeight Float? @map("bbox_height")
 
+  // Which extraction approach produced this row (required - only Phase 4A+
+  // code creates entity rows, and every path there is required to tag one).
+  modelSource ModelSource @map("model_source")
+
   confidence   Float?
   modelName    String? @map("model_name")
   modelVersion String? @map("model_version")
@@ -225,6 +271,7 @@ model Entity {
 
   @@index([documentId])
   @@index([label])
+  @@index([modelSource])
   @@map("entities")
 }
 
@@ -326,10 +373,11 @@ model Embedding {
   @@map("embeddings")
 }
 
-// Tracks an async processing step for a document (e.g. a future
-// extraction or NER run). No job is ever created or executed in this
-// phase - the table exists so later phases don't need a migration to
-// start recording job state.
+// Tracks an async processing step for a document (text extraction, OCR,
+// NER, clause classification, ...). jobType is free text (see
+// TODO_PROCESSING_JOB_TYPES above); current values in use are documented
+// in docs/architecture/document_ingestion.md and
+// docs/architecture/extraction_pipeline.md.
 model ProcessingJob {
   id           String              @id @default(uuid())
   documentId   String              @map("document_id")

@@ -61,10 +61,10 @@ describe("document_id grouping columns", () => {
     });
 
     const clause = await prisma.documentClause.create({
-      data: { documentId: doc.id, clauseType: "TEST_CLAUSE" },
+      data: { documentId: doc.id, clauseType: "TEST_CLAUSE", modelSource: "RULE_BASED" },
     });
     const entity = await prisma.entity.create({
-      data: { documentId: doc.id, label: "TEST_ENTITY" },
+      data: { documentId: doc.id, label: "TEST_ENTITY", modelSource: "RULE_BASED" },
     });
     const embedding = await prisma.embedding.create({
       data: { documentId: doc.id, sourceTable: "entities", sourceId: entity.id },

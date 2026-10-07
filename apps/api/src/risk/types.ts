@@ -1,5 +1,3 @@
-import type { DocumentType } from "@nyayalens/db";
-
 // Mirrors a persisted DocumentClause/Entity closely enough for risk-engine
 // logic to consume without importing Prisma's full generated types
 // everywhere - just the fields any check could need.
@@ -20,9 +18,16 @@ export interface EntityInput {
   textEnd: number | null;
 }
 
+// documentType is a plain string, not the Prisma DocumentType enum type -
+// matching the precedent graph/types.ts's BuildGraphInput already set. The
+// DB column itself stays an enum (see docs/phase8/step2_enum_decision.md);
+// this only widens how an already-validated value is carried through
+// in-memory pipeline code, so a DomainPack's own document-type ids (also
+// plain strings) can be compared against it without importing Prisma's
+// enum type here.
 export interface RiskEngineContext {
   documentId: string;
-  documentType: DocumentType;
+  documentType: string;
   clauses: ClauseInput[];
   entities: EntityInput[];
 }
@@ -57,6 +62,15 @@ export interface RiskFinding {
   reason: string;
   pass: RiskPass;
   evidence: EvidenceSpan[];
+}
+
+// A single risk-engine check, whether per-clause (Pass 1) or cross-clause
+// (Pass 2) - both shapes are identical, so one DomainPack risk schema can
+// hold either kind in the same list. pass2CrossClause.ts's ComparisonCheck
+// is an alias of this (kept for that file's existing exported name).
+export interface RiskCheck {
+  name: string;
+  run(context: RiskEngineContext): RiskFinding[];
 }
 
 export function clauseToEvidence(documentId: string, clause: ClauseInput): EvidenceSpan {

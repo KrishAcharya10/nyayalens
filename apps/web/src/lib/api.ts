@@ -129,10 +129,11 @@ export async function askDocument(id: string, question: string): Promise<AskResu
   return handleResponse<AskResult>(res);
 }
 
-export async function uploadDocument(
-  file: File,
-  documentType: "residential_rental" | "land_lease",
-): Promise<{ id: string }> {
+// documentType is the lowercase wire value the upload endpoint's Zod
+// schema validates (apps/api/src/routes/documents.ts's uploadMetadataSchema)
+// - a plain string, sourced from UploadDocumentForm's DOCUMENT_TYPE_OPTIONS,
+// not a hardcoded two-value union (see docs/phase8/step2_migration_notes.md).
+export async function uploadDocument(file: File, documentType: string): Promise<{ id: string }> {
   const form = new FormData();
   form.append("documentType", documentType);
   form.append("file", file);

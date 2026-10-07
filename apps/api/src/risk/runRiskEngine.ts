@@ -1,4 +1,5 @@
 import { getPrismaClient, type ModelSource, type Prisma } from "@nyayalens/db";
+import { getDomainPackRegistry } from "../domains/index.js";
 import { runPass1 } from "./pass1PerClause.js";
 import { runPass2 } from "./pass2CrossClause.js";
 import type { RiskEngineContext, RiskFinding } from "./types.js";
@@ -46,7 +47,16 @@ export async function runRiskEngine(
     entities,
   };
 
-  const findings = [...runPass1(context), ...runPass2(context)];
+  // Resolve this document's pack once, explicitly - the real pipeline
+  // never relies on runPass1/runPass2's own registry-lookup default
+  // parameters (those exist only so each remains independently callable
+  // with a single argument, for their own unit tests). See
+  // docs/phase8/step2_migration_notes.md.
+  const pack = getDomainPackRegistry().get(context.documentType);
+  const findings = [
+    ...runPass1(context, pack.riskSchema),
+    ...runPass2(context, pack.riskSchema.comparisonChecks),
+  ];
 
   await prisma.risk.deleteMany({ where: { documentId, modelSource } });
   if (findings.length > 0) {

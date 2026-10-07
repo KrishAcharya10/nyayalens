@@ -144,7 +144,20 @@ describe("Pass 2: land use contradiction (category 4)", () => {
     );
   });
 
-  it("never runs the land-use check for residential_rental documents", () => {
+  // Phase 8 Step 2 (docs/phase8/step2_migration_notes.md): this test's
+  // assertion is UNCHANGED from before the DomainPack migration - only
+  // this comment and the title below changed. Before the migration,
+  // landUseContradictionCheck had its own inline
+  // `if (context.documentType !== "LAND_LEASE") return [];` guard, which
+  // this test exercised directly. That guard is gone now - the check
+  // moved into domains/landLeasePack.ts's riskSchema.comparisonChecks, so
+  // it's simply never in the list runPass2(context) runs for a
+  // RESIDENTIAL_RENTAL document (domains/rentalPack.ts's own
+  // comparisonChecks never included it). The check itself still fires on
+  // exactly the same land-lease cases as the two tests above, and still
+  // does not fire on a residential_rental document - same behavior,
+  // reached by pack-scoped registration instead of an inline guard.
+  it("never runs the land-use check for residential_rental documents (now via pack-scoped registration, not an inline guard)", () => {
     const context = makeContext({
       documentType: "RESIDENTIAL_RENTAL",
       entities: [

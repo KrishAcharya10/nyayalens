@@ -4,11 +4,23 @@ import { useRef, useState, type FormEvent } from "react";
 import { uploadDocument } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 
+// The set of document types this deployment accepts, mirroring
+// apps/api/src/routes/documents.ts's uploadMetadataSchema (still that
+// file's own literal two-value z.enum today - not yet sourced from the
+// DomainPack registry over the network; see
+// docs/phase8/step2_migration_notes.md for why that wiring was deferred).
+// Rendering from this list instead of two hand-written <option> elements
+// is what's actually rewired in this step: adding a value here is a
+// one-line, purely-additive change to this component instead of touching
+// both the type annotation above and the JSX below.
+const DOCUMENT_TYPE_OPTIONS: { value: string; label: string }[] = [
+  { value: "residential_rental", label: "Residential Rental" },
+  { value: "land_lease", label: "Land Lease" },
+];
+
 export function UploadDocumentForm({ onUploaded }: { onUploaded: () => void }) {
   const [open, setOpen] = useState(false);
-  const [documentType, setDocumentType] = useState<"residential_rental" | "land_lease">(
-    "residential_rental",
-  );
+  const [documentType, setDocumentType] = useState<string>(DOCUMENT_TYPE_OPTIONS[0]!.value);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -51,11 +63,14 @@ export function UploadDocumentForm({ onUploaded }: { onUploaded: () => void }) {
         Document type
         <select
           value={documentType}
-          onChange={(e) => setDocumentType(e.target.value as "residential_rental" | "land_lease")}
+          onChange={(e) => setDocumentType(e.target.value)}
           className="rounded border border-ink-200 bg-paper-50 px-2 py-1.5 text-sm text-ink-800"
         >
-          <option value="residential_rental">Residential Rental</option>
-          <option value="land_lease">Land Lease</option>
+          {DOCUMENT_TYPE_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </label>
       <label className="flex flex-col gap-1 text-xs text-ink-500">

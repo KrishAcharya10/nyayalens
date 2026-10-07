@@ -5,7 +5,13 @@
 // not present on a real response is typed as optional/nullable, never
 // assumed.
 
-export type DocumentType = "RESIDENTIAL_RENTAL" | "LAND_LEASE";
+// A plain string, not a two-value union: the backend's set of valid
+// document types is a DomainPack registry, not a fixed pair (Phase 8 Step
+// 2, docs/phase8/step2_migration_notes.md) - a TypeScript union here was
+// never a real runtime guarantee against the API returning a third value
+// anyway, only a compile-time assumption that happened to match today's
+// two domains.
+export type DocumentType = string;
 export type ModelSource = "RULE_BASED" | "GENERIC_TRANSFORMER" | "FINE_TUNED";
 export type ProcessingJobStatus = "PENDING" | "RUNNING" | "SUCCEEDED" | "FAILED";
 export type ProcessingSummaryStatus = "NOT_STARTED" | "PROCESSING" | "READY" | "FAILED";

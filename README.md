@@ -1,350 +1,536 @@
-# NyayaLens
+## **NyayaLens - Indian Legal Document Intelligence Platform**
 
-Indian legal document intelligence platform. Converts residential rental
-agreements and land lease deeds into structured, evidence-grounded
-information — entities, clauses, relations, risks, and (eventually) a
-knowledge graph, with every extracted fact carrying provenance back to
-its source document.
+### **Project Overview**
 
-**This repository currently implements Phase 1-7B**: repository
-scaffolding, the database schema, authentication (Phase 1-2); document
-upload, storage, and canonical-text extraction (Phase 3); OCR, rule-based
-NER, a generic-transformer NER baseline, and rule-based clause
-classification (Phase 4A); InLegalBERT fine-tuning and StratifiedGroupKFold
-evaluation across all three model sources (Phase 4B — real, measured
-results in `docs/architecture/evaluation_results.md`, synthetic-only); a
-two-pass cross-clause/cross-entity risk engine covering five risk
-categories plus an adversarial synthetic test generator and evaluation
-(Phase 6 — real, measured results in
-`docs/architecture/adversarial_evaluation_results.md`, synthetic-only); a
-read-time knowledge graph and a grounded, provenance-backed RAG
-question-answering backend with a prompt-injection defense (Phase 7A —
-real, measured results in
-`docs/architecture/rag_evaluation_results.md`, synthetic-only); and a
-premium document-intelligence workspace UI — document viewer with
-entity/clause highlighting, an intelligence panel (overview/entities/
-clauses/risks/graph/ask), and mandatory, permanent trust/evidence
-indicators on every risk finding and every RAG answer (Phase 7B).
-Embeddings/vector search and real generative answer synthesis (no LLM key
-is configured in this environment - see `rag_design.md`) do not exist
-yet — see `docs/architecture/*.md` for what's reserved-but-unimplemented
-and why.
+NyayaLens is an advanced **Indian legal document intelligence platform** that converts residential rental agreements and land lease deeds into structured, evidence-grounded information. The system extracts:
+- **Entities** (parties, amounts, dates, property details)
+- **Clauses** (numbered sections with semantic classification)
+- **Risks** (five categories of potentially unfavorable terms with evidence)
+- **Relations** (connections between entities)
+- **Knowledge graphs** (structured relationships between document components)
+- **RAG-powered Q&A** (question answering with full provenance and refusal logic)
 
-Commercial leases and general contracts are explicitly out of scope for
-this project.
+All extracted information is **provenance-backed** — every fact carries traceability back to its source location in the original document.
 
-## Repository layout
+---
+
+### **Technology Stack**
+
+**Frontend (Next.js + React)**
+- Next.js 15 for server-side rendering and static generation
+- React 18 with TypeScript for component development
+- Tailwind CSS for responsive design with design-token system
+- Reactflow for knowledge graph visualization
+- Vitest for unit testing
+
+**Backend (Node.js + Express)**
+- Express.js for REST API
+- TypeScript for type safety
+- Prisma ORM with PostgreSQL 16
+- JWT-based authentication with refresh token rotation
+- Rate limiting and security middleware (Helmet, CORS)
+
+**Document Processing**
+- PDF extraction: pdfjs-dist (native text) + Tesseract.js (OCR)
+- DOCX extraction: mammoth
+- PDF rasterization: @napi-rs/canvas (CPU-only, no build tools needed)
+
+**NLP & ML Pipeline**
+- Rule-based NER with regex patterns grounded in synthetic data
+- Generic-transformer baseline for named entity recognition
+- InLegalBERT fine-tuning (Phase 4B) with StratifiedGroupKFold evaluation
+- BM25 retrieval for RAG
+
+**Python Services**
+- PyTorch for transformer models
+- Scikit-learn for evaluation metrics
+- Datasets: 300 synthetic documents (150 residential rental, 150 land lease) + 150 adversarial test cases
+
+---
+
+### **Architecture Phases**
+
+The project is organized into 7 development phases, currently implementing **Phase 1-7B**:
+
+#### **Phase 1-2: Repository & Authentication**
+- User registration and login
+- JWT-based authentication with access + refresh tokens
+- Refresh token rotation with family-based revocation
+- Argon2id password hashing
+- Role-based access control (RBAC): USER, ADMIN
+
+#### **Phase 3: Document Upload & Storage**
+- File upload handler (PDF/DOCX, max 20MB)
+- Canonical text extraction from documents
+- Page-level storage with extraction method tracking (NATIVE/OCR)
+- Ownership-based access control
+
+#### **Phase 4A: Extraction Pipeline**
+- **Text Extraction**: PDF (native + OCR) and DOCX parsing
+- **OCR Pipeline**: PDF rasterization + Tesseract recognition (for scanned pages)
+- **Rule-based NER**: 15+ entity types (RENT, LESSOR, SURVEY_NUMBER, LAND_AREA, etc.)
+- **Generic-transformer NER**: PyTorch-based baseline model
+- **Clause Classification**: Rule-based segmentation into 12+ clause types (LEASE_DURATION, RENT_PAYMENT, SECURITY_DEPOSIT, etc.)
+
+#### **Phase 4B: Fine-tuning & Evaluation**
+- InLegalBERT fine-tuning with 5-fold cross-validation
+- Metrics: Precision, Recall, F1 (across all three model sources)
+- Comparison: RULE_BASED vs GENERIC_TRANSFORMER vs FINE_TUNED
+- Span-overlap scoring with IoU ≥ 0.5
+
+#### **Phase 6: Risk Engine & Adversarial Testing**
+- **Two-pass architecture**:
+  - **Pass 1**: Per-clause risk classification (single-clause context)
+  - **Pass 2**: Cross-clause/cross-entity comparison
+- **Five risk categories**:
+  1. LIABILITY_SHIFT (unfavorable responsibility shifts)
+  2. ASYMMETRIC_OBLIGATION (unequal notice periods)
+  3. UNBOUNDED_DISCRETION (vague deposit deduction language)
+  4. LAND_USE_CONTRADICTION (conflicting use restrictions)
+  5. MISSING_CLAUSE (expected clauses absent)
+- **Severity levels**: LOW, MEDIUM, HIGH
+- **Evidence model**: Multi-span provenance for complex findings
+- **Adversarial test set**: 150 documents (15 positive + 15 control per category)
+
+#### **Phase 7A: Knowledge Graph & RAG**
+- **Knowledge Graph**: Read-time construction from entities and clauses
+- **Chunking Strategy**: 
+  - Per-clause chunks (from DocumentClause rows)
+  - Preamble-entity chunks (LANDLORD, TENANT, ADDRESS, SURVEY_NUMBER, etc.)
+- **RAG Pipeline**: Retrieve → Filter → Generate
+- **Providers**:
+  - RetrievalProvider: BM25 scoring (TOP_K=3)
+  - LLMProvider: Extractive (default) or Anthropic (optional)
+- **Features**: 
+  - Grounding detection (MIN_BM25_SCORE = 0)
+  - Citation accuracy tracking
+  - Prompt-injection defense
+  - Honest refusal on unanswerable questions
+
+#### **Phase 7B: Legal Intelligence Workspace (UI)**
+- **Document Viewer**: Overlap-safe span segmentation (clauses + entities)
+- **Intelligence Panel** with tabs:
+  - **Overview**: Document metadata and processing status
+  - **Entities**: Extracted entities with type labels and confidence
+  - **Clauses**: Segmented clauses with types and extracted entities
+  - **Risks**: Risk findings with severity, evidence, and trust indicators
+  - **Graph**: Knowledge graph visualization (Reactflow)
+  - **Ask**: RAG-powered Q&A with mandatory evidence citations
+- **Evidence Navigation**: Click-to-highlight evidence in document viewer
+- **Trust Indicators**: Permanent, non-dismissible status on risks and answers
+
+---
+
+### **Database Schema (Prisma)**
+
+**Core Models:**
+- **User**: Authentication, roles, audit logging
+- **RefreshToken**: Token rotation with family-based revocation
+- **Document**: Metadata, ownership, processing status, synthetic/adversarial tags
+- **DocumentPage**: Page-level text, extraction method, OCR confidence
+- **DocumentSection**: Reserved for future use (section-level metadata)
+- **DocumentClause**: Labeled clause spans with model_source, confidence, bbox
+- **Entity**: Named entities with labels, model_source, confidence, bbox
+- **Relation**: Entity-to-entity relationships (reserved for Phase 8+)
+- **Risk**: Risk findings with category, severity, pass, evidence array
+- **Obligation**: Extracted obligations (reserved for Phase 8+)
+- **Embedding**: Vector embeddings for search (reserved for Phase 8+)
+- **ProcessingJob**: Pipeline execution tracking (status, timestamps, error messages)
+
+**Enums:**
+- **DocumentType**: RESIDENTIAL_RENTAL, LAND_LEASE
+- **ModelSource**: RULE_BASED, GENERIC_TRANSFORMER, FINE_TUNED
+- **ExtractionMethod**: NATIVE, OCR
+- **RiskCategory**: 5 categories as above
+- **RiskSeverity**: LOW, MEDIUM, HIGH
+- **RiskPass**: PASS_1, PASS_2
+
+---
+
+### **Project Structure**
 
 ```
-apps/
-  web/      Next.js frontend - the legal-intelligence workspace (Phase 7B)
-    src/app/documents/            Document list ("case files") + [id] workspace route
-    src/app/how-it-works/         Trust/transparency explainer page
-    src/app/api/eval-stats/       Next-internal route reading real evaluation result
-                                   files, so risk/RAG limitation copy is never stale
-    src/components/shell/         App shell (sidebar, top bar)
-    src/components/workspace/     Document viewer, intelligence panel tabs
-                                   (Overview/Entities/Clauses/Risks/Graph/Ask),
-                                   evidence-focus navigation, graph view (reactflow)
-    src/components/ui/            Design-token-driven primitives (Button, Badge,
-                                   Tabs, PermanentNotice, empty/loading/error states)
-    src/lib/spans.ts               Overlap-safe clause/entity span segmentation
-                                   (Section 11) - the document viewer's core logic
-    tailwind.config.ts             Centralized color/type/spacing design tokens
-  api/      Node/Express + TypeScript API (auth, RBAC, upload, extraction pipeline)
-    src/storage/      Local-disk storage adapter (swappable interface)
-    src/extraction/   PDF/DOCX canonical text extraction
-    src/ocr/          PDF page rasterization + Tesseract OCR
-    src/ner/          Rule-based NER + generic-transformer NER subprocess call
-    src/clauses/      Rule-based clause segmentation/classification
-    src/risk/         Phase 6 risk engine (Pass 1 per-clause, Pass 2 cross-clause/entity registry)
-    src/graph/        Phase 7A knowledge graph (read-time construction from persisted data)
-    src/rag/          Phase 7A RAG (chunking, RetrievalProvider/LLMProvider interfaces + implementations)
-    src/jobs/         In-process async pipeline (queue, stages, startup recovery)
-    rag_eval/         Phase 7A RAG quality test set + evaluation output (quality_test_set.json)
-    scripts/          validate-extraction-sample.mjs (Phase 4A pipeline sanity check),
-                       bulk-upload-adversarial.mjs / evaluate-adversarial.mjs /
-                       evaluate-ordinary-control-fp.mjs (Phase 6),
-                       evaluate-graph.mjs / evaluate-rag.mjs /
-                       evaluate-rag-security.mjs (Phase 7A),
-                       analyze-refusal-scores.mjs (Phase 7A addendum)
-packages/
-  db/       Prisma schema, migrations, seed script, shared DB client
-services/
-  ml/       Python: generic-transformer NER baseline, (Phase 4B) fine-tuning + evaluation
-research/
-  data/
-    synthetic/   300 synthetic documents (150 residential rental, 150 land lease)
-    real/        Empty - real documents (target 15+15) not yet collected
-    adversarial/ 150 adversarial + matched-control risk-engine test documents (Phase 6)
-  generator/     Python source that generated the synthetic dataset, plus
-                 adversarial_generator.py / generate_adversarial_batch.py (Phase 6)
-docs/
-  full_spec.md            Placeholder - see note inside
-  architecture/           Design docs (database, auth, migrations, provenance, schema,
-                           evaluation_design, document_ingestion, extraction_pipeline,
-                           evaluation_results - the real Phase 4B numbers, risk_engine,
-                           adversarial_evaluation_results - the real Phase 6 numbers,
-                           knowledge_graph, rag_design, rag_evaluation_results - the
-                           real Phase 7A numbers)
-  research/                Adversarial test case design
+nyayalens/
+├── apps/
+│   ├── web/                           # Next.js frontend
+│   │   ├── src/
+│   │   │   ├── app/                   # Next.js routes
+│   │   │   │   ├── documents/[id]/    # Workspace page
+│   │   │   │   ├── how-it-works/      # Trust/transparency explainer
+│   │   │   │   ├── login/, register/  # Auth pages
+│   │   │   │   └── api/eval-stats/    # Evaluation results API
+│   │   │   ├── components/
+│   │   │   │   ├── workspace/         # Document viewer, intelligence panel
+│   │   │   │   ├── shell/             # App chrome (sidebar, top bar)
+│   │   │   │   └── ui/                # Design-token primitives
+│   │   │   └── lib/
+│   │   │       ├── spans.ts           # Overlap-safe span segmentation
+│   │   │       ├── api.ts             # API client
+│   │   │       └── AuthProvider.tsx   # Auth context
+│   │   └── tailwind.config.ts         # Design tokens
+│   │
+│   └── api/                           # Express API
+│       ├── src/
+│       │   ├── routes/                # API endpoints
+│       │   │   ├── auth.ts            # /auth (login, register, refresh)
+│       │   │   ├── documents.ts       # /documents (upload, list, details)
+│       │   │   └── admin.ts           # /admin (system info)
+│       │   ├── extraction/            # Document text extraction
+│       │   │   ├── extractText.ts     # Main extractor
+│       │   │   ├── pdfExtractor.ts    # PDF native text
+│       │   │   └── docxExtractor.ts   # DOCX extraction
+│       │   ├── ocr/                   # Optical character recognition
+│       │   │   ├── rasterizePdfPage.ts # PDF → PNG
+│       │   │   └── runOcr.ts          # Tesseract recognition
+│       │   ├── ner/                   # Named entity recognition
+│       │   │   ├── rulePatterns.ts    # Rule-based patterns
+│       │   │   ├── genericTransformerNer.ts # Transformer baseline
+│       │   │   └── types.ts           # NER types
+│       │   ├── clauses/               # Clause segmentation & classification
+│       │   │   ├── clauseSegmenter.ts # Heading-based segmentation
+│       │   │   ├── clauseTaxonomy.ts  # 12+ clause types
+│       │   │   └── ruleBasedClauseClassifier.ts
+│       │   ├── risk/                  # Risk detection engine
+│       │   │   ├── pass1PerClause.ts  # Per-clause checks
+│       │   │   ├── pass2CrossClause.ts # Cross-clause checks
+│       │   │   ├── runRiskEngine.ts   # Orchestrator
+│       │   │   └── types.ts           # Risk types
+│       │   ├── rag/                   # Retrieval-augmented generation
+│       │   │   ├── chunking.ts        # Clause + entity chunks
+│       │   │   ├── runAsk.ts          # Q&A pipeline
+│       │   │   ├── bm25Retriever.ts   # BM25 search
+│       │   │   ├── llmProviderFactory.ts # Extractive/Anthropic
+│       │   │   └── systemInstructions.ts # RAG prompts
+│       │   ├── graph/                 # Knowledge graph
+│       │   │   ├── buildGraph.ts      # Graph construction
+│       │   │   └── loadDocumentGraph.ts
+│       │   ├── jobs/                  # Async pipeline infrastructure
+│       │   │   ├── pipeline.ts        # Orchestration (6 stages)
+│       │   │   ├── queue.ts           # Job queue
+│       │   │   └── recovery.ts        # Startup recovery
+│       │   ├── storage/               # File storage adapter
+│       │   ├── middleware/            # Auth, error handling, rate limiting
+│       │   ├── lib/                   # JWT, password hashing
+│       │   └── config/                # Environment config
+│       ├── scripts/                   # Evaluation & testing scripts
+│       │   ├── validate-extraction-sample.mjs
+│       │   ├── evaluate-adversarial.mjs
+│       │   ├── evaluate-rag.mjs
+│       │   └── ...
+│       └── rag_eval/                  # RAG test set + results
+│
+├── packages/
+│   └── db/                            # Prisma schema & migrations
+│       ├── prisma/
+│       │   ├── schema.prisma          # Database schema
+│       │   └── migrations/            # Migration history
+│       └── generated/
+│           └── client/                # Generated Prisma client
+│
+├── services/
+│   └── ml/                            # Python ML services
+│       ├── baseline_ner.py            # Generic-transformer NER
+│       ├── finetune_ner.py            # InLegalBERT fine-tuning
+│       ├── evaluate.py                # Evaluation metrics
+│       └── requirements.txt           # Python dependencies
+│
+├── research/
+│   ├── data/
+│   │   ├── synthetic/                 # 300 synthetic documents
+│   │   ├── real/                      # (Empty - real docs not yet collected)
+│   │   └── adversarial/               # 150 adversarial test cases
+│   └── generator/                     # Dataset generation code
+│       ├── generator.py               # Main generator
+│       ├── value_pools.py             # Entity value templates
+│       └── adversarial_generator.py   # Adversarial case generation
+│
+├── docs/
+│   ├── architecture/                  # Design documentation
+│   │   ├── database.md                # Schema rationale
+│   │   ├── auth.md                    # Authentication design
+│   │   ├── extraction_pipeline.md     # Phase 4A pipeline
+│   │   ├── evaluation_results.md      # Phase 4B metrics
+│   │   ├── risk_engine.md             # Phase 6 design
+│   │   ├── adversarial_evaluation_results.md # Phase 6 metrics
+│   │   ├── knowledge_graph.md         # Phase 7A graph
+│   │   ├── rag_design.md              # Phase 7A RAG
+│   │   ├── rag_evaluation_results.md  # Phase 7A metrics
+│   │   └── ...
+│   └── research/                      # Research notes
+│       └── adversarial_test_design.md # Test case design
+│
+├── package.json                       # Workspace root config
+├── docker-compose.yml                 # PostgreSQL setup
+├── .env.example                       # Environment template
+└── README.md                          # This file
 ```
 
-## Prerequisites
+---
 
-- Node.js >= 20 and npm >= 10
-- Docker (for local PostgreSQL via `docker-compose.yml`) **or** a
-  PostgreSQL 16 instance you already have running
-- Python 3.10+ - required for `research/generator/` (dataset generation,
-  optional) and `services/ml/` (the generic-transformer NER baseline and
-  Phase 4B fine-tuning/evaluation, optional - the rest of the app runs
-  without it)
+### **Quick Start Guide**
 
-## Setup (fresh clone)
+#### **Prerequisites**
+- Node.js ≥ 20, npm ≥ 10
+- Docker (for PostgreSQL) OR existing PostgreSQL 16 instance
+- Python 3.10+ (optional, for ML pipeline)
 
-```powershell
-# 1. Install all workspace dependencies
+#### **Installation Steps**
+
+```bash
+# 1. Install dependencies
 npm install
 
-# 2. Copy the env template and fill in real secrets
-copy .env.example .env
-# Edit .env: set JWT_ACCESS_SECRET / JWT_REFRESH_SECRET to two different
-# random 64-char hex strings, e.g.:
-#   node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+# 2. Setup environment
+cp .env.example .env
+# Edit .env: Set JWT_ACCESS_SECRET and JWT_REFRESH_SECRET to random 64-char hex strings:
+# node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
 
 # 3. Start PostgreSQL
 docker compose up -d postgres
-# (or point DATABASE_URL in .env at an existing Postgres instance)
 
-# 4. Generate the Prisma client and apply migrations to a fresh database
+# 4. Setup database
 npm run db:generate
 npm run db:migrate:deploy
-
-# 5. Load synthetic dataset metadata into the database
 npm run db:seed
 
-# 6. Run the API and web app (separate terminals)
-npm run dev:api
-npm run dev:web
+# 5. Start API and web app (in separate terminals)
+npm run dev:api      # Runs on http://localhost:4000
+npm run dev:web      # Runs on http://localhost:3000
+
+# 6. Login/Register
+# Navigate to http://localhost:3000 → Register → Upload a document
 ```
 
-The API listens on `http://localhost:4000` (see `API_PORT` in `.env`);
-the web app on `http://localhost:3000`.
-
-### Optional: the generic-transformer NER baseline (Phase 4A)
-
-```powershell
+#### **Optional: Python ML Service**
+```bash
 cd services/ml
 python -m venv .venv
-.venv\Scripts\pip.exe install -r requirements.txt --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+.venv\Scripts\pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+
+# Set ML_SERVICE_PYTHON in .env to the venv's python.exe path
 ```
 
-Then set `ML_SERVICE_PYTHON` in `.env` to the venv's `python.exe` path.
-Left empty (the default), the rest of the extraction pipeline still runs
-- see `services/ml/README.md` for why this stage is opt-in.
+---
 
-## Using the extraction pipeline
+### **API Endpoints**
 
-```powershell
-# Upload a document (requires a Bearer access token from /auth/login or /auth/register)
-curl -X POST http://localhost:4000/documents `
-  -H "Authorization: Bearer <accessToken>" `
-  -F "documentType=residential_rental" `
-  -F "file=@path\to\agreement.pdf"
+**Authentication**
+- `POST /auth/register` — Create user account
+- `POST /auth/login` — Login (returns access + refresh tokens)
+- `POST /auth/refresh` — Refresh access token
+- `POST /auth/logout` — Logout (revokes refresh token)
 
-# Poll status / read results
-curl http://localhost:4000/documents/<id> -H "Authorization: Bearer <accessToken>"
-curl http://localhost:4000/documents/<id>/entities -H "Authorization: Bearer <accessToken>"
-curl http://localhost:4000/documents/<id>/clauses -H "Authorization: Bearer <accessToken>"
+**Documents**
+- `GET /documents` — List user's documents
+- `GET /documents/:id` — Get document details
+- `GET /documents/:id/summary` — Get document with processing status
+- `POST /documents` — Upload document (multipart/form-data)
+- `DELETE /documents/:id` — Delete document
 
-# Pipeline correctness sanity check against real synthetic documents
-# (NOT a formal evaluation - see docs/architecture/extraction_pipeline.md)
-npm run dev:api   # in one terminal
-node apps/api/scripts/validate-extraction-sample.mjs 10   # 10 per doc type
+**Extraction Results**
+- `GET /documents/:id/entities` — List extracted entities
+- `GET /documents/:id/clauses` — List extracted clauses
+- `GET /documents/:id/risks` — List detected risks
+
+**Intelligence**
+- `GET /documents/:id/graph` — Get knowledge graph
+- `POST /documents/:id/ask` — Ask question about document (RAG)
+
+**Admin**
+- `GET /admin/health` — Health check
+- `GET /admin/system-info` — System information
+
+---
+
+### **Frontend Components**
+
+**Document Viewer** (`DocumentViewer.tsx`)
+- Renders canonical text with:
+  - Clause highlights (subtle background + left border)
+  - Entity underlines (smart nesting, no overlap)
+- Overlap-safe segmentation via `spans.ts`
+- Smooth scroll-to on evidence navigation
+
+**Intelligence Panel** (`IntelligencePanel.tsx`)
+- Tabbed interface: Overview → Entities → Clauses → Risks → Graph → Ask
+- Click graph nodes to navigate to relevant tab + highlight
+- Each tab shows detailed information with evidence buttons
+
+**Ask Panel** (`AskPanel.tsx`)
+- Question input with example questions
+- RAG-powered answers with grounding status
+- Mandatory, non-dismissible evidence citations
+- Evaluation stats displayed (if available)
+
+**Risk Panel** (`RiskPanel.tsx`)
+- Risk cards by severity (HIGH → MEDIUM → LOW)
+- Non-definitive language ("potentially unfavorable")
+- Trust indicators and evidence expandable sections
+
+**Document Search** (`DocumentSearch.tsx`)
+- Full-text search across clauses and entities
+- Highlight matches in document viewer
+
+---
+
+### **Running Tests**
+
+```bash
+# All tests (requires running PostgreSQL)
+npm run test
+
+# Targeted tests
+npm run test -- apps/api/src/ner/rulePatterns.test.ts
+npm run test -- apps/web/src/components/workspace/
+
+# Test coverage
+npm run test -- --coverage
+
+# Python tests
+python -m pytest services/ml/tests
+
+# Linting & type checking
+npm run lint
+npm run format
+npm run typecheck
 ```
 
-## Phase 4B: fine-tuning + evaluation
+---
 
-Requires the `services/ml` venv (see above). Uploads all 300 synthetic
-documents through the live API first (idempotent - safe to re-run), then
-fine-tunes InLegalBERT per StratifiedGroupKFold fold and reports
-precision/recall/F1 (mean ± std) for `rule_based`, `generic_transformer`,
-and `fine_tuned` side by side. **CPU-only in this environment - a full
-5-fold run takes hours; see `docs/architecture/evaluation_results.md`
-for the actual configuration and timing used.**
+### **Extraction Pipeline Stages**
 
-```powershell
-npm run dev:api   # in one terminal
+1. **text_extraction**: PDF/DOCX text → DocumentPage rows
+2. **ocr**: Scanned pages → Tesseract recognition (if needed)
+3. **rule_based_ner**: Rule patterns → Entity rows (confidence 0.7-0.95)
+4. **generic_transformer_ner**: PyTorch model → Entity rows (optional)
+5. **clause_classification**: Heading patterns → DocumentClause rows
+6. **risk_engine**: Clauses/entities → Risk rows (Pass 1 + Pass 2)
 
-# One-time (idempotent): upload + process all 300 synthetic documents
-node apps/api/scripts/bulk-upload-synthetic.mjs
+Each stage is its own `ProcessingJob` row tracking status, start/end time, errors.
 
-# Full 5-fold fine-tune + evaluate (synthetic only; --data-source real
-# fails loudly until research/data/real/*/annotated/ has real data)
-services/ml/.venv/Scripts/python.exe services/ml/evaluate.py --data-source synthetic
+---
 
-# Recompute metrics from already-persisted predictions without re-training
-# (used after fixing a bug found mid-evaluation - see evaluation_results.md)
-services/ml/.venv/Scripts/python.exe services/ml/rescore.py
+### **Risk Categories Explained**
 
-# generic_transformer span-overlap addendum (label-agnostic, IoU>=0.5 -
-# see evaluation_results.md's addendum section)
-services/ml/.venv/Scripts/python.exe services/ml/score_generic_transformer_overlap.py
+| # | Category | Pass | Applies To | Example |
+|---|----------|------|-----------|---------|
+| 1 | LIABILITY_SHIFT | 1 | Residential Rental | Tenant responsible for structural repairs (normally Landlord's duty) |
+| 2 | ASYMMETRIC_OBLIGATION | 2 | Both | Notice period for eviction differs drastically (e.g., 30 days vs 5 days) |
+| 3 | UNBOUNDED_DISCRETION | 1 | Residential Rental | "Deposit deductions at landlord's discretion" without itemization |
+| 4 | LAND_USE_CONTRADICTION | 2 | Land Lease | Clause says "agricultural use" but restrictions prohibit cultivation |
+| 5 | MISSING_CLAUSE | 1 | Both | No DISPUTE_RESOLUTION clause (expected in both types) |
 
-# k-fold no-leakage + span-scoring unit tests
-services/ml/.venv/Scripts/python.exe -m pytest services/ml/tests
+---
+
+### **Key Design Principles**
+
+1. **Provenance Everything**: Every extracted fact references its source (textStart, textEnd, pageNumber, bbox)
+2. **Model Source Transparency**: All entities/clauses tagged with extraction method (RULE_BASED, GENERIC_TRANSFORMER, FINE_TUNED)
+3. **Non-Definitive Risk Language**: Risks frame findings as "potentially unfavorable" requiring review, never definitive legal judgments
+4. **Honest Refusal**: RAG refuses unanswerable questions instead of hallucinating
+5. **Evidence-First UI**: Risk findings and RAG answers always include clickable evidence with permanent indicators
+6. **Ownership-Based Access**: Every document scoped to its owner; 403/404 on unauthorized access
+7. **Deterministic Chunking**: Same input rows in any order produce same chunk list (testable)
+8. **Defensive Against Prompt Injection**: RAG system instructions isolated, input validation, refusal on injection patterns
+
+---
+
+### **Development Commands**
+
+```bash
+# Development
+npm run dev:api           # Start API (port 4000)
+npm run dev:web           # Start web app (port 3000)
+
+# Building
+npm run build             # Build all packages
+npm run typecheck         # TypeScript validation
+npm run lint              # ESLint check
+npm run format:write      # Auto-format code
+
+# Database
+npm run db:generate       # Generate Prisma client
+npm run db:migrate:dev    # Create + apply new migration
+npm run db:migrate:deploy # Apply migrations to production DB
+npm run db:seed           # Load synthetic metadata
+npm run db:studio         # Open Prisma Studio (GUI)
+
+# Testing & Evaluation
+npm run test              # Run all tests
+npm run test -- --watch   # Watch mode
+node apps/api/scripts/validate-extraction-sample.mjs 10
+node apps/api/scripts/evaluate-adversarial.mjs
+node apps/api/scripts/evaluate-rag.mjs
 ```
 
-## Phase 6: risk engine + adversarial evaluation
+---
 
-The risk engine (`apps/api/src/risk/`) runs automatically as the final
-pipeline stage on every uploaded document - `GET /documents/:id/risks`
-returns its findings. The commands below regenerate and re-score the
-dedicated 150-document adversarial + matched-control test set; see
-`docs/architecture/risk_engine.md` (Pass 1/Pass 2 architecture, severity
-rubric, evidence design, comparison-check registry) and
-`docs/architecture/adversarial_evaluation_results.md` (real detection/
-false-positive numbers, including a separate false-positive check against
-the ordinary synthetic set) for the write-up these commands reproduce.
+### **Configuration**
 
-```powershell
-# Regenerate the 150-document adversarial + matched-control set
-# (15 positive + 15 control per category x 5 categories)
-python research/generator/generate_adversarial_batch.py --per-category 15 --out research/data/adversarial
+All configuration via `.env` (see `.env.example` for full list):
 
-npm run dev:api   # in one terminal
+- **Database**: `DATABASE_URL` (PostgreSQL 16)
+- **API**: `API_PORT` (default 4000), `NODE_ENV`
+- **Auth**: `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, token TTLs, Argon2 params
+- **Storage**: `STORAGE_ROOT`, `MAX_UPLOAD_SIZE_MB`
+- **ML**: `ML_SERVICE_PYTHON` (path to Python venv, optional)
+- **Web**: `NEXT_PUBLIC_API_BASE_URL`
+- **RAG**: `LLM_PROVIDER` (extractive/anthropic), `ANTHROPIC_API_KEY`
 
-# Upload through the live pipeline and tag isAdversarial/isAdversarialControl
-cd apps/api
-npx dotenv -e ../../.env -- tsx scripts/bulk-upload-adversarial.mjs
+---
 
-# Score detection rate / control FP rate / cross-category FP / evidence
-# correctness (categories 2 and 4) from the persisted Risk rows
-npx dotenv -e ../../.env -- tsx scripts/evaluate-adversarial.mjs
+### **Known Limitations & Scope**
 
-# Separate false-positive check against the ordinary 300-document
-# synthetic set (per the Phase 6 build prompt's addendum - adversarial
-# controls alone aren't accepted as the only FP evidence)
-npx dotenv -e ../../.env -- tsx scripts/evaluate-ordinary-control-fp.mjs
-```
+✅ **Implemented:**
+- Residential rental agreements & land lease deeds
+- 300 synthetic + 150 adversarial test documents
+- Rule-based + generic-transformer + fine-tuned NER
+- 12+ clause types with semantic classification
+- 5 risk categories with 2-pass detection
+- Knowledge graph (entities + clauses + relations)
+- RAG with grounding detection and refusal logic
+- Full-stack workspace UI with evidence navigation
 
-## Phase 7A: knowledge graph + RAG
+❌ **Out of Scope (Explicitly):**
+- Commercial leases, general contracts
+- Real documents (research/data/real/ is empty)
+- Embeddings / vector search
+- Real generative answer synthesis (no LLM key configured by default)
+- Relation extraction (schema reserved but unimplemented)
+- Obligation extraction (schema reserved but unimplemented)
 
-`GET /documents/:id/graph` returns a document's knowledge graph (built at
-read time - see `docs/architecture/knowledge_graph.md`).
-`POST /documents/:id/ask` (rate-limited, `{"question": "..."}`) answers
-questions grounded strictly in the document's own clauses, with real
-provenance and honest refusal - see `docs/architecture/rag_design.md`
-(chunking, RetrievalProvider/LLMProvider interfaces, the prompt-injection
-defense) and `docs/architecture/rag_evaluation_results.md` (real
-retrieval/citation/refusal numbers, plus a separate security section).
-**No LLM API key is configured in this environment** - answers are
-generated by the verified, non-generative `ExtractiveLLMProvider`
-default; see `rag_design.md` for how to activate the implemented-but-
-unverified `AnthropicProvider` instead (`LLM_PROVIDER=anthropic` +
-`ANTHROPIC_API_KEY` in `.env`). A Phase 7A addendum added preamble-fact
-chunking (party names, address, survey number, ...) and investigated
-refusal-correctness (finding: structural, not a tunable threshold - see
-`rag_design.md`/`rag_evaluation_results.md`'s addendum sections).
+---
 
-```powershell
-npm run dev:api   # in one terminal, only needed to hit the endpoints over HTTP
-cd apps/api
+### **Documentation**
 
-# Knowledge graph correctness spot-check against real uploaded documents
-# (independently recomputes expected edge counts from the source rows)
-npx dotenv -e ../../.env -- tsx scripts/evaluate-graph.mjs 450
+Detailed architecture docs in `docs/architecture/`:
+- `database.md` — Schema design & normalization
+- `auth.md` — JWT flow, refresh token rotation, RBAC
+- `extraction_pipeline.md` — OCR, NER, clause classification
+- `evaluation_results.md` — Phase 4B metrics (precision/recall/F1)
+- `risk_engine.md` — Pass 1/Pass 2 architecture, 5 categories
+- `adversarial_evaluation_results.md` — Phase 6 metrics
+- `rag_design.md` — Chunking, retrieval, generation, security
+- `rag_evaluation_results.md` — Phase 7A metrics
+- `knowledge_graph.md` — Graph construction & traversal
+- `provenance.md` — Evidence model & traceability
 
-# RAG quality evaluation: retrieval hit rate, grounded-answer rate,
-# citation/evidence correctness, refusal correctness
-npx dotenv -e ../../.env -- tsx scripts/evaluate-rag.mjs
+---
 
-# RAG security evaluation: 5 prompt-injection cases, pass/fail (separate
-# from the quality metrics above)
-npx dotenv -e ../../.env -- tsx scripts/evaluate-rag-security.mjs
+### **Contributing**
 
-# Addendum: refusal-correctness threshold-vs-structural analysis
-# (relevance-score tabulation across the full quality test set)
-npx dotenv -e ../../.env -- tsx scripts/analyze-refusal-scores.mjs
-```
+1. **Code Style**: ESLint + Prettier (check with `npm run format`)
+2. **Type Safety**: `npm run typecheck --strict`
+3. **Tests**: Required for new features (run with `npm run test`)
+4. **Documentation**: Update `docs/architecture/` if design changes
+5. **Database**: Use Prisma migrations (`npm run db:migrate:dev`)
 
-## Phase 7B: legal-intelligence workspace
+---
 
-`npm run dev:web` (after `npm run dev:api` in another terminal) serves the
-full workspace at `http://localhost:3000`: register/sign in →
-`/documents` (case-file list, upload) → `/documents/:id` (three-zone
-workspace - document viewer, left outline/search, right intelligence
-panel with Overview/Entities/Clauses/Risks/Graph/Ask tabs).
+### **License & Attribution**
 
-`GET /documents/summary` is a new, purely-additive endpoint (composes
-`Document` + its `ProcessingJob` rows into a per-document
-`processingStatus`) the document list uses to avoid an N+1 fetch per row -
-see `apps/api/src/routes/documents.ts`. It does not change the shape or
-semantics of any existing endpoint.
+This is a college NLP project demonstrating legal document intelligence. The synthetic dataset and evaluation frameworks are for research purposes only.
 
-Design tokens (`apps/web/tailwind.config.ts`), the risk panel's
-permanent, non-definitive-language-only notices, and the Ask panel's
-mandatory, non-dismissible evidence-status indicator on every answer are
-documented in the Phase 7B section of this README's `docs/` links below
-and verified by `apps/web`'s own test suite.
+---
 
-```powershell
-npm run dev:api    # in one terminal
-npm run dev:web    # in another - http://localhost:3000
-
-# Frontend test suite (component tests: highlighting/overlap, risk
-# language integrity, mandatory evidence-status indicator, refusal state,
-# graph rendering, ownership 403/404 handling, empty/loading/error states)
-npm run test --workspace=apps/web
-```
-
-## Verifying the setup
-
-```powershell
-npm run lint          # ESLint (TypeScript)
-npm run format         # Prettier check
-npm run typecheck      # tsc --noEmit, strict mode, both apps
-ruff check .           # Python lint (research/generator/, services/ml/)
-npm run test           # Prisma schema constraint tests, seed integration test,
-                        # auth/RBAC tests, document upload/extraction/OCR tests,
-                        # rule-based NER/clause classification sanity checks,
-                        # risk engine Pass 1/Pass 2 + registry-extensibility +
-                        # reason-framing tests (Phase 6), knowledge-graph fixture
-                        # tests, chunking determinism, RetrievalProvider/LLMProvider
-                        # swappability, /graph + /ask ownership + grounding tests,
-                        # prompt-injection defense tests (Phase 7A), and the
-                        # apps/web frontend suite - highlighting/overlap, risk
-                        # language integrity, mandatory evidence-status indicator,
-                        # refusal state, graph rendering, ownership handling,
-                        # empty/loading/error states (Phase 7B)
-```
-
-`npm run test` requires a running PostgreSQL instance reachable via
-`DATABASE_URL` (the same one used for `db:migrate:deploy` above) — the
-auth, RBAC, schema-constraint, and extraction-pipeline tests exercise
-real database and file-system behavior rather than mocking it, since the
-things they're proving (a rejected enum value, a revoked token actually
-being rejected on reuse, a scanned page actually being left
-`extraction_method: null` until OCR runs) are exactly the things a mock
-would hide. The generic-transformer NER test is skipped unless
-`ML_SERVICE_PYTHON` is configured (see above) - it reloads a PyTorch
-model from disk and would otherwise slow down every test run.
-
-## Database changes
-
-See `docs/architecture/migrations.md` for how migrations are created,
-applied, and (manually, since Prisma Migrate has no native down-migration)
-rolled back.
-
-## Dataset
-
-`research/data/synthetic/dataset_card.md` documents the synthetic
-dataset's provenance and known limitations — read it before writing any
-code that consumes this data. In particular: synthetic-only results must
-never be reported as evidence of real-world performance (see
-`docs/architecture/evaluation_design.md`).
-
-`research/data/adversarial/adversarial_dataset_card.md` documents the
-Phase 6 adversarial + matched-control test set the same way — it exists
-solely to evaluate the risk engine and must never be used to train or
-fine-tune any model.
+This comprehensive README covers the entire architecture, key components, setup, API, database, phases, and design principles. It provides both high-level overview and specific implementation details for developers working with any part of the system.

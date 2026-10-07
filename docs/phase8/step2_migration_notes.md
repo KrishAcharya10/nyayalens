@@ -213,3 +213,20 @@ not an inference from the unit tests alone.
   both directions immediately.
 - Adding the first genuinely new domain (property) - the next step,
   explicitly out of scope for Step 2.
+
+## Update: deferred items resolved in Phase 8 Milestone 1
+
+The first three "Deferred to Step 3" items above are done; see
+`docs/domain_packs.md` ("Milestone 1 changes") for details and the parity
+evidence:
+- NER and clause classification are document-scoped via the pack's
+  `entitySchema` / `clauseSchema`. Both functions keep their
+  single-argument union behavior, so `ruleBasedNer.test.ts` and
+  `ruleBasedClauseClassifier.test.ts` are unchanged.
+- `GET /domain-packs` exists; the upload form and `POST /documents`
+  validation are driven by the registry.
+- The enum/registry drift check is `apps/api/tests/domainPackEnumDrift.test.ts`.
+
+Pack ids changed from the enum spelling (`RESIDENTIAL_RENTAL`) to domain
+slugs (`residential_rental`), because one domain can own several document
+types. Lookups by document type use the new `registry.forDocumentType()`.

@@ -1,12 +1,13 @@
 import { Router } from "express";
 import multer from "multer";
-import { getPrismaClient } from "@nyayalens/db";
+import { getPrismaClient, type DocumentType } from "@nyayalens/db";
 import { z } from "zod";
 import { env } from "../config/env.js";
 import { sniffMimeType } from "../extraction/sniffFileType.js";
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE } from "../extraction/extractText.js";
 import { enqueue } from "../jobs/queue.js";
 import { runExtractionPipeline } from "../jobs/pipeline.js";
+import { getDomainPackRegistry } from "../domains/index.js";
 import { loadDocumentGraph } from "../graph/loadDocumentGraph.js";
 import { requireAuth } from "../middleware/auth.js";
 import { askRateLimiter } from "../middleware/rateLimit.js";
@@ -31,8 +32,13 @@ const upload = multer({
   limits: { fileSize: env.MAX_UPLOAD_SIZE_MB * 1024 * 1024 },
 });
 
+// documentType is an upload slug (e.g. "land_lease", "sale_deed") and is
+// validated against the DomainPack registry below rather than a literal
+// list here, so registering a pack is the only step needed to accept a new
+// document type (plus its DB enum migration - see
+// docs/phase8/step2_enum_decision.md and tests/domainPackEnumDrift.test.ts).
 const uploadMetadataSchema = z.object({
-  documentType: z.enum(["residential_rental", "land_lease"]),
+  documentType: z.string().min(1).max(64),
   title: z.string().min(1).max(300).optional(),
 });
 
@@ -154,8 +160,21 @@ documentsRouter.post("/", requireAuth, upload.single("file"), async (req, res, n
       return;
     }
 
-    const documentType =
-      parsed.data.documentType === "residential_rental" ? "RESIDENTIAL_RENTAL" : "LAND_LEASE";
+    // A lookup, not a ternary: the previous mapping silently stored any
+    // unrecognized value as LAND_LEASE.
+    const resolved = getDomainPackRegistry().findDocumentTypeBySlug(parsed.data.documentType);
+    if (!resolved) {
+      const allowed = getDomainPackRegistry()
+        .list()
+        .flatMap((pack) => pack.documentTypes.map((dt) => dt.slug));
+      res.status(400).json({
+        error: `Unsupported documentType "${parsed.data.documentType}". Allowed: ${allowed.join(", ")}`,
+      });
+      return;
+    }
+    // Safe cast: the enum-drift test asserts every registered document type
+    // id is a value of the DB DocumentType enum.
+    const documentType = resolved.documentType.id as DocumentType;
     const title = parsed.data.title ?? file.originalname;
 
     const document = await prisma.document.create({

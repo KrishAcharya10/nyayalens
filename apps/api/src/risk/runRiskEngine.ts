@@ -52,7 +52,7 @@ export async function runRiskEngine(
   // parameters (those exist only so each remains independently callable
   // with a single argument, for their own unit tests). See
   // docs/phase8/step2_migration_notes.md.
-  const pack = getDomainPackRegistry().get(context.documentType);
+  const pack = getDomainPackRegistry().forDocumentType(context.documentType);
   const findings = [
     ...runPass1(context, pack.riskSchema),
     ...runPass2(context, pack.riskSchema.comparisonChecks),

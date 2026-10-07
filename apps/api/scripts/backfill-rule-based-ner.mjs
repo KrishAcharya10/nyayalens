@@ -10,6 +10,7 @@
 // not plain node): dotenv -e ../../.env -- tsx scripts/backfill-rule-based-ner.mjs
 
 import { getPrismaClient } from "@nyayalens/db";
+import { getDomainPackRegistry } from "../src/domains/index.js";
 import { runRuleBasedNer } from "../src/ner/rulePatterns.js";
 
 const prisma = getPrismaClient();
@@ -20,7 +21,7 @@ async function main() {
       canonicalText: { not: null },
       owner: { email: "phase4b-eval@nyayalens.local" },
     },
-    select: { id: true, canonicalText: true },
+    select: { id: true, canonicalText: true, documentType: true },
   });
 
   console.log(`[backfill-rule-based] ${documents.length} documents found`);
@@ -28,7 +29,11 @@ async function main() {
   let totalEntities = 0;
   for (let i = 0; i < documents.length; i++) {
     const doc = documents[i];
-    const entities = runRuleBasedNer(doc.canonicalText ?? "");
+    // Same document-scoping as the live pipeline (jobs/pipeline.ts).
+    const pack = getDomainPackRegistry().forDocumentType(doc.documentType);
+    const entities = runRuleBasedNer(doc.canonicalText ?? "", {
+      allowedLabels: new Set(pack.entitySchema.map((e) => e.label)),
+    });
 
     await prisma.entity.deleteMany({ where: { documentId: doc.id, modelSource: "RULE_BASED" } });
     if (entities.length > 0) {

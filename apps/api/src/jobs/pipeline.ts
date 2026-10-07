@@ -1,5 +1,7 @@
 import { Prisma, getPrismaClient } from "@nyayalens/db";
 import { runRuleBasedClauseClassification } from "../clauses/ruleBasedClauseClassifier.js";
+import { taxonomyFromSchema } from "../clauses/clauseTaxonomy.js";
+import { getDomainPackRegistry } from "../domains/index.js";
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE, extractCanonicalText } from "../extraction/extractText.js";
 import {
   GenericTransformerNerUnavailableError,
@@ -165,7 +167,11 @@ async function runOcrStage(documentId: string): Promise<void> {
 
 async function runRuleBasedNerStage(documentId: string): Promise<void> {
   const document = await prisma.document.findUniqueOrThrow({ where: { id: documentId } });
-  const entities = runRuleBasedNer(document.canonicalText ?? "");
+  // Document-scoped: only the labels of this document's own domain pack.
+  const pack = getDomainPackRegistry().forDocumentType(document.documentType);
+  const entities = runRuleBasedNer(document.canonicalText ?? "", {
+    allowedLabels: new Set(pack.entitySchema.map((e) => e.label)),
+  });
 
   await prisma.entity.deleteMany({ where: { documentId, modelSource: "RULE_BASED" } });
   if (entities.length === 0) return;
@@ -186,7 +192,12 @@ async function runRuleBasedNerStage(documentId: string): Promise<void> {
 
 async function runClauseClassificationStage(documentId: string): Promise<void> {
   const document = await prisma.document.findUniqueOrThrow({ where: { id: documentId } });
-  const clauses = runRuleBasedClauseClassification(document.canonicalText ?? "");
+  // Document-scoped: headings are matched against this domain's clauseSchema only.
+  const pack = getDomainPackRegistry().forDocumentType(document.documentType);
+  const clauses = runRuleBasedClauseClassification(
+    document.canonicalText ?? "",
+    taxonomyFromSchema(pack.clauseSchema),
+  );
 
   await prisma.documentClause.deleteMany({ where: { documentId, modelSource: "RULE_BASED" } });
   if (clauses.length === 0) return;

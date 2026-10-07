@@ -13,6 +13,8 @@
 // like "ANNUAL LEASE RENT" must not be caught by a premium-adjacent
 // pattern, and "LEASE PREMIUM" must not fall through to a generic
 // lease-something bucket).
+import type { ClauseTypeDescriptor } from "../domains/registry.js";
+
 export interface ClauseTaxonomyEntry {
   clauseType: string;
   headingPattern: RegExp;
@@ -33,7 +35,22 @@ export const CLAUSE_TAXONOMY: ClauseTaxonomyEntry[] = [
   { clauseType: "JURISDICTION", headingPattern: /JURISDICTION/i },
 ];
 
-export function classifyHeading(heading: string): string | null {
-  const entry = CLAUSE_TAXONOMY.find((e) => e.headingPattern.test(heading));
+// Document-scoped classification (Phase 8): a DomainPack's clauseSchema,
+// ordered by its explicit priority (lowest first) instead of array
+// position. CLAUSE_TAXONOMY above stays the default - the union of the
+// original two domains - for callers that pass no taxonomy.
+export function taxonomyFromSchema(
+  clauseSchema: readonly ClauseTypeDescriptor[],
+): ClauseTaxonomyEntry[] {
+  return [...clauseSchema]
+    .sort((a, b) => a.priority - b.priority)
+    .map(({ clauseType, headingPattern }) => ({ clauseType, headingPattern }));
+}
+
+export function classifyHeading(
+  heading: string,
+  taxonomy: readonly ClauseTaxonomyEntry[] = CLAUSE_TAXONOMY,
+): string | null {
+  const entry = taxonomy.find((e) => e.headingPattern.test(heading));
   return entry?.clauseType ?? null;
 }

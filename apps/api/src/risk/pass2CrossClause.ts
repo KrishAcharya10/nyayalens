@@ -36,8 +36,8 @@ export const COMPARISON_CHECKS: ComparisonCheck[] = getDomainPackRegistry()
 
 export function runPass2(
   context: RiskEngineContext,
-  checks: ComparisonCheck[] = getDomainPackRegistry().get(context.documentType).riskSchema
-    .comparisonChecks,
+  checks: ComparisonCheck[] = getDomainPackRegistry().forDocumentType(context.documentType)
+    .riskSchema.comparisonChecks,
 ): RiskFinding[] {
   return checks.flatMap((check) => check.run(context));
 }

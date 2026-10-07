@@ -1,29 +1,41 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
-import { uploadDocument } from "@/lib/api";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { listDomainPacks, uploadDocument } from "@/lib/api";
+import type { DomainPackSummary } from "@/lib/apiTypes";
 import { Button } from "@/components/ui/Button";
 
-// The set of document types this deployment accepts, mirroring
-// apps/api/src/routes/documents.ts's uploadMetadataSchema (still that
-// file's own literal two-value z.enum today - not yet sourced from the
-// DomainPack registry over the network; see
-// docs/phase8/step2_migration_notes.md for why that wiring was deferred).
-// Rendering from this list instead of two hand-written <option> elements
-// is what's actually rewired in this step: adding a value here is a
-// one-line, purely-additive change to this component instead of touching
-// both the type annotation above and the JSX below.
-const DOCUMENT_TYPE_OPTIONS: { value: string; label: string }[] = [
-  { value: "residential_rental", label: "Residential Rental" },
-  { value: "land_lease", label: "Land Lease" },
-];
-
+// Document types come from GET /domain-packs (the API's DomainPack
+// registry), so registering a pack server-side is all it takes for a new
+// document type to appear here - this component holds no list of its own.
+// Grouped by domain because one domain can own several document types
+// (e.g. agreement to sell + sale deed).
 export function UploadDocumentForm({ onUploaded }: { onUploaded: () => void }) {
   const [open, setOpen] = useState(false);
-  const [documentType, setDocumentType] = useState<string>(DOCUMENT_TYPE_OPTIONS[0]!.value);
+  const [packs, setPacks] = useState<DomainPackSummary[] | null>(null);
+  const [documentType, setDocumentType] = useState<string>("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!open || packs) return;
+    let cancelled = false;
+    listDomainPacks()
+      .then((loaded) => {
+        if (cancelled) return;
+        setPacks(loaded);
+        setDocumentType((current) => current || (loaded[0]?.documentTypes[0]?.slug ?? ""));
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Could not load document types");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [open, packs]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -64,12 +76,18 @@ export function UploadDocumentForm({ onUploaded }: { onUploaded: () => void }) {
         <select
           value={documentType}
           onChange={(e) => setDocumentType(e.target.value)}
+          disabled={!packs}
           className="rounded border border-ink-200 bg-paper-50 px-2 py-1.5 text-sm text-ink-800"
         >
-          {DOCUMENT_TYPE_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
+          {!packs && <option value="">Loading…</option>}
+          {packs?.map((pack) => (
+            <optgroup key={pack.id} label={pack.name}>
+              {pack.documentTypes.map((dt) => (
+                <option key={dt.slug} value={dt.slug}>
+                  {dt.label}
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
       </label>
@@ -83,7 +101,7 @@ export function UploadDocumentForm({ onUploaded }: { onUploaded: () => void }) {
           className="text-sm text-ink-700 file:mr-2 file:rounded file:border-0 file:bg-ink-100 file:px-2 file:py-1 file:text-xs"
         />
       </label>
-      <Button type="submit" variant="primary" disabled={submitting}>
+      <Button type="submit" variant="primary" disabled={submitting || !documentType}>
         {submitting ? "Uploading..." : "Upload"}
       </Button>
       <Button type="button" variant="ghost" onClick={() => setOpen(false)} disabled={submitting}>

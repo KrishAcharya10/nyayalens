@@ -202,10 +202,23 @@ function dropOverlaps(entities: ExtractedEntityCandidate[]): ExtractedEntityCand
   return kept;
 }
 
-export function runRuleBasedNer(canonicalText: string): ExtractedEntityCandidate[] {
+export interface RuleBasedNerOptions {
+  // Document-scoped extraction (Phase 8): only these labels may be
+  // produced - the pipeline passes the document's DomainPack entitySchema
+  // labels. Filtering happens BEFORE overlap resolution, so a label from
+  // another domain can never claim a span away from an allowed one.
+  // Omitted = every pattern (the pre-Phase-8 union behavior).
+  allowedLabels?: ReadonlySet<string>;
+}
+
+export function runRuleBasedNer(
+  canonicalText: string,
+  options: RuleBasedNerOptions = {},
+): ExtractedEntityCandidate[] {
+  const { allowedLabels } = options;
   const entities = [
     ...extractStandaloneEntities(canonicalText),
     ...extractAmountEntities(canonicalText),
-  ];
+  ].filter((e) => !allowedLabels || allowedLabels.has(e.label));
   return dropOverlaps(entities);
 }

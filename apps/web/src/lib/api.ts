@@ -4,6 +4,7 @@ import type {
   DocumentDetail,
   DocumentGraph,
   DocumentSummary,
+  DomainPackSummary,
   Entity,
   Risk,
 } from "./apiTypes";
@@ -133,6 +134,12 @@ export async function askDocument(id: string, question: string): Promise<AskResu
 // schema validates (apps/api/src/routes/documents.ts's uploadMetadataSchema)
 // - a plain string, sourced from UploadDocumentForm's DOCUMENT_TYPE_OPTIONS,
 // not a hardcoded two-value union (see docs/phase8/step2_migration_notes.md).
+export async function listDomainPacks(): Promise<DomainPackSummary[]> {
+  const res = await authedFetch("/domain-packs");
+  const body = await handleResponse<{ domainPacks: DomainPackSummary[] }>(res);
+  return body.domainPacks;
+}
+
 export async function uploadDocument(file: File, documentType: string): Promise<{ id: string }> {
   const form = new FormData();
   form.append("documentType", documentType);

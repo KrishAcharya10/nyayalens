@@ -29,7 +29,7 @@ export function runPass1(
   riskSchema: RiskRuleDescriptor<
     RiskEngineContext,
     RiskFinding
-  > = getDomainPackRegistry().get(context.documentType).riskSchema,
+  > = getDomainPackRegistry().forDocumentType(context.documentType).riskSchema,
 ): RiskFinding[] {
   return riskSchema.perClauseChecks.flatMap((check) => check.run(context));
 }

@@ -15,6 +15,7 @@ import type { DomainPack } from "./registry.js";
 import { asymmetricObligationCheck } from "../risk/sharedChecks.js";
 import { makeMissingClauseCheck } from "../risk/missingClauseCheck.js";
 import { clauseToEvidence } from "../risk/types.js";
+import { REGISTRATION_ACT_S17, TPA_S105_LEASE, TPA_S107_LEASE_FORM } from "./legalReferences.js";
 import type { ClauseInput, RiskCheck, RiskEngineContext, RiskFinding } from "../risk/types.js";
 
 // --- Category 1: silent liability shift ------------------------------------
@@ -112,40 +113,50 @@ const MISSING_CLAUSE_SEVERITY: Record<string, "LOW" | "MEDIUM" | "HIGH"> = {
 };
 
 export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> = {
-  id: "RESIDENTIAL_RENTAL",
+  id: "residential_rental",
   name: "Residential Rental Agreement",
-  version: "2026.09.0",
+  description:
+    "Residential rent / tenancy agreements between a landlord and a tenant for a dwelling.",
+  version: "2026.10.0",
 
   jurisdiction: {
     country: "IN",
-    referenceVersion: "2026-09",
-    // No state/legalFrameworkId: nothing in the pre-migration risk rules
-    // made a state-specific distinction, so this pack doesn't invent one.
+    referenceVersion: "2026-10",
+    // No state: nothing in this pack's risk rules makes a state-specific
+    // distinction, so it doesn't invent one.
   },
 
-  documentTypes: [{ id: "RESIDENTIAL_RENTAL", label: "Residential Rental" }],
+  documentTypes: [
+    { id: "RESIDENTIAL_RENTAL", slug: "residential_rental", label: "Residential Rental" },
+  ],
 
   // Attribution verified against research/generator/generator.py's
   // build_residential_rental() (LANDLORD/TENANT/SECURITY_DEPOSIT only
   // ever emitted there) - RENT/DURATION/NOTICE_PERIOD/ADDRESS are shared
-  // with land_lease (also emitted by build_land_lease()/adversarial
-  // generator's shared preamble/notice-period helpers) and appear in both
-  // packs' entitySchema identically.
+  // with land_lease. The labels after ADDRESS are the v2 generator's
+  // (research/generator/generator_v2.py) additions for this domain.
+  // ADDRESS is the place of execution ("executed at <city>") in both
+  // generators, not the property - that is PROPERTY_ADDRESS.
   entitySchema: [
-    { label: "LANDLORD", displayName: "Landlord" },
-    { label: "TENANT", displayName: "Tenant" },
-    { label: "RENT", displayName: "Rent" },
-    { label: "SECURITY_DEPOSIT", displayName: "Security deposit" },
-    { label: "DURATION", displayName: "Duration" },
-    { label: "NOTICE_PERIOD", displayName: "Notice period" },
-    { label: "ADDRESS", displayName: "Property address" },
+    { label: "LANDLORD", displayName: "Landlord", coreType: "PARTY" },
+    { label: "TENANT", displayName: "Tenant", coreType: "PARTY" },
+    { label: "RENT", displayName: "Rent", coreType: "MONEY" },
+    { label: "SECURITY_DEPOSIT", displayName: "Security deposit", coreType: "MONEY" },
+    { label: "DURATION", displayName: "Duration", coreType: "DURATION" },
+    { label: "NOTICE_PERIOD", displayName: "Notice period", coreType: "DURATION" },
+    { label: "ADDRESS", displayName: "Place of execution", coreType: "LOCATION" },
+    { label: "PROPERTY_ADDRESS", displayName: "Property address", coreType: "ADDRESS" },
+    { label: "EXECUTION_DATE", displayName: "Execution date", coreType: "DATE" },
+    { label: "COMMENCEMENT_DATE", displayName: "Commencement date", coreType: "DATE" },
+    { label: "EXPIRY_DATE", displayName: "Expiry date", coreType: "DATE" },
+    { label: "ESCALATION_RATE", displayName: "Rent escalation", coreType: "PERCENT" },
+    { label: "LOCK_IN_PERIOD", displayName: "Lock-in period", coreType: "DURATION" },
+    { label: "WITNESS", displayName: "Witness", coreType: "PERSON" },
   ],
 
   // Priorities mirror the pre-migration CLAUSE_TAXONOMY array's position
-  // (position * 10) so relative match order among shared clause types is
-  // unchanged - see docs/phase8/step2_migration_notes.md for why this is
-  // descriptive data only in this step (clauseTaxonomy.ts itself is not
-  // yet wired to consume it).
+  // (position * 10). Consumed by the clause classifier: a rental
+  // document's headings are matched against exactly this list.
   clauseSchema: [
     { clauseType: "LEASE_DURATION", headingPattern: /DURATION/i, priority: 20 },
     { clauseType: "SECURITY_DEPOSIT", headingPattern: /DEPOSIT/i, priority: 30 },
@@ -157,7 +168,58 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     { clauseType: "JURISDICTION", headingPattern: /JURISDICTION/i, priority: 120 },
   ],
 
-  relationSchema: [], // unpopulated for both live domains - see Step 1 audit §4.6
+  // Subject "DOCUMENT" means the agreement itself.
+  relationSchema: [
+    { relationType: "LETS_TO", subjectEntityLabel: "LANDLORD", objectEntityLabel: "TENANT" },
+    { relationType: "MUST_PAY", subjectEntityLabel: "TENANT", objectEntityLabel: "RENT" },
+    {
+      relationType: "MUST_PAY",
+      subjectEntityLabel: "TENANT",
+      objectEntityLabel: "SECURITY_DEPOSIT",
+    },
+    { relationType: "HAS_TERM", subjectEntityLabel: "DOCUMENT", objectEntityLabel: "DURATION" },
+    {
+      relationType: "HAS_NOTICE_PERIOD",
+      subjectEntityLabel: "DOCUMENT",
+      objectEntityLabel: "NOTICE_PERIOD",
+    },
+    {
+      relationType: "HAS_LOCK_IN",
+      subjectEntityLabel: "DOCUMENT",
+      objectEntityLabel: "LOCK_IN_PERIOD",
+    },
+    {
+      relationType: "STARTS_ON",
+      subjectEntityLabel: "DOCUMENT",
+      objectEntityLabel: "COMMENCEMENT_DATE",
+    },
+    { relationType: "ENDS_ON", subjectEntityLabel: "DOCUMENT", objectEntityLabel: "EXPIRY_DATE" },
+    {
+      relationType: "LOCATED_AT",
+      subjectEntityLabel: "DOCUMENT",
+      objectEntityLabel: "PROPERTY_ADDRESS",
+    },
+  ],
+
+  obligationSchema: [
+    { action: "PAY", actorLabels: ["TENANT"], description: "Pay rent / deposit / charges." },
+    {
+      action: "REFUND_DEPOSIT",
+      actorLabels: ["LANDLORD"],
+      description: "Return the security deposit.",
+    },
+    {
+      action: "MAINTAIN",
+      actorLabels: ["TENANT", "LANDLORD"],
+      description: "Carry out repairs or upkeep.",
+    },
+    {
+      action: "SERVE_NOTICE",
+      actorLabels: ["TENANT", "LANDLORD"],
+      description: "Give notice before terminating.",
+    },
+    { action: "VACATE", actorLabels: ["TENANT"], description: "Hand back vacant possession." },
+  ],
 
   riskSchema: {
     expectedClauseTypes: EXPECTED_CLAUSE_TYPES,
@@ -173,9 +235,27 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     comparisonChecks: [asymmetricObligationCheck],
   },
 
-  legalFrameworks: [],
-  // Deliberately empty: the pre-migration risk rules don't cite a specific
-  // statute per rule, so this pack doesn't invent one - see
-  // docs/phase8/domainpack_design.md §5's worked example, which made the
-  // same call for the same reason.
+  // Filled in by the consistency-engine milestone (docs/domain_packs.md).
+  consistencyRules: [],
+
+  detection: {
+    titlePatterns: [
+      /\bRENT(?:AL)?\s+AGREEMENT\b/i,
+      /\bAGREEMENT\s+OF\s+TENANCY\b/i,
+      /\bTENANCY\s+AGREEMENT\b/i,
+    ],
+    lexicalPatterns: [
+      /\blandlord\b/i,
+      /\btenant\b/i,
+      /\bmonthly\s+rent\b/i,
+      /\btenancy\b/i,
+      /\bresidential\b/i,
+    ],
+  },
+
+  // Reference metadata only (see legalReferences.ts): the risk rules above
+  // still cite no statute, and no reference is ever turned into a finding.
+  legalFrameworks: [TPA_S105_LEASE, TPA_S107_LEASE_FORM, REGISTRATION_ACT_S17],
+
+  generatorConfig: { module: "research/generator/generator_v2.py#build_residential_rental" },
 };

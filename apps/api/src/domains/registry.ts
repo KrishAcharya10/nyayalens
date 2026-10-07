@@ -1,26 +1,33 @@
-// DomainPack registry — Phase 8, Step 1 scaffold ONLY.
+// DomainPack contract + registry (Phase 8).
 //
-// Not wired into any existing pipeline stage, route, or component. This
-// module exists so the registry mechanics (register/get/list/duplicate-id/
-// missing-pack) can be designed and tested in isolation before any
-// migration of the rental/land-lease code paths happens (that is Step 2 -
-// see docs/phase8/domainpack_design.md for the full design and worked
-// example, and docs/phase8/step1_audit.md for the coupling this is meant
-// to eventually replace).
+// A DomainPack is everything that differs between legal-document domains
+// (rental, land lease, sale, employment, ...) expressed as DATA plus a few
+// pluggable check functions, so the core pipeline stages stay
+// domain-independent: NER, clause classification, the risk engine, domain
+// detection and (later) relation/obligation extraction all ask the
+// registry for "the pack for this document" instead of branching on a
+// document type. See docs/domain_packs.md for the full contract and
+// docs/phase8/ for the audit and migration history.
 //
-// The shapes below intentionally mirror what the audited pipeline stages
-// already consume (DocumentClause.clauseType / Entity.label are free-text
-// columns today, ComparisonCheck already has a {name, run(context)} shape
-// in pass2CrossClause.ts, etc.) so a future migration is substitution, not
-// a redesign - see the design doc's section 4 for the stage-by-stage
-// mapping this interface is meant to support.
+// Two identifiers, deliberately distinct:
+//   - pack.id: the DOMAIN slug ("residential_rental", "sale_property").
+//   - pack.documentTypes[].id: the DB DocumentType enum value(s) the pack
+//     owns ("RESIDENTIAL_RENTAL"; a sale pack owns both AGREEMENT_TO_SELL
+//     and SALE_DEED). Documents store a document type, so pipeline code
+//     resolves packs with registry.forDocumentType(), never registry.get().
+//
+// Generic over the risk-engine context/finding types so this module never
+// imports from risk/ - only concrete pack files instantiate
+// DomainPack<RiskEngineContext, RiskFinding>. That keeps the registry
+// reusable and avoids the risk/ <-> domains/ import cycle documented in
+// docs/phase8/step2_migration_notes.md.
 
 export type RiskSeverity = "LOW" | "MEDIUM" | "HIGH";
 
 export interface JurisdictionScope {
   /** ISO 3166-1 alpha-2, e.g. "IN". */
   country: string;
-  /** ISO 3166-2 subdivision code, e.g. "IN-KA". Absent = nationwide. */
+  /** ISO 3166-2 subdivision code, e.g. "IN-MH". Absent = nationwide. */
   state?: string;
   /** Free text; no ISO list exists at this granularity. */
   district?: string;
@@ -30,31 +37,83 @@ export interface JurisdictionScope {
   referenceVersion: string;
 }
 
+// --- Legal reference layer --------------------------------------------------
+// Kept strictly separate from document evidence and model inference (see
+// docs/legal_reference_policy.md). Reference metadata is never generated
+// by a model and never presented as applicable to a specific document
+// without a human/authoritative check - `verification` says how far it
+// has been checked, and no section number is recorded unless it is known.
+
+export type LegalReferenceVerification =
+  /** Checked against the official text (e.g. India Code) by a person. */
+  | "VERIFIED_OFFICIAL_TEXT"
+  /** Real instrument/section from the maintainers' knowledge, not yet checked against official text. */
+  | "UNVERIFIED";
+
 export interface LegalFrameworkRef {
   id: string;
+  /** Short display title, e.g. "Transfer of Property Act, 1882 - s.105". */
   title: string;
   jurisdiction: JurisdictionScope;
-  /** Non-authoritative summary only - never a citation payload the RAG generates from. */
+  /** Enacting authority, e.g. "Parliament of India", "Maharashtra Legislature". */
+  authority?: string;
+  /** The instrument's name, e.g. "Transfer of Property Act, 1882". */
+  instrument?: string;
+  /** Section/article; omitted rather than guessed when not known. */
+  section?: string;
+  /** ISO date (YYYY-MM-DD) the provision took effect, when known. */
+  effectiveFrom?: string;
+  /** ISO date it ceased to apply; absent = in force as far as recorded. */
+  effectiveTo?: string;
+  /** Non-authoritative one-line description - never a citation payload the RAG generates from. */
   note?: string;
+  /** Official source URL, only when known - never constructed by pattern. */
+  sourceUrl?: string;
+  verification?: LegalReferenceVerification;
 }
 
 export interface DocumentTypeDescriptor {
-  /** Matches the DB DocumentType enum value where one exists. */
+  /** The DB DocumentType enum value (uppercase), e.g. "SALE_DEED". */
   id: string;
+  /** Wire/upload value (the enum's @map), e.g. "sale_deed". */
+  slug: string;
   label: string;
 }
 
+// --- Entity ontology: three layers -------------------------------------------
+// 1. coreType - WHAT a span is, shared by every domain (a person, an amount).
+// 2. label    - the ROLE it plays in this domain (LESSOR, SALE_CONSIDERATION).
+//    This is the value stored in Entity.label.
+// 3. relations (RelationTypeDescriptor) - how roles connect.
+
+export const CORE_ENTITY_TYPES = [
+  "PARTY", // a person or organisation acting as a party
+  "PERSON",
+  "ORGANIZATION",
+  "MONEY",
+  "PERCENT",
+  "DATE",
+  "DURATION",
+  "ADDRESS",
+  "LOCATION",
+  "PROPERTY_IDENTIFIER", // survey / CTS / khata / plot / flat numbers
+  "AREA",
+  "TEXT", // a free-text span (a permitted use, a job title, a definition)
+] as const;
+export type CoreEntityType = (typeof CORE_ENTITY_TYPES)[number];
+
 export interface EntityTypeDescriptor {
-  /** Matches Entity.label (free text). */
+  /** Matches Entity.label (free text) - the domain role. */
   label: string;
   displayName: string;
+  coreType: CoreEntityType;
 }
 
 export interface ClauseTypeDescriptor {
   /** Matches DocumentClause.clauseType (free text). */
   clauseType: string;
   headingPattern: RegExp;
-  /** Explicit ordering instead of array-position, since heading-match order is load-bearing. */
+  /** Explicit ordering instead of array-position, since heading-match order is load-bearing. Lower runs first. */
   priority: number;
 }
 
@@ -62,19 +121,36 @@ export interface RelationTypeDescriptor {
   relationType: string;
   subjectEntityLabel: string;
   objectEntityLabel: string;
+  description?: string;
 }
 
-// Mirrors pass2CrossClause.ts's existing ComparisonCheck shape exactly -
-// a pack supplies checks in the same format the risk engine already knows
-// how to run, rather than a new rule-authoring format. Generic over the
-// real risk-engine context/finding types (RiskEngineContext/RiskFinding
-// from ../risk/types.js) so this module itself never has to import
-// anything from risk/ - only the concrete pack files (rentalPack.ts,
-// landLeasePack.ts) instantiate DomainPack<RiskEngineContext, RiskFinding>.
-// This keeps the registry a generic, reusable mechanism (per Step 1's
-// design) and avoids a risk/ <-> domains/ import cycle - see
-// docs/phase8/step2_migration_notes.md for why that cycle is a real risk
-// here, not a hypothetical one.
+/** An obligation kind: ACTOR must ACTION (object/amount/deadline/...). */
+export interface ObligationTypeDescriptor {
+  /** e.g. "PAY", "DELIVER_POSSESSION", "SERVE_NOTICE". */
+  action: string;
+  /** Entity labels (roles) that can bear this obligation. */
+  actorLabels: string[];
+  description: string;
+}
+
+/** A cross-fact consistency rule this domain expects to be checked (implemented by the consistency engine). */
+export interface ConsistencyRuleDescriptor {
+  id: string;
+  description: string;
+}
+
+// --- Domain detection signals -------------------------------------------------
+// Deterministic, inspectable evidence for "which domain is this document"
+// - no fabricated probabilities. Detection reports which signals matched.
+
+export interface DetectionSignals {
+  /** Matched against the document's title / first heading. */
+  titlePatterns: RegExp[];
+  /** Phrases characteristic of the domain anywhere in the text. */
+  lexicalPatterns: RegExp[];
+}
+
+// Mirrors the risk engine's existing {name, run(context)} check shape.
 export interface RiskCheckDescriptor<TContext = unknown, TFinding = unknown> {
   name: string;
   run(context: TContext): TFinding[];
@@ -88,9 +164,10 @@ export interface RiskRuleDescriptor<TContext = unknown, TFinding = unknown> {
 }
 
 export interface DomainPack<TContext = unknown, TFinding = unknown> {
-  /** Stable slug, e.g. "residential_rental". */
+  /** Domain slug, e.g. "residential_rental". */
   id: string;
   name: string;
+  description: string;
   /** Pack content version, independent of the app's own version. */
   version: string;
 
@@ -100,14 +177,17 @@ export interface DomainPack<TContext = unknown, TFinding = unknown> {
   entitySchema: EntityTypeDescriptor[];
   clauseSchema: ClauseTypeDescriptor[];
   relationSchema: RelationTypeDescriptor[];
+  obligationSchema: ObligationTypeDescriptor[];
   riskSchema: RiskRuleDescriptor<TContext, TFinding>;
+  consistencyRules: ConsistencyRuleDescriptor[];
+  detection: DetectionSignals;
 
   legalFrameworks: LegalFrameworkRef[];
 
-  /** Opaque to this runtime - documents a pointer to Python-side generator config, not interpreted here. */
-  generatorConfig?: unknown;
-  /** Opaque to this runtime - documents a pointer to evaluation config, not interpreted here. */
-  evaluationConfig?: unknown;
+  /** Pointer to the Python-side generator for this domain, e.g. "research/generator/domains/sale_property.py". */
+  generatorConfig?: { module: string };
+  /** Which labels/relations evaluation scores for this domain. */
+  evaluationConfig?: { entityLabels: string[]; relationTypes: string[] };
 }
 
 export class DuplicatePackError extends Error {
@@ -124,32 +204,51 @@ export class PackNotFoundError extends Error {
   }
 }
 
+export class DuplicateDocumentTypeError extends Error {
+  constructor(documentType: string, existingPackId: string) {
+    super(`Document type "${documentType}" is already owned by domain pack "${existingPackId}".`);
+    this.name = "DuplicateDocumentTypeError";
+  }
+}
+
 export interface DomainPackRegistry<TContext = unknown, TFinding = unknown> {
   register(pack: DomainPack<TContext, TFinding>): void;
   get(id: string): DomainPack<TContext, TFinding>;
   tryGet(id: string): DomainPack<TContext, TFinding> | undefined;
+  /** The pack owning a DB DocumentType value; throws PackNotFoundError if none. */
+  forDocumentType(documentType: string): DomainPack<TContext, TFinding>;
+  /** The document type whose upload slug is `slug` (e.g. "sale_deed"), across all packs. */
+  findDocumentTypeBySlug(
+    slug: string,
+  ): { pack: DomainPack<TContext, TFinding>; documentType: DocumentTypeDescriptor } | undefined;
   list(): readonly DomainPack<TContext, TFinding>[];
 }
 
 // Factory, not a module-level singleton - keeps tests isolated from each
-// other and from whatever startup registration a future Step 2 adds,
-// matching this codebase's existing preference for dependency-injected
-// pure logic (e.g. pass2CrossClause.ts's runPass2(context, checks = ...)).
+// other and from the app's startup registration (domains/index.ts).
 export function createRegistry<TContext = unknown, TFinding = unknown>(): DomainPackRegistry<
   TContext,
   TFinding
 > {
   const packs = new Map<string, DomainPack<TContext, TFinding>>();
+  const byDocumentType = new Map<string, DomainPack<TContext, TFinding>>();
 
   return {
-    register(pack: DomainPack<TContext, TFinding>): void {
+    register(pack) {
       if (packs.has(pack.id)) {
         throw new DuplicatePackError(pack.id);
       }
+      // Each document type must resolve to exactly one pack, or
+      // forDocumentType() would be ambiguous.
+      for (const dt of pack.documentTypes) {
+        const owner = byDocumentType.get(dt.id);
+        if (owner) throw new DuplicateDocumentTypeError(dt.id, owner.id);
+      }
       packs.set(pack.id, pack);
+      for (const dt of pack.documentTypes) byDocumentType.set(dt.id, pack);
     },
 
-    get(id: string): DomainPack<TContext, TFinding> {
+    get(id) {
       const pack = packs.get(id);
       if (!pack) {
         throw new PackNotFoundError(id);
@@ -157,11 +256,27 @@ export function createRegistry<TContext = unknown, TFinding = unknown>(): Domain
       return pack;
     },
 
-    tryGet(id: string): DomainPack<TContext, TFinding> | undefined {
+    tryGet(id) {
       return packs.get(id);
     },
 
-    list(): readonly DomainPack<TContext, TFinding>[] {
+    forDocumentType(documentType) {
+      const pack = byDocumentType.get(documentType);
+      if (!pack) {
+        throw new PackNotFoundError(`(document type ${documentType})`);
+      }
+      return pack;
+    },
+
+    findDocumentTypeBySlug(slug) {
+      for (const pack of packs.values()) {
+        const documentType = pack.documentTypes.find((dt) => dt.slug === slug);
+        if (documentType) return { pack, documentType };
+      }
+      return undefined;
+    },
+
+    list() {
       return [...packs.values()];
     },
   };

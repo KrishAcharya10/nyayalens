@@ -190,3 +190,31 @@ export interface AskResult {
 export interface ApiErrorBody {
   error?: unknown;
 }
+
+// GET /domain-packs (Phase 8) - serializable view of the API's DomainPack
+// registry. Upload slugs, display names and ontology come from here rather
+// than being hardcoded in the web app.
+export interface DomainPackDocumentType {
+  /** DB DocumentType enum value, e.g. "LAND_LEASE". */
+  id: string;
+  /** Upload value, e.g. "land_lease". */
+  slug: string;
+  label: string;
+}
+
+export interface DomainPackEntityType {
+  label: string;
+  displayName: string;
+  coreType: string;
+}
+
+export interface DomainPackSummary {
+  id: string;
+  name: string;
+  description: string;
+  version: string;
+  documentTypes: DomainPackDocumentType[];
+  entityTypes: DomainPackEntityType[];
+  clauseTypes: string[];
+  expectedClauseTypes: string[];
+}

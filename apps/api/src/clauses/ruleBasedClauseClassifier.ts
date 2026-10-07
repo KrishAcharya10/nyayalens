@@ -1,4 +1,4 @@
-import { classifyHeading } from "./clauseTaxonomy.js";
+import { CLAUSE_TAXONOMY, classifyHeading, type ClauseTaxonomyEntry } from "./clauseTaxonomy.js";
 import { segmentClauses } from "./clauseSegmenter.js";
 
 export interface ClassifiedClause {
@@ -13,12 +13,18 @@ export interface ClassifiedClause {
 
 const MODEL_NAME = "nyayalens-rule-based-clause-v1";
 
-export function runRuleBasedClauseClassification(canonicalText: string): ClassifiedClause[] {
+// `taxonomy` scopes classification to one domain (the pipeline passes
+// taxonomyFromSchema(pack.clauseSchema)); the default is the original
+// two-domain union, so single-argument callers behave as before.
+export function runRuleBasedClauseClassification(
+  canonicalText: string,
+  taxonomy: readonly ClauseTaxonomyEntry[] = CLAUSE_TAXONOMY,
+): ClassifiedClause[] {
   const segments = segmentClauses(canonicalText);
   const classified: ClassifiedClause[] = [];
 
   for (const segment of segments) {
-    const clauseType = classifyHeading(segment.heading);
+    const clauseType = classifyHeading(segment.heading, taxonomy);
     // A heading that doesn't match any known taxonomy entry is real
     // information (a clause type this baseline doesn't recognize yet),
     // not something to guess at - skip rather than fabricate a label.

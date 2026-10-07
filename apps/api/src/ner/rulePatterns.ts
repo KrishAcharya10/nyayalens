@@ -40,7 +40,12 @@ const STANDALONE_PATTERNS: StandalonePattern[] = [
   },
   {
     label: "LAND_AREA",
-    regex: /\b\d+(?:\.\d+)?\s+(?:acres?|guntha|hectares?|sq\.\s?ft\.?)\b/dg,
+    // The trailing \b must not apply to "sq. ft.": a word boundary after
+    // the final "." never exists (both sides are non-word characters), so
+    // the regex backtracked to "sq. ft" and missed every ground-truth
+    // "sq. ft." span (0/38 on the synthetic set - ~half of LAND_AREA's
+    // reported 0.507 F1 in evaluation_results.md).
+    regex: /\b\d+(?:\.\d+)?\s+(?:(?:acres?|guntha|hectares?)\b|sq\.\s?ft\.?)/dg,
     confidence: 0.9,
   },
   {

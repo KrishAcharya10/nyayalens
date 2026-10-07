@@ -5,11 +5,16 @@ no-leakage test all agree on what a "document" and its "entities" are.
 """
 
 import json
+import os
 import pathlib
 from dataclasses import dataclass
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
-SYNTHETIC_DIR = REPO_ROOT / "research" / "data" / "synthetic"
+# NYAYALENS_SYNTHETIC_DIR selects another dataset with the same layout,
+# e.g. research/data/synthetic_v2 (see research/generator/generate_batch_v2.py).
+SYNTHETIC_DIR = pathlib.Path(
+    os.environ.get("NYAYALENS_SYNTHETIC_DIR", REPO_ROOT / "research" / "data" / "synthetic")
+)
 
 # Documents uploaded through the real /documents API always get
 # is_synthetic=false (correctly - the API has no way to know a file

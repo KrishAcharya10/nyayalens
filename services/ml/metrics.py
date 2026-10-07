@@ -35,7 +35,11 @@ from collections import Counter
 
 
 def _normalize(text: str) -> str:
-    return re.sub(r"^[₹]\s*", "", text).strip()
+    # The v2 dataset (research/generator/generator_v2.py) also writes
+    # amounts as "Rs. 8,90,000" / "INR 8,90,000", so any of those currency
+    # markers is stripped, not just the rupee sign. Identical to the
+    # original behavior on v1 data, which only ever uses "₹".
+    return re.sub(r"^(?:₹|Rs\.?|INR)\s*", "", text).strip()
 
 
 def compute_prf(predicted: list[tuple[str, str]], ground_truth: list[tuple[str, str]]) -> dict[str, dict]:

@@ -46,3 +46,15 @@ deliberate scope cut for this phase.
 
 Covered by the repo-root `pyproject.toml` Ruff config (`python -m ruff
 check services/ml`), same as `research/generator/`.
+
+## Offline operation
+
+The API runs `baseline_ner.py` with `HF_HUB_OFFLINE=1`, so models must be in
+the local Hugging Face cache first. Fetch them once (needs network):
+
+```powershell
+services/ml/.venv/Scripts/python.exe services/ml/download_models.py
+```
+
+After that, nothing in the pipeline reaches the network. To allow on-demand
+downloads instead, set `HF_HUB_OFFLINE=0` in the API's environment.

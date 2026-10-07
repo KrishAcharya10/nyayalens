@@ -133,6 +133,16 @@ describe("rule-based NER vs synthetic ground truth (sanity check, not an evaluat
     }
   });
 
+  it("finds LAND_AREA in every unit the generator produces, including the trailing period of 'sq. ft.'", () => {
+    // Regression coverage: the pattern's trailing \b made "sq. ft." spans
+    // match only as "sq. ft", missing all of them against ground truth.
+    for (const area of ["1.29 acres", "12 guntha", "2.5 hectares", "4500 sq. ft."]) {
+      const text = `the land admeasuring ${area}, classified as Agricultural land`;
+      const predicted = runRuleBasedNer(text);
+      expect(predicted.find((p) => p.label === "LAND_AREA")?.text, area).toBe(area);
+    }
+  });
+
   it("never fabricates a currency-amount label without supporting context", () => {
     const text = "The total value mentioned herein is ₹50,000 for reference purposes only.";
     const predicted = runRuleBasedNer(text);

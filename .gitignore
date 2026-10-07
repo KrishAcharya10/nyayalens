@@ -39,3 +39,9 @@ apps/api/.phase6-adversarial-eval-credentials.json
 services/ml/.venv/
 services/ml/models/
 research/eval_results/
+# v2 synthetic dataset: ~150MB of rendered PDF/DOCX, fully reproducible
+# from its seed - regenerate with research/generator/generate_batch_v2.py
+research/data/synthetic_v2/
+
+# Claude Code agent worktrees (full repo copies)
+.claude/worktrees/

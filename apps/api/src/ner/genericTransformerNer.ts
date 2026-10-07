@@ -31,8 +31,17 @@ export async function runGenericTransformerNer(text: string): Promise<ExtractedE
   if (!text.trim()) return [];
 
   const stdout = await new Promise<string>((resolve, reject) => {
+    // Offline by default: the model must already be in the local Hugging
+    // Face cache (services/ml/download_models.py fetches it once), so a
+    // live upload never reaches out to huggingface.co. Set HF_HUB_OFFLINE=0
+    // in the API's environment to allow on-demand downloads instead.
     const child = spawn(env.ML_SERVICE_PYTHON, [BASELINE_NER_SCRIPT], {
       stdio: ["pipe", "pipe", "pipe"],
+      env: {
+        ...process.env,
+        HF_HUB_OFFLINE: process.env.HF_HUB_OFFLINE ?? "1",
+        TRANSFORMERS_OFFLINE: process.env.TRANSFORMERS_OFFLINE ?? "1",
+      },
     });
 
     let out = "";
@@ -42,7 +51,10 @@ export async function runGenericTransformerNer(text: string): Promise<ExtractedE
     child.on("error", reject);
     child.on("close", (code) => {
       if (code !== 0) {
-        reject(new Error(`baseline_ner.py exited with code ${code}: ${err}`));
+        const hint = /offline|LocalEntryNotFound|couldn't connect/i.test(err)
+          ? " (model not in the local cache - run services/ml/download_models.py once)"
+          : "";
+        reject(new Error(`baseline_ner.py exited with code ${code}${hint}: ${err}`));
         return;
       }
       resolve(out);

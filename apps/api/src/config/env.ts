@@ -35,9 +35,13 @@ const envSchema = z.object({
   // AnthropicProvider only if ANTHROPIC_API_KEY is also set; otherwise the
   // factory falls back to "extractive" with a logged warning rather than
   // failing startup, since no key is configured in this environment.
-  LLM_PROVIDER: z.enum(["extractive", "anthropic"]).default("extractive"),
+  // "ollama" is the fully-local generative option (see ollamaProvider.ts).
+  LLM_PROVIDER: z.enum(["extractive", "ollama", "anthropic"]).default("extractive"),
   ANTHROPIC_API_KEY: z.string().default(""),
   ANTHROPIC_MODEL: z.string().default("claude-3-5-sonnet-20241022"),
+  OLLAMA_BASE_URL: z.string().url().default("http://127.0.0.1:11434"),
+  OLLAMA_MODEL: z.string().min(1).default("qwen2.5:3b"),
+  OLLAMA_TIMEOUT_MS: z.coerce.number().int().positive().default(60_000),
 });
 
 export type Env = z.infer<typeof envSchema>;

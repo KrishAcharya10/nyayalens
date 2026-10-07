@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --font-sans: "Work Sans Variable";
+    --font-serif: "Source Serif 4 Variable";
+  }
   html {
     color-scheme: light;
   }

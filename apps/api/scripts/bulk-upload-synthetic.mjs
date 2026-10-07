@@ -20,7 +20,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SYNTHETIC_DIR = path.resolve(__dirname, "../../../research/data/synthetic");
+// NYAYALENS_SYNTHETIC_DIR selects another dataset with the same layout
+// (e.g. research/data/synthetic_v2 from generate_batch_v2.py).
+const SYNTHETIC_DIR = process.env.NYAYALENS_SYNTHETIC_DIR
+  ? path.resolve(process.env.NYAYALENS_SYNTHETIC_DIR)
+  : path.resolve(__dirname, "../../../research/data/synthetic");
 const API_BASE_URL = process.env.API_BASE_URL ?? "http://localhost:4000";
 const CREDENTIALS_PATH = path.resolve(__dirname, "../.phase4b-eval-credentials.json");
 const EVAL_EMAIL = "phase4b-eval@nyayalens.local";

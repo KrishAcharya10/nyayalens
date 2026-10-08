@@ -212,6 +212,15 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     { clauseType: "POLICE_VERIFICATION", headingPattern: /POLICE/i, priority: 80 },
     { clauseType: "INDEMNITY", headingPattern: /INDEMNI/i, priority: 82 },
     { clauseType: "FORCE_MAJEURE", headingPattern: /FORCE\s+MAJEURE/i, priority: 84 },
+    // Heading synonyms found on the v3 dev set (seed 99); none matches a v1
+    // heading. "DETERMINATION OF TENANCY" is not "TERM OF TENANCY" (\bTERM).
+    {
+      clauseType: "LEASE_DURATION",
+      headingPattern: /PERIOD\s+OF\s+TENANCY|\bTERM\s+OF\s+(?:THE\s+)?TENANCY|\bTENURE\b/i,
+      priority: 21,
+    },
+    { clauseType: "DISPUTE_RESOLUTION", headingPattern: /ARBITRATION/i, priority: 111 },
+    { clauseType: "JURISDICTION", headingPattern: /GOVERNING\s+LAW/i, priority: 121 },
   ],
 
   // Subject "DOCUMENT" means the agreement itself.

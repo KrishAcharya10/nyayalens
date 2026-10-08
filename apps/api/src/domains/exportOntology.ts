@@ -20,9 +20,11 @@ export function exportOntology() {
         documentTypes: pack.documentTypes.map((dt) => ({ id: dt.id, slug: dt.slug })),
         entities: pack.entitySchema.map((e) => ({ label: e.label, coreType: e.coreType })),
         partyTerms: pack.partyTerms,
-        clauseTypes: [...pack.clauseSchema]
-          .sort((a, b) => a.priority - b.priority)
-          .map((c) => c.clauseType),
+        clauseTypes: [
+          ...new Set(
+            [...pack.clauseSchema].sort((a, b) => a.priority - b.priority).map((c) => c.clauseType),
+          ),
+        ],
         relations: pack.relationSchema.map((r) => ({
           type: r.relationType,
           subject: r.subjectEntityLabel,

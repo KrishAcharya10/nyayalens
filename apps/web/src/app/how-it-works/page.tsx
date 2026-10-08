@@ -10,12 +10,20 @@ const STEPS = [
     body: "Your PDF or DOCX is converted to canonical text, page by page.",
   },
   {
-    title: "Entities and clauses extracted",
-    body: "Rule-based extraction identifies parties, amounts, dates, and numbered clauses using patterns grounded in the underlying document structure.",
+    title: "Domain checked",
+    body: "The document's title and wording are compared with the type you chose. If they point to a different kind of agreement, you are told - nothing is silently re-labelled.",
   },
   {
-    title: "Risks identified",
-    body: "A two-pass risk engine checks individual clauses and compares clauses/entities against each other for asymmetries and contradictions.",
+    title: "Entities and clauses extracted",
+    body: "Rule-based extraction, scoped to the document's domain, identifies parties, amounts, dates, and clauses using patterns grounded in the underlying document structure.",
+  },
+  {
+    title: "Facts and obligations built",
+    body: 'Values are normalized (amounts in rupees, dates, durations) and linked into relations and obligations such as "the Buyer must pay the balance within 30 days".',
+  },
+  {
+    title: "Risks and inconsistencies identified",
+    body: "A two-pass risk engine checks individual clauses and compares clauses/entities against each other; a consistency engine checks values the document states more than once.",
   },
   {
     title: "Evidence linked to source text",
@@ -57,9 +65,10 @@ export default function HowItWorksPage() {
         </ol>
         <div className="mt-8">
           <PermanentNotice>
-            NyayaLens supports residential rental agreements and land lease deeds only. It
-            identifies provisions that may warrant review and answers questions grounded in document
-            evidence - it does not provide legal advice or definitive legal conclusions.
+            NyayaLens supports seven domains: residential rental, leave and licence, land lease,
+            sale of property, builder-buyer, employment, and NDA/service agreements. It identifies
+            provisions that may warrant review and answers questions grounded in document evidence -
+            it does not provide legal advice or definitive legal conclusions.
           </PermanentNotice>
         </div>
       </div>

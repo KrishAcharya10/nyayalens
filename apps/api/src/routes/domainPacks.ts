@@ -19,9 +19,11 @@ function toPublic(pack: DomainPack<unknown, unknown>) {
     documentTypes: pack.documentTypes,
     entityTypes: pack.entitySchema,
     overviewFields: pack.overviewFields,
-    clauseTypes: [...pack.clauseSchema]
-      .sort((a, b) => a.priority - b.priority)
-      .map((c) => c.clauseType),
+    clauseTypes: [
+      ...new Set(
+        [...pack.clauseSchema].sort((a, b) => a.priority - b.priority).map((c) => c.clauseType),
+      ),
+    ],
     expectedClauseTypes: pack.riskSchema.expectedClauseTypes,
     relationTypes: pack.relationSchema,
     obligationTypes: pack.obligationSchema,

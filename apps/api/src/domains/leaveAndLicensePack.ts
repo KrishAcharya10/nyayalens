@@ -95,6 +95,9 @@ export const leaveAndLicensePack: DomainPack<RiskEngineContext, RiskFinding> = {
       priority: 50,
     },
     { clauseType: "RENEWAL", headingPattern: /RENEW/i, priority: 60 },
+    // "TERMINATION AND HANDOVER" is a termination clause; "NOTICE FOR
+    // TERMINATION" still resolves to NOTICE_PERIOD (priority 40).
+    { clauseType: "TERMINATION", headingPattern: /TERMINATION/i, priority: 65 },
     { clauseType: "POSSESSION", headingPattern: /POSSESSION|HANDOVER|HAND\s+OVER/i, priority: 70 },
     { clauseType: "MAINTENANCE", headingPattern: /MAINTENANCE|REPAIR/i, priority: 80 },
     {

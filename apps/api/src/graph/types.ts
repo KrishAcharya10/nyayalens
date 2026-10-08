@@ -4,7 +4,10 @@
 // already-persisted entities/document_clauses/risks; nothing here is
 // itself persisted.
 
-export type GraphNodeType = "DOCUMENT" | "ENTITY" | "CLAUSE" | "RISK_FINDING";
+// Phase 8 adds OBLIGATION (ACTOR must ACTION), EVENT (a dated deadline)
+// and LEGAL_REFERENCE (unverified reference metadata from the DomainPack).
+export type GraphNodeType =
+  "DOCUMENT" | "ENTITY" | "CLAUSE" | "RISK_FINDING" | "OBLIGATION" | "EVENT" | "LEGAL_REFERENCE";
 
 export interface GraphNode {
   id: string;
@@ -16,14 +19,34 @@ export interface GraphNode {
   text: string | null;
   textStart: number | null;
   textEnd: number | null;
+  /** Phase 8: the entity's core type (PARTY, MONEY, ...) when it is an ENTITY node. */
+  category?: string;
 }
 
-export type GraphEdgeType = "HAS_ENTITY" | "HAS_CLAUSE" | "REFERENCES" | "FLAGS" | "COMPARED_WITH";
+// Phase 8: RELATION edges carry the relation type (SELLS, MUST_PAY, ...)
+// in `label`; CONTRADICTS links values a consistency finding found in
+// conflict; RELEVANT_TO links a legal reference to the document - never
+// "APPLIES_TO", which would assert legal applicability
+// (docs/legal_reference_policy.md).
+export type GraphEdgeType =
+  | "HAS_ENTITY"
+  | "HAS_CLAUSE"
+  | "REFERENCES"
+  | "FLAGS"
+  | "COMPARED_WITH"
+  | "RELATION"
+  | "HAS_OBLIGATION"
+  | "MUST_PERFORM"
+  | "DUE_ON"
+  | "CONTRADICTS"
+  | "RELEVANT_TO";
 
 export interface GraphEdge {
   type: GraphEdgeType;
   from: string;
   to: string;
+  /** RELATION: the relation type; MUST_PERFORM: MUST_<action>. */
+  label?: string;
 }
 
 export interface DocumentGraph {
@@ -60,6 +83,32 @@ export interface GraphRiskInput {
   id: string;
   category: string;
   evidence: GraphEvidenceInput[];
+  /** Phase 8: CONSISTENCY findings also draw CONTRADICTS edges between their values. */
+  pass?: string;
+}
+
+export interface GraphRelationInput {
+  relationType: string;
+  /** Null = the document itself. */
+  subjectEntityId: string | null;
+  objectEntityId: string;
+}
+
+export interface GraphObligationInput {
+  id: string;
+  action: string;
+  actorEntityId: string | null;
+  amountEntityId: string | null;
+  deadline: string | null;
+  text: string | null;
+  textStart: number | null;
+  textEnd: number | null;
+}
+
+export interface GraphLegalReferenceInput {
+  id: string;
+  title: string;
+  verification: string;
 }
 
 export interface BuildGraphInput {
@@ -69,4 +118,9 @@ export interface BuildGraphInput {
   clauses: GraphClauseInput[];
   entities: GraphEntityInput[];
   risks: GraphRiskInput[];
+  // Phase 8 (all optional, so Phase 7A callers are unchanged)
+  entityCategories?: Record<string, string>;
+  relations?: GraphRelationInput[];
+  obligations?: GraphObligationInput[];
+  legalReferences?: GraphLegalReferenceInput[];
 }

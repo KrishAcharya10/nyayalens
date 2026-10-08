@@ -251,3 +251,15 @@ export function runPackNer(
   ];
   return candidates.filter((c) => labels.has(c.label) && c.textEnd > c.textStart);
 }
+
+/**
+ * Whether `text` contains a value of the given core type (money, date,
+ * duration, percentage, area). Core types without a value shape (parties,
+ * free text) always pass. Used by /ask to require that retrieved evidence
+ * for a value question actually contains such a value.
+ */
+export function containsValueOfType(text: string, coreType: string): boolean {
+  const re = VALUE_REGEX[coreType as ValueType];
+  if (!re) return true;
+  return new RegExp(re.source, re.flags.replace("g", "")).test(text);
+}

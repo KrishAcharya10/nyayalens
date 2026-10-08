@@ -2,13 +2,15 @@
 
 ### **Project Overview**
 
-NyayaLens is an advanced **Indian legal document intelligence platform** that converts residential rental agreements and land lease deeds into structured, evidence-grounded information. The system extracts:
+NyayaLens is a **local-first Indian legal document intelligence platform**. It converts agreements from seven domains into structured, evidence-grounded information. The domains are residential rental, leave and licence, land lease, sale of property, builder-buyer, employment, and NDA/service agreements. The system extracts:
 - **Entities** (parties, amounts, dates, property details)
 - **Clauses** (numbered sections with semantic classification)
 - **Risks** (five categories of potentially unfavorable terms with evidence)
-- **Relations** (connections between entities)
+- **Relations and obligations** (e.g. BUYER MUST_PAY BALANCE within 30 days)
+- **Normalized facts** (amounts in INR, ISO dates, durations, areas) and **consistency findings** (a value stated differently in two places)
 - **Knowledge graphs** (structured relationships between document components)
-- **RAG-powered Q&A** (question answering with full provenance and refusal logic)
+- **Local Q&A** (structured answers from extracted facts, then BM25 retrieval; GROUNDED or NOT SUFFICIENT, with clause and page)
+- **Document comparison** (two agreements side by side on normalized values)
 
 All extracted information is **provenance-backed** — every fact carries traceability back to its source location in the original document.
 
@@ -44,13 +46,13 @@ All extracted information is **provenance-backed** — every fact carries tracea
 **Python Services**
 - PyTorch for transformer models
 - Scikit-learn for evaluation metrics
-- Datasets: 300 synthetic documents (150 residential rental, 150 land lease) + 150 adversarial test cases
+- Datasets: v1 (300 synthetic + 150 adversarial), v2 (1,200), and **v3 (3,640 documents across 7 domains, 45,275 QA items)**. See `docs/dataset_card.md`
 
 ---
 
 ### **Architecture Phases**
 
-The project is organized into 7 development phases, currently implementing **Phase 1-7B**:
+The project is organized into 8 development phases, currently implementing **Phase 1-8**:
 
 #### **Phase 1-2: Repository & Authentication**
 - User registration and login
@@ -118,6 +120,17 @@ The project is organized into 7 development phases, currently implementing **Pha
   - **Ask**: RAG-powered Q&A with mandatory evidence citations
 - **Evidence Navigation**: Click-to-highlight evidence in document viewer
 - **Trust Indicators**: Permanent, non-dismissible status on risks and answers
+
+#### **Phase 8: Multi-domain intelligence**
+- **DomainPack architecture**: each domain is declarative data. It holds the entity roles over 12 core types, party terms and value rules, the clause schema, relation and obligation schemas, the risk schema, consistency rules, detection signals and unverified legal-reference metadata. Seven packs cover 13 document types (`docs/domain_packs.md`).
+- **Domain detection** after OCR: deterministic signals with no probability. A mismatch with the declared type is reported, not silently corrected.
+- **Semantic fact layer**: normalized values, relations, and obligations (ACTOR must ACTION, with amount, deadline, frequency and condition).
+- **Consistency engine**: data-driven rules for repeated values, instalment sums, date order and expected actors. Findings are tagged `CONSISTENCY`, with a `ruleId` and *review required*.
+- **Knowledge graph**: adds obligation, event and legal-reference nodes, plus typed relation, `CONTRADICTS` and `RELEVANT_TO` edges.
+- **Local RAG**: structured-first answers with an evidence status, clause and page.
+- **Document comparison**: `GET /compare`.
+- **Frontend**: Obligations and Consistency tabs, domain Overview cards, a detection notice, a `/compare` page, and a public `/research` page.
+- **Synthetic dataset v3** with 11 annotation layers and adversarial/control, counterfactual and cross-domain sets. It also includes a validator, template-aware splits and a QA benchmark. Evaluation results are in `docs/evaluation.md`, which the harness generates; all of them are synthetic-only.
 
 ---
 
@@ -301,6 +314,8 @@ npm run dev:web      # Runs on http://localhost:3000
 # Navigate to http://localhost:3000 → Register → Upload a document
 ```
 
+Full local setup (offline NER model, Ollama, dataset generation, evaluation): see **`docs/local_setup.md`**.
+
 #### **Optional: Python ML Service**
 ```bash
 cd services/ml
@@ -334,7 +349,17 @@ python -m venv .venv
 
 **Intelligence**
 - `GET /documents/:id/graph` — Get knowledge graph
-- `POST /documents/:id/ask` — Ask question about document (RAG)
+- `POST /documents/:id/ask` — Ask a question (structured facts first, then retrieval; returns `evidenceStatus`, `method`, sources with clause/page)
+
+**Semantic layer (Phase 8, owner-only)**
+- `GET /documents/:id/overview` — Domain-specific key terms with evidence
+- `GET /documents/:id/facts` — Semantic, temporal and financial facts
+- `GET /documents/:id/obligations` — Obligations (actor, action, amount, deadline, evidence)
+- `GET /documents/:id/relations` — Typed relations
+- `GET /documents/:id/consistency` — Consistency findings
+- `GET /documents/:id/detection` — Domain detection result (signals, no probabilities)
+- `GET /compare?a=<id>&b=<id>` — Compare two documents (both must be yours)
+- `GET /domain-packs` — Registered domains, document types and ontology
 
 **Admin**
 - `GET /admin/health` — Health check
@@ -352,7 +377,8 @@ python -m venv .venv
 - Smooth scroll-to on evidence navigation
 
 **Intelligence Panel** (`IntelligencePanel.tsx`)
-- Tabbed interface: Overview → Entities → Clauses → Risks → Graph → Ask
+- Tabbed interface: Overview → Entities → Clauses → Obligations → Risks → Consistency → Graph → Ask
+- Overview shows the domain's key terms (e.g. sale consideration, CTC, licence fee) and a review notice when the detected domain differs from the declared one
 - Click graph nodes to navigate to relevant tab + highlight
 - Each tab shows detailed information with evidence buttons
 
@@ -366,6 +392,13 @@ python -m venv .venv
 - Risk cards by severity (HIGH → MEDIUM → LOW)
 - Non-definitive language ("potentially unfavorable")
 - Trust indicators and evidence expandable sections
+
+**Compare** (`/compare`, `ComparisonView.tsx`)
+- Two of your documents side by side: key terms, obligations, relations, clauses, potential issues
+- Differences first; identical items on demand
+
+**Research page** (`/research`, public)
+- Architecture diagram, domains, pipeline, dataset and current evaluation numbers read from the result files
 
 **Document Search** (`DocumentSearch.tsx`)
 - Full-text search across clauses and entities
@@ -401,10 +434,12 @@ npm run typecheck
 
 1. **text_extraction**: PDF/DOCX text → DocumentPage rows
 2. **ocr**: Scanned pages → Tesseract recognition (if needed)
-3. **rule_based_ner**: Rule patterns → Entity rows (confidence 0.7-0.95)
-4. **generic_transformer_ner**: PyTorch model → Entity rows (optional)
-5. **clause_classification**: Heading patterns → DocumentClause rows
-6. **risk_engine**: Clauses/entities → Risk rows (Pass 1 + Pass 2)
+3. **domain_detection**: Title/wording signals → `Document.domainDetection`
+4. **rule_based_ner**: The document's DomainPack rules → Entity rows
+5. **clause_classification**: The pack's heading patterns → DocumentClause rows
+6. **semantic_extraction**: Relation + Obligation rows with evidence spans
+7. **generic_transformer_ner**: PyTorch model → Entity rows (optional)
+8. **risk_engine**: Risk rows (Pass 1, Pass 2, CONSISTENCY)
 
 Each stage is its own `ProcessingJob` row tracking status, start/end time, errors.
 
@@ -418,7 +453,11 @@ Each stage is its own `ProcessingJob` row tracking status, start/end time, error
 | 2 | ASYMMETRIC_OBLIGATION | 2 | Both | Notice period for eviction differs drastically (e.g., 30 days vs 5 days) |
 | 3 | UNBOUNDED_DISCRETION | 1 | Residential Rental | "Deposit deductions at landlord's discretion" without itemization |
 | 4 | LAND_USE_CONTRADICTION | 2 | Land Lease | Clause says "agricultural use" but restrictions prohibit cultivation |
-| 5 | MISSING_CLAUSE | 1 | Both | No DISPUTE_RESOLUTION clause (expected in both types) |
+| 5 | MISSING_CLAUSE | 1 | All domains | No DISPUTE_RESOLUTION clause (expected clauses are set per document type) |
+| 6 | ONE_SIDED_REMEDY | 2 | All domains | Only one party may terminate or claim compensation |
+| 7 | RESTRICTIVE_COVENANT | 1 | All domains (typically employment, NDA/MSA) | Long post-employment non-compete |
+| 8 | UNCAPPED_LIABILITY | 1 | All domains | Indemnity "without any limit" |
+| 9 | *_CONTRADICTION, PAYMENT_TOTAL_MISMATCH, PARTY_* , DEFINITION_INCONSISTENCY | CONSISTENCY | Per pack rules | Consideration ₹23,70,000 in one clause, ₹33,70,000 in the schedule |
 
 ---
 

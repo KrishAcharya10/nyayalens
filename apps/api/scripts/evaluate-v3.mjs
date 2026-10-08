@@ -4,10 +4,14 @@
 // detectDomain, answerStructured - over each document's raw text, and
 // scores every layer against the generator's ground truth.
 //
-// Writes research/eval_results/v3_evaluation.json (git-ignored) and
-// docs/evaluation.md (committed). Numbers are synthetic-only.
+// Writes research/eval_results/v3_evaluation.json (git-ignored) and, for the
+// default dataset, research/data/reports/v3_evaluation.json and
+// docs/evaluation.md (both committed). Numbers are synthetic-only.
 //
-// Usage (from apps/api): npx tsx scripts/evaluate-v3.mjs [--data <dir>]
+// Usage (from apps/api): npx tsx scripts/evaluate-v3.mjs [--data <dir>] [--no-docs]
+// docs/evaluation.md is only (re)written for the default dataset
+// (research/data/synthetic_v3) unless --docs is given, so a development run
+// on another dataset never overwrites the reported numbers.
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -22,6 +26,7 @@ import { getActiveRetrievalProvider } from "../src/rag/retrievalProviderFactory.
 import { answerStructured } from "../src/rag/structuredQa.js";
 import { analyzeText } from "../src/semantic/analyze.js";
 import { normalizeByCoreType, valueKey } from "../src/semantic/normalize.js";
+import { renderEvaluationMarkdown } from "./evaluation-report.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(__dirname, "../../..");
@@ -93,7 +98,10 @@ function runSystem(rec) {
 }
 
 // ---------------------------------------------------------------------------
-const results = { dataset: path.relative(REPO, DATA), generatedAt: new Date().toISOString() };
+const results = {
+  dataset: path.relative(REPO, DATA).split(path.sep).join("/"),
+  generatedAt: new Date().toISOString(),
+};
 const cache = new Map();
 const system = (m) => {
   if (!cache.has(m.doc_id)) {
@@ -290,11 +298,9 @@ function scoreExtraction(docs) {
   };
 }
 results.extraction = {
-  "test (inspected during rule development - see docs/evaluation.md)": scoreExtraction(
-    bySplit("test"),
-  ),
-  "cross_domain (never inspected)": scoreExtraction(bySplit("cross_domain")),
-  "control (never inspected)": scoreExtraction(bySplit("control")),
+  test: scoreExtraction(bySplit("test")),
+  cross_domain: scoreExtraction(bySplit("cross_domain")),
+  control: scoreExtraction(bySplit("control")),
 };
 
 // 7. Consistency on adversarial / control pairs --------------------------------
@@ -365,6 +371,8 @@ results.extraction = {
 {
   const perCat = {};
   const missing = counter();
+  const missingFpByClause = {};
+  const missingFnByClause = {};
   for (const m of bySplit("test")) {
     const { rec, sys } = system(m);
     const gtCats = new Set(
@@ -387,14 +395,26 @@ results.extraction = {
           /No (.+?) clause was found/.exec(f.reason)?.[1]?.toUpperCase().replace(/ /g, "_"),
         ),
     );
-    for (const c of gtMissing) missing[predMissing.has(c) ? "tp" : "fn"]++;
-    for (const c of predMissing) if (!gtMissing.has(c)) missing.fp++;
+    for (const c of gtMissing) {
+      missing[predMissing.has(c) ? "tp" : "fn"]++;
+      if (!predMissing.has(c)) missingFnByClause[c] = (missingFnByClause[c] ?? 0) + 1;
+    }
+    for (const c of predMissing) {
+      if (gtMissing.has(c)) continue;
+      missing.fp++;
+      const k = `${rec.document_type}:${c}`;
+      missingFpByClause[k] = (missingFpByClause[k] ?? 0) + 1;
+    }
   }
   results.risks = {
     perCategory: Object.fromEntries(
       Object.entries(perCat).map(([k, v]) => [k, prf(v.tp, v.fp, v.fn)]),
     ),
-    missingClause: prf(missing.tp, missing.fp, missing.fn),
+    missingClause: {
+      ...prf(missing.tp, missing.fp, missing.fn),
+      falsePositivesByDocumentTypeAndClause: missingFpByClause,
+      falseNegativesByClause: missingFnByClause,
+    },
   };
 }
 
@@ -454,6 +474,7 @@ results.extraction = {
       findings: sys.findings,
       allPacks: registry.list(),
     });
+    // Same decision as runAsk: structured first (every v3 document has extracted facts).
     if (s) {
       status = s.status;
       answer = s.answer;
@@ -493,11 +514,24 @@ results.extraction = {
         status === "GROUNDED" &&
         q.expected_answer.split(" and ").every((t) => lower.includes(t.toLowerCase()));
     if (correct) st.correct++;
+    // Evidence is correct when it overlaps any ground-truth mention of the
+    // field the question is about - a value restated in the schedule is as
+    // valid a citation as its first mention.
+    const { rec } = system(byId.get(q.doc_id));
+    const evidenceLabels = new Set(
+      q.evidence.map((g) => rec.entities.find((m) => m.id === g.mention)?.label).filter(Boolean),
+    );
+    const goldSpans = [
+      ...q.evidence,
+      ...rec.entities
+        .filter((m) => evidenceLabels.has(m.label))
+        .map((m) => ({ start: m.start, end: m.end })),
+    ];
     if (
       correct &&
       q.evidence.length &&
       evidence.some((e) =>
-        q.evidence.some((g) => overlap(e.textStart ?? 0, e.textEnd ?? 0, g.start, g.end) > 0),
+        goldSpans.some((g) => overlap(e.textStart ?? 0, e.textEnd ?? 0, g.start, g.end) > 0),
       )
     )
       st.evidenceCorrect++;
@@ -554,6 +588,29 @@ results.extraction = {
 }
 
 mkdirSync(path.join(REPO, "research/eval_results"), { recursive: true });
+const DEFAULT_DATA = path.join(REPO, "research/data/synthetic_v3");
+const writeDocs =
+  !process.argv.includes("--no-docs") &&
+  (process.argv.includes("--docs") || path.resolve(DATA) === path.resolve(DEFAULT_DATA));
+if (writeDocs) {
+  // Committed copy for the /research page (research/eval_results/ is git-ignored).
+  writeFileSync(
+    path.join(REPO, "research/data/reports/v3_evaluation.json"),
+    JSON.stringify(results, null, 2),
+  );
+  let datasetReport = null;
+  try {
+    datasetReport = JSON.parse(
+      readFileSync(path.join(REPO, "research/data/reports/dataset_quality.json"), "utf8"),
+    );
+  } catch {
+    datasetReport = null;
+  }
+  writeFileSync(
+    path.join(REPO, "docs/evaluation.md"),
+    renderEvaluationMarkdown(results, datasetReport),
+  );
+}
 writeFileSync(
   path.join(REPO, "research/eval_results/v3_evaluation.json"),
   JSON.stringify(results, null, 2),

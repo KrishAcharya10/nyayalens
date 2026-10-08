@@ -1,0 +1,4534 @@
+{
+  "dataset": "research/data/synthetic_v3",
+  "generatedAt": "2026-10-08T04:52:10.327Z",
+  "domainDetection": {
+    "test (all domains)": {
+      "documents": 315,
+      "domainAccuracy": 1,
+      "documentTypeAccuracy": 0.9651,
+      "confusion": {
+        "residential_rental": {
+          "residential_rental": 45
+        },
+        "land_lease": {
+          "land_lease": 45
+        },
+        "leave_and_license": {
+          "leave_and_license": 45
+        },
+        "sale_property": {
+          "sale_property": 45
+        },
+        "builder_buyer": {
+          "builder_buyer": 45
+        },
+        "employment": {
+          "employment": 45
+        },
+        "nda_msa": {
+          "nda_msa": 45
+        }
+      }
+    },
+    "cross_domain (generic titles)": {
+      "documents": 140,
+      "domainAccuracy": 1,
+      "documentTypeAccuracy": 0.7643,
+      "confusion": {
+        "residential_rental": {
+          "residential_rental": 20
+        },
+        "land_lease": {
+          "land_lease": 20
+        },
+        "leave_and_license": {
+          "leave_and_license": 20
+        },
+        "sale_property": {
+          "sale_property": 20
+        },
+        "builder_buyer": {
+          "builder_buyer": 20
+        },
+        "employment": {
+          "employment": 20
+        },
+        "nda_msa": {
+          "nda_msa": 20
+        }
+      }
+    }
+  },
+  "extraction": {
+    "test": {
+      "documents": 315,
+      "ner": {
+        "micro": {
+          "precision": 0.9936,
+          "recall": 0.9948,
+          "f1": 0.9942,
+          "tp": 6637,
+          "fp": 43,
+          "fn": 35
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 1,
+            "recall": 0.9897,
+            "f1": 0.9948,
+            "tp": 772,
+            "fp": 0,
+            "fn": 8
+          },
+          "land_lease": {
+            "precision": 0.9765,
+            "recall": 0.994,
+            "f1": 0.9852,
+            "tp": 997,
+            "fp": 24,
+            "fn": 6
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 831,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.985,
+            "recall": 0.9834,
+            "f1": 0.9842,
+            "tp": 1246,
+            "fp": 19,
+            "fn": 21
+          },
+          "builder_buyer": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 1286,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 795,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 710,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "perLabel": {
+          "residential_rental:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:LANDLORD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:TENANT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:PROPERTY_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:DURATION": {
+            "precision": 1,
+            "recall": 0.8596,
+            "f1": 0.9245,
+            "tp": 49,
+            "fp": 0,
+            "fn": 8
+          },
+          "residential_rental:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:RENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 59,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:SECURITY_DEPOSIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 48,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 64,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:LOCK_IN_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 22,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LESSOR": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LESSEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:SURVEY_NUMBER": {
+            "precision": 0.8776,
+            "recall": 0.9556,
+            "f1": 0.9149,
+            "tp": 129,
+            "fp": 18,
+            "fn": 6
+          },
+          "land_lease:LAND_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LAND_USE_TYPE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:DURATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LEASE_PREMIUM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 37,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:RENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 49,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LAND_USE_RESTRICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 18,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:KHATA_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 16,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EASEMENT_RIGHT": {
+            "precision": 0.7,
+            "recall": 1,
+            "f1": 0.8235,
+            "tp": 14,
+            "fp": 6,
+            "fn": 0
+          },
+          "leave_and_license:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSOR": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSED_PREMISES": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:PERMITTED_USE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 60,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSE_FEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 55,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:SECURITY_DEPOSIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 41,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 60,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 84,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LOCK_IN_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 16,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:AGREEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SELLER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BUYER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 102,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:TITLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:FLAT_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:CARPET_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BUILT_UP_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 14,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PROPERTY_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SALE_CONSIDERATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 57,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ADVANCE_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BALANCE_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:REGISTRATION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 25,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:POSSESSION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 51,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 39,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BOUNDARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 180,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 72,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PLOT_NUMBER": {
+            "precision": 0.9333,
+            "recall": 1,
+            "f1": 0.9655,
+            "tp": 28,
+            "fp": 2,
+            "fn": 0
+          },
+          "sale_property:SURVEY_NUMBER": {
+            "precision": 1,
+            "recall": 0.8947,
+            "f1": 0.9444,
+            "tp": 34,
+            "fp": 0,
+            "fn": 4
+          },
+          "sale_property:LAND_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 38,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:STAMP_DUTY": {
+            "precision": 1,
+            "recall": 0.4333,
+            "f1": 0.6047,
+            "tp": 13,
+            "fp": 0,
+            "fn": 17
+          },
+          "sale_property:REGISTRATION_FEE": {
+            "precision": 0.6383,
+            "recall": 1,
+            "f1": 0.7792,
+            "tp": 30,
+            "fp": 17,
+            "fn": 0
+          },
+          "sale_property:ENCUMBRANCE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 14,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BANK": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 14,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:LOAN": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 14,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:KHATA_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:CTS_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:POWER_OF_ATTORNEY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROMOTER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:ALLOTTEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROJECT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROJECT_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:REGISTRATION_REFERENCE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CONSTRUCTION_STATUS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:UNIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 53,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CARPET_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 53,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:SALE_CONSIDERATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:BOOKING_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PAYMENT_PLAN": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:INSTALMENT_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 178,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:POSSESSION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 48,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:DEFECT_LIABILITY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:MAINTENANCE_CHARGE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 27,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CANCELLATION_CHARGE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:REFUND_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 49,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 78,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:GRACE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:DELAY_COMPENSATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EMPLOYER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EMPLOYEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JOB_TITLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 69,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:WORK_LOCATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JOINING_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 53,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:CTC": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 53,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:SALARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BASE_SALARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 53,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:PROBATION_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 38,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:WORKING_HOURS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 23,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:LEAVE_ENTITLEMENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:CONFIDENTIAL_INFORMATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 55,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:INTELLECTUAL_PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 26,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BONUS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 16,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 21,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BENEFITS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 15,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:NON_COMPETE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:EFFECTIVE_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DISCLOSING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:RECEIVING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:PURPOSE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 23,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONFIDENTIAL_INFORMATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:TERM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONFIDENTIALITY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 64,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:TERMINATION_NOTICE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 45,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CLIENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 44,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:SERVICE_PROVIDER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 44,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:SERVICE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 22,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DELIVERABLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 22,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:FEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 22,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:PAYMENT_TERM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 22,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:INTELLECTUAL_PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 18,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:LIABILITY_CAP": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 22,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONTRACTING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 44,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:WARRANTY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DATA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "clauses": {
+        "micro": {
+          "precision": 0.9877,
+          "recall": 0.9758,
+          "f1": 0.9817,
+          "tp": 3380,
+          "fp": 42,
+          "fn": 84
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 0.9733,
+            "recall": 0.9659,
+            "f1": 0.9696,
+            "tp": 510,
+            "fp": 14,
+            "fn": 18
+          },
+          "land_lease": {
+            "precision": 1,
+            "recall": 0.9549,
+            "f1": 0.9769,
+            "tp": 508,
+            "fp": 0,
+            "fn": 24
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 487,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.9563,
+            "recall": 0.9563,
+            "f1": 0.9563,
+            "tp": 482,
+            "fp": 22,
+            "fn": 22
+          },
+          "builder_buyer": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 491,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 1,
+            "recall": 0.9712,
+            "f1": 0.9854,
+            "tp": 438,
+            "fp": 0,
+            "fn": 13
+          },
+          "nda_msa": {
+            "precision": 0.9872,
+            "recall": 0.9851,
+            "f1": 0.9862,
+            "tp": 464,
+            "fp": 6,
+            "fn": 7
+          }
+        }
+      },
+      "relations": {
+        "micro": {
+          "precision": 0.9782,
+          "recall": 0.993,
+          "f1": 0.9856,
+          "tp": 4135,
+          "fp": 92,
+          "fn": 29
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 0.9856,
+            "recall": 0.9809,
+            "f1": 0.9833,
+            "tp": 411,
+            "fp": 6,
+            "fn": 8
+          },
+          "land_lease": {
+            "precision": 0.9388,
+            "recall": 0.9959,
+            "f1": 0.9665,
+            "tp": 491,
+            "fp": 32,
+            "fn": 2
+          },
+          "leave_and_license": {
+            "precision": 0.9921,
+            "recall": 1,
+            "f1": 0.9961,
+            "tp": 505,
+            "fp": 4,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.959,
+            "recall": 0.9806,
+            "f1": 0.9697,
+            "tp": 960,
+            "fp": 41,
+            "fn": 19
+          },
+          "builder_buyer": {
+            "precision": 0.9928,
+            "recall": 1,
+            "f1": 0.9964,
+            "tp": 829,
+            "fp": 6,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 0.9942,
+            "recall": 1,
+            "f1": 0.9971,
+            "tp": 516,
+            "fp": 3,
+            "fn": 0
+          },
+          "nda_msa": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 423,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "subjectEndpointAccuracy": 0.9901
+      },
+      "obligations": {
+        "groundTruth": 1747,
+        "predicted": 1596,
+        "evidenceRecall": 0.8758,
+        "evidencePrecision": 0.9586,
+        "actorAccuracy": 1,
+        "actionAccuracy": 0.9987,
+        "objectAccuracy": 0.9935,
+        "temporalAccuracy": 1,
+        "actorActionF1": {
+          "precision": 0.9574,
+          "recall": 0.8746,
+          "f1": 0.9141,
+          "tp": 1528,
+          "fp": 68,
+          "fn": 219
+        }
+      },
+      "normalization": {
+        "DATE": {
+          "total": 763,
+          "correct": 763,
+          "accuracy": 1
+        },
+        "DURATION": {
+          "total": 774,
+          "correct": 774,
+          "accuracy": 1
+        },
+        "MONEY": {
+          "total": 1020,
+          "correct": 1020,
+          "accuracy": 1
+        },
+        "PERCENT": {
+          "total": 151,
+          "correct": 151,
+          "accuracy": 1
+        },
+        "AREA": {
+          "total": 247,
+          "correct": 247,
+          "accuracy": 1
+        }
+      }
+    },
+    "cross_domain": {
+      "documents": 140,
+      "ner": {
+        "micro": {
+          "precision": 0.9939,
+          "recall": 0.9942,
+          "f1": 0.994,
+          "tp": 3073,
+          "fp": 19,
+          "fn": 18
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 1,
+            "recall": 0.9915,
+            "f1": 0.9957,
+            "tp": 349,
+            "fp": 0,
+            "fn": 3
+          },
+          "land_lease": {
+            "precision": 0.9716,
+            "recall": 0.9845,
+            "f1": 0.978,
+            "tp": 445,
+            "fp": 13,
+            "fn": 7
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 372,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.9898,
+            "recall": 0.9864,
+            "f1": 0.9881,
+            "tp": 582,
+            "fp": 6,
+            "fn": 8
+          },
+          "builder_buyer": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 592,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 400,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 333,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "perLabel": {
+          "residential_rental:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:LANDLORD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:TENANT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:PROPERTY_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:DURATION": {
+            "precision": 1,
+            "recall": 0.9,
+            "f1": 0.9474,
+            "tp": 27,
+            "fp": 0,
+            "fn": 3
+          },
+          "residential_rental:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:RENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:SECURITY_DEPOSIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 27,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 23,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 32,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:LOCK_IN_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LESSOR": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LESSEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:SURVEY_NUMBER": {
+            "precision": 0.8438,
+            "recall": 0.9,
+            "f1": 0.871,
+            "tp": 54,
+            "fp": 10,
+            "fn": 6
+          },
+          "land_lease:LAND_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LAND_USE_TYPE": {
+            "precision": 1,
+            "recall": 0.95,
+            "f1": 0.9744,
+            "tp": 19,
+            "fp": 0,
+            "fn": 1
+          },
+          "land_lease:DURATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LEASE_PREMIUM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 18,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:RENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LAND_USE_RESTRICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 13,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EASEMENT_RIGHT": {
+            "precision": 0.625,
+            "recall": 1,
+            "f1": 0.7692,
+            "tp": 5,
+            "fp": 3,
+            "fn": 0
+          },
+          "land_lease:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 15,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 32,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:KHATA_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSOR": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSED_PREMISES": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:PERMITTED_USE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSE_FEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:SECURITY_DEPOSIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 19,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 36,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LOCK_IN_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:AGREEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SELLER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BUYER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:TITLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PLOT_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SURVEY_NUMBER": {
+            "precision": 1,
+            "recall": 0.8,
+            "f1": 0.8889,
+            "tp": 8,
+            "fp": 0,
+            "fn": 2
+          },
+          "sale_property:LAND_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PROPERTY_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SALE_CONSIDERATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 30,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ADVANCE_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BALANCE_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:REGISTRATION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:POSSESSION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 25,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:STAMP_DUTY": {
+            "precision": 1,
+            "recall": 0.6471,
+            "f1": 0.7857,
+            "tp": 11,
+            "fp": 0,
+            "fn": 6
+          },
+          "sale_property:REGISTRATION_FEE": {
+            "precision": 0.7391,
+            "recall": 1,
+            "f1": 0.85,
+            "tp": 17,
+            "fp": 6,
+            "fn": 0
+          },
+          "sale_property:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 16,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BOUNDARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 36,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ENCUMBRANCE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BANK": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:LOAN": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:FLAT_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 30,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:CARPET_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 30,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BUILT_UP_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:CTS_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:POWER_OF_ATTORNEY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROMOTER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:ALLOTTEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROJECT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROJECT_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:REGISTRATION_REFERENCE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CONSTRUCTION_STATUS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:UNIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 25,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CARPET_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 25,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:SALE_CONSIDERATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:BOOKING_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PAYMENT_PLAN": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:INSTALMENT_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 81,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:POSSESSION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:GRACE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 17,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:DELAY_COMPENSATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 17,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:DEFECT_LIABILITY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CANCELLATION_CHARGE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:REFUND_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:MAINTENANCE_CHARGE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 17,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 38,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EMPLOYER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EMPLOYEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JOB_TITLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 29,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:WORK_LOCATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JOINING_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 26,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:CTC": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 29,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:SALARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BASE_SALARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 29,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BONUS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:PROBATION_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:CONFIDENTIAL_INFORMATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 16,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:INTELLECTUAL_PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 14,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:WORKING_HOURS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 16,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:LEAVE_ENTITLEMENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 17,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BENEFITS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:NON_COMPETE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:EFFECTIVE_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CLIENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:SERVICE_PROVIDER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:SERVICE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONFIDENTIAL_INFORMATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DELIVERABLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:FEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:PAYMENT_TERM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:INTELLECTUAL_PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 11,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:LIABILITY_CAP": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:TERM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONFIDENTIALITY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:TERMINATION_NOTICE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DATA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONTRACTING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:PURPOSE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:WARRANTY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DISCLOSING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:RECEIVING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "clauses": {
+        "micro": {
+          "precision": 0.9882,
+          "recall": 0.9824,
+          "f1": 0.9853,
+          "tp": 1678,
+          "fp": 20,
+          "fn": 30
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 0.984,
+            "recall": 0.9685,
+            "f1": 0.9762,
+            "tp": 246,
+            "fp": 4,
+            "fn": 8
+          },
+          "land_lease": {
+            "precision": 1,
+            "recall": 0.9846,
+            "f1": 0.9922,
+            "tp": 256,
+            "fp": 0,
+            "fn": 4
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 247,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.9583,
+            "recall": 0.9583,
+            "f1": 0.9583,
+            "tp": 230,
+            "fp": 10,
+            "fn": 10
+          },
+          "builder_buyer": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 235,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 1,
+            "recall": 0.9916,
+            "f1": 0.9958,
+            "tp": 236,
+            "fp": 0,
+            "fn": 2
+          },
+          "nda_msa": {
+            "precision": 0.9744,
+            "recall": 0.9744,
+            "f1": 0.9744,
+            "tp": 228,
+            "fp": 6,
+            "fn": 6
+          }
+        }
+      },
+      "relations": {
+        "micro": {
+          "precision": 0.9787,
+          "recall": 0.9932,
+          "f1": 0.9859,
+          "tp": 1886,
+          "fp": 41,
+          "fn": 13
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 0.9672,
+            "recall": 0.9833,
+            "f1": 0.9752,
+            "tp": 177,
+            "fp": 6,
+            "fn": 3
+          },
+          "land_lease": {
+            "precision": 0.9492,
+            "recall": 0.9868,
+            "f1": 0.9676,
+            "tp": 224,
+            "fp": 12,
+            "fn": 3
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 225,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.9605,
+            "recall": 0.9843,
+            "f1": 0.9723,
+            "tp": 438,
+            "fp": 18,
+            "fn": 7
+          },
+          "builder_buyer": {
+            "precision": 0.9947,
+            "recall": 1,
+            "f1": 0.9973,
+            "tp": 376,
+            "fp": 2,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 0.9881,
+            "recall": 1,
+            "f1": 0.994,
+            "tp": 249,
+            "fp": 3,
+            "fn": 0
+          },
+          "nda_msa": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 197,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "subjectEndpointAccuracy": 0.9889
+      },
+      "obligations": {
+        "groundTruth": 847,
+        "predicted": 779,
+        "evidenceRecall": 0.8654,
+        "evidencePrecision": 0.9409,
+        "actorAccuracy": 1,
+        "actionAccuracy": 0.9973,
+        "objectAccuracy": 0.9959,
+        "temporalAccuracy": 1,
+        "actorActionF1": {
+          "precision": 0.9384,
+          "recall": 0.863,
+          "f1": 0.8991,
+          "tp": 731,
+          "fp": 48,
+          "fn": 116
+        }
+      },
+      "normalization": {
+        "DATE": {
+          "total": 352,
+          "correct": 352,
+          "accuracy": 1
+        },
+        "DURATION": {
+          "total": 368,
+          "correct": 368,
+          "accuracy": 1
+        },
+        "MONEY": {
+          "total": 499,
+          "correct": 499,
+          "accuracy": 1
+        },
+        "PERCENT": {
+          "total": 72,
+          "correct": 72,
+          "accuracy": 1
+        },
+        "AREA": {
+          "total": 115,
+          "correct": 115,
+          "accuracy": 1
+        }
+      }
+    },
+    "control": {
+      "documents": 560,
+      "ner": {
+        "micro": {
+          "precision": 0.9966,
+          "recall": 0.9975,
+          "f1": 0.997,
+          "tp": 12238,
+          "fp": 42,
+          "fn": 31
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 1,
+            "recall": 0.9931,
+            "f1": 0.9965,
+            "tp": 1440,
+            "fp": 0,
+            "fn": 10
+          },
+          "land_lease": {
+            "precision": 0.9818,
+            "recall": 0.9933,
+            "f1": 0.9875,
+            "tp": 1782,
+            "fp": 33,
+            "fn": 12
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 1531,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.996,
+            "recall": 0.996,
+            "f1": 0.996,
+            "tp": 2238,
+            "fp": 9,
+            "fn": 9
+          },
+          "builder_buyer": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 2376,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 1549,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 1322,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "perLabel": {
+          "residential_rental:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:LANDLORD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:TENANT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:PROPERTY_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:DURATION": {
+            "precision": 1,
+            "recall": 0.9174,
+            "f1": 0.9569,
+            "tp": 111,
+            "fp": 0,
+            "fn": 10
+          },
+          "residential_rental:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:RENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 115,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:SECURITY_DEPOSIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 120,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 48,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 142,
+            "fp": 0,
+            "fn": 0
+          },
+          "residential_rental:LOCK_IN_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LESSOR": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LESSEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:SURVEY_NUMBER": {
+            "precision": 0.9084,
+            "recall": 0.95,
+            "f1": 0.9287,
+            "tp": 228,
+            "fp": 23,
+            "fn": 12
+          },
+          "land_lease:LAND_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LAND_USE_TYPE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:DURATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LEASE_PREMIUM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:RENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 111,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:LAND_USE_RESTRICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 36,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 33,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 130,
+            "fp": 0,
+            "fn": 0
+          },
+          "land_lease:EASEMENT_RIGHT": {
+            "precision": 0.6,
+            "recall": 1,
+            "f1": 0.75,
+            "tp": 15,
+            "fp": 10,
+            "fn": 0
+          },
+          "land_lease:KHATA_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 29,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSOR": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSED_PREMISES": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:PERMITTED_USE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 119,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:COMMENCEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LICENSE_FEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 111,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:SECURITY_DEPOSIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:LOCK_IN_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 41,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 119,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 142,
+            "fp": 0,
+            "fn": 0
+          },
+          "leave_and_license:ESCALATION_RATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 39,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:AGREEMENT_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SELLER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BUYER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 170,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:TITLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:FLAT_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 98,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:CARPET_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 98,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BUILT_UP_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 25,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PROPERTY_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SALE_CONSIDERATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 111,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ADVANCE_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BALANCE_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:POSSESSION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 103,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:STAMP_DUTY": {
+            "precision": 1,
+            "recall": 0.7955,
+            "f1": 0.8861,
+            "tp": 35,
+            "fp": 0,
+            "fn": 9
+          },
+          "sale_property:REGISTRATION_FEE": {
+            "precision": 0.8302,
+            "recall": 1,
+            "f1": 0.9072,
+            "tp": 44,
+            "fp": 9,
+            "fn": 0
+          },
+          "sale_property:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BOUNDARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 320,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 134,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:POWER_OF_ATTORNEY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 14,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:REGISTRATION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 42,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:ENCUMBRANCE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:BANK": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:LOAN": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 20,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:SURVEY_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 62,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:LAND_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 62,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:PLOT_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 36,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:CTS_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property:KHATA_NUMBER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 16,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROMOTER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:ALLOTTEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROJECT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PROJECT_ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:REGISTRATION_REFERENCE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CONSTRUCTION_STATUS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:UNIT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 113,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CARPET_AREA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 113,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:SALE_CONSIDERATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:BOOKING_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:PAYMENT_PLAN": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:INSTALMENT_AMOUNT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 306,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:POSSESSION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 119,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:GRACE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:DELAY_COMPENSATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:DEFECT_LIABILITY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:CANCELLATION_CHARGE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:REFUND_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 104,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 132,
+            "fp": 0,
+            "fn": 0
+          },
+          "builder_buyer:MAINTENANCE_CHARGE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 49,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EMPLOYER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EXECUTION_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EMPLOYEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 160,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JOB_TITLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 125,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:WORK_LOCATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JOINING_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 115,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:CTC": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 117,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:SALARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BASE_SALARY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 117,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BONUS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 28,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:PROBATION_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 69,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:BENEFITS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:CONFIDENTIAL_INFORMATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 58,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:NOTICE_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 123,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:WORKING_HOURS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:LEAVE_ENTITLEMENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:INTELLECTUAL_PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 50,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 35,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment:EXPIRY_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:ADDRESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:EFFECTIVE_DATE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CLIENT": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 86,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:SERVICE_PROVIDER": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 86,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:SERVICE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 43,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONFIDENTIAL_INFORMATION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 100,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DELIVERABLE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 43,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:FEE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 43,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:PAYMENT_TERM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 43,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DATA": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 23,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:LIABILITY_CAP": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 43,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:TERM": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONFIDENTIALITY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 115,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:TERMINATION_NOTICE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 100,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:JURISDICTION": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 80,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:DISCLOSING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 48,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:RECEIVING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 48,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:PURPOSE": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 37,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:WITNESS": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:WARRANTY_PERIOD": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 15,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:CONTRACTING_PARTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 52,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa:INTELLECTUAL_PROPERTY": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 25,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "clauses": {
+        "micro": {
+          "precision": 0.9888,
+          "recall": 0.9847,
+          "f1": 0.9868,
+          "tp": 6294,
+          "fp": 71,
+          "fn": 98
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 0.9631,
+            "recall": 0.9775,
+            "f1": 0.9703,
+            "tp": 914,
+            "fp": 35,
+            "fn": 21
+          },
+          "land_lease": {
+            "precision": 1,
+            "recall": 0.9843,
+            "f1": 0.9921,
+            "tp": 938,
+            "fp": 0,
+            "fn": 15
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 922,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.9743,
+            "recall": 0.9743,
+            "f1": 0.9743,
+            "tp": 909,
+            "fp": 24,
+            "fn": 24
+          },
+          "builder_buyer": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 943,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 1,
+            "recall": 0.9801,
+            "f1": 0.9899,
+            "tp": 837,
+            "fp": 0,
+            "fn": 17
+          },
+          "nda_msa": {
+            "precision": 0.9858,
+            "recall": 0.9754,
+            "f1": 0.9805,
+            "tp": 831,
+            "fp": 12,
+            "fn": 21
+          }
+        }
+      },
+      "relations": {
+        "micro": {
+          "precision": 0.988,
+          "recall": 0.9976,
+          "f1": 0.9927,
+          "tp": 7461,
+          "fp": 91,
+          "fn": 18
+        },
+        "perDomain": {
+          "residential_rental": {
+            "precision": 1,
+            "recall": 0.9933,
+            "f1": 0.9966,
+            "tp": 739,
+            "fp": 0,
+            "fn": 5
+          },
+          "land_lease": {
+            "precision": 0.9838,
+            "recall": 0.9956,
+            "f1": 0.9897,
+            "tp": 909,
+            "fp": 15,
+            "fn": 4
+          },
+          "leave_and_license": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 921,
+            "fp": 0,
+            "fn": 0
+          },
+          "sale_property": {
+            "precision": 0.9576,
+            "recall": 0.9948,
+            "f1": 0.9758,
+            "tp": 1715,
+            "fp": 76,
+            "fn": 9
+          },
+          "builder_buyer": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 1475,
+            "fp": 0,
+            "fn": 0
+          },
+          "employment": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 940,
+            "fp": 0,
+            "fn": 0
+          },
+          "nda_msa": {
+            "precision": 1,
+            "recall": 1,
+            "f1": 1,
+            "tp": 762,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "subjectEndpointAccuracy": 0.9936
+      },
+      "obligations": {
+        "groundTruth": 3182,
+        "predicted": 3021,
+        "evidenceRecall": 0.8953,
+        "evidencePrecision": 0.9431,
+        "actorAccuracy": 1,
+        "actionAccuracy": 0.9993,
+        "objectAccuracy": 0.9993,
+        "temporalAccuracy": 1,
+        "actorActionF1": {
+          "precision": 0.9424,
+          "recall": 0.8947,
+          "f1": 0.9179,
+          "tp": 2847,
+          "fp": 174,
+          "fn": 335
+        }
+      },
+      "normalization": {
+        "DATE": {
+          "total": 1427,
+          "correct": 1427,
+          "accuracy": 1
+        },
+        "DURATION": {
+          "total": 1478,
+          "correct": 1478,
+          "accuracy": 1
+        },
+        "MONEY": {
+          "total": 1939,
+          "correct": 1939,
+          "accuracy": 1
+        },
+        "PERCENT": {
+          "total": 283,
+          "correct": 283,
+          "accuracy": 1
+        },
+        "AREA": {
+          "total": 458,
+          "correct": 458,
+          "accuracy": 1
+        }
+      }
+    }
+  },
+  "consistency": {
+    "perCategory": {
+      "FINANCIAL_CONTRADICTION": {
+        "adversarial": 114,
+        "detected": 114,
+        "evidenceCorrect": 114,
+        "controls": 114,
+        "controlFalsePositives": 0,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      },
+      "DURATION_CONTRADICTION": {
+        "adversarial": 120,
+        "detected": 110,
+        "evidenceCorrect": 110,
+        "controls": 120,
+        "controlFalsePositives": 0,
+        "detectionRate": 0.9167,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      },
+      "PARTY_ROLE_INCONSISTENCY": {
+        "adversarial": 93,
+        "detected": 93,
+        "evidenceCorrect": 93,
+        "controls": 93,
+        "controlFalsePositives": 0,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      },
+      "PROPERTY_IDENTIFIER_CONTRADICTION": {
+        "adversarial": 33,
+        "detected": 33,
+        "evidenceCorrect": 33,
+        "controls": 33,
+        "controlFalsePositives": 4,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0.1212
+      },
+      "PROPERTY_AREA_CONTRADICTION": {
+        "adversarial": 61,
+        "detected": 61,
+        "evidenceCorrect": 61,
+        "controls": 61,
+        "controlFalsePositives": 0,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      },
+      "DATE_CONTRADICTION": {
+        "adversarial": 60,
+        "detected": 60,
+        "evidenceCorrect": 60,
+        "controls": 60,
+        "controlFalsePositives": 0,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      },
+      "PAYMENT_TOTAL_MISMATCH": {
+        "adversarial": 39,
+        "detected": 39,
+        "evidenceCorrect": 39,
+        "controls": 39,
+        "controlFalsePositives": 0,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      },
+      "PARTY_NAME_CONTRADICTION": {
+        "adversarial": 20,
+        "detected": 20,
+        "evidenceCorrect": 20,
+        "controls": 20,
+        "controlFalsePositives": 0,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      },
+      "DEFINITION_INCONSISTENCY": {
+        "adversarial": 20,
+        "detected": 20,
+        "evidenceCorrect": 20,
+        "controls": 20,
+        "controlFalsePositives": 0,
+        "detectionRate": 1,
+        "evidenceCorrectness": 1,
+        "controlFalsePositiveRate": 0
+      }
+    },
+    "ordinaryTestDocuments": {
+      "documents": 315,
+      "withAnyFinding": 10,
+      "rate": 0.0317,
+      "findingsByCategory": {
+        "PROPERTY_IDENTIFIER_CONTRADICTION": 10
+      }
+    }
+  },
+  "risks": {
+    "perCategory": {
+      "UNBOUNDED_DISCRETION": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "tp": 11,
+        "fp": 0,
+        "fn": 0
+      },
+      "ASYMMETRIC_OBLIGATION": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "tp": 17,
+        "fp": 0,
+        "fn": 0
+      },
+      "LIABILITY_SHIFT": {
+        "precision": 1,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "LAND_USE_CONTRADICTION": {
+        "precision": 1,
+        "recall": 0.3333,
+        "f1": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 4
+      },
+      "ONE_SIDED_REMEDY": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "tp": 9,
+        "fp": 0,
+        "fn": 0
+      },
+      "RESTRICTIVE_COVENANT": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "UNCAPPED_LIABILITY": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "missingClause": {
+      "precision": 0.6765,
+      "recall": 1,
+      "f1": 0.807,
+      "tp": 69,
+      "fp": 33,
+      "fn": 0,
+      "falsePositivesByDocumentTypeAndClause": {
+        "LAND_LEASE:LAND_USE_RESTRICTION": 24,
+        "EMPLOYMENT_CONTRACT:INTELLECTUAL_PROPERTY": 9
+      },
+      "falseNegativesByClause": {}
+    }
+  },
+  "counterfactual": {
+    "pairs": 140,
+    "expectedChanges": 262,
+    "reflectedInExtraction": 261,
+    "rate": 0.9962
+  },
+  "qa": {
+    "factual": {
+      "total": 15549,
+      "correct": 15451,
+      "evidenceCorrect": 15451,
+      "structured": 15549,
+      "accuracy": 0.9937,
+      "evidenceAccuracy": 0.9937,
+      "answeredStructurally": 1
+    },
+    "unanswerable": {
+      "total": 2459,
+      "correct": 2446,
+      "evidenceCorrect": 2446,
+      "structured": 2459,
+      "accuracy": 0.9947,
+      "evidenceAccuracy": 0.9947,
+      "answeredStructurally": 1
+    },
+    "cross_clause": {
+      "total": 883,
+      "correct": 883,
+      "evidenceCorrect": 883,
+      "structured": 883,
+      "accuracy": 1,
+      "evidenceAccuracy": 1,
+      "answeredStructurally": 1
+    },
+    "contradiction": {
+      "total": 1120,
+      "correct": 1106,
+      "evidenceCorrect": 1106,
+      "structured": 1120,
+      "accuracy": 0.9875,
+      "evidenceAccuracy": 0.9875,
+      "answeredStructurally": 1
+    },
+    "multi_hop": {
+      "total": 357,
+      "correct": 357,
+      "evidenceCorrect": 357,
+      "structured": 357,
+      "accuracy": 1,
+      "evidenceAccuracy": 1,
+      "answeredStructurally": 1
+    }
+  },
+  "v1AdversarialRegression": {
+    "ASYMMETRIC_OBLIGATION": {
+      "positives": 15,
+      "detected": 15,
+      "controls": 15,
+      "controlFalsePositives": 0,
+      "crossCategoryFalsePositivesOnPositives": 0
+    },
+    "LAND_USE_CONTRADICTION": {
+      "positives": 15,
+      "detected": 15,
+      "controls": 15,
+      "controlFalsePositives": 0,
+      "crossCategoryFalsePositivesOnPositives": 0
+    },
+    "LIABILITY_SHIFT": {
+      "positives": 15,
+      "detected": 15,
+      "controls": 15,
+      "controlFalsePositives": 0,
+      "crossCategoryFalsePositivesOnPositives": 0
+    },
+    "MISSING_CLAUSE": {
+      "positives": 15,
+      "detected": 15,
+      "controls": 15,
+      "controlFalsePositives": 0,
+      "crossCategoryFalsePositivesOnPositives": 0
+    },
+    "UNBOUNDED_DISCRETION": {
+      "positives": 15,
+      "detected": 15,
+      "controls": 15,
+      "controlFalsePositives": 0,
+      "crossCategoryFalsePositivesOnPositives": 0
+    }
+  }
+}

@@ -1,11 +1,14 @@
 import type {
   AskResult,
   DocumentClause,
+  DocumentComparison,
   DocumentDetail,
+  DocumentOverview,
   DocumentGraph,
   DocumentSummary,
   DomainPackSummary,
   Entity,
+  Obligation,
   Risk,
 } from "./apiTypes";
 
@@ -119,6 +122,23 @@ export async function getGraph(id: string): Promise<DocumentGraph> {
   const res = await authedFetch(`/documents/${id}/graph`);
   const body = await handleResponse<{ graph: DocumentGraph }>(res);
   return body.graph;
+}
+
+export async function getOverview(id: string): Promise<DocumentOverview> {
+  const res = await authedFetch(`/documents/${id}/overview`);
+  return handleResponse<DocumentOverview>(res);
+}
+
+export async function getObligations(id: string): Promise<Obligation[]> {
+  const res = await authedFetch(`/documents/${id}/obligations`);
+  const body = await handleResponse<{ obligations: Obligation[] }>(res);
+  return body.obligations;
+}
+
+export async function compareDocuments(a: string, b: string): Promise<DocumentComparison> {
+  const params = new URLSearchParams({ a, b });
+  const res = await authedFetch(`/compare?${params.toString()}`);
+  return handleResponse<DocumentComparison>(res);
 }
 
 export async function askDocument(id: string, question: string): Promise<AskResult> {

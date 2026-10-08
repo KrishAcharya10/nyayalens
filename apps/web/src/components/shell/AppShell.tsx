@@ -6,7 +6,10 @@ import type { ReactNode } from "react";
 import { useAuth } from "@/lib/AuthProvider";
 import { Button } from "@/components/ui/Button";
 
-const NAV_ITEMS = [{ href: "/documents", label: "Documents" }];
+const NAV_ITEMS = [
+  { href: "/documents", label: "Documents" },
+  { href: "/compare", label: "Compare" },
+];
 
 // The global shell (Section 7): a compact sidebar, a slim top bar, and a
 // main workspace that gets the vast majority of the screen. Deliberately
@@ -54,6 +57,12 @@ export function AppShell({ children }: { children: ReactNode }) {
               className="block rounded px-2.5 py-1.5 text-xs text-ink-400 hover:bg-paper-200 hover:text-ink-600"
             >
               How NyayaLens works
+            </Link>
+            <Link
+              href="/research"
+              className="block rounded px-2.5 py-1.5 text-xs text-ink-400 hover:bg-paper-200 hover:text-ink-600"
+            >
+              Research and evaluation
             </Link>
           </div>
         </nav>

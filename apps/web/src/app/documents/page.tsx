@@ -52,7 +52,8 @@ export default function DocumentsPage() {
           <div>
             <h1 className="text-page-title text-ink-900">Documents</h1>
             <p className="mt-0.5 text-sm text-ink-400">
-              Residential rental agreements and land lease deeds.
+              Rental, leave and licence, land lease, property sale, builder-buyer, employment and
+              NDA/service agreements.
             </p>
           </div>
           <UploadDocumentForm onUploaded={load} />
@@ -63,7 +64,7 @@ export default function DocumentsPage() {
         {documents && documents.length === 0 && (
           <EmptyState
             title="No documents yet"
-            hint="Add a residential rental agreement or land lease deed to begin."
+            hint="Add an agreement - choose its type when uploading - to begin."
           />
         )}
         {documents && documents.length > 0 && (

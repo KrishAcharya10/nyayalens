@@ -113,14 +113,28 @@ export interface DocumentClause {
   createdAt: string;
 }
 
+// Phase 8 extends the category set (generic fact checks + consistency
+// engine); the union lists every value the API currently emits.
 export type RiskCategory =
   | "LIABILITY_SHIFT"
   | "ASYMMETRIC_OBLIGATION"
   | "UNBOUNDED_DISCRETION"
   | "LAND_USE_CONTRADICTION"
-  | "MISSING_CLAUSE";
+  | "MISSING_CLAUSE"
+  | "ONE_SIDED_REMEDY"
+  | "RESTRICTIVE_COVENANT"
+  | "UNCAPPED_LIABILITY"
+  | "FINANCIAL_CONTRADICTION"
+  | "DATE_CONTRADICTION"
+  | "DURATION_CONTRADICTION"
+  | "PROPERTY_AREA_CONTRADICTION"
+  | "PROPERTY_IDENTIFIER_CONTRADICTION"
+  | "PAYMENT_TOTAL_MISMATCH"
+  | "PARTY_ROLE_INCONSISTENCY"
+  | "PARTY_NAME_CONTRADICTION"
+  | "DEFINITION_INCONSISTENCY";
 export type RiskSeverity = "LOW" | "MEDIUM" | "HIGH";
-export type RiskPass = "PASS_1" | "PASS_2";
+export type RiskPass = "PASS_1" | "PASS_2" | "CONSISTENCY";
 
 export interface RiskEvidenceSpan {
   sourceTable: "document_clauses" | "entities";
@@ -143,10 +157,25 @@ export interface Risk {
   textStart: number | null;
   textEnd: number | null;
   createdAt: string;
+  /** Phase 8: which consistency/fact rule produced the finding. */
+  ruleId?: string | null;
+  reviewRequired?: boolean;
 }
 
-export type GraphNodeType = "DOCUMENT" | "ENTITY" | "CLAUSE" | "RISK_FINDING";
-export type GraphEdgeType = "HAS_ENTITY" | "HAS_CLAUSE" | "REFERENCES" | "FLAGS" | "COMPARED_WITH";
+export type GraphNodeType =
+  "DOCUMENT" | "ENTITY" | "CLAUSE" | "RISK_FINDING" | "OBLIGATION" | "EVENT" | "LEGAL_REFERENCE";
+export type GraphEdgeType =
+  | "HAS_ENTITY"
+  | "HAS_CLAUSE"
+  | "REFERENCES"
+  | "FLAGS"
+  | "COMPARED_WITH"
+  | "RELATION"
+  | "HAS_OBLIGATION"
+  | "MUST_PERFORM"
+  | "DUE_ON"
+  | "CONTRADICTS"
+  | "RELEVANT_TO";
 
 export interface GraphNode {
   id: string;
@@ -155,12 +184,14 @@ export interface GraphNode {
   text: string | null;
   textStart: number | null;
   textEnd: number | null;
+  category?: string;
 }
 
 export interface GraphEdge {
   type: GraphEdgeType;
   from: string;
   to: string;
+  label?: string;
 }
 
 export interface DocumentGraph {
@@ -179,12 +210,21 @@ export interface AskSource {
   textStart: number | null;
   textEnd: number | null;
   excerpt: string;
+  clauseId?: string | null;
+  clauseType?: string | null;
+  clauseNumber?: string | null;
+  page?: number | null;
 }
+
+export type EvidenceStatus = "GROUNDED" | "NOT_SUFFICIENT";
 
 export interface AskResult {
   answer: string;
   grounded: boolean;
   sources: AskSource[];
+  /** Phase 8 - absent on responses from older API builds. */
+  evidenceStatus?: EvidenceStatus;
+  method?: "structured" | "retrieval";
 }
 
 export interface ApiErrorBody {
@@ -217,4 +257,114 @@ export interface DomainPackSummary {
   entityTypes: DomainPackEntityType[];
   clauseTypes: string[];
   expectedClauseTypes: string[];
+}
+
+// --- Phase 8 semantic layer (apps/api/src/routes/semantics.ts) -------------
+
+export interface DomainCandidate {
+  domain: string;
+  documentType: string;
+  score: number;
+  supportingSignals: string[];
+}
+
+// Deterministic signal counts - deliberately no probability/confidence.
+export interface DomainDetection {
+  predictedDomain: string | null;
+  predictedDocumentType: string | null;
+  candidateDomains: DomainCandidate[];
+  supportingSignals: string[];
+  method: string;
+  declaredDomain?: string;
+  declaredDocumentType?: string;
+  agreesWithDeclared?: boolean;
+}
+
+export interface OverviewField {
+  label: string;
+  displayName: string;
+  coreType: string;
+  value: string | null;
+  values: string[];
+  normalized: Record<string, unknown> | null;
+  evidence: { entityId: string; textStart: number; textEnd: number } | null;
+}
+
+export interface DocumentOverview {
+  domain: string;
+  domainName: string;
+  documentType: string;
+  fields: OverviewField[];
+  detection: DomainDetection | null;
+}
+
+export interface Obligation {
+  actorLabel: string;
+  actorEntityId: string | null;
+  actorText: string;
+  action: string;
+  unexpectedActor: boolean;
+  amountEntityId: string | null;
+  amountLabel: string | null;
+  amountInr: number | null;
+  deadlineIso: string | null;
+  deadlineText: string | null;
+  frequency: "MONTHLY" | "ANNUAL" | null;
+  condition: string | null;
+  sourceClauseId: string | null;
+  textStart: number;
+  textEnd: number;
+  evidenceText: string;
+}
+
+// GET /compare?a=&b= (apps/api/src/semantic/compare.ts)
+export type DiffStatus = "SAME" | "CHANGED" | "ADDED" | "REMOVED";
+
+export interface CompareSideValue {
+  text: string;
+  normalized: Record<string, unknown> | null;
+  textStart: number;
+  textEnd: number;
+}
+
+export interface DocumentComparison {
+  a: { documentId: string; documentType: string; domain: string };
+  b: { documentId: string; documentType: string; domain: string };
+  sameDomain: boolean;
+  fields: {
+    label: string;
+    displayName: string;
+    coreType: string;
+    status: DiffStatus;
+    a: CompareSideValue[];
+    b: CompareSideValue[];
+  }[];
+  clauses: {
+    clauseType: string;
+    status: DiffStatus;
+    a: { clauseNumber: string | null } | null;
+    b: { clauseNumber: string | null } | null;
+  }[];
+  obligations: {
+    actorLabel: string;
+    action: string;
+    status: DiffStatus;
+    a: { amountInr: number | null; deadlineText: string | null; evidenceText: string } | null;
+    b: { amountInr: number | null; deadlineText: string | null; evidenceText: string } | null;
+  }[];
+  relations: {
+    relationType: string;
+    subjectLabel: string;
+    objectLabel: string;
+    status: DiffStatus;
+    a: string[];
+    b: string[];
+  }[];
+  risks: {
+    category: string;
+    status: DiffStatus;
+    a: { severity: string; reason: string } | null;
+    b: { severity: string; reason: string } | null;
+  }[];
+  summary: Record<DiffStatus, number>;
 }

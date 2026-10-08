@@ -2,7 +2,11 @@
 // from a low-confidence answer, never styled as a normal answer card. No
 // invented answer text, ever - this is the only thing ever shown when
 // the backend refuses.
-export function RefusalState() {
+//
+// Phase 8: when the structured path explains WHY there is no answer (the
+// field belongs to a different kind of document, or no such value was
+// extracted), that backend sentence is shown verbatim as `detail`.
+export function RefusalState({ detail }: { detail?: string | undefined }) {
   return (
     <div
       role="status"
@@ -11,6 +15,7 @@ export function RefusalState() {
     >
       <p className="font-medium text-ink-600">Not enough evidence found</p>
       <p className="mt-1">I couldn&apos;t find enough evidence in this document to answer that.</p>
+      {detail && <p className="mt-1 text-xs text-ink-400">{detail}</p>}
     </div>
   );
 }

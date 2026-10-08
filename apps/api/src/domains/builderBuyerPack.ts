@@ -120,7 +120,8 @@ export const builderBuyerPack: DomainPack<RiskEngineContext, RiskFinding> = {
       priority: 90,
     },
     { clauseType: "PROJECT", headingPattern: /PROJECT/i, priority: 100 },
-    { clauseType: "CONSIDERATION", headingPattern: /CONSIDERATION|PRICE|BOOKING/i, priority: 110 },
+    // Before UNIT_DESCRIPTION: "Price of the Apartment" is the price, not the unit.
+    { clauseType: "CONSIDERATION", headingPattern: /CONSIDERATION|PRICE|BOOKING/i, priority: 85 },
     { clauseType: "REGISTRATION", headingPattern: /REGISTRATION|STAMP/i, priority: 120 },
     { clauseType: "DISPUTE_RESOLUTION", headingPattern: /DISPUTE|ARBITRATION/i, priority: 130 },
     { clauseType: "JURISDICTION", headingPattern: /JURISDICTION|GOVERNING\s+LAW/i, priority: 140 },

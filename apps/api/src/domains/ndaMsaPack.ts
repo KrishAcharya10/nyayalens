@@ -119,6 +119,9 @@ export const ndaMsaPack: DomainPack<RiskEngineContext, RiskFinding> = {
     { clauseType: "DEFINITIONS", headingPattern: /DEFINITION|INTERPRETATION/i, priority: 10 },
     { clauseType: "EXCLUSIONS", headingPattern: /EXCLUSION|EXCEPTION/i, priority: 20 },
     { clauseType: "RETURN_OF_INFORMATION", headingPattern: /RETURN|DESTRUCTION/i, priority: 30 },
+    // "TERM AND SURVIVAL" states the agreement's term; "SURVIVAL" alone is
+    // the confidentiality period.
+    { clauseType: "TERM", headingPattern: /\bTERM\b.*SURVIV/i, priority: 34 },
     { clauseType: "CONFIDENTIALITY_PERIOD", headingPattern: /SURVIV/i, priority: 35 },
     {
       clauseType: "CONFIDENTIALITY",

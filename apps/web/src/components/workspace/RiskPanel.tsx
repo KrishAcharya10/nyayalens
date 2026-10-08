@@ -38,6 +38,8 @@ export function RiskCard({ risk, highlighted = false }: { risk: Risk; highlighte
         <Badge tone={SEVERITY_TONE[risk.severity]}>{risk.severity}</Badge>
         <Badge tone="neutral">{humanizeLabel(risk.category)}</Badge>
         {risk.pass === "PASS_2" && <Badge tone="neutral">Cross-clause</Badge>}
+        {risk.pass === "CONSISTENCY" && <Badge tone="neutral">Consistency</Badge>}
+        {risk.reviewRequired && <Badge tone="review">Review required</Badge>}
       </div>
       {/* risk.reason is rendered byte-for-byte from the backend - never
           rewritten, strengthened, or summarized. The backend's own

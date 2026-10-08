@@ -1,41 +1,60 @@
-# NyayaLens Ultimate Build Specification (placeholder)
+# NyayaLens specification
 
-The full specification document this repository's build prompt refers to
-(the "NyayaLens Ultimate Build Specification", including numbered sections
-such as Section 11, 14, 20, 22, 27, 40) was **not provided** when Phase 1-2
-was built. This file is a placeholder so `docs/full_spec.md` exists as the
-build prompt expects.
+## Status of the original "Ultimate Build Specification"
 
-## What was actually used to build Phase 1-2
+The original specification that the Phase 1-2 build prompt refers to
+(numbered sections such as 11, 14, 20, 22, 27 and 40) was **never
+provided**. Phases 1-7 were built from their own build prompts, the
+synthetic dataset and explicitly flagged engineering defaults. The concrete
+decisions are recorded in `docs/architecture/*.md`. Treat any citation of
+those numbered sections as unresolved.
 
-In the absence of the full spec text, Phase 1-2 was built from:
+## Phase 8 specification ("NYAYALENS - PHASE 8")
 
-- The Phase 1-2 build prompt itself, which embeds a substantial amount of
-  concrete detail (required database tables, `document_type` values, auth
-  security requirements, provenance dual-schema, `key_findings` shape,
-  RBAC roles, folder layout for real/synthetic/adversarial data).
-- The synthetic dataset's `dataset_card.md` and `manifest.jsonl`
-  (`research/data/synthetic/`), and the generator source
-  (`research/generator/`), which reveal the actual entity/clause label set
-  in use (e.g. `LESSOR`, `LESSEE`, `RENT`, `LAND_USE_TYPE`,
-  `SURVEY_NUMBER`, `LEASE_DURATION`, `TERMINATION`, `DISPUTE_RESOLUTION`, ...).
-- Reasonable, explicitly-flagged engineering defaults where the build
-  prompt was silent (tech stack: Next.js + a Node/Express API service,
-  PostgreSQL + Prisma, npm workspaces monorepo).
+The Phase 8 specification was provided in full: 47 sections plus a
+Definition of Done. Phase 8 was built from it. The table below maps each
+section to where it is implemented and states what was not done.
 
-## Sections referenced by the build prompt that could not be resolved
+| § | Requirement | Where | Status |
+|---|---|---|---|
+| 1, 4 | Target architecture; DomainPack architecture | `apps/api/src/domains/registry.ts`, `docs/domain_packs.md`, `docs/architecture.md` | Done |
+| 2 | Existing domains keep working | rental + land lease migrated to packs; v1 parity measured (`docs/domain_packs.md`); v1 adversarial regression 75/75 detected, 0/75 control FPs | Done |
+| 3, 7-13 | Five new domains (leave & licence, sale/property, builder-buyer, employment, NDA/MSA) incl. sale obligations + consistency | `apps/api/src/domains/*Pack.ts` | Done |
+| 5 | Domain detection, no fake confidence | `domains/detectDomain.ts`, `domain_detection` stage, workspace mismatch notice | Done (deterministic signals; no probabilities) |
+| 6 | Semantic fact layer | `apps/api/src/semantic/` | Done (facts built at read time; relations/obligations persisted) |
+| 14-18 | Synthetic dataset v3: generation, size, difficulty, 11 annotation layers | `research/generator/v3`, `generate_v3.py` | Done: 3,640 documents, 520/domain |
+| 19-21 | Counterfactual, adversarial, control sets | same | Done: 140 counterfactual pairs, 560 adversarial + 560 control |
+| 22 | Dataset validation | `research/generator/v3/validate.py` | Done (0 critical failures, 0 duplicates, 0 leakage) |
+| 23 | Template-aware train/dev/test 70/15/15 (+ mixed/cross-domain) | `research/data/synthetic_v3/splits/` | Done |
+| 24 | Dataset quality report | `research/data/reports/dataset_quality.json`, `docs/dataset_card.md` | Done |
+| 25-26 | QA benchmark incl. domain-specific questions | `research/generator/v3/qa.py` | Done: 45,275 items, 5 types |
+| 27-30 | Relation, obligation, temporal, financial extraction | `semantic/extract.ts`, `semantic/normalize.ts` | Done |
+| 31 | Risk engine extensions | `risk/factChecks.ts`, `consistency/engine.ts` | Done |
+| 32 | Knowledge graph for the new ontology | `graph/buildGraph.ts` | Done (obligation/event/legal-reference nodes, typed relation, CONTRADICTS, RELEVANT_TO edges) |
+| 33 | Document comparison | `semantic/compare.ts`, `GET /compare`, `/compare` page | Done (key terms, clauses, obligations, relations, risks) |
+| 34 | Local RAG | `rag/runAsk.ts`, `rag/structuredQa.ts` | Done: question analysis → structured facts → BM25 → extractive/Ollama. **Not done:** the optional local embeddings and reranker |
+| 35 | RAG safety: GROUNDED / NOT SUFFICIENT, clause, page, evidence text | `runAsk.ts`, Ask panel | Done |
+| 36 | Frontend tabs and domain Overview cards | `apps/web/src/components/workspace/` | Done |
+| 37 | Shareable `/research` page (17 sections + diagram) | `apps/web/src/app/research/page.tsx` | Done |
+| 38 | Legal reference layer, no fabricated statutes | `domains/legalReferences.ts`, `docs/legal_reference_policy.md` | Done (all references UNVERIFIED) |
+| 39 | Security: new APIs enforce ownership | `routes/semantics.ts`, `routes/compare.ts` + e2e tests | Done |
+| 40 | Database | migrations `20261007210110_*`, `20261007210857_*` | Done (enums kept, one migration per change; drift test) |
+| 41-42 | Testing, regression testing | `apps/api/tests`, `apps/web/src/**/*.test.tsx`, `research/generator/tests` | Done |
+| 43 | No fake results | `docs/evaluation.md` is generated by the harness; `/research` reads result files | Done |
+| 44 | Legal disclaimer | workspace notices, `/research`, `/how-it-works` | Done |
+| 46 | Required output files | `docs/{architecture,domain_packs,dataset_card,evaluation,legal_reference_policy,local_setup,full_spec}.md` | Done |
+| 47 | Final report | delivered with the Phase 8 completion | Done |
 
-Anywhere this codebase would normally cite a specific numbered section
-(e.g. "per spec Section 40" for the monorepo layout, "spec Section 27" for
-dataset card provenance format, "spec Section 20" for the full RBAC
-model), treat that reference as **unresolved** until the real specification
-is pasted into this file. The concrete decisions made instead are recorded
-in `docs/architecture/*.md`.
+## Deviations and known gaps
 
-## Action needed
-
-Replace this file's content with the complete NyayaLens Ultimate Build
-Specification, then re-check the `docs/architecture/*.md` files for any
-decision that should change once the real spec is available (most likely:
-the exact entity/clause/risk ontology, the full JSON output schema for
-Section 11, and the monorepo layout intended by Section 40).
+- **No model training.** All Phase 8 numbers are from the rule-based
+  pipeline. No NER or relation model was trained on v3, so §41's model
+  metrics are rule-based results.
+- **Synthetic-only evaluation.** The rules and the generator were written
+  by the same project. See `docs/evaluation.md`, "How to read these
+  numbers".
+- **Optional RAG components.** Local embeddings and a reranker (§34,
+  optional) are not implemented. BM25 remains the retrieval step.
+- **Unfixed security gaps.** `cors()` allows any origin, and
+  `/auth/login` has no rate limit. Both are open items from the Phase 8
+  audit.

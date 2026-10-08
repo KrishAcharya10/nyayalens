@@ -11,7 +11,7 @@ import { RefusalState } from "./RefusalState";
 import { AskSourcesList } from "./AskSourcesList";
 import { useEvaluationStats, formatPercent } from "@/lib/useEvaluationStats";
 
-const EXAMPLE_QUESTIONS = [
+const DEFAULT_EXAMPLE_QUESTIONS = [
   "What is the monthly rent?",
   "Who is the landlord?",
   "What is the notice period?",
@@ -29,7 +29,17 @@ interface Exchange {
 // Section 19: a document-research tool, not a general chat clone -
 // visibly scoped to this one document, with mandatory evidence framing
 // on every single answer (Section 20).
-export function AskPanel({ documentId }: { documentId: string }) {
+//
+// Phase 8: example questions come from the document's own domain (the
+// IntelligencePanel derives them from the DomainPack overview fields), so a
+// sale deed suggests "Who is the buyer?" rather than rent questions.
+export function AskPanel({
+  documentId,
+  exampleQuestions = DEFAULT_EXAMPLE_QUESTIONS,
+}: {
+  documentId: string;
+  exampleQuestions?: string[];
+}) {
   const [question, setQuestion] = useState("");
   const [exchanges, setExchanges] = useState<Exchange[]>([]);
   const stats = useEvaluationStats();
@@ -91,7 +101,7 @@ export function AskPanel({ documentId }: { documentId: string }) {
 
         {exchanges.length === 0 && (
           <div className="mt-2.5 flex flex-wrap gap-1.5">
-            {EXAMPLE_QUESTIONS.map((example) => (
+            {exampleQuestions.map((example) => (
               <button
                 key={example}
                 type="button"
@@ -159,7 +169,7 @@ function AnswerCard({ result }: { result: AskResult }) {
   if (!result.grounded) {
     return (
       <>
-        <RefusalState />
+        <RefusalState detail={result.method === "structured" ? result.answer : undefined} />
         <AskSourcesList sources={result.sources} />
       </>
     );
@@ -168,7 +178,7 @@ function AnswerCard({ result }: { result: AskResult }) {
     <div className="rounded border border-ink-100 bg-paper-50 p-2.5">
       <p className="text-sm leading-relaxed text-ink-800">{result.answer}</p>
       {/* Mandatory on every single grounded answer - see EvidenceStatusIndicator.tsx. */}
-      <EvidenceStatusIndicator />
+      <EvidenceStatusIndicator method={result.method} />
       <AskSourcesList sources={result.sources} />
     </div>
   );

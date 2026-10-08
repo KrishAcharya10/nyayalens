@@ -12,6 +12,9 @@ const NODE_COLOR: Record<GraphNode["type"], { bg: string; border: string; text: 
   CLAUSE: { bg: "#eff3fa", border: "#c3d3ec", text: "#274a80" },
   ENTITY: { bg: "#fbeed9", border: "#eec583", text: "#946222" },
   RISK_FINDING: { bg: "#fdf1f1", border: "#eec3c3", text: "#8a2222" },
+  OBLIGATION: { bg: "#eef7f1", border: "#b7dcc4", text: "#24603a" },
+  EVENT: { bg: "#f4f0fa", border: "#d3c6ea", text: "#4f3a80" },
+  LEGAL_REFERENCE: { bg: "#f4f5f7", border: "#cbd1db", text: "#4a5468" },
 };
 
 // Section 18: an established layout library (reactflow), not a
@@ -24,14 +27,23 @@ function layoutNodes(nodes: GraphNode[]): Node[] {
     CLAUSE: [],
     ENTITY: [],
     RISK_FINDING: [],
+    OBLIGATION: [],
+    EVENT: [],
+    LEGAL_REFERENCE: [],
   };
   for (const n of nodes) byType[n.type].push(n);
 
+  // Legal references sit left of the document (they are reference
+  // metadata, not document content); obligations and their deadline events
+  // sit between the entities they bind and the risk findings.
   const COLUMN_X: Record<GraphNode["type"], number> = {
+    LEGAL_REFERENCE: -320,
     DOCUMENT: 0,
     CLAUSE: 320,
     ENTITY: 640,
-    RISK_FINDING: 960,
+    OBLIGATION: 960,
+    EVENT: 1280,
+    RISK_FINDING: 1600,
   };
   const ROW_GAP = 64;
 
@@ -64,7 +76,19 @@ const EDGE_LABEL: Record<string, string> = {
   REFERENCES: "references",
   FLAGS: "flags",
   COMPARED_WITH: "compared with",
+  HAS_OBLIGATION: "",
+  DUE_ON: "due",
+  CONTRADICTS: "contradicts",
+  RELEVANT_TO: "reference (unverified)",
 };
+
+function edgeLabel(e: DocumentGraph["edges"][number]): string {
+  // RELATION / MUST_PERFORM carry their specific type (SELLS_TO, MUST_PAY).
+  if ((e.type === "RELATION" || e.type === "MUST_PERFORM") && e.label) {
+    return humanizeLabel(e.label).toLowerCase();
+  }
+  return EDGE_LABEL[e.type] ?? e.type;
+}
 
 export function GraphView({
   graph,
@@ -83,10 +107,15 @@ export function GraphView({
             id: `${e.from}-${e.type}-${e.to}-${i}`,
             source: e.from,
             target: e.to,
-            label: EDGE_LABEL[e.type] ?? e.type,
-            style: { stroke: "#9aa4b5", strokeWidth: 1 },
-            labelStyle: { fontSize: 10, fill: "#6b7690" },
-            animated: e.type === "COMPARED_WITH",
+            label: edgeLabel(e),
+            style:
+              e.type === "CONTRADICTS"
+                ? { stroke: "#c24141", strokeWidth: 1.5 }
+                : e.type === "RELEVANT_TO"
+                  ? { stroke: "#9aa4b5", strokeWidth: 1, strokeDasharray: "4 3" }
+                  : { stroke: "#9aa4b5", strokeWidth: 1 },
+            labelStyle: { fontSize: 10, fill: e.type === "CONTRADICTS" ? "#8a2222" : "#6b7690" },
+            animated: e.type === "COMPARED_WITH" || e.type === "CONTRADICTS",
           }))
         : [],
     [graph],

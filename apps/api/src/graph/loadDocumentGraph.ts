@@ -2,6 +2,7 @@
 // model_source, same explicit-never-implicit discipline as Phase 6's
 // runRiskEngine) and builds its knowledge graph.
 import { getPrismaClient, type ModelSource } from "@nyayalens/db";
+import { getDomainPackRegistry } from "../domains/index.js";
 import { buildDocumentGraph } from "./buildGraph.js";
 import type { DocumentGraph, GraphEvidenceInput } from "./types.js";
 
@@ -34,7 +35,7 @@ export async function loadDocumentGraph(
     select: { documentType: true },
   });
 
-  const [clauses, entities, risks] = await Promise.all([
+  const [clauses, entities, risks, relations, obligations] = await Promise.all([
     prisma.documentClause.findMany({
       where: { documentId, modelSource },
       select: { id: true, clauseType: true, text: true, textStart: true, textEnd: true },
@@ -45,9 +46,27 @@ export async function loadDocumentGraph(
     }),
     prisma.risk.findMany({
       where: { documentId, modelSource },
-      select: { id: true, category: true, evidence: true },
+      select: { id: true, category: true, evidence: true, pass: true },
+    }),
+    prisma.relation.findMany({
+      where: { documentId, modelSource },
+      select: { relationType: true, subjectEntityId: true, objectEntityId: true },
+    }),
+    prisma.obligation.findMany({
+      where: { documentId, modelSource },
+      select: {
+        id: true,
+        action: true,
+        actorEntityId: true,
+        amountEntityId: true,
+        deadlineText: true,
+        description: true,
+        textStart: true,
+        textEnd: true,
+      },
     }),
   ]);
+  const pack = getDomainPackRegistry().forDocumentType(document.documentType);
 
   return buildDocumentGraph({
     documentId,
@@ -59,6 +78,24 @@ export async function loadDocumentGraph(
       id: r.id,
       category: r.category,
       evidence: parseEvidence(r.evidence),
+      pass: r.pass,
+    })),
+    entityCategories: Object.fromEntries(pack.entitySchema.map((e) => [e.label, e.coreType])),
+    relations,
+    obligations: obligations.map((o) => ({
+      id: o.id,
+      action: o.action ?? "OBLIGATION",
+      actorEntityId: o.actorEntityId,
+      amountEntityId: o.amountEntityId,
+      deadline: o.deadlineText,
+      text: o.description,
+      textStart: o.textStart,
+      textEnd: o.textEnd,
+    })),
+    legalReferences: pack.legalFrameworks.map((f) => ({
+      id: f.id,
+      title: f.title,
+      verification: f.verification ?? "UNVERIFIED",
     })),
   });
 }

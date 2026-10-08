@@ -41,6 +41,85 @@ function entityWithinClause(entity: GraphEntityInput, clause: GraphClauseInput):
   return entity.textStart >= clause.textStart && entity.textEnd <= clause.textEnd;
 }
 
+// Phase 8 additions: typed relation edges, obligations (+ deadline events),
+// contradiction edges and legal-reference nodes. Every node still maps to a
+// persisted row (or, for LEGAL_REFERENCE, to pack metadata), so every node is
+// traceable to evidence or to its source.
+function addSemanticLayer(input: BuildGraphInput, nodes: GraphNode[], edges: GraphEdge[]): void {
+  const doc = documentNodeId(input.documentId);
+  const entityIds = new Set(input.entities.map((e) => e.id));
+  for (const r of input.relations ?? []) {
+    if (!entityIds.has(r.objectEntityId)) continue;
+    if (r.subjectEntityId && !entityIds.has(r.subjectEntityId)) continue;
+    edges.push({
+      type: "RELATION",
+      label: r.relationType,
+      from: r.subjectEntityId ? entityNodeId(r.subjectEntityId) : doc,
+      to: entityNodeId(r.objectEntityId),
+    });
+  }
+  for (const o of input.obligations ?? []) {
+    const id = `obligation:${o.id}`;
+    nodes.push({
+      id,
+      type: "OBLIGATION",
+      label: o.action,
+      text: o.text,
+      textStart: o.textStart,
+      textEnd: o.textEnd,
+    });
+    edges.push({ type: "HAS_OBLIGATION", from: doc, to: id });
+    if (o.actorEntityId && entityIds.has(o.actorEntityId)) {
+      edges.push({
+        type: "MUST_PERFORM",
+        label: `MUST_${o.action}`,
+        from: entityNodeId(o.actorEntityId),
+        to: id,
+      });
+    }
+    if (o.amountEntityId && entityIds.has(o.amountEntityId)) {
+      edges.push({ type: "REFERENCES", from: id, to: entityNodeId(o.amountEntityId) });
+    }
+    if (o.deadline) {
+      const eventId = `event:${o.id}`;
+      nodes.push({
+        id: eventId,
+        type: "EVENT",
+        label: "DEADLINE",
+        text: o.deadline,
+        textStart: null,
+        textEnd: null,
+      });
+      edges.push({ type: "DUE_ON", from: id, to: eventId });
+    }
+  }
+  for (const risk of input.risks) {
+    if (risk.pass !== "CONSISTENCY") continue;
+    const values = risk.evidence.filter(
+      (e) => e.sourceTable === "entities" && entityIds.has(e.sourceId),
+    );
+    for (let i = 1; i < values.length; i++) {
+      edges.push({
+        type: "CONTRADICTS",
+        from: entityNodeId(values[0]!.sourceId),
+        to: entityNodeId(values[i]!.sourceId),
+      });
+    }
+  }
+  for (const ref of input.legalReferences ?? []) {
+    const id = `legal:${ref.id}`;
+    nodes.push({
+      id,
+      type: "LEGAL_REFERENCE",
+      label: ref.title,
+      text: `Reference metadata (${ref.verification}); not a statement that it applies to this document.`,
+      textStart: null,
+      textEnd: null,
+    });
+    edges.push({ type: "RELEVANT_TO", from: id, to: doc });
+  }
+}
+
 export function buildDocumentGraph(input: BuildGraphInput): DocumentGraph {
   const nodes: GraphNode[] = [];
   const edges: GraphEdge[] = [];
@@ -82,6 +161,9 @@ export function buildDocumentGraph(input: BuildGraphInput): DocumentGraph {
       text: entity.text,
       textStart: entity.textStart,
       textEnd: entity.textEnd,
+      ...(input.entityCategories?.[entity.label]
+        ? { category: input.entityCategories[entity.label] }
+        : {}),
     });
     edges.push({
       type: "HAS_ENTITY",
@@ -138,6 +220,8 @@ export function buildDocumentGraph(input: BuildGraphInput): DocumentGraph {
       }
     }
   }
+
+  addSemanticLayer(input, nodes, edges);
 
   return {
     documentId: input.documentId,

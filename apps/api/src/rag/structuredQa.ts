@@ -208,7 +208,7 @@ export function answerStructured(input: StructuredQaInput): StructuredAnswer | n
     entities.filter((e) => e.label === label).sort((a, b) => a.textStart - b.textStart);
   const notFound = (resolved: string[]): StructuredAnswer => ({
     status: "NOT_SUFFICIENT",
-    answer: `The document does not state the ${resolved.map((l) => (display.get(l) ?? l).toLowerCase()).join(" or the ")}.`,
+    answer: `No ${resolved.map((l) => (display.get(l) ?? l).toLowerCase()).join(" or ")} was found in this document's extracted facts.`,
     resolvedLabels: resolved,
     kind: "not_found",
     normalized: null,

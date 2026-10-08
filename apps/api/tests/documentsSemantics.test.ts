@@ -132,3 +132,21 @@ describe("Phase 8 semantic endpoints (end-to-end)", () => {
     expect(unauth.status).toBe(401);
   });
 });
+
+describe("GET /compare (end-to-end)", () => {
+  it("a document compared with itself has no differences", async () => {
+    const res = await get(`/compare?a=${documentId}&b=${documentId}`);
+    expect(res.status).toBe(200);
+    expect(res.body.sameDomain).toBe(true);
+    expect(res.body.summary.CHANGED + res.body.summary.ADDED + res.body.summary.REMOVED).toBe(0);
+    expect(res.body.fields.length).toBeGreaterThan(0);
+  });
+
+  it("requires both ids and ownership of both documents", async () => {
+    expect((await get(`/compare?a=${documentId}`)).status).toBe(400);
+    const other = await registerUser();
+    expect((await get(`/compare?a=${documentId}&b=${documentId}`, other)).status).toBe(404);
+    expect((await get(`/compare?a=${documentId}&b=${randomUUID()}`)).status).toBe(404);
+    expect((await request(app).get(`/compare?a=${documentId}&b=${documentId}`)).status).toBe(401);
+  });
+});

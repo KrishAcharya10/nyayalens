@@ -198,6 +198,19 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
     { clauseType: "SUB_LEASE", headingPattern: /SUB.?LEASE|ASSIGNMENT/i, priority: 98 },
     { clauseType: "RENEWAL", headingPattern: /RENEW/i, priority: 99 },
     { clauseType: "COMPENSATION_ON_ACQUISITION", headingPattern: /ACQUISITION/i, priority: 105 },
+    // Heading synonyms found on the v3 dev set (seed 99); none matches a v1 heading.
+    {
+      clauseType: "LEASE_DURATION",
+      headingPattern: /\b(?:TERM|PERIOD)\s+OF\s+(?:THE\s+)?LEASE\b/i,
+      priority: 21,
+    },
+    {
+      clauseType: "LAND_USE_RESTRICTION",
+      headingPattern: /USE\s+OF\s+(?:THE\s+)?LAND/i,
+      priority: 81,
+    },
+    { clauseType: "DISPUTE_RESOLUTION", headingPattern: /ARBITRATION/i, priority: 111 },
+    { clauseType: "JURISDICTION", headingPattern: /GOVERNING\s+LAW/i, priority: 121 },
     { clauseType: "SCHEDULE_PROPERTY", headingPattern: /^\s*SCHEDULE/i, priority: 125 },
   ],
 

@@ -1,6 +1,7 @@
-import type { DocumentDetail, Entity, Risk } from "@/lib/apiTypes";
+import type { DocumentDetail, DocumentOverview, Entity, Risk } from "@/lib/apiTypes";
 import { Badge } from "@/components/ui/Badge";
 import { formatDate, formatDocumentType, humanizeLabel } from "@/lib/format";
+import { DetectionNotice, DomainOverviewCard } from "./DomainOverviewCard";
 
 const PARTY_LABELS = ["LANDLORD", "TENANT", "LESSOR", "LESSEE"];
 
@@ -10,23 +11,34 @@ const PARTY_LABELS = ["LANDLORD", "TENANT", "LESSOR", "LESSEE"];
 // this always falls through to composing a summary from the real,
 // already-fetched entities/clauses/risks rather than showing an empty
 // section or fabricating prose.
+//
+// Phase 8: when the domain overview (GET /documents/:id/overview) is
+// available, parties and key terms come from the document's DomainPack, so
+// a sale shows its seller/buyer and consideration rather than rental
+// labels; without it the Phase 7B rental/land-lease view is unchanged.
 export function OverviewTab({
   document,
   entities,
   risks,
+  overview = null,
 }: {
   document: DocumentDetail;
   entities: Entity[];
   risks: Risk[];
+  overview?: DocumentOverview | null;
 }) {
   const ruleBasedEntities = entities.filter((e) => e.modelSource === "RULE_BASED");
-  const parties = ruleBasedEntities.filter((e) => PARTY_LABELS.includes(e.label));
+  const partyLabels = overview
+    ? overview.fields.filter((f) => f.coreType === "PARTY").map((f) => f.label)
+    : PARTY_LABELS;
+  const parties = ruleBasedEntities.filter((e) => partyLabels.includes(e.label));
   const ruleBasedRisks = risks.filter((r) => r.modelSource === "RULE_BASED");
   const missingClauses = ruleBasedRisks.filter((r) => r.category === "MISSING_CLAUSE");
   const highRisks = ruleBasedRisks.filter((r) => r.severity === "HIGH").length;
 
   return (
     <div className="flex flex-col gap-4 p-3">
+      {overview && <DetectionNotice detection={overview.detection} />}
       <section>
         <p className="text-section-title text-ink-500">Document</p>
         <dl className="mt-1.5 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-sm">
@@ -53,6 +65,12 @@ export function OverviewTab({
           </p>
         </section>
       ) : null}
+
+      {overview && overview.fields.some((f) => f.coreType !== "PARTY") && (
+        <DomainOverviewCard
+          overview={{ ...overview, fields: overview.fields.filter((f) => f.coreType !== "PARTY") }}
+        />
+      )}
 
       <section>
         <p className="text-section-title text-ink-500">Parties</p>

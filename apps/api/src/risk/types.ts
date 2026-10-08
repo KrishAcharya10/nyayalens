@@ -43,15 +43,30 @@ export interface EvidenceSpan {
   text: string | null;
 }
 
+// Kept in sync with the DB RiskCategory enum (packages/db/prisma/schema.prisma).
 export type RiskCategory =
   | "LIABILITY_SHIFT"
   | "ASYMMETRIC_OBLIGATION"
   | "UNBOUNDED_DISCRETION"
   | "LAND_USE_CONTRADICTION"
-  | "MISSING_CLAUSE";
+  | "MISSING_CLAUSE"
+  // Phase 8 domain risks
+  | "ONE_SIDED_REMEDY"
+  | "RESTRICTIVE_COVENANT"
+  | "UNCAPPED_LIABILITY"
+  // Phase 8 consistency findings (pass CONSISTENCY)
+  | "FINANCIAL_CONTRADICTION"
+  | "DATE_CONTRADICTION"
+  | "DURATION_CONTRADICTION"
+  | "PROPERTY_AREA_CONTRADICTION"
+  | "PROPERTY_IDENTIFIER_CONTRADICTION"
+  | "PAYMENT_TOTAL_MISMATCH"
+  | "PARTY_ROLE_INCONSISTENCY"
+  | "PARTY_NAME_CONTRADICTION"
+  | "DEFINITION_INCONSISTENCY";
 
 export type RiskSeverity = "LOW" | "MEDIUM" | "HIGH";
-export type RiskPass = "PASS_1" | "PASS_2";
+export type RiskPass = "PASS_1" | "PASS_2" | "CONSISTENCY";
 
 export interface RiskFinding {
   category: RiskCategory;
@@ -62,6 +77,10 @@ export interface RiskFinding {
   reason: string;
   pass: RiskPass;
   evidence: EvidenceSpan[];
+  /** Phase 8: the rule that produced the finding (consistency rule id or check name). */
+  ruleId?: string;
+  /** Phase 8: findings are prompts for review, never verdicts. Defaults to true when persisted. */
+  reviewRequired?: boolean;
 }
 
 // A single risk-engine check, whether per-clause (Pass 1) or cross-clause

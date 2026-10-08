@@ -26,6 +26,7 @@
 // uses it; the default resolves the calling context's own pack instead,
 // same reasoning as pass1PerClause.ts's runPass1.
 import { getDomainPackRegistry } from "../domains/index.js";
+import { dedupeFindings } from "./dedupe.js";
 import type { RiskCheck, RiskEngineContext, RiskFinding } from "./types.js";
 
 export type ComparisonCheck = RiskCheck;
@@ -39,5 +40,5 @@ export function runPass2(
   checks: ComparisonCheck[] = getDomainPackRegistry().forDocumentType(context.documentType)
     .riskSchema.comparisonChecks,
 ): RiskFinding[] {
-  return checks.flatMap((check) => check.run(context));
+  return dedupeFindings(checks.flatMap((check) => check.run(context)));
 }

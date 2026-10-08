@@ -1,0 +1,2435 @@
+{
+  "generatedFrom": "apps/api/src/domains (DomainPack registry)",
+  "domains": [
+    {
+      "id": "residential_rental",
+      "name": "Residential Rental Agreement",
+      "version": "2026.10.0",
+      "documentTypes": [
+        {
+          "id": "RESIDENTIAL_RENTAL",
+          "slug": "residential_rental"
+        }
+      ],
+      "entities": [
+        {
+          "label": "LANDLORD",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "TENANT",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "RENT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "SECURITY_DEPOSIT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "DURATION",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "NOTICE_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "ADDRESS",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "PROPERTY_ADDRESS",
+          "coreType": "ADDRESS"
+        },
+        {
+          "label": "EXECUTION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "COMMENCEMENT_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "EXPIRY_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "ESCALATION_RATE",
+          "coreType": "PERCENT"
+        },
+        {
+          "label": "LOCK_IN_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "WITNESS",
+          "coreType": "PERSON"
+        },
+        {
+          "label": "JURISDICTION",
+          "coreType": "LOCATION"
+        }
+      ],
+      "partyTerms": {
+        "LANDLORD": [
+          "Landlord"
+        ],
+        "TENANT": [
+          "Tenant"
+        ]
+      },
+      "clauseTypes": [
+        "LEASE_DURATION",
+        "SECURITY_DEPOSIT",
+        "RENT_ESCALATION",
+        "RENT_PAYMENT",
+        "LOCK_IN_PERIOD",
+        "NOTICE_PERIOD",
+        "MAINTENANCE",
+        "UTILITIES",
+        "USE_OF_PREMISES",
+        "SUBLETTING",
+        "ALTERATIONS",
+        "ENTRY_AND_INSPECTION",
+        "STAMP_DUTY_AND_REGISTRATION",
+        "POLICE_VERIFICATION",
+        "INDEMNITY",
+        "FORCE_MAJEURE",
+        "TERMINATION",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "relations": [
+        {
+          "type": "LETS_TO",
+          "subject": "LANDLORD",
+          "object": "TENANT"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "TENANT",
+          "object": "RENT"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "TENANT",
+          "object": "SECURITY_DEPOSIT"
+        },
+        {
+          "type": "HAS_TERM",
+          "subject": "DOCUMENT",
+          "object": "DURATION"
+        },
+        {
+          "type": "HAS_NOTICE_PERIOD",
+          "subject": "DOCUMENT",
+          "object": "NOTICE_PERIOD"
+        },
+        {
+          "type": "HAS_LOCK_IN",
+          "subject": "DOCUMENT",
+          "object": "LOCK_IN_PERIOD"
+        },
+        {
+          "type": "STARTS_ON",
+          "subject": "DOCUMENT",
+          "object": "COMMENCEMENT_DATE"
+        },
+        {
+          "type": "ENDS_ON",
+          "subject": "DOCUMENT",
+          "object": "EXPIRY_DATE"
+        },
+        {
+          "type": "LOCATED_AT",
+          "subject": "DOCUMENT",
+          "object": "PROPERTY_ADDRESS"
+        },
+        {
+          "type": "HAS_JURISDICTION",
+          "subject": "DOCUMENT",
+          "object": "JURISDICTION"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "PAY",
+          "actors": [
+            "TENANT"
+          ]
+        },
+        {
+          "action": "REFUND_DEPOSIT",
+          "actors": [
+            "LANDLORD"
+          ]
+        },
+        {
+          "action": "MAINTAIN",
+          "actors": [
+            "TENANT",
+            "LANDLORD"
+          ]
+        },
+        {
+          "action": "SERVE_NOTICE",
+          "actors": [
+            "TENANT",
+            "LANDLORD"
+          ]
+        },
+        {
+          "action": "VACATE",
+          "actors": [
+            "TENANT"
+          ]
+        }
+      ],
+      "consistencyRules": [
+        {
+          "id": "rent_rent_single",
+          "kind": "SINGLE_VALUE",
+          "label": "RENT",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The rent should be stated consistently."
+        },
+        {
+          "id": "rent_deposit_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SECURITY_DEPOSIT",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The security deposit should be stated consistently."
+        },
+        {
+          "id": "rent_duration_single",
+          "kind": "SINGLE_VALUE",
+          "label": "DURATION",
+          "category": "DURATION_CONTRADICTION",
+          "description": "The term should be stated consistently."
+        },
+        {
+          "id": "rent_notice_single",
+          "kind": "SINGLE_VALUE",
+          "label": "NOTICE_PERIOD",
+          "category": "DURATION_CONTRADICTION",
+          "description": "A party's notice period should be stated consistently."
+        },
+        {
+          "id": "rent_start_before_end",
+          "kind": "DATE_ORDER",
+          "before": "COMMENCEMENT_DATE",
+          "after": "EXPIRY_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The tenancy should not expire before it starts."
+        },
+        {
+          "id": "rent_rent_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY",
+          "objectLabel": "RENT",
+          "expectedActor": "TENANT",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "Rent is expected to be paid by the tenant."
+        }
+      ],
+      "expectedClauseTypes": [
+        "LEASE_DURATION",
+        "RENT_PAYMENT",
+        "SECURITY_DEPOSIT",
+        "TERMINATION",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "expectedByDocumentType": {
+        "RESIDENTIAL_RENTAL": [
+          "LEASE_DURATION",
+          "RENT_PAYMENT",
+          "SECURITY_DEPOSIT",
+          "TERMINATION",
+          "DISPUTE_RESOLUTION",
+          "JURISDICTION"
+        ]
+      }
+    },
+    {
+      "id": "land_lease",
+      "name": "Land Lease Deed",
+      "version": "2026.10.0",
+      "documentTypes": [
+        {
+          "id": "LAND_LEASE",
+          "slug": "land_lease"
+        }
+      ],
+      "entities": [
+        {
+          "label": "LESSOR",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "LESSEE",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "SURVEY_NUMBER",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "LAND_AREA",
+          "coreType": "AREA"
+        },
+        {
+          "label": "LAND_USE_TYPE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "LAND_USE_RESTRICTION",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "LEASE_PREMIUM",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "KHATA_NUMBER",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "EASEMENT_RIGHT",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "RENT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "DURATION",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "NOTICE_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "ADDRESS",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "EXECUTION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "COMMENCEMENT_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "EXPIRY_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "ESCALATION_RATE",
+          "coreType": "PERCENT"
+        },
+        {
+          "label": "WITNESS",
+          "coreType": "PERSON"
+        },
+        {
+          "label": "JURISDICTION",
+          "coreType": "LOCATION"
+        }
+      ],
+      "partyTerms": {
+        "LESSOR": [
+          "Lessor"
+        ],
+        "LESSEE": [
+          "Lessee"
+        ]
+      },
+      "clauseTypes": [
+        "LEASE_PREMIUM",
+        "LEASE_DURATION",
+        "RENT_ESCALATION",
+        "RENT_PAYMENT",
+        "NOTICE_PERIOD",
+        "ENCUMBRANCE_DECLARATION",
+        "LAND_USE_RESTRICTION",
+        "CROP_OR_CULTIVATION_RIGHTS",
+        "WATER_RIGHTS",
+        "IMPROVEMENTS_AND_STRUCTURES",
+        "REVENUE_AND_TAXES",
+        "EASEMENT",
+        "SUB_LEASE",
+        "RENEWAL",
+        "TERMINATION",
+        "COMPENSATION_ON_ACQUISITION",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION",
+        "SCHEDULE_PROPERTY"
+      ],
+      "relations": [
+        {
+          "type": "LEASES_TO",
+          "subject": "LESSOR",
+          "object": "LESSEE"
+        },
+        {
+          "type": "OWNS",
+          "subject": "LESSOR",
+          "object": "SURVEY_NUMBER"
+        },
+        {
+          "type": "HAS_AREA",
+          "subject": "SURVEY_NUMBER",
+          "object": "LAND_AREA"
+        },
+        {
+          "type": "CLASSIFIED_AS",
+          "subject": "SURVEY_NUMBER",
+          "object": "LAND_USE_TYPE"
+        },
+        {
+          "type": "PERMITTED_USE",
+          "subject": "DOCUMENT",
+          "object": "LAND_USE_RESTRICTION"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "LESSEE",
+          "object": "RENT"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "LESSEE",
+          "object": "LEASE_PREMIUM"
+        },
+        {
+          "type": "HAS_TERM",
+          "subject": "DOCUMENT",
+          "object": "DURATION"
+        },
+        {
+          "type": "HAS_NOTICE_PERIOD",
+          "subject": "DOCUMENT",
+          "object": "NOTICE_PERIOD"
+        },
+        {
+          "type": "STARTS_ON",
+          "subject": "DOCUMENT",
+          "object": "COMMENCEMENT_DATE"
+        },
+        {
+          "type": "ENDS_ON",
+          "subject": "DOCUMENT",
+          "object": "EXPIRY_DATE"
+        },
+        {
+          "type": "HAS_JURISDICTION",
+          "subject": "DOCUMENT",
+          "object": "JURISDICTION"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "PAY",
+          "actors": [
+            "LESSEE"
+          ]
+        },
+        {
+          "action": "USE_ONLY_FOR",
+          "actors": [
+            "LESSEE"
+          ]
+        },
+        {
+          "action": "PAY_TAXES",
+          "actors": [
+            "LESSOR",
+            "LESSEE"
+          ]
+        },
+        {
+          "action": "SERVE_NOTICE",
+          "actors": [
+            "LESSOR",
+            "LESSEE"
+          ]
+        },
+        {
+          "action": "RESTORE_POSSESSION",
+          "actors": [
+            "LESSEE"
+          ]
+        }
+      ],
+      "consistencyRules": [
+        {
+          "id": "land_rent_single",
+          "kind": "SINGLE_VALUE",
+          "label": "RENT",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The lease rent should be stated consistently."
+        },
+        {
+          "id": "land_premium_single",
+          "kind": "SINGLE_VALUE",
+          "label": "LEASE_PREMIUM",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The lease premium should be stated consistently."
+        },
+        {
+          "id": "land_survey_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SURVEY_NUMBER",
+          "category": "PROPERTY_IDENTIFIER_CONTRADICTION",
+          "description": "The survey number should be stated consistently."
+        },
+        {
+          "id": "land_area_single",
+          "kind": "SINGLE_VALUE",
+          "label": "LAND_AREA",
+          "category": "PROPERTY_AREA_CONTRADICTION",
+          "description": "The land area should be stated consistently."
+        },
+        {
+          "id": "land_duration_single",
+          "kind": "SINGLE_VALUE",
+          "label": "DURATION",
+          "category": "DURATION_CONTRADICTION",
+          "description": "The lease term should be stated consistently."
+        },
+        {
+          "id": "land_start_before_end",
+          "kind": "DATE_ORDER",
+          "before": "COMMENCEMENT_DATE",
+          "after": "EXPIRY_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The lease should not expire before it starts."
+        },
+        {
+          "id": "land_rent_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY",
+          "objectLabel": "RENT",
+          "expectedActor": "LESSEE",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "Lease rent is expected to be paid by the lessee."
+        }
+      ],
+      "expectedClauseTypes": [
+        "LEASE_DURATION",
+        "LEASE_PREMIUM",
+        "RENT_PAYMENT",
+        "LAND_USE_RESTRICTION",
+        "TERMINATION",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "expectedByDocumentType": {
+        "LAND_LEASE": [
+          "LEASE_DURATION",
+          "LEASE_PREMIUM",
+          "RENT_PAYMENT",
+          "LAND_USE_RESTRICTION",
+          "TERMINATION",
+          "DISPUTE_RESOLUTION",
+          "JURISDICTION"
+        ]
+      }
+    },
+    {
+      "id": "leave_and_license",
+      "name": "Leave and License Agreement",
+      "version": "2026.10.0",
+      "documentTypes": [
+        {
+          "id": "LEAVE_AND_LICENSE",
+          "slug": "leave_and_license"
+        }
+      ],
+      "entities": [
+        {
+          "label": "LICENSOR",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "LICENSEE",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "LICENSED_PREMISES",
+          "coreType": "ADDRESS"
+        },
+        {
+          "label": "ADDRESS",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "EXECUTION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "COMMENCEMENT_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "EXPIRY_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "LICENSE_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "LICENSE_FEE",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "SECURITY_DEPOSIT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "NOTICE_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "LOCK_IN_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "ESCALATION_RATE",
+          "coreType": "PERCENT"
+        },
+        {
+          "label": "PERMITTED_USE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "JURISDICTION",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "WITNESS",
+          "coreType": "PERSON"
+        }
+      ],
+      "partyTerms": {
+        "LICENSOR": [
+          "Licensor"
+        ],
+        "LICENSEE": [
+          "Licensee"
+        ]
+      },
+      "clauseTypes": [
+        "ESCALATION",
+        "LICENSE_FEE",
+        "SECURITY_DEPOSIT",
+        "LOCK_IN_PERIOD",
+        "NOTICE_PERIOD",
+        "LICENSE_PERIOD",
+        "RENEWAL",
+        "POSSESSION",
+        "MAINTENANCE",
+        "UTILITIES",
+        "PERMITTED_USE",
+        "NO_TENANCY",
+        "REGISTRATION",
+        "TERMINATION",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "relations": [
+        {
+          "type": "LICENSOR_OF",
+          "subject": "LICENSOR",
+          "object": "LICENSED_PREMISES"
+        },
+        {
+          "type": "LICENSES",
+          "subject": "LICENSOR",
+          "object": "LICENSEE"
+        },
+        {
+          "type": "OCCUPIES",
+          "subject": "LICENSEE",
+          "object": "LICENSED_PREMISES"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "LICENSEE",
+          "object": "LICENSE_FEE"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "LICENSEE",
+          "object": "SECURITY_DEPOSIT"
+        },
+        {
+          "type": "HAS_TERM",
+          "subject": "DOCUMENT",
+          "object": "LICENSE_PERIOD"
+        },
+        {
+          "type": "HAS_NOTICE_PERIOD",
+          "subject": "DOCUMENT",
+          "object": "NOTICE_PERIOD"
+        },
+        {
+          "type": "HAS_LOCK_IN",
+          "subject": "DOCUMENT",
+          "object": "LOCK_IN_PERIOD"
+        },
+        {
+          "type": "STARTS_ON",
+          "subject": "DOCUMENT",
+          "object": "COMMENCEMENT_DATE"
+        },
+        {
+          "type": "TERMINATES_ON",
+          "subject": "DOCUMENT",
+          "object": "EXPIRY_DATE"
+        },
+        {
+          "type": "USED_FOR",
+          "subject": "LICENSED_PREMISES",
+          "object": "PERMITTED_USE"
+        },
+        {
+          "type": "HAS_JURISDICTION",
+          "subject": "DOCUMENT",
+          "object": "JURISDICTION"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "PAY",
+          "actors": [
+            "LICENSEE"
+          ]
+        },
+        {
+          "action": "REFUND_DEPOSIT",
+          "actors": [
+            "LICENSOR"
+          ]
+        },
+        {
+          "action": "MAINTAIN",
+          "actors": [
+            "LICENSEE",
+            "LICENSOR"
+          ]
+        },
+        {
+          "action": "SERVE_NOTICE",
+          "actors": [
+            "LICENSEE",
+            "LICENSOR"
+          ]
+        },
+        {
+          "action": "VACATE",
+          "actors": [
+            "LICENSEE"
+          ]
+        },
+        {
+          "action": "REGISTER",
+          "actors": [
+            "LICENSOR",
+            "LICENSEE"
+          ]
+        }
+      ],
+      "consistencyRules": [
+        {
+          "id": "ll_fee_single",
+          "kind": "SINGLE_VALUE",
+          "label": "LICENSE_FEE",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The licence fee should be stated consistently."
+        },
+        {
+          "id": "ll_deposit_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SECURITY_DEPOSIT",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The security deposit should be stated consistently."
+        },
+        {
+          "id": "ll_period_single",
+          "kind": "SINGLE_VALUE",
+          "label": "LICENSE_PERIOD",
+          "category": "DURATION_CONTRADICTION",
+          "description": "The licence period should be stated consistently."
+        },
+        {
+          "id": "ll_notice_single",
+          "kind": "SINGLE_VALUE",
+          "label": "NOTICE_PERIOD",
+          "category": "DURATION_CONTRADICTION",
+          "description": "A party's notice period should be stated consistently."
+        },
+        {
+          "id": "ll_start_single",
+          "kind": "SINGLE_VALUE",
+          "label": "COMMENCEMENT_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The commencement date should be stated consistently."
+        },
+        {
+          "id": "ll_start_before_end",
+          "kind": "DATE_ORDER",
+          "before": "COMMENCEMENT_DATE",
+          "after": "EXPIRY_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The licence should not expire before it starts."
+        },
+        {
+          "id": "ll_fee_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY",
+          "objectLabel": "LICENSE_FEE",
+          "expectedActor": "LICENSEE",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "The licence fee is expected to be paid by the Licensee."
+        }
+      ],
+      "expectedClauseTypes": [
+        "LICENSE_PERIOD",
+        "LICENSE_FEE",
+        "SECURITY_DEPOSIT",
+        "NO_TENANCY",
+        "TERMINATION",
+        "JURISDICTION"
+      ],
+      "expectedByDocumentType": {
+        "LEAVE_AND_LICENSE": [
+          "LICENSE_PERIOD",
+          "LICENSE_FEE",
+          "SECURITY_DEPOSIT",
+          "NO_TENANCY",
+          "TERMINATION",
+          "JURISDICTION"
+        ]
+      }
+    },
+    {
+      "id": "sale_property",
+      "name": "Sale of Property",
+      "version": "2026.10.0",
+      "documentTypes": [
+        {
+          "id": "AGREEMENT_TO_SELL",
+          "slug": "agreement_to_sell"
+        },
+        {
+          "id": "SALE_DEED",
+          "slug": "sale_deed"
+        }
+      ],
+      "entities": [
+        {
+          "label": "SELLER",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "BUYER",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "POWER_OF_ATTORNEY",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "PROPERTY",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "PROPERTY_ADDRESS",
+          "coreType": "ADDRESS"
+        },
+        {
+          "label": "SURVEY_NUMBER",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "CTS_NUMBER",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "PLOT_NUMBER",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "FLAT_NUMBER",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "KHATA_NUMBER",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "LAND_AREA",
+          "coreType": "AREA"
+        },
+        {
+          "label": "BUILT_UP_AREA",
+          "coreType": "AREA"
+        },
+        {
+          "label": "CARPET_AREA",
+          "coreType": "AREA"
+        },
+        {
+          "label": "SALE_CONSIDERATION",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "ADVANCE_AMOUNT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "BALANCE_AMOUNT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "STAMP_DUTY",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "REGISTRATION_FEE",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "LOAN",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "AGREEMENT_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "POSSESSION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "REGISTRATION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "ENCUMBRANCE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "TITLE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "BOUNDARY",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "BANK",
+          "coreType": "ORGANIZATION"
+        },
+        {
+          "label": "ADDRESS",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "JURISDICTION",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "WITNESS",
+          "coreType": "PERSON"
+        }
+      ],
+      "partyTerms": {
+        "SELLER": [
+          "Seller",
+          "Vendor",
+          "Transferor"
+        ],
+        "BUYER": [
+          "Buyer",
+          "Purchaser",
+          "Transferee"
+        ]
+      },
+      "clauseTypes": [
+        "STAMP_DUTY",
+        "REGISTRATION",
+        "ADVANCE",
+        "BALANCE_PAYMENT",
+        "PAYMENT_SCHEDULE",
+        "CONSIDERATION",
+        "POSSESSION",
+        "TITLE_TRANSFER",
+        "ENCUMBRANCE",
+        "TITLE",
+        "REPRESENTATIONS",
+        "WARRANTIES",
+        "TAXES",
+        "DEFAULT",
+        "TERMINATION",
+        "INDEMNITY",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION",
+        "SCHEDULE_PROPERTY",
+        "PROPERTY_DESCRIPTION"
+      ],
+      "relations": [
+        {
+          "type": "SELLS",
+          "subject": "SELLER",
+          "object": "PROPERTY"
+        },
+        {
+          "type": "BUYS",
+          "subject": "BUYER",
+          "object": "PROPERTY"
+        },
+        {
+          "type": "OWNS",
+          "subject": "SELLER",
+          "object": "PROPERTY"
+        },
+        {
+          "type": "TRANSFERS",
+          "subject": "SELLER",
+          "object": "BUYER"
+        },
+        {
+          "type": "HAS_PROPERTY",
+          "subject": "DOCUMENT",
+          "object": "PROPERTY"
+        },
+        {
+          "type": "HAS_SURVEY_NUMBER",
+          "subject": "PROPERTY",
+          "object": "SURVEY_NUMBER"
+        },
+        {
+          "type": "HAS_IDENTIFIER",
+          "subject": "PROPERTY",
+          "object": "CTS_NUMBER"
+        },
+        {
+          "type": "HAS_IDENTIFIER",
+          "subject": "PROPERTY",
+          "object": "PLOT_NUMBER"
+        },
+        {
+          "type": "HAS_IDENTIFIER",
+          "subject": "PROPERTY",
+          "object": "FLAT_NUMBER"
+        },
+        {
+          "type": "HAS_IDENTIFIER",
+          "subject": "PROPERTY",
+          "object": "KHATA_NUMBER"
+        },
+        {
+          "type": "HAS_AREA",
+          "subject": "PROPERTY",
+          "object": "LAND_AREA"
+        },
+        {
+          "type": "HAS_AREA",
+          "subject": "PROPERTY",
+          "object": "BUILT_UP_AREA"
+        },
+        {
+          "type": "HAS_AREA",
+          "subject": "PROPERTY",
+          "object": "CARPET_AREA"
+        },
+        {
+          "type": "HAS_CONSIDERATION",
+          "subject": "DOCUMENT",
+          "object": "SALE_CONSIDERATION"
+        },
+        {
+          "type": "HAS_ADVANCE",
+          "subject": "DOCUMENT",
+          "object": "ADVANCE_AMOUNT"
+        },
+        {
+          "type": "HAS_BALANCE",
+          "subject": "DOCUMENT",
+          "object": "BALANCE_AMOUNT"
+        },
+        {
+          "type": "HAS_POSSESSION_DATE",
+          "subject": "PROPERTY",
+          "object": "POSSESSION_DATE"
+        },
+        {
+          "type": "HAS_REGISTRATION_DATE",
+          "subject": "DOCUMENT",
+          "object": "REGISTRATION_DATE"
+        },
+        {
+          "type": "ENCUMBERED_BY",
+          "subject": "PROPERTY",
+          "object": "ENCUMBRANCE"
+        },
+        {
+          "type": "MORTGAGED_TO",
+          "subject": "PROPERTY",
+          "object": "BANK"
+        },
+        {
+          "type": "LOCATED_AT",
+          "subject": "PROPERTY",
+          "object": "PROPERTY_ADDRESS"
+        },
+        {
+          "type": "BOUNDED_BY",
+          "subject": "PROPERTY",
+          "object": "BOUNDARY"
+        },
+        {
+          "type": "AUTHORISED_BY",
+          "subject": "SELLER",
+          "object": "POWER_OF_ATTORNEY"
+        },
+        {
+          "type": "DERIVES_TITLE_FROM",
+          "subject": "SELLER",
+          "object": "TITLE"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "BUYER",
+          "object": "ADVANCE_AMOUNT"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "BUYER",
+          "object": "BALANCE_AMOUNT"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "BUYER",
+          "object": "STAMP_DUTY"
+        },
+        {
+          "type": "HAS_JURISDICTION",
+          "subject": "DOCUMENT",
+          "object": "JURISDICTION"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "PAY",
+          "actors": [
+            "BUYER"
+          ]
+        },
+        {
+          "action": "DELIVER_POSSESSION",
+          "actors": [
+            "SELLER"
+          ]
+        },
+        {
+          "action": "EXECUTE_SALE_DEED",
+          "actors": [
+            "SELLER",
+            "BUYER"
+          ]
+        },
+        {
+          "action": "CLEAR_ENCUMBRANCE",
+          "actors": [
+            "SELLER"
+          ]
+        },
+        {
+          "action": "PAY_TAXES",
+          "actors": [
+            "SELLER"
+          ]
+        },
+        {
+          "action": "PRODUCE_TITLE_DOCUMENTS",
+          "actors": [
+            "SELLER"
+          ]
+        },
+        {
+          "action": "REFUND_ADVANCE",
+          "actors": [
+            "SELLER"
+          ]
+        },
+        {
+          "action": "INDEMNIFY",
+          "actors": [
+            "SELLER"
+          ]
+        }
+      ],
+      "consistencyRules": [
+        {
+          "id": "sale_consideration_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SALE_CONSIDERATION",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The sale consideration should be stated consistently."
+        },
+        {
+          "id": "sale_advance_single",
+          "kind": "SINGLE_VALUE",
+          "label": "ADVANCE_AMOUNT",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The advance should be stated consistently."
+        },
+        {
+          "id": "sale_balance_single",
+          "kind": "SINGLE_VALUE",
+          "label": "BALANCE_AMOUNT",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The balance should be stated consistently."
+        },
+        {
+          "id": "sale_carpet_single",
+          "kind": "SINGLE_VALUE",
+          "label": "CARPET_AREA",
+          "category": "PROPERTY_AREA_CONTRADICTION",
+          "description": "The carpet area should be stated consistently."
+        },
+        {
+          "id": "sale_builtup_single",
+          "kind": "SINGLE_VALUE",
+          "label": "BUILT_UP_AREA",
+          "category": "PROPERTY_AREA_CONTRADICTION",
+          "description": "The built-up area should be stated consistently."
+        },
+        {
+          "id": "sale_land_area_single",
+          "kind": "SINGLE_VALUE",
+          "label": "LAND_AREA",
+          "category": "PROPERTY_AREA_CONTRADICTION",
+          "description": "The land area should be stated consistently."
+        },
+        {
+          "id": "sale_survey_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SURVEY_NUMBER",
+          "category": "PROPERTY_IDENTIFIER_CONTRADICTION",
+          "description": "The survey number should be stated consistently."
+        },
+        {
+          "id": "sale_cts_single",
+          "kind": "SINGLE_VALUE",
+          "label": "CTS_NUMBER",
+          "category": "PROPERTY_IDENTIFIER_CONTRADICTION",
+          "description": "The CTS number should be stated consistently."
+        },
+        {
+          "id": "sale_flat_single",
+          "kind": "SINGLE_VALUE",
+          "label": "FLAT_NUMBER",
+          "category": "PROPERTY_IDENTIFIER_CONTRADICTION",
+          "description": "The flat number should be stated consistently."
+        },
+        {
+          "id": "sale_plot_single",
+          "kind": "SINGLE_VALUE",
+          "label": "PLOT_NUMBER",
+          "category": "PROPERTY_IDENTIFIER_CONTRADICTION",
+          "description": "The plot number should be stated consistently."
+        },
+        {
+          "id": "sale_possession_single",
+          "kind": "SINGLE_VALUE",
+          "label": "POSSESSION_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The possession date should be stated consistently."
+        },
+        {
+          "id": "sale_payment_total",
+          "kind": "SUM",
+          "parts": [
+            "ADVANCE_AMOUNT",
+            "BALANCE_AMOUNT"
+          ],
+          "total": "SALE_CONSIDERATION",
+          "category": "PAYMENT_TOTAL_MISMATCH",
+          "description": "Advance plus balance should equal the sale consideration."
+        },
+        {
+          "id": "sale_possession_after_agreement",
+          "kind": "DATE_ORDER",
+          "before": "AGREEMENT_DATE",
+          "after": "POSSESSION_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "Possession should not be due before the agreement date."
+        },
+        {
+          "id": "sale_balance_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY",
+          "objectLabel": "BALANCE_AMOUNT",
+          "expectedActor": "BUYER",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "The balance is expected to be paid by the buyer."
+        },
+        {
+          "id": "sale_advance_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY",
+          "objectLabel": "ADVANCE_AMOUNT",
+          "expectedActor": "BUYER",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "The advance is expected to be paid by the buyer."
+        }
+      ],
+      "expectedClauseTypes": [
+        "PROPERTY_DESCRIPTION",
+        "CONSIDERATION",
+        "ADVANCE",
+        "BALANCE_PAYMENT",
+        "POSSESSION",
+        "ENCUMBRANCE",
+        "DEFAULT",
+        "JURISDICTION"
+      ],
+      "expectedByDocumentType": {
+        "AGREEMENT_TO_SELL": [
+          "PROPERTY_DESCRIPTION",
+          "CONSIDERATION",
+          "ADVANCE",
+          "BALANCE_PAYMENT",
+          "POSSESSION",
+          "ENCUMBRANCE",
+          "DEFAULT",
+          "JURISDICTION"
+        ],
+        "SALE_DEED": [
+          "PROPERTY_DESCRIPTION",
+          "CONSIDERATION",
+          "POSSESSION",
+          "ENCUMBRANCE",
+          "JURISDICTION"
+        ]
+      }
+    },
+    {
+      "id": "builder_buyer",
+      "name": "Builder-Buyer Agreement",
+      "version": "2026.10.0",
+      "documentTypes": [
+        {
+          "id": "BUILDER_BUYER_AGREEMENT",
+          "slug": "builder_buyer_agreement"
+        }
+      ],
+      "entities": [
+        {
+          "label": "PROMOTER",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "ALLOTTEE",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "PROJECT",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "PROJECT_ADDRESS",
+          "coreType": "ADDRESS"
+        },
+        {
+          "label": "REGISTRATION_REFERENCE",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "UNIT",
+          "coreType": "PROPERTY_IDENTIFIER"
+        },
+        {
+          "label": "CARPET_AREA",
+          "coreType": "AREA"
+        },
+        {
+          "label": "SALE_CONSIDERATION",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "BOOKING_AMOUNT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "INSTALMENT_AMOUNT",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "MAINTENANCE_CHARGE",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "PAYMENT_PLAN",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "CONSTRUCTION_STATUS",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "POSSESSION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "EXECUTION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "GRACE_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "DEFECT_LIABILITY_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "REFUND_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "DELAY_COMPENSATION",
+          "coreType": "PERCENT"
+        },
+        {
+          "label": "CANCELLATION_CHARGE",
+          "coreType": "PERCENT"
+        },
+        {
+          "label": "ADDRESS",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "JURISDICTION",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "WITNESS",
+          "coreType": "PERSON"
+        }
+      ],
+      "partyTerms": {
+        "PROMOTER": [
+          "Promoter",
+          "Developer",
+          "Builder"
+        ],
+        "ALLOTTEE": [
+          "Allottee",
+          "Allottees"
+        ]
+      },
+      "clauseTypes": [
+        "PAYMENT_PLAN",
+        "CANCELLATION",
+        "REFUND",
+        "DELAY_COMPENSATION",
+        "HANDOVER",
+        "POSSESSION",
+        "DEFECTS",
+        "MAINTENANCE",
+        "UNIT_DESCRIPTION",
+        "PROJECT",
+        "CONSIDERATION",
+        "REGISTRATION",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "relations": [
+        {
+          "type": "PROMOTER_OF",
+          "subject": "PROMOTER",
+          "object": "PROJECT"
+        },
+        {
+          "type": "ALLOTTED_TO",
+          "subject": "UNIT",
+          "object": "ALLOTTEE"
+        },
+        {
+          "type": "PART_OF_PROJECT",
+          "subject": "UNIT",
+          "object": "PROJECT"
+        },
+        {
+          "type": "HAS_UNIT",
+          "subject": "DOCUMENT",
+          "object": "UNIT"
+        },
+        {
+          "type": "HAS_CARPET_AREA",
+          "subject": "UNIT",
+          "object": "CARPET_AREA"
+        },
+        {
+          "type": "HAS_CONSIDERATION",
+          "subject": "DOCUMENT",
+          "object": "SALE_CONSIDERATION"
+        },
+        {
+          "type": "HAS_PAYMENT_PLAN",
+          "subject": "DOCUMENT",
+          "object": "PAYMENT_PLAN"
+        },
+        {
+          "type": "HAS_POSSESSION_DATE",
+          "subject": "UNIT",
+          "object": "POSSESSION_DATE"
+        },
+        {
+          "type": "HANDOVER_TO",
+          "subject": "PROMOTER",
+          "object": "ALLOTTEE"
+        },
+        {
+          "type": "REFUND_TO",
+          "subject": "PROMOTER",
+          "object": "ALLOTTEE"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "ALLOTTEE",
+          "object": "BOOKING_AMOUNT"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "ALLOTTEE",
+          "object": "INSTALMENT_AMOUNT"
+        },
+        {
+          "type": "MUST_PAY",
+          "subject": "ALLOTTEE",
+          "object": "MAINTENANCE_CHARGE"
+        },
+        {
+          "type": "HAS_REGISTRATION",
+          "subject": "PROJECT",
+          "object": "REGISTRATION_REFERENCE"
+        },
+        {
+          "type": "LOCATED_AT",
+          "subject": "PROJECT",
+          "object": "PROJECT_ADDRESS"
+        },
+        {
+          "type": "HAS_JURISDICTION",
+          "subject": "DOCUMENT",
+          "object": "JURISDICTION"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "PAY",
+          "actors": [
+            "ALLOTTEE"
+          ]
+        },
+        {
+          "action": "DELIVER_POSSESSION",
+          "actors": [
+            "PROMOTER"
+          ]
+        },
+        {
+          "action": "PAY_DELAY_COMPENSATION",
+          "actors": [
+            "PROMOTER"
+          ]
+        },
+        {
+          "action": "RECTIFY_DEFECTS",
+          "actors": [
+            "PROMOTER"
+          ]
+        },
+        {
+          "action": "REFUND",
+          "actors": [
+            "PROMOTER"
+          ]
+        },
+        {
+          "action": "TAKE_POSSESSION",
+          "actors": [
+            "ALLOTTEE"
+          ]
+        }
+      ],
+      "consistencyRules": [
+        {
+          "id": "bb_consideration_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SALE_CONSIDERATION",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The total consideration should be stated consistently."
+        },
+        {
+          "id": "bb_booking_single",
+          "kind": "SINGLE_VALUE",
+          "label": "BOOKING_AMOUNT",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The booking amount should be stated consistently."
+        },
+        {
+          "id": "bb_carpet_single",
+          "kind": "SINGLE_VALUE",
+          "label": "CARPET_AREA",
+          "category": "PROPERTY_AREA_CONTRADICTION",
+          "description": "The carpet area should be stated consistently."
+        },
+        {
+          "id": "bb_unit_single",
+          "kind": "SINGLE_VALUE",
+          "label": "UNIT",
+          "category": "PROPERTY_IDENTIFIER_CONTRADICTION",
+          "description": "The unit should be identified consistently."
+        },
+        {
+          "id": "bb_possession_single",
+          "kind": "SINGLE_VALUE",
+          "label": "POSSESSION_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The possession date should be stated consistently."
+        },
+        {
+          "id": "bb_payment_total",
+          "kind": "SUM",
+          "parts": [
+            "BOOKING_AMOUNT",
+            "INSTALMENT_AMOUNT"
+          ],
+          "total": "SALE_CONSIDERATION",
+          "category": "PAYMENT_TOTAL_MISMATCH",
+          "description": "The booking amount plus all instalments should equal the total consideration."
+        },
+        {
+          "id": "bb_possession_after_agreement",
+          "kind": "DATE_ORDER",
+          "before": "EXECUTION_DATE",
+          "after": "POSSESSION_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "Possession should not be due before the agreement date."
+        },
+        {
+          "id": "bb_instalment_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY",
+          "objectLabel": "INSTALMENT_AMOUNT",
+          "expectedActor": "ALLOTTEE",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "Instalments are expected to be paid by the allottee."
+        }
+      ],
+      "expectedClauseTypes": [
+        "PROJECT",
+        "UNIT_DESCRIPTION",
+        "CONSIDERATION",
+        "PAYMENT_PLAN",
+        "POSSESSION",
+        "DELAY_COMPENSATION",
+        "DEFECTS",
+        "CANCELLATION",
+        "JURISDICTION"
+      ],
+      "expectedByDocumentType": {
+        "BUILDER_BUYER_AGREEMENT": [
+          "PROJECT",
+          "UNIT_DESCRIPTION",
+          "CONSIDERATION",
+          "PAYMENT_PLAN",
+          "POSSESSION",
+          "DELAY_COMPENSATION",
+          "DEFECTS",
+          "CANCELLATION",
+          "JURISDICTION"
+        ]
+      }
+    },
+    {
+      "id": "employment",
+      "name": "Employment",
+      "version": "2026.10.0",
+      "documentTypes": [
+        {
+          "id": "EMPLOYMENT_CONTRACT",
+          "slug": "employment_contract"
+        },
+        {
+          "id": "OFFER_LETTER",
+          "slug": "offer_letter"
+        },
+        {
+          "id": "APPOINTMENT_LETTER",
+          "slug": "appointment_letter"
+        }
+      ],
+      "entities": [
+        {
+          "label": "EMPLOYER",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "EMPLOYEE",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "JOB_TITLE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "CTC",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "SALARY",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "BASE_SALARY",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "BONUS",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "JOINING_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "EXECUTION_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "EXPIRY_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "PROBATION_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "NOTICE_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "NON_COMPETE_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "LEAVE_ENTITLEMENT",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "WORK_LOCATION",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "WORKING_HOURS",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "CONFIDENTIAL_INFORMATION",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "INTELLECTUAL_PROPERTY",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "BENEFITS",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "JURISDICTION",
+          "coreType": "LOCATION"
+        }
+      ],
+      "partyTerms": {
+        "EMPLOYER": [
+          "Company",
+          "Employer"
+        ],
+        "EMPLOYEE": [
+          "Employee",
+          "you"
+        ]
+      },
+      "clauseTypes": [
+        "COMPENSATION",
+        "PROBATION",
+        "NOTICE_PERIOD",
+        "NON_COMPETE",
+        "CONFIDENTIALITY",
+        "INTELLECTUAL_PROPERTY",
+        "WORKING_HOURS",
+        "LEAVE",
+        "BENEFITS",
+        "POSITION",
+        "COMMENCEMENT",
+        "PLACE_OF_WORK",
+        "TERMINATION",
+        "CODE_OF_CONDUCT",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "relations": [
+        {
+          "type": "EMPLOYED_BY",
+          "subject": "EMPLOYEE",
+          "object": "EMPLOYER"
+        },
+        {
+          "type": "HAS_ROLE",
+          "subject": "EMPLOYEE",
+          "object": "JOB_TITLE"
+        },
+        {
+          "type": "RECEIVES_SALARY",
+          "subject": "EMPLOYEE",
+          "object": "CTC"
+        },
+        {
+          "type": "RECEIVES_SALARY",
+          "subject": "EMPLOYEE",
+          "object": "SALARY"
+        },
+        {
+          "type": "RECEIVES_SALARY",
+          "subject": "EMPLOYEE",
+          "object": "BASE_SALARY"
+        },
+        {
+          "type": "RECEIVES_BONUS",
+          "subject": "EMPLOYEE",
+          "object": "BONUS"
+        },
+        {
+          "type": "STARTS_ON",
+          "subject": "EMPLOYEE",
+          "object": "JOINING_DATE"
+        },
+        {
+          "type": "HAS_PROBATION",
+          "subject": "EMPLOYEE",
+          "object": "PROBATION_PERIOD"
+        },
+        {
+          "type": "HAS_NOTICE_PERIOD",
+          "subject": "EMPLOYEE",
+          "object": "NOTICE_PERIOD"
+        },
+        {
+          "type": "HAS_LEAVE",
+          "subject": "EMPLOYEE",
+          "object": "LEAVE_ENTITLEMENT"
+        },
+        {
+          "type": "WORKS_AT",
+          "subject": "EMPLOYEE",
+          "object": "WORK_LOCATION"
+        },
+        {
+          "type": "OWNS_IP",
+          "subject": "EMPLOYER",
+          "object": "INTELLECTUAL_PROPERTY"
+        },
+        {
+          "type": "MUST_PROTECT",
+          "subject": "EMPLOYEE",
+          "object": "CONFIDENTIAL_INFORMATION"
+        },
+        {
+          "type": "RESTRICTED_FOR",
+          "subject": "EMPLOYEE",
+          "object": "NON_COMPETE_PERIOD"
+        },
+        {
+          "type": "TERMINATES_ON",
+          "subject": "DOCUMENT",
+          "object": "EXPIRY_DATE"
+        },
+        {
+          "type": "HAS_JURISDICTION",
+          "subject": "DOCUMENT",
+          "object": "JURISDICTION"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "PAY_SALARY",
+          "actors": [
+            "EMPLOYER"
+          ]
+        },
+        {
+          "action": "SERVE_NOTICE",
+          "actors": [
+            "EMPLOYEE",
+            "EMPLOYER"
+          ]
+        },
+        {
+          "action": "PROTECT_CONFIDENTIAL",
+          "actors": [
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "action": "ASSIGN_IP",
+          "actors": [
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "action": "JOIN",
+          "actors": [
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "action": "RETURN_PROPERTY",
+          "actors": [
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "action": "REFRAIN_FROM_COMPETING",
+          "actors": [
+            "EMPLOYEE"
+          ]
+        }
+      ],
+      "consistencyRules": [
+        {
+          "id": "emp_ctc_single",
+          "kind": "SINGLE_VALUE",
+          "label": "CTC",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The annual CTC should be stated consistently."
+        },
+        {
+          "id": "emp_salary_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SALARY",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The monthly salary should be stated consistently."
+        },
+        {
+          "id": "emp_notice_single",
+          "kind": "SINGLE_VALUE",
+          "label": "NOTICE_PERIOD",
+          "category": "DURATION_CONTRADICTION",
+          "description": "A party's notice period should be stated consistently."
+        },
+        {
+          "id": "emp_probation_single",
+          "kind": "SINGLE_VALUE",
+          "label": "PROBATION_PERIOD",
+          "category": "DURATION_CONTRADICTION",
+          "description": "The probation period should be stated consistently."
+        },
+        {
+          "id": "emp_joining_single",
+          "kind": "SINGLE_VALUE",
+          "label": "JOINING_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The joining date should be stated consistently."
+        },
+        {
+          "id": "emp_joining_after_letter",
+          "kind": "DATE_ORDER",
+          "before": "EXECUTION_DATE",
+          "after": "JOINING_DATE",
+          "category": "DATE_CONTRADICTION",
+          "description": "The joining date should not precede the letter / agreement date."
+        },
+        {
+          "id": "emp_salary_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY_SALARY",
+          "objectLabel": "SALARY",
+          "expectedActor": "EMPLOYER",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "Salary is expected to be paid by the employer."
+        }
+      ],
+      "expectedClauseTypes": [
+        "POSITION",
+        "COMMENCEMENT",
+        "COMPENSATION",
+        "PROBATION",
+        "NOTICE_PERIOD",
+        "CONFIDENTIALITY",
+        "INTELLECTUAL_PROPERTY",
+        "JURISDICTION"
+      ],
+      "expectedByDocumentType": {
+        "EMPLOYMENT_CONTRACT": [
+          "POSITION",
+          "COMMENCEMENT",
+          "COMPENSATION",
+          "PROBATION",
+          "NOTICE_PERIOD",
+          "CONFIDENTIALITY",
+          "INTELLECTUAL_PROPERTY",
+          "JURISDICTION"
+        ],
+        "OFFER_LETTER": [
+          "POSITION",
+          "COMMENCEMENT",
+          "COMPENSATION"
+        ],
+        "APPOINTMENT_LETTER": [
+          "POSITION",
+          "COMMENCEMENT",
+          "COMPENSATION",
+          "PROBATION",
+          "NOTICE_PERIOD"
+        ]
+      }
+    },
+    {
+      "id": "nda_msa",
+      "name": "NDA / Service Agreement",
+      "version": "2026.10.0",
+      "documentTypes": [
+        {
+          "id": "NDA",
+          "slug": "nda"
+        },
+        {
+          "id": "MUTUAL_NDA",
+          "slug": "mutual_nda"
+        },
+        {
+          "id": "SERVICE_AGREEMENT",
+          "slug": "service_agreement"
+        },
+        {
+          "id": "MSA",
+          "slug": "msa"
+        }
+      ],
+      "entities": [
+        {
+          "label": "DISCLOSING_PARTY",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "RECEIVING_PARTY",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "CONTRACTING_PARTY",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "CLIENT",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "SERVICE_PROVIDER",
+          "coreType": "PARTY"
+        },
+        {
+          "label": "CONFIDENTIAL_INFORMATION",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "PURPOSE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "SERVICE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "DELIVERABLE",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "FEE",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "LIABILITY_CAP",
+          "coreType": "MONEY"
+        },
+        {
+          "label": "PAYMENT_TERM",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "TERM",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "CONFIDENTIALITY_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "TERMINATION_NOTICE",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "WARRANTY_PERIOD",
+          "coreType": "DURATION"
+        },
+        {
+          "label": "EFFECTIVE_DATE",
+          "coreType": "DATE"
+        },
+        {
+          "label": "INTELLECTUAL_PROPERTY",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "DATA",
+          "coreType": "TEXT"
+        },
+        {
+          "label": "ADDRESS",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "JURISDICTION",
+          "coreType": "LOCATION"
+        },
+        {
+          "label": "WITNESS",
+          "coreType": "PERSON"
+        }
+      ],
+      "partyTerms": {
+        "DISCLOSING_PARTY": [
+          "Disclosing Party"
+        ],
+        "RECEIVING_PARTY": [
+          "Receiving Party",
+          "Recipient"
+        ],
+        "CONTRACTING_PARTY": [
+          "First Party",
+          "Second Party"
+        ],
+        "CLIENT": [
+          "Client",
+          "Customer"
+        ],
+        "SERVICE_PROVIDER": [
+          "Service Provider",
+          "Consultant",
+          "Contractor"
+        ]
+      },
+      "clauseTypes": [
+        "DEFINITIONS",
+        "EXCLUSIONS",
+        "RETURN_OF_INFORMATION",
+        "CONFIDENTIALITY_PERIOD",
+        "CONFIDENTIALITY",
+        "PURPOSE",
+        "DELIVERABLES",
+        "SCOPE_OF_SERVICES",
+        "PAYMENT_TERMS",
+        "FEES",
+        "INTELLECTUAL_PROPERTY",
+        "DATA_PROTECTION",
+        "WARRANTIES",
+        "LIMITATION_OF_LIABILITY",
+        "INDEMNITY",
+        "NON_SOLICITATION",
+        "TERM",
+        "TERMINATION",
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "relations": [
+        {
+          "type": "DISCLOSES",
+          "subject": "DISCLOSING_PARTY",
+          "object": "CONFIDENTIAL_INFORMATION"
+        },
+        {
+          "type": "RECEIVES",
+          "subject": "RECEIVING_PARTY",
+          "object": "CONFIDENTIAL_INFORMATION"
+        },
+        {
+          "type": "PROTECTS",
+          "subject": "RECEIVING_PARTY",
+          "object": "CONFIDENTIAL_INFORMATION"
+        },
+        {
+          "type": "PROTECTS",
+          "subject": "CONTRACTING_PARTY",
+          "object": "CONFIDENTIAL_INFORMATION"
+        },
+        {
+          "type": "PROVIDES",
+          "subject": "SERVICE_PROVIDER",
+          "object": "SERVICE"
+        },
+        {
+          "type": "DELIVERS",
+          "subject": "SERVICE_PROVIDER",
+          "object": "DELIVERABLE"
+        },
+        {
+          "type": "PAYS",
+          "subject": "CLIENT",
+          "object": "FEE"
+        },
+        {
+          "type": "OWNS",
+          "subject": "CLIENT",
+          "object": "INTELLECTUAL_PROPERTY"
+        },
+        {
+          "type": "HAS_PURPOSE",
+          "subject": "DOCUMENT",
+          "object": "PURPOSE"
+        },
+        {
+          "type": "HAS_TERM",
+          "subject": "DOCUMENT",
+          "object": "TERM"
+        },
+        {
+          "type": "CONFIDENTIAL_FOR",
+          "subject": "DOCUMENT",
+          "object": "CONFIDENTIALITY_PERIOD"
+        },
+        {
+          "type": "HAS_TERMINATION_NOTICE",
+          "subject": "DOCUMENT",
+          "object": "TERMINATION_NOTICE"
+        },
+        {
+          "type": "HAS_PAYMENT_TERM",
+          "subject": "DOCUMENT",
+          "object": "PAYMENT_TERM"
+        },
+        {
+          "type": "HAS_LIABILITY_CAP",
+          "subject": "DOCUMENT",
+          "object": "LIABILITY_CAP"
+        },
+        {
+          "type": "EFFECTIVE_FROM",
+          "subject": "DOCUMENT",
+          "object": "EFFECTIVE_DATE"
+        },
+        {
+          "type": "HAS_JURISDICTION",
+          "subject": "DOCUMENT",
+          "object": "JURISDICTION"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "PROTECT_CONFIDENTIAL",
+          "actors": [
+            "RECEIVING_PARTY",
+            "CONTRACTING_PARTY",
+            "SERVICE_PROVIDER",
+            "CLIENT"
+          ]
+        },
+        {
+          "action": "RETURN_INFORMATION",
+          "actors": [
+            "RECEIVING_PARTY",
+            "CONTRACTING_PARTY",
+            "SERVICE_PROVIDER"
+          ]
+        },
+        {
+          "action": "PROVIDE_SERVICES",
+          "actors": [
+            "SERVICE_PROVIDER"
+          ]
+        },
+        {
+          "action": "PAY",
+          "actors": [
+            "CLIENT"
+          ]
+        },
+        {
+          "action": "INDEMNIFY",
+          "actors": [
+            "SERVICE_PROVIDER",
+            "CLIENT"
+          ]
+        },
+        {
+          "action": "NOTIFY_BREACH",
+          "actors": [
+            "SERVICE_PROVIDER",
+            "RECEIVING_PARTY"
+          ]
+        },
+        {
+          "action": "SERVE_NOTICE",
+          "actors": [
+            "CLIENT",
+            "SERVICE_PROVIDER",
+            "DISCLOSING_PARTY",
+            "RECEIVING_PARTY",
+            "CONTRACTING_PARTY"
+          ]
+        }
+      ],
+      "consistencyRules": [
+        {
+          "id": "nda_conf_period_single",
+          "kind": "SINGLE_VALUE",
+          "label": "CONFIDENTIALITY_PERIOD",
+          "category": "DURATION_CONTRADICTION",
+          "description": "The confidentiality period should be stated consistently."
+        },
+        {
+          "id": "nda_term_single",
+          "kind": "SINGLE_VALUE",
+          "label": "TERM",
+          "category": "DURATION_CONTRADICTION",
+          "description": "The agreement term should be stated consistently."
+        },
+        {
+          "id": "nda_termination_notice_single",
+          "kind": "SINGLE_VALUE",
+          "label": "TERMINATION_NOTICE",
+          "category": "DURATION_CONTRADICTION",
+          "description": "The termination notice period should be stated consistently."
+        },
+        {
+          "id": "msa_fee_single",
+          "kind": "SINGLE_VALUE",
+          "label": "FEE",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The fee should be stated consistently."
+        },
+        {
+          "id": "msa_cap_single",
+          "kind": "SINGLE_VALUE",
+          "label": "LIABILITY_CAP",
+          "category": "FINANCIAL_CONTRADICTION",
+          "description": "The liability cap should be stated consistently."
+        },
+        {
+          "id": "nda_discloser_single",
+          "kind": "SINGLE_VALUE",
+          "label": "DISCLOSING_PARTY",
+          "category": "PARTY_NAME_CONTRADICTION",
+          "description": "The disclosing party should be named consistently."
+        },
+        {
+          "id": "nda_recipient_single",
+          "kind": "SINGLE_VALUE",
+          "label": "RECEIVING_PARTY",
+          "category": "PARTY_NAME_CONTRADICTION",
+          "description": "The receiving party should be named consistently."
+        },
+        {
+          "id": "msa_client_single",
+          "kind": "SINGLE_VALUE",
+          "label": "CLIENT",
+          "category": "PARTY_NAME_CONTRADICTION",
+          "description": "The client should be named consistently."
+        },
+        {
+          "id": "msa_provider_single",
+          "kind": "SINGLE_VALUE",
+          "label": "SERVICE_PROVIDER",
+          "category": "PARTY_NAME_CONTRADICTION",
+          "description": "The service provider should be named consistently."
+        },
+        {
+          "id": "nda_definition_single",
+          "kind": "SINGLE_VALUE",
+          "label": "CONFIDENTIAL_INFORMATION",
+          "category": "DEFINITION_INCONSISTENCY",
+          "description": "Confidential Information should be defined once, consistently."
+        },
+        {
+          "id": "msa_fee_payer",
+          "kind": "EXPECTED_ACTOR",
+          "action": "PAY",
+          "objectLabel": "FEE",
+          "expectedActor": "CLIENT",
+          "category": "PARTY_ROLE_INCONSISTENCY",
+          "description": "Fees are expected to be paid by the client."
+        }
+      ],
+      "expectedClauseTypes": [
+        "DEFINITIONS",
+        "CONFIDENTIALITY",
+        "EXCLUSIONS",
+        "TERM",
+        "JURISDICTION",
+        "SCOPE_OF_SERVICES",
+        "FEES",
+        "PAYMENT_TERMS",
+        "LIMITATION_OF_LIABILITY",
+        "TERMINATION"
+      ],
+      "expectedByDocumentType": {
+        "NDA": [
+          "DEFINITIONS",
+          "CONFIDENTIALITY",
+          "EXCLUSIONS",
+          "TERM",
+          "JURISDICTION"
+        ],
+        "MUTUAL_NDA": [
+          "DEFINITIONS",
+          "CONFIDENTIALITY",
+          "EXCLUSIONS",
+          "TERM",
+          "JURISDICTION"
+        ],
+        "SERVICE_AGREEMENT": [
+          "SCOPE_OF_SERVICES",
+          "FEES",
+          "PAYMENT_TERMS",
+          "CONFIDENTIALITY",
+          "LIMITATION_OF_LIABILITY",
+          "TERMINATION",
+          "JURISDICTION"
+        ],
+        "MSA": [
+          "SCOPE_OF_SERVICES",
+          "FEES",
+          "PAYMENT_TERMS",
+          "CONFIDENTIALITY",
+          "LIMITATION_OF_LIABILITY",
+          "TERMINATION",
+          "JURISDICTION"
+        ]
+      }
+    }
+  ]
+}

@@ -1,8 +1,10 @@
 import { Prisma, getPrismaClient } from "@nyayalens/db";
 import { runRuleBasedClauseClassification } from "../clauses/ruleBasedClauseClassifier.js";
 import { taxonomyFromSchema } from "../clauses/clauseTaxonomy.js";
+import { detectDomain } from "../domains/detectDomain.js";
 import { getDomainPackRegistry } from "../domains/index.js";
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE, extractCanonicalText } from "../extraction/extractText.js";
+import { extractObligations, extractRelations } from "../semantic/extract.js";
 import {
   GenericTransformerNerUnavailableError,
   runGenericTransformerNer,
@@ -24,8 +26,104 @@ export const JOB_TYPES = {
   RULE_BASED_NER: "rule_based_ner",
   GENERIC_TRANSFORMER_NER: "generic_transformer_ner",
   CLAUSE_CLASSIFICATION: "clause_classification",
+  // Phase 8
+  DOMAIN_DETECTION: "domain_detection",
+  SEMANTIC_EXTRACTION: "semantic_extraction",
   RISK_ENGINE: "risk_engine",
 } as const;
+
+// Phase 8: checks the document type chosen at upload against local domain
+// detection and records the result (predicted domain, candidates, matched
+// signals - no probabilities). The declared type always stays in force; a
+// disagreement is surfaced for review, never silently acted on.
+async function runDomainDetectionStage(documentId: string): Promise<void> {
+  const document = await prisma.document.findUniqueOrThrow({ where: { id: documentId } });
+  const registry = getDomainPackRegistry();
+  const declared = registry.forDocumentType(document.documentType);
+  const detection = detectDomain(document.canonicalText ?? "", registry.list());
+  await prisma.document.update({
+    where: { id: documentId },
+    data: {
+      domainDetection: {
+        ...detection,
+        declaredDomain: declared.id,
+        declaredDocumentType: document.documentType,
+        agreesWithDeclared: detection.predictedDomain === declared.id,
+      } as unknown as Prisma.InputJsonValue,
+    },
+  });
+}
+
+// Phase 8: relations and obligations from the RULE_BASED entities/clauses,
+// persisted with their evidence spans (Relation / Obligation tables).
+async function runSemanticExtractionStage(documentId: string): Promise<void> {
+  const document = await prisma.document.findUniqueOrThrow({ where: { id: documentId } });
+  const pack = getDomainPackRegistry().forDocumentType(document.documentType);
+  const [entityRows, clauseRows] = await Promise.all([
+    prisma.entity.findMany({ where: { documentId, modelSource: "RULE_BASED" } }),
+    prisma.documentClause.findMany({ where: { documentId, modelSource: "RULE_BASED" } }),
+  ]);
+  const entities = entityRows
+    .filter((e) => e.text !== null && e.textStart !== null && e.textEnd !== null)
+    .map((e) => ({
+      id: e.id,
+      label: e.label,
+      text: e.text!,
+      textStart: e.textStart!,
+      textEnd: e.textEnd!,
+    }));
+  const clauses = clauseRows
+    .filter((c) => c.textStart !== null && c.textEnd !== null)
+    .map((c) => ({
+      id: c.id,
+      clauseType: c.clauseType,
+      clauseNumber: c.clauseNumber,
+      textStart: c.textStart!,
+      textEnd: c.textEnd!,
+    }));
+  const relations = extractRelations(pack, entities, clauses);
+  const obligations = extractObligations(pack, document.canonicalText ?? "", entities, clauses);
+
+  await prisma.$transaction([
+    prisma.relation.deleteMany({ where: { documentId, modelSource: "RULE_BASED" } }),
+    prisma.obligation.deleteMany({ where: { documentId, modelSource: "RULE_BASED" } }),
+    prisma.relation.createMany({
+      data: relations.map((r) => ({
+        documentId,
+        subjectEntityId: r.subjectEntityId,
+        objectEntityId: r.objectEntityId,
+        relationType: r.relationType,
+        sourceClauseId: r.sourceClauseId,
+        textStart: r.textStart,
+        textEnd: r.textEnd,
+        modelName: r.modelName,
+        modelSource: "RULE_BASED",
+      })),
+    }),
+    prisma.obligation.createMany({
+      data: obligations.map((o) => ({
+        documentId,
+        obligedParty: o.actorText,
+        description: o.evidenceText,
+        dueDate: o.deadlineIso ? new Date(`${o.deadlineIso}T00:00:00Z`) : null,
+        action: o.action,
+        actorLabel: o.actorLabel,
+        actorEntityId: o.actorEntityId,
+        amountEntityId: o.amountEntityId,
+        amountInr: o.amountInr,
+        deadlineText: o.deadlineText,
+        frequency: o.frequency,
+        condition: o.condition,
+        objectText: o.amountLabel,
+        sourceClauseId: o.sourceClauseId,
+        textStart: o.textStart,
+        textEnd: o.textEnd,
+        modelName: o.modelName,
+        modelSource: "RULE_BASED",
+      })),
+    }),
+  ]);
+}
 
 // True when a document is deleted (e.g. DELETE /documents/:id) while its
 // background pipeline is still mid-flight: the delete cascades onto that
@@ -171,6 +269,7 @@ async function runRuleBasedNerStage(documentId: string): Promise<void> {
   const pack = getDomainPackRegistry().forDocumentType(document.documentType);
   const entities = runRuleBasedNer(document.canonicalText ?? "", {
     allowedLabels: new Set(pack.entitySchema.map((e) => e.label)),
+    pack,
   });
 
   await prisma.entity.deleteMany({ where: { documentId, modelSource: "RULE_BASED" } });
@@ -270,9 +369,13 @@ export async function runExtractionPipeline(documentId: string): Promise<void> {
 async function runPipelineStages(documentId: string): Promise<void> {
   await runStage(documentId, JOB_TYPES.TEXT_EXTRACTION, () => runTextExtractionStage(documentId));
   await runStage(documentId, JOB_TYPES.OCR, () => runOcrStage(documentId));
+  await runStage(documentId, JOB_TYPES.DOMAIN_DETECTION, () => runDomainDetectionStage(documentId));
   await runStage(documentId, JOB_TYPES.RULE_BASED_NER, () => runRuleBasedNerStage(documentId));
   await runStage(documentId, JOB_TYPES.CLAUSE_CLASSIFICATION, () =>
     runClauseClassificationStage(documentId),
+  );
+  await runStage(documentId, JOB_TYPES.SEMANTIC_EXTRACTION, () =>
+    runSemanticExtractionStage(documentId),
   );
 
   try {

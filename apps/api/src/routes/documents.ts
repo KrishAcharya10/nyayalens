@@ -94,8 +94,10 @@ documentsRouter.get("/", requireAuth, async (req, res, next) => {
 // documented-optional, see extraction_pipeline.md).
 const REQUIRED_JOB_TYPES = [
   "text_extraction",
+  "domain_detection",
   "rule_based_ner",
   "clause_classification",
+  "semantic_extraction",
   "risk_engine",
 ];
 type SummaryStatus = "NOT_STARTED" | "PROCESSING" | "READY" | "FAILED";

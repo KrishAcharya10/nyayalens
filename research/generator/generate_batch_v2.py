@@ -81,7 +81,7 @@ def main() -> None:
             doc.metadata["pdf_font"] = layout.font.family
 
             files = {"text": f"{doc_id}.txt", "pdf": f"{doc_id}.pdf", "labels": f"{doc_id}.labels.json"}
-            (args.out / files["text"]).write_text(doc.text, encoding="utf-8")
+            (args.out / files["text"]).write_text(doc.text, encoding="utf-8", newline="\n")
             (r.render_scanned_pdf if scanned else r.render_pdf)(doc.text, str(args.out / files["pdf"]), layout)
             if not args.no_docx:
                 files["docx"] = f"{doc_id}.docx"
@@ -105,10 +105,10 @@ def main() -> None:
             if (i + 1) % 100 == 0:
                 print(f"  {i + 1}/{count}")
 
-    with open(args.out / "manifest.jsonl", "w", encoding="utf-8") as f:
+    with open(args.out / "manifest.jsonl", "w", encoding="utf-8", newline="\n") as f:
         for entry in manifest:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-    (args.out / "dataset_card.md").write_text(dataset_card(args, manifest, stats), encoding="utf-8")
+    (args.out / "dataset_card.md").write_text(dataset_card(args, manifest, stats), encoding="utf-8", newline="\n")
     print(f"\nDone: {len(manifest)} documents -> {args.out}")
     print(f"  entities: {sum(stats['labels'].values())}, clauses: {sum(stats['clauses'].values())}, "
           f"injected risks: {sum(stats['risks'].values())}")

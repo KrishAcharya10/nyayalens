@@ -20,6 +20,7 @@
 // default exists only so runPass1(context) remains callable with a single
 // argument, exactly as riskEnginePass1.test.ts already does and was not
 // authorized to change.
+import { dedupeFindings } from "./dedupe.js";
 import { getDomainPackRegistry } from "../domains/index.js";
 import type { RiskRuleDescriptor } from "../domains/registry.js";
 import type { RiskEngineContext, RiskFinding } from "./types.js";
@@ -31,5 +32,5 @@ export function runPass1(
     RiskFinding
   > = getDomainPackRegistry().forDocumentType(context.documentType).riskSchema,
 ): RiskFinding[] {
-  return riskSchema.perClauseChecks.flatMap((check) => check.run(context));
+  return dedupeFindings(riskSchema.perClauseChecks.flatMap((check) => check.run(context)));
 }

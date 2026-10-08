@@ -60,11 +60,17 @@ describe("document-scoped clause classification (Phase 8)", () => {
     expect(union.map((c) => c.clauseType)).toEqual(["RENT_PAYMENT", "LEASE_PREMIUM"]);
   });
 
-  it("the union of both packs' clause schemas reproduces the original taxonomy order", () => {
+  it("the union of both packs' clause schemas keeps the original taxonomy's relative order", () => {
+    // The packs now also carry clause types the v2/v3 generators produce
+    // (escalation, lock-in, ...); restricted to the original twelve, the
+    // merged priority order must still be exactly the original one.
+    const original = new Set(CLAUSE_TAXONOMY.map((t) => t.clauseType));
     const byType = new Map(
       [...rental.clauseSchema, ...land.clauseSchema].map((c) => [c.clauseType, c]),
     );
-    const merged = taxonomyFromSchema([...byType.values()]).map((t) => t.clauseType);
+    const merged = taxonomyFromSchema([...byType.values()])
+      .map((t) => t.clauseType)
+      .filter((t) => original.has(t));
     expect(merged).toEqual(CLAUSE_TAXONOMY.map((t) => t.clauseType));
   });
 });

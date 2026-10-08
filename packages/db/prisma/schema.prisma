@@ -35,11 +35,25 @@ enum Role {
   @@map("role")
 }
 
-// Restricted to the two document types NyayaLens supports. Commercial
-// leases and general contracts are explicitly out of scope.
+// Every document type NyayaLens supports, across 7 domains. Kept a
+// Postgres enum (not free text) per docs/phase8/step2_enum_decision.md:
+// adding a type = one ALTER TYPE ... ADD VALUE migration + a DomainPack.
 enum DocumentType {
-  RESIDENTIAL_RENTAL @map("residential_rental")
-  LAND_LEASE         @map("land_lease")
+  RESIDENTIAL_RENTAL      @map("residential_rental")
+  LAND_LEASE              @map("land_lease")
+  // Phase 8 domains - each value is owned by exactly one DomainPack
+  // (apps/api/src/domains/), enforced by tests/domainPackEnumDrift.test.ts.
+  LEAVE_AND_LICENSE       @map("leave_and_license")
+  AGREEMENT_TO_SELL       @map("agreement_to_sell")
+  SALE_DEED               @map("sale_deed")
+  BUILDER_BUYER_AGREEMENT @map("builder_buyer_agreement")
+  EMPLOYMENT_CONTRACT     @map("employment_contract")
+  OFFER_LETTER            @map("offer_letter")
+  APPOINTMENT_LETTER      @map("appointment_letter")
+  NDA                     @map("nda")
+  MUTUAL_NDA              @map("mutual_nda")
+  SERVICE_AGREEMENT       @map("service_agreement")
+  MSA                     @map("msa")
 
   @@map("document_type")
 }
@@ -92,6 +106,20 @@ enum RiskCategory {
   UNBOUNDED_DISCRETION
   LAND_USE_CONTRADICTION
   MISSING_CLAUSE
+  // Phase 8 domain risks
+  ONE_SIDED_REMEDY
+  RESTRICTIVE_COVENANT
+  UNCAPPED_LIABILITY
+  // Phase 8 consistency findings (pass CONSISTENCY)
+  FINANCIAL_CONTRADICTION
+  DATE_CONTRADICTION
+  DURATION_CONTRADICTION
+  PROPERTY_AREA_CONTRADICTION
+  PROPERTY_IDENTIFIER_CONTRADICTION
+  PAYMENT_TOTAL_MISMATCH
+  PARTY_ROLE_INCONSISTENCY
+  PARTY_NAME_CONTRADICTION
+  DEFINITION_INCONSISTENCY
 
   @@map("risk_category")
 }
@@ -113,6 +141,8 @@ enum RiskSeverity {
 enum RiskPass {
   PASS_1
   PASS_2
+  // Phase 8: cross-fact consistency findings (apps/api/src/consistency/)
+  CONSISTENCY
 
   @@map("risk_pass")
 }
@@ -199,6 +229,10 @@ model Document {
   // Shape documented in docs/architecture/schema.md. Not populated until
   // risk analysis and missing-clause detection exist.
   keyFindings    Json?        @map("key_findings")
+  // Phase 8: output of local domain detection (predicted domain, ranked
+  // candidates, matched signals - no probabilities). See
+  // apps/api/src/domains/detectDomain.ts.
+  domainDetection Json?       @map("domain_detection")
   createdAt      DateTime     @default(now()) @map("created_at")
   updatedAt      DateTime     @updatedAt @map("updated_at")
 
@@ -328,11 +362,18 @@ model Relation {
   id              String   @id @default(uuid())
   documentId      String   @map("document_id")
   document        Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  subjectEntityId String   @map("subject_entity_id")
-  subjectEntity   Entity   @relation("RelationSubject", fields: [subjectEntityId], references: [id], onDelete: Cascade)
+  // Null = the document itself is the subject (e.g. DOCUMENT HAS_TERM DURATION).
+  subjectEntityId String?  @map("subject_entity_id")
+  subjectEntity   Entity?  @relation("RelationSubject", fields: [subjectEntityId], references: [id], onDelete: Cascade)
   objectEntityId  String   @map("object_entity_id")
   objectEntity    Entity   @relation("RelationObject", fields: [objectEntityId], references: [id], onDelete: Cascade)
   relationType    String   @map("relation_type")
+
+  // Phase 8 provenance: the clause and span that evidences the relation.
+  sourceClauseId String?     @map("source_clause_id")
+  textStart      Int?        @map("text_start")
+  textEnd        Int?        @map("text_end")
+  modelSource    ModelSource @default(RULE_BASED) @map("model_source")
 
   confidence   Float?
   modelName    String? @map("model_name")
@@ -356,6 +397,10 @@ model Risk {
   severity   RiskSeverity
   reason     String
   pass       RiskPass
+  // Phase 8: which rule produced the finding (e.g. "sale_payment_total"),
+  // and an explicit review-required flag - findings are never verdicts.
+  ruleId         String?  @map("rule_id")
+  reviewRequired Boolean  @default(true) @map("review_required")
   // Which entities'/clauses' model_source this finding was computed from -
   // explicit and visible, never assumed. Defaults to rule_based (the only
   // currently-reliable source - see extraction_pipeline.md /
@@ -403,6 +448,20 @@ model Obligation {
   obligedParty String?   @map("obliged_party")
   description  String?
   dueDate      DateTime? @map("due_date")
+
+  // Phase 8 structured obligation: ACTOR must ACTION (object / amount /
+  // deadline / frequency / condition), with its evidence sentence span.
+  action         String?     @map("action")
+  actorLabel     String?     @map("actor_label")
+  actorEntityId  String?     @map("actor_entity_id")
+  objectText     String?     @map("object_text")
+  amountEntityId String?     @map("amount_entity_id")
+  amountInr      Float?      @map("amount_inr")
+  deadlineText   String?     @map("deadline_text")
+  frequency      String?
+  condition      String?
+  sourceClauseId String?     @map("source_clause_id")
+  modelSource    ModelSource @default(RULE_BASED) @map("model_source")
 
   textStart Int? @map("text_start")
   textEnd   Int? @map("text_end")

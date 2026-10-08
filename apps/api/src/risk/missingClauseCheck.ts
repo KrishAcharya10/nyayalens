@@ -42,3 +42,23 @@ export function makeMissingClauseCheck(
     run: (context) => detectMissingClauses(context, expectedClauseTypes, missingClauseSeverity),
   };
 }
+
+// For domains whose document types differ in what they should contain
+// (a sale deed has no advance-payment clause; an offer letter has no
+// non-compete), expectations are looked up by the document's own type.
+// A document type with no entry expects nothing rather than borrowing
+// another type's list.
+export function makeMissingClauseCheckByDocumentType(
+  expectedByDocumentType: Record<string, string[]>,
+  missingClauseSeverity: Record<string, RiskSeverity>,
+): RiskCheck {
+  return {
+    name: "missing_clause",
+    run: (context) =>
+      detectMissingClauses(
+        context,
+        expectedByDocumentType[context.documentType] ?? [],
+        missingClauseSeverity,
+      ),
+  };
+}

@@ -9,6 +9,8 @@
 // docs/phase8/step2_migration_notes.md for why removing it is safe): the
 // check now only ever runs at all when this pack is the one resolved for
 // a document, which is the pack-scoped replacement for that guard.
+import { makeAsymmetricNoticeCheck } from "../risk/factChecks.js";
+import { LAND_LEASE_EXTRACTION } from "./extractionRules.js";
 import type { DomainPack } from "./registry.js";
 import { asymmetricObligationCheck } from "../risk/sharedChecks.js";
 import { makeMissingClauseCheck } from "../risk/missingClauseCheck.js";
@@ -32,8 +34,11 @@ const landUseContradictionCheck: RiskCheck = {
     const restrictionClause = context.clauses.find((c) => c.clauseType === "LAND_USE_RESTRICTION");
     if (!landUseTypeEntity?.text || !restrictionClause?.text) return [];
 
+    // Phase 8: "Garden Land" / "Dry Land" / "Wet Land" are agricultural
+    // classifications too (used by the v3 generator; v1 only ever said
+    // "Agricultural", so v1 behaviour is unchanged).
     const isAgricultural =
-      /agricultural/i.test(landUseTypeEntity.text) &&
+      /agricultural|garden land|dry land|wet land/i.test(landUseTypeEntity.text) &&
       !/non-agricultural/i.test(landUseTypeEntity.text);
     if (!isAgricultural) return [];
 
@@ -130,15 +135,29 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
     { label: "KHATA_NUMBER", displayName: "Khata number", coreType: "PROPERTY_IDENTIFIER" },
     { label: "EASEMENT_RIGHT", displayName: "Easement right", coreType: "TEXT" },
     { label: "RENT", displayName: "Rent", coreType: "MONEY" },
-    { label: "DURATION", displayName: "Duration", coreType: "DURATION" },
+    { label: "DURATION", displayName: "Term (duration)", coreType: "DURATION" },
     { label: "NOTICE_PERIOD", displayName: "Notice period", coreType: "DURATION" },
     { label: "ADDRESS", displayName: "Place of execution", coreType: "LOCATION" },
     { label: "EXECUTION_DATE", displayName: "Execution date", coreType: "DATE" },
     { label: "COMMENCEMENT_DATE", displayName: "Commencement date", coreType: "DATE" },
     { label: "EXPIRY_DATE", displayName: "Expiry date", coreType: "DATE" },
-    { label: "ESCALATION_RATE", displayName: "Rent escalation", coreType: "PERCENT" },
+    { label: "ESCALATION_RATE", displayName: "Rent escalation (increase)", coreType: "PERCENT" },
     { label: "WITNESS", displayName: "Witness", coreType: "PERSON" },
+    { label: "JURISDICTION", displayName: "Jurisdiction", coreType: "LOCATION" },
   ],
+
+  partyTerms: { LESSOR: ["Lessor"], LESSEE: ["Lessee"] },
+  // Shown on the workspace Overview card, in this order (first value of each).
+  overviewFields: [
+    "LESSOR",
+    "LESSEE",
+    "SURVEY_NUMBER",
+    "LAND_AREA",
+    "RENT",
+    "LEASE_PREMIUM",
+    "DURATION",
+  ],
+  extraction: LAND_LEASE_EXTRACTION,
 
   // Priorities mirror the pre-migration CLAUSE_TAXONOMY array's position
   // (position * 10) - see rentalPack.ts's identical note. CROP_OR_
@@ -161,6 +180,25 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
     { clauseType: "TERMINATION", headingPattern: /TERMINATION/i, priority: 100 },
     { clauseType: "DISPUTE_RESOLUTION", headingPattern: /DISPUTE/i, priority: 110 },
     { clauseType: "JURISDICTION", headingPattern: /JURISDICTION/i, priority: 120 },
+    // Clause types the v2/v3 generators produce beyond v1's ten. None of
+    // these patterns matches any v1 heading (parity re-verified).
+    {
+      clauseType: "RENT_ESCALATION",
+      headingPattern: /ESCALATION|ENHANCEMENT|REVISION/i,
+      priority: 35,
+    },
+    { clauseType: "WATER_RIGHTS", headingPattern: /WATER|IRRIGATION/i, priority: 92 },
+    {
+      clauseType: "IMPROVEMENTS_AND_STRUCTURES",
+      headingPattern: /STRUCTURE|IMPROVEMENT|CONSTRUCTION/i,
+      priority: 94,
+    },
+    { clauseType: "REVENUE_AND_TAXES", headingPattern: /REVENUE|TAXES/i, priority: 96 },
+    { clauseType: "EASEMENT", headingPattern: /EASEMENT|RIGHT\s+OF\s+WAY/i, priority: 97 },
+    { clauseType: "SUB_LEASE", headingPattern: /SUB.?LEASE|ASSIGNMENT/i, priority: 98 },
+    { clauseType: "RENEWAL", headingPattern: /RENEW/i, priority: 99 },
+    { clauseType: "COMPENSATION_ON_ACQUISITION", headingPattern: /ACQUISITION/i, priority: 105 },
+    { clauseType: "SCHEDULE_PROPERTY", headingPattern: /^\s*SCHEDULE/i, priority: 125 },
   ],
 
   // Subject "DOCUMENT" means the deed itself.
@@ -196,6 +234,11 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
       objectEntityLabel: "COMMENCEMENT_DATE",
     },
     { relationType: "ENDS_ON", subjectEntityLabel: "DOCUMENT", objectEntityLabel: "EXPIRY_DATE" },
+    {
+      relationType: "HAS_JURISDICTION",
+      subjectEntityLabel: "DOCUMENT",
+      objectEntityLabel: "JURISDICTION",
+    },
   ],
 
   obligationSchema: [
@@ -230,11 +273,67 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
     // packs register the SAME check instance rather than one pack
     // arbitrarily owning it. landUseContradictionCheck is land_lease-only
     // by registration, replacing its old inline documentType guard.
-    comparisonChecks: [asymmetricObligationCheck, landUseContradictionCheck],
+    comparisonChecks: [
+      makeAsymmetricNoticeCheck(["NOTICE_PERIOD"], { LESSOR: ["Lessor"], LESSEE: ["Lessee"] }),
+      asymmetricObligationCheck,
+      landUseContradictionCheck,
+    ],
   },
 
-  // Filled in by the consistency-engine milestone (docs/domain_packs.md).
-  consistencyRules: [],
+  consistencyRules: [
+    {
+      id: "land_rent_single",
+      kind: "SINGLE_VALUE",
+      label: "RENT",
+      category: "FINANCIAL_CONTRADICTION",
+      description: "The lease rent should be stated consistently.",
+    },
+    {
+      id: "land_premium_single",
+      kind: "SINGLE_VALUE",
+      label: "LEASE_PREMIUM",
+      category: "FINANCIAL_CONTRADICTION",
+      description: "The lease premium should be stated consistently.",
+    },
+    {
+      id: "land_survey_single",
+      kind: "SINGLE_VALUE",
+      label: "SURVEY_NUMBER",
+      category: "PROPERTY_IDENTIFIER_CONTRADICTION",
+      description: "The survey number should be stated consistently.",
+    },
+    {
+      id: "land_area_single",
+      kind: "SINGLE_VALUE",
+      label: "LAND_AREA",
+      category: "PROPERTY_AREA_CONTRADICTION",
+      description: "The land area should be stated consistently.",
+    },
+    {
+      id: "land_duration_single",
+      kind: "SINGLE_VALUE",
+      label: "DURATION",
+      category: "DURATION_CONTRADICTION",
+      description: "The lease term should be stated consistently.",
+    },
+    {
+      id: "land_start_before_end",
+      kind: "DATE_ORDER",
+      before: "COMMENCEMENT_DATE",
+      after: "EXPIRY_DATE",
+      category: "DATE_CONTRADICTION",
+      description: "The lease should not expire before it starts.",
+    },
+    {
+      id: "land_rent_payer",
+      kind: "EXPECTED_ACTOR",
+      action: "PAY",
+      objectLabel: "RENT",
+      expectedActor: "LESSEE",
+      category: "PARTY_ROLE_INCONSISTENCY",
+      description: "Lease rent is expected to be paid by the lessee.",
+    },
+  ],
 
   detection: {
     titlePatterns: [
@@ -255,5 +354,5 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
   // Reference metadata only (see legalReferences.ts).
   legalFrameworks: [TPA_S105_LEASE, TPA_S107_LEASE_FORM, REGISTRATION_ACT_S17],
 
-  generatorConfig: { module: "research/generator/generator_v2.py#build_land_lease" },
+  generatorConfig: { module: "research/generator/v3/domains/land_lease.py" },
 };

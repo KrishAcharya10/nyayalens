@@ -45,3 +45,5 @@ research/data/synthetic_v2/
 
 # Claude Code agent worktrees (full repo copies)
 .claude/worktrees/
+# v3 synthetic dataset: reproducible from its seed (research/generator/generate_v3.py)
+research/data/synthetic_v3/

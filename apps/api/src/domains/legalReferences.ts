@@ -56,3 +56,90 @@ export const ARBITRATION_ACT_1996: LegalFrameworkRef = {
   note: "Governs arbitration clauses commonly found in dispute-resolution sections.",
   verification: "UNVERIFIED",
 };
+
+export const EASEMENTS_ACT_S52_LICENCE: LegalFrameworkRef = {
+  id: "easements-act-1882-s52",
+  title: "Indian Easements Act, 1882 - s.52 (licence defined)",
+  jurisdiction: INDIA,
+  authority: CENTRAL,
+  instrument: "Indian Easements Act, 1882",
+  section: "52",
+  note: "Defines a licence: a right to use property that creates no interest in it - the distinction from a lease.",
+  verification: "UNVERIFIED",
+};
+
+export const MAHARASHTRA_RENT_CONTROL_S55: LegalFrameworkRef = {
+  id: "mh-rent-control-act-1999-s55",
+  title: "Maharashtra Rent Control Act, 1999 - s.55 (agreements to be registered)",
+  jurisdiction: { ...INDIA, state: "IN-MH" },
+  authority: "Maharashtra Legislature",
+  instrument: "Maharashtra Rent Control Act, 1999",
+  section: "55",
+  note: "Requires leave and licence / tenancy agreements in Maharashtra to be in writing and registered. State-specific.",
+  verification: "UNVERIFIED",
+};
+
+export const TPA_S54_SALE: LegalFrameworkRef = {
+  id: "tpa-1882-s54",
+  title: "Transfer of Property Act, 1882 - s.54 (sale defined)",
+  jurisdiction: INDIA,
+  authority: CENTRAL,
+  instrument: "Transfer of Property Act, 1882",
+  section: "54",
+  note: "Defines sale of immovable property and how it is made; also states that a contract for sale does not itself create an interest in the property.",
+  verification: "UNVERIFIED",
+};
+
+export const RERA_S13_ADVANCE: LegalFrameworkRef = {
+  id: "rera-2016-s13",
+  title: "Real Estate (Regulation and Development) Act, 2016 - s.13",
+  jurisdiction: INDIA,
+  authority: "Parliament of India",
+  instrument: "Real Estate (Regulation and Development) Act, 2016",
+  section: "13",
+  note: "Limits the advance a promoter may take before a written agreement for sale is executed and registered.",
+  verification: "UNVERIFIED",
+};
+
+export const RERA_S18_COMPENSATION: LegalFrameworkRef = {
+  id: "rera-2016-s18",
+  title: "Real Estate (Regulation and Development) Act, 2016 - s.18",
+  jurisdiction: INDIA,
+  authority: "Parliament of India",
+  instrument: "Real Estate (Regulation and Development) Act, 2016",
+  section: "18",
+  note: "Return of amount and compensation where the promoter fails to give possession as agreed.",
+  verification: "UNVERIFIED",
+};
+
+export const CONTRACT_ACT_S27_RESTRAINT: LegalFrameworkRef = {
+  id: "contract-act-1872-s27",
+  title: "Indian Contract Act, 1872 - s.27 (agreement in restraint of trade)",
+  jurisdiction: INDIA,
+  authority: CENTRAL,
+  instrument: "Indian Contract Act, 1872",
+  section: "27",
+  note: "Agreements restraining anyone from exercising a lawful profession, trade or business; commonly read against post-employment non-compete clauses.",
+  verification: "UNVERIFIED",
+};
+
+export const CONTRACT_ACT_S73_S74_DAMAGES: LegalFrameworkRef = {
+  id: "contract-act-1872-s73-74",
+  title: "Indian Contract Act, 1872 - ss.73-74 (compensation for breach)",
+  jurisdiction: INDIA,
+  authority: CENTRAL,
+  instrument: "Indian Contract Act, 1872",
+  section: "73-74",
+  note: "Compensation for loss caused by breach, and for breach where a sum or penalty is named in the contract.",
+  verification: "UNVERIFIED",
+};
+
+export const DPDP_ACT_2023: LegalFrameworkRef = {
+  id: "dpdp-act-2023",
+  title: "Digital Personal Data Protection Act, 2023",
+  jurisdiction: INDIA,
+  authority: "Parliament of India",
+  instrument: "Digital Personal Data Protection Act, 2023",
+  note: "Personal-data processing obligations relevant to data-protection clauses in service agreements.",
+  verification: "UNVERIFIED",
+};

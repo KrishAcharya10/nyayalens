@@ -23,6 +23,8 @@ function makeFixturePack(overrides: Partial<DomainPack> = {}): DomainPack {
     jurisdiction: { country: "IN", referenceVersion: "2026-09" },
     documentTypes: [{ id: id.toUpperCase(), slug: id, label: "Fixture" }],
     entitySchema: [],
+    partyTerms: {},
+    overviewFields: [],
     clauseSchema: [],
     relationSchema: [],
     obligationSchema: [],

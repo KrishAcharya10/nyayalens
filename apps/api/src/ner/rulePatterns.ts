@@ -11,6 +11,8 @@
 // exact offset - not just the whole match's - can be recovered without
 // string-searching for it after the fact.
 
+import type { DomainPack } from "../domains/registry.js";
+import { runPackNer } from "./packNer.js";
 import type { ExtractedEntityCandidate } from "./types.js";
 
 const MODEL_NAME = "nyayalens-rule-based-v1";
@@ -100,7 +102,10 @@ const STANDALONE_PATTERNS: StandalonePattern[] = [
   },
   {
     label: "ADDRESS",
-    regex: /\b(?:executed at|situated at)\s+([A-Z][A-Za-z]+)/dg,
+    // Phase 8: the former "situated at" alternative never matched a v1 or
+    // adversarial document (they say "situated at the above address") and
+    // only produced false positives on v2/v3 text ("situated at Village").
+    regex: /\bexecuted at\s+([A-Z][A-Za-z]+)/dg,
     confidence: 0.6,
     group: 1,
   },
@@ -127,7 +132,9 @@ const STANDALONE_PATTERNS: StandalonePattern[] = [
 // when the symbol survives extraction intact; the bare digit-group
 // fallback still finds the amount (just without a currency symbol in the
 // span) when it doesn't - degraded, not silently missed.
-const AMOUNT_REGEX = /(₹[\d,]+(?:\.\d+)?)|(\d{1,3}(?:,\d{2,3})+(?:\.\d+)?)/dg;
+// Phase 8: also "Rs. 25,000" / "INR 25,000" / "₹ 25,000". v1 documents only
+// ever use "₹25,000", so v1 output is unchanged.
+const AMOUNT_REGEX = /((?:₹\s?|Rs\.\s?|INR\s)[\d,]+(?:\.\d+)?)|(\d{1,3}(?:,\d{2,3})+(?:\.\d+)?)/dg;
 const AMOUNT_CONTEXT_WINDOW = 80;
 
 const AMOUNT_KEYWORDS: Array<{ label: string; keywords: RegExp }> = [
@@ -203,6 +210,10 @@ function dropOverlaps(entities: ExtractedEntityCandidate[]): ExtractedEntityCand
 }
 
 export interface RuleBasedNerOptions {
+  // Phase 8: the document's DomainPack. Its extraction rules (ner/packNer.ts)
+  // run alongside - or, when extraction.legacyPatterns is false, instead of -
+  // the original patterns in this file.
+  pack?: DomainPack<unknown, unknown>;
   // Document-scoped extraction (Phase 8): only these labels may be
   // produced - the pipeline passes the document's DomainPack entitySchema
   // labels. Filtering happens BEFORE overlap resolution, so a label from
@@ -215,10 +226,41 @@ export function runRuleBasedNer(
   canonicalText: string,
   options: RuleBasedNerOptions = {},
 ): ExtractedEntityCandidate[] {
-  const { allowedLabels } = options;
-  const entities = [
-    ...extractStandaloneEntities(canonicalText),
-    ...extractAmountEntities(canonicalText),
-  ].filter((e) => !allowedLabels || allowedLabels.has(e.label));
+  const { allowedLabels, pack } = options;
+  const legacy =
+    pack?.extraction?.legacyPatterns === false
+      ? []
+      : [...extractStandaloneEntities(canonicalText), ...extractAmountEntities(canonicalText)];
+  const entities = [...legacy, ...(pack ? runPackNer(canonicalText, pack) : [])].filter(
+    (e) =>
+      (!allowedLabels || allowedLabels.has(e.label)) &&
+      !(pack && isNonTermValue(canonicalText, e, pack)),
+  );
   return dropOverlaps(entities);
+}
+
+// Values that look like contract terms but are not (Phase 8): a party's age
+// ("aged about 45 years") is not a duration, and the stamp-paper
+// denomination ("Stamp Paper of Rs. 100") is not a rent. The v1 patterns
+// have no context and pick these up in v2/v3 preambles; neither phrase
+// occurs in any v1 document, so v1 output is unchanged.
+const NON_TERM_CONTEXT: Record<string, RegExp> = {
+  DURATION: /aged\s+about\s*$/i,
+  MONEY: /stamp\s+paper\s+of\s*$/i,
+};
+
+function isNonTermValue(
+  text: string,
+  e: ExtractedEntityCandidate,
+  pack: DomainPack<unknown, unknown>,
+): boolean {
+  const coreType = pack.entitySchema.find((x) => x.label === e.label)?.coreType;
+  // A survey/plot number on a boundary line ("On or towards the North: land
+  // bearing Survey No. 12") identifies the neighbouring plot, not this one.
+  if (coreType === "PROPERTY_IDENTIFIER") {
+    const lineStart = text.lastIndexOf("\n", e.textStart) + 1;
+    return /^\s*On or towards the\b/i.test(text.slice(lineStart, e.textStart));
+  }
+  const context = coreType ? NON_TERM_CONTEXT[coreType] : undefined;
+  return !!context && context.test(text.slice(Math.max(0, e.textStart - 40), e.textStart));
 }

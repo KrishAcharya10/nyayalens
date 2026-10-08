@@ -11,6 +11,12 @@
 // refundable deposit concept), so attributing them to this pack only
 // (rather than leaving them in a shared, implicitly-scoped file) makes
 // that existing scoping explicit and registry-driven instead of implicit.
+import {
+  makeAsymmetricNoticeCheck,
+  makeDiscretionCheck,
+  makeLiabilityShiftCheck,
+} from "../risk/factChecks.js";
+import { RENTAL_EXTRACTION } from "./extractionRules.js";
 import type { DomainPack } from "./registry.js";
 import { asymmetricObligationCheck } from "../risk/sharedChecks.js";
 import { makeMissingClauseCheck } from "../risk/missingClauseCheck.js";
@@ -142,17 +148,31 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     { label: "TENANT", displayName: "Tenant", coreType: "PARTY" },
     { label: "RENT", displayName: "Rent", coreType: "MONEY" },
     { label: "SECURITY_DEPOSIT", displayName: "Security deposit", coreType: "MONEY" },
-    { label: "DURATION", displayName: "Duration", coreType: "DURATION" },
+    { label: "DURATION", displayName: "Term (duration)", coreType: "DURATION" },
     { label: "NOTICE_PERIOD", displayName: "Notice period", coreType: "DURATION" },
     { label: "ADDRESS", displayName: "Place of execution", coreType: "LOCATION" },
     { label: "PROPERTY_ADDRESS", displayName: "Property address", coreType: "ADDRESS" },
     { label: "EXECUTION_DATE", displayName: "Execution date", coreType: "DATE" },
     { label: "COMMENCEMENT_DATE", displayName: "Commencement date", coreType: "DATE" },
     { label: "EXPIRY_DATE", displayName: "Expiry date", coreType: "DATE" },
-    { label: "ESCALATION_RATE", displayName: "Rent escalation", coreType: "PERCENT" },
+    { label: "ESCALATION_RATE", displayName: "Rent escalation (increase)", coreType: "PERCENT" },
     { label: "LOCK_IN_PERIOD", displayName: "Lock-in period", coreType: "DURATION" },
     { label: "WITNESS", displayName: "Witness", coreType: "PERSON" },
+    { label: "JURISDICTION", displayName: "Jurisdiction", coreType: "LOCATION" },
   ],
+
+  partyTerms: { LANDLORD: ["Landlord"], TENANT: ["Tenant"] },
+  // Shown on the workspace Overview card, in this order (first value of each).
+  overviewFields: [
+    "LANDLORD",
+    "TENANT",
+    "PROPERTY_ADDRESS",
+    "RENT",
+    "SECURITY_DEPOSIT",
+    "DURATION",
+    "NOTICE_PERIOD",
+  ],
+  extraction: RENTAL_EXTRACTION,
 
   // Priorities mirror the pre-migration CLAUSE_TAXONOMY array's position
   // (position * 10). Consumed by the clause classifier: a rental
@@ -166,6 +186,32 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     { clauseType: "TERMINATION", headingPattern: /TERMINATION/i, priority: 100 },
     { clauseType: "DISPUTE_RESOLUTION", headingPattern: /DISPUTE/i, priority: 110 },
     { clauseType: "JURISDICTION", headingPattern: /JURISDICTION/i, priority: 120 },
+    // Clause types the v2/v3 generators produce beyond v1's eight. None of
+    // these patterns matches any v1 heading (parity re-verified on all
+    // v1 + adversarial documents - docs/domain_packs.md).
+    {
+      clauseType: "RENT_ESCALATION",
+      headingPattern: /ESCALATION|ENHANCEMENT|REVISION/i,
+      priority: 35,
+    },
+    { clauseType: "LOCK_IN_PERIOD", headingPattern: /LOCK.?IN/i, priority: 45 },
+    { clauseType: "UTILITIES", headingPattern: /UTILIT|ELECTRICITY|OUTGOINGS/i, priority: 65 },
+    { clauseType: "USE_OF_PREMISES", headingPattern: /USE\s+OF\s+PREMISES|PURPOSE/i, priority: 70 },
+    { clauseType: "SUBLETTING", headingPattern: /SUB.?LET|ASSIGNMENT/i, priority: 72 },
+    { clauseType: "ALTERATIONS", headingPattern: /ALTERATION/i, priority: 74 },
+    {
+      clauseType: "ENTRY_AND_INSPECTION",
+      headingPattern: /INSPECTION|RIGHT\s+OF\s+ENTRY/i,
+      priority: 76,
+    },
+    {
+      clauseType: "STAMP_DUTY_AND_REGISTRATION",
+      headingPattern: /STAMP|REGISTRATION/i,
+      priority: 78,
+    },
+    { clauseType: "POLICE_VERIFICATION", headingPattern: /POLICE/i, priority: 80 },
+    { clauseType: "INDEMNITY", headingPattern: /INDEMNI/i, priority: 82 },
+    { clauseType: "FORCE_MAJEURE", headingPattern: /FORCE\s+MAJEURE/i, priority: 84 },
   ],
 
   // Subject "DOCUMENT" means the agreement itself.
@@ -199,6 +245,11 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
       subjectEntityLabel: "DOCUMENT",
       objectEntityLabel: "PROPERTY_ADDRESS",
     },
+    {
+      relationType: "HAS_JURISDICTION",
+      subjectEntityLabel: "DOCUMENT",
+      objectEntityLabel: "JURISDICTION",
+    },
   ],
 
   obligationSchema: [
@@ -225,6 +276,8 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     expectedClauseTypes: EXPECTED_CLAUSE_TYPES,
     missingClauseSeverity: MISSING_CLAUSE_SEVERITY,
     perClauseChecks: [
+      makeDiscretionCheck(["SECURITY_DEPOSIT"]),
+      makeLiabilityShiftCheck("MAINTENANCE", ["Tenant"]),
       liabilityShiftCheck,
       unboundedDiscretionCheck,
       makeMissingClauseCheck(EXPECTED_CLAUSE_TYPES, MISSING_CLAUSE_SEVERITY),
@@ -232,11 +285,59 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     // asymmetricObligationCheck is domain-agnostic (Step 1 audit) - both
     // packs register the SAME check instance rather than one pack
     // arbitrarily owning it.
-    comparisonChecks: [asymmetricObligationCheck],
+    comparisonChecks: [
+      makeAsymmetricNoticeCheck(["NOTICE_PERIOD"], { LANDLORD: ["Landlord"], TENANT: ["Tenant"] }),
+      asymmetricObligationCheck,
+    ],
   },
 
-  // Filled in by the consistency-engine milestone (docs/domain_packs.md).
-  consistencyRules: [],
+  consistencyRules: [
+    {
+      id: "rent_rent_single",
+      kind: "SINGLE_VALUE",
+      label: "RENT",
+      category: "FINANCIAL_CONTRADICTION",
+      description: "The rent should be stated consistently.",
+    },
+    {
+      id: "rent_deposit_single",
+      kind: "SINGLE_VALUE",
+      label: "SECURITY_DEPOSIT",
+      category: "FINANCIAL_CONTRADICTION",
+      description: "The security deposit should be stated consistently.",
+    },
+    {
+      id: "rent_duration_single",
+      kind: "SINGLE_VALUE",
+      label: "DURATION",
+      category: "DURATION_CONTRADICTION",
+      description: "The term should be stated consistently.",
+    },
+    {
+      id: "rent_notice_single",
+      kind: "SINGLE_VALUE",
+      label: "NOTICE_PERIOD",
+      category: "DURATION_CONTRADICTION",
+      description: "A party's notice period should be stated consistently.",
+    },
+    {
+      id: "rent_start_before_end",
+      kind: "DATE_ORDER",
+      before: "COMMENCEMENT_DATE",
+      after: "EXPIRY_DATE",
+      category: "DATE_CONTRADICTION",
+      description: "The tenancy should not expire before it starts.",
+    },
+    {
+      id: "rent_rent_payer",
+      kind: "EXPECTED_ACTOR",
+      action: "PAY",
+      objectLabel: "RENT",
+      expectedActor: "TENANT",
+      category: "PARTY_ROLE_INCONSISTENCY",
+      description: "Rent is expected to be paid by the tenant.",
+    },
+  ],
 
   detection: {
     titlePatterns: [
@@ -257,5 +358,5 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
   // still cite no statute, and no reference is ever turned into a finding.
   legalFrameworks: [TPA_S105_LEASE, TPA_S107_LEASE_FORM, REGISTRATION_ACT_S17],
 
-  generatorConfig: { module: "research/generator/generator_v2.py#build_residential_rental" },
+  generatorConfig: { module: "research/generator/v3/domains/residential_rental.py" },
 };

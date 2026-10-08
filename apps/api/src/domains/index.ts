@@ -19,7 +19,12 @@
 // graph has already finished loading, which is the safest place for it
 // regardless of how the pack files evolve later.
 import { createRegistry, type DomainPackRegistry } from "./registry.js";
+import { builderBuyerPack } from "./builderBuyerPack.js";
+import { employmentPack } from "./employmentPack.js";
 import { landLeasePack } from "./landLeasePack.js";
+import { leaveAndLicensePack } from "./leaveAndLicensePack.js";
+import { ndaMsaPack } from "./ndaMsaPack.js";
+import { salePropertyPack } from "./salePropertyPack.js";
 import { residentialRentalPack } from "./rentalPack.js";
 import type { RiskEngineContext, RiskFinding } from "../risk/types.js";
 
@@ -30,6 +35,11 @@ export function getDomainPackRegistry(): DomainPackRegistry<RiskEngineContext, R
     registry = createRegistry<RiskEngineContext, RiskFinding>();
     registry.register(residentialRentalPack);
     registry.register(landLeasePack);
+    registry.register(leaveAndLicensePack);
+    registry.register(salePropertyPack);
+    registry.register(builderBuyerPack);
+    registry.register(employmentPack);
+    registry.register(ndaMsaPack);
   }
   return registry;
 }

@@ -3,7 +3,7 @@ import { segmentClauses } from "./clauseSegmenter.js";
 
 export interface ClassifiedClause {
   clauseType: string;
-  clauseNumber: string;
+  clauseNumber: string | null;
   text: string;
   textStart: number;
   textEnd: number;

@@ -8,7 +8,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "dotenv -e ../../.env -- node dist/index.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "dotenv -e ../../.env -- vitest run"
+    "test": "dotenv -e ../../.env -- vitest run",
+    "export:ontology": "tsx scripts/export-ontology.mjs"
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.65",

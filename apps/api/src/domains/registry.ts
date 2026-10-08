@@ -131,13 +131,87 @@ export interface ObligationTypeDescriptor {
   /** Entity labels (roles) that can bear this obligation. */
   actorLabels: string[];
   description: string;
+  /** Matched against the words after "shall"/"will"/... to recognize this action. */
+  verbPattern?: RegExp;
 }
 
-/** A cross-fact consistency rule this domain expects to be checked (implemented by the consistency engine). */
-export interface ConsistencyRuleDescriptor {
+// --- Pack-driven extraction ---------------------------------------------------
+// Data for the domain-independent extraction engine (ner/packNer.ts): the
+// engine finds typed values (money, dates, durations, percentages, areas)
+// and party names on its own; a pack only says which context turns a
+// value into which role, plus phrase patterns for free-text fields.
+
+export type ValueType = "MONEY" | "DATE" | "DURATION" | "PERCENT" | "AREA";
+
+export interface ValueRule {
+  label: string;
+  type: ValueType;
+  /** Tested against the sentence text before the value (rules are tried in order). */
+  before?: RegExp;
+  /** Tested against the few words right after the value; an after-match wins over before-matches. */
+  after?: RegExp;
+  /** Only applies when the whole document matches (e.g. carpet area only in flat sales). */
+  requires?: RegExp;
+}
+
+export interface PhrasePattern {
+  label: string;
+  /** Global regex; capture group `group` (default 1) is the entity span. */
+  regex: RegExp;
+  group?: number;
+  confidence?: number;
+  /** Match against the original text (line structure intact) instead of the line-unwrapped view. */
+  lines?: boolean;
+}
+
+export interface PackExtraction {
+  valueRules: ValueRule[];
+  phrasePatterns: PhrasePattern[];
+  /** Run the original v1 rule patterns (rulePatterns.ts) too. Default true; new domains turn it off. */
+  legacyPatterns?: boolean;
+  /** Extract party names from preamble/signature blocks via partyTerms. Default true. */
+  partyExtraction?: boolean;
+}
+
+// Cross-fact consistency rules, as data the domain-independent consistency
+// engine interprets. `category` is the finding category reported (a
+// RiskCategory value).
+interface ConsistencyRuleBase {
   id: string;
   description: string;
+  category: string;
 }
+
+/** Every mention of `label` must carry the same normalized value (grouped by party qualifier where one is stated). */
+export interface SingleValueRule extends ConsistencyRuleBase {
+  kind: "SINGLE_VALUE";
+  label: string;
+}
+
+/** The values of `parts` must add up to `total` (e.g. advance + balance = consideration). */
+export interface SumRule extends ConsistencyRuleBase {
+  kind: "SUM";
+  parts: string[];
+  total: string;
+}
+
+/** The date labeled `before` must not fall after the date labeled `after`. */
+export interface DateOrderRule extends ConsistencyRuleBase {
+  kind: "DATE_ORDER";
+  before: string;
+  after: string;
+}
+
+/** An obligation with `action` on an amount labeled `objectLabel` is expected to be borne by `expectedActor`. */
+export interface ExpectedActorRule extends ConsistencyRuleBase {
+  kind: "EXPECTED_ACTOR";
+  action: string;
+  objectLabel: string;
+  expectedActor: string;
+}
+
+export type ConsistencyRuleDescriptor =
+  SingleValueRule | SumRule | DateOrderRule | ExpectedActorRule;
 
 // --- Domain detection signals -------------------------------------------------
 // Deterministic, inspectable evidence for "which domain is this document"
@@ -148,6 +222,8 @@ export interface DetectionSignals {
   titlePatterns: RegExp[];
   /** Phrases characteristic of the domain anywhere in the text. */
   lexicalPatterns: RegExp[];
+  /** Which of the pack's document types a title indicates (first match wins; default = first type). */
+  documentTypes?: Array<{ documentType: string; pattern: RegExp }>;
 }
 
 // Mirrors the risk engine's existing {name, run(context)} check shape.
@@ -157,7 +233,10 @@ export interface RiskCheckDescriptor<TContext = unknown, TFinding = unknown> {
 }
 
 export interface RiskRuleDescriptor<TContext = unknown, TFinding = unknown> {
+  /** Union across the pack's document types (for display). */
   expectedClauseTypes: string[];
+  /** Per-document-type expectations, when a domain's document types differ. */
+  expectedClauseTypesByDocumentType?: Record<string, string[]>;
   missingClauseSeverity: Record<string, RiskSeverity>;
   perClauseChecks: RiskCheckDescriptor<TContext, TFinding>[];
   comparisonChecks: RiskCheckDescriptor<TContext, TFinding>[];
@@ -175,6 +254,20 @@ export interface DomainPack<TContext = unknown, TFinding = unknown> {
   documentTypes: DocumentTypeDescriptor[];
 
   entitySchema: EntityTypeDescriptor[];
+  /**
+   * Surface words a document uses for each party role (entity label ->
+   * terms), e.g. SELLER -> ["Seller", "Vendor"]. Drives party extraction,
+   * obligation actor resolution and domain detection.
+   */
+  partyTerms: Record<string, string[]>;
+  /** Entity labels summarised on the workspace Overview card, in order. */
+  overviewFields: string[];
+  /**
+   * Pack-driven extraction rules. For packs that also have legacy
+   * rule patterns (rental, land lease), these only add labels the legacy
+   * patterns never produce, so v1 results are unchanged.
+   */
+  extraction?: PackExtraction;
   clauseSchema: ClauseTypeDescriptor[];
   relationSchema: RelationTypeDescriptor[];
   obligationSchema: ObligationTypeDescriptor[];

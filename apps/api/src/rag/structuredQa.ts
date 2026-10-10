@@ -185,21 +185,30 @@ export function answerStructured(input: StructuredQaInput): StructuredAnswer | n
   const own = bestLabel(pack, question);
   if (input.allPacks) {
     const ownLabels = new Set(pack.entitySchema.map((e) => e.label));
+    // The best match across every other pack - not the first pack that
+    // clears the bar, or "probation period" would be reported as rental's
+    // "notice period".
+    let foreign: { pack: DomainPack<unknown, unknown>; label: string; score: number } | null = null;
     for (const other of input.allPacks) {
       if (other.id === pack.id) continue;
       const theirs = bestLabel(other, question);
-      if (theirs.label && !ownLabels.has(theirs.label) && theirs.score >= own.score + 2) {
-        const name =
-          other.entitySchema.find((e) => e.label === theirs.label)?.displayName ?? theirs.label;
-        return {
-          status: "NOT_SUFFICIENT",
-          answer: `This ${pack.name.toLowerCase()} does not contain a ${name.toLowerCase()} - that is a term of a different kind of document.`,
-          resolvedLabels: [theirs.label],
-          kind: "not_found",
-          normalized: null,
-          evidence: [],
-        };
+      if (!theirs.label || ownLabels.has(theirs.label)) continue;
+      if (!foreign || theirs.score > foreign.score) {
+        foreign = { pack: other, label: theirs.label, score: theirs.score };
       }
+    }
+    if (foreign && foreign.score >= own.score + 2) {
+      const name =
+        foreign.pack.entitySchema.find((e) => e.label === foreign.label)?.displayName ??
+        foreign.label;
+      return {
+        status: "NOT_SUFFICIENT",
+        answer: `This ${pack.name.toLowerCase()} does not contain a ${name.toLowerCase()} - that is a term of a different kind of document.`,
+        resolvedLabels: [foreign.label],
+        kind: "not_found",
+        normalized: null,
+        evidence: [],
+      };
     }
   }
   const labels = resolveLabels(pack, question);
@@ -250,12 +259,36 @@ export function answerStructured(input: StructuredQaInput): StructuredAnswer | n
     const money = new Set(
       pack.entitySchema.filter((e) => e.coreType === "MONEY").map((e) => e.label),
     );
-    const total = bestLabel(pack, question.slice(0, afterAt)).label;
     const part = bestLabel(pack, question.slice(afterAt)).label;
+    let total = bestLabel(pack, question.slice(0, afterAt)).label;
+    // "How much remains after the advance?" names only the part: the total
+    // is the document's largest stated amount (the answer names which value
+    // it used, so the choice is visible).
+    if (part && money.has(part) && (!total || !money.has(total) || total === part)) {
+      const amountOf = (l: string) => {
+        const m = mentions(l)[0];
+        const v = m ? normalizeByCoreType("MONEY", m.text) : null;
+        return v && "amount" in v ? v.amount : null;
+      };
+      const partAmount = amountOf(part);
+      const largest = [...money]
+        .filter((l) => l !== part)
+        .map((l) => ({ l, amount: amountOf(l) }))
+        .filter((x): x is { l: string; amount: number } => x.amount !== null)
+        .filter((x) => partAmount === null || x.amount > partAmount)
+        .sort((a, b) => b.amount - a.amount)[0];
+      total = largest?.l ?? null;
+    }
+    if (part && money.has(part) && !total) {
+      // A remainder was asked for but cannot be computed - say so rather
+      // than answering with the part's own amount.
+      return notFound([part]);
+    }
     if (part && total && part !== total && money.has(part) && money.has(total)) {
-      const t = mentions(total)[0]!;
+      const t = mentions(total)[0];
       const p = mentions(part)[0];
       if (!p) return notFound([part]);
+      if (!t) return notFound([total]);
       const tv = normalizeByCoreType("MONEY", t.text);
       const pv = normalizeByCoreType("MONEY", p.text);
       if (tv && pv && "amount" in tv && "amount" in pv) {
@@ -291,7 +324,11 @@ export function answerStructured(input: StructuredQaInput): StructuredAnswer | n
   const found = mentions(label);
   if (found.length === 0) return notFound([label]);
   const isParty = coreType.get(label) === "PARTY";
-  const values = isParty ? [...new Map(found.map((m) => [m.text, m])).values()] : [found[0]!];
+  // First mention of each distinct name (a Map built from all mentions
+  // would keep the last one, citing the signature block or schedule).
+  const firstByText = new Map<string, SemanticEntity>();
+  for (const m of found) if (!firstByText.has(m.text)) firstByText.set(m.text, m);
+  const values = isParty ? [...firstByText.values()] : [found[0]!];
   return {
     status: "GROUNDED",
     answer: values.map((m) => m.text).join(" and "),

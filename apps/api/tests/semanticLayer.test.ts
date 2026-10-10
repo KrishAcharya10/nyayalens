@@ -284,9 +284,29 @@ describe("structured question answering", () => {
     expect(a?.evidence).toHaveLength(2);
   });
 
+  it("computes the remainder when the question names only the part", () => {
+    // Found running the app: this used to answer with the advance itself.
+    const a = ask("How much remains after the advance?");
+    expect(a?.kind).toBe("difference");
+    expect(a?.normalized).toEqual({ amount: 6500000, currency: "INR" });
+  });
+
   it("refuses for a field the document lacks and for another domain's field", () => {
     expect(ask("What is the stamp duty?")?.status).toBe("NOT_SUFFICIENT");
-    expect(ask("What is the probation period?")?.status).toBe("NOT_SUFFICIENT");
+    const probation = ask("What is the probation period?");
+    expect(probation?.status).toBe("NOT_SUFFICIENT");
+    // The best foreign match, not the first pack over the bar (rental's notice period).
+    expect(probation?.answer).toMatch(/probation period/);
+  });
+
+  it("cites the first mention of a party, not a later restatement", () => {
+    const a = ask("Who is the buyer?");
+    const firstBuyer = a?.evidence[0];
+    expect(firstBuyer).toBeDefined();
+    const all = analyze(saleText()).entities.filter(
+      (e) => e.label === "BUYER" && e.text === firstBuyer!.text,
+    );
+    expect(firstBuyer!.textStart).toBe(Math.min(...all.map((e) => e.textStart)));
   });
 
   it("answers consistency questions from the consistency findings", () => {

@@ -25,7 +25,7 @@ export function Tabs({
     <div
       role="tablist"
       aria-label="Intelligence panel sections"
-      className="flex gap-0.5 border-b border-ink-200 px-2"
+      className="flex shrink-0 gap-0.5 overflow-x-auto border-b border-ink-200 px-2"
     >
       {tabs.map((tab) => {
         const active = tab.id === activeId;
@@ -38,7 +38,7 @@ export function Tabs({
             aria-selected={active}
             aria-controls={`tabpanel-${tab.id}`}
             onClick={() => onChange(tab.id)}
-            className={`relative px-2.5 py-2 text-xs font-medium transition-colors ${
+            className={`relative shrink-0 whitespace-nowrap px-2.5 py-2 text-xs font-medium transition-colors ${
               active ? "text-ink-800" : "text-ink-400 hover:text-ink-600"
             }`}
           >

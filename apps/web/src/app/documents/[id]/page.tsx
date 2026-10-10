@@ -89,7 +89,7 @@ export default function DocumentWorkspacePage() {
         </div>
       ) : (
         <EvidenceFocusProvider>
-          <div className="grid h-full grid-cols-[220px_1fr_360px]">
+          <div className="grid h-full grid-cols-[220px_minmax(0,1fr)_380px]">
             <aside className="flex flex-col border-r border-ink-200 bg-paper-50">
               <DocumentSearch clauses={data.clauses} entities={data.entities} />
               <DocumentOutline document={data.document} clauses={data.clauses} />
@@ -111,7 +111,7 @@ export default function DocumentWorkspacePage() {
                 />
               </div>
             </section>
-            <aside className="border-l border-ink-200 bg-paper-50">
+            <aside className="min-w-0 overflow-hidden border-l border-ink-200 bg-paper-50">
               <IntelligencePanel
                 document={data.document}
                 entities={data.entities}

@@ -31,7 +31,15 @@ export function OverviewTab({
   const partyLabels = overview
     ? overview.fields.filter((f) => f.coreType === "PARTY").map((f) => f.label)
     : PARTY_LABELS;
-  const parties = ruleBasedEntities.filter((e) => partyLabels.includes(e.label));
+  // One row per role + name: a party is mentioned in the preamble, the
+  // body and the signature block, but is still one party.
+  const parties = [
+    ...new Map(
+      ruleBasedEntities
+        .filter((e) => partyLabels.includes(e.label))
+        .map((e) => [`${e.label}|${(e.text ?? "").replace(/\s+/g, " ").toLowerCase()}`, e]),
+    ).values(),
+  ];
   const ruleBasedRisks = risks.filter((r) => r.modelSource === "RULE_BASED");
   const missingClauses = ruleBasedRisks.filter((r) => r.category === "MISSING_CLAUSE");
   const highRisks = ruleBasedRisks.filter((r) => r.severity === "HIGH").length;

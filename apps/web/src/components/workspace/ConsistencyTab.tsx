@@ -17,7 +17,7 @@ export function ConsistencyTab({
 }) {
   const findings = risks.filter((r) => r.pass === "CONSISTENCY" && r.modelSource === "RULE_BASED");
   return (
-    <div className="flex flex-col gap-3 p-3">
+    <div className="flex flex-col gap-3 p-4">
       <PermanentNotice>
         Consistency checks compare values the document states more than once. A difference is a
         potential issue to review - it may be a typo, or intentional.

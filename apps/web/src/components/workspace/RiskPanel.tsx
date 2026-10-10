@@ -9,6 +9,11 @@ import { humanizeLabel } from "@/lib/format";
 
 const SEVERITY_ORDER: RiskSeverity[] = ["HIGH", "MEDIUM", "LOW"];
 const SEVERITY_TONE: Record<RiskSeverity, Tone> = { HIGH: "risk", MEDIUM: "review", LOW: "info" };
+const SEVERITY_EDGE: Record<RiskSeverity, string> = {
+  HIGH: "border-l-risk-strong",
+  MEDIUM: "border-l-review-strong",
+  LOW: "border-l-info-strong",
+};
 
 function evidenceIds(risk: Risk): { clauseIds: string[]; entityIds: string[] } {
   const clauseIds = risk.evidence
@@ -30,13 +35,13 @@ export function RiskCard({ risk, highlighted = false }: { risk: Risk; highlighte
   return (
     <div
       ref={ref}
-      className={`rounded border bg-paper-50 p-3 transition-colors ${
-        highlighted ? "border-saffron-500 ring-1 ring-saffron-300" : "border-ink-100"
-      }`}
+      className={`rounded-lg border border-l-4 bg-paper-50 p-3 shadow-subtle transition-colors ${
+        SEVERITY_EDGE[risk.severity]
+      } ${highlighted ? "border-saffron-500 ring-1 ring-saffron-300" : "border-ink-200"}`}
     >
-      <div className="flex flex-wrap items-center gap-1.5">
+      <p className="text-sm font-semibold text-ink-800">{humanizeLabel(risk.category)}</p>
+      <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
         <Badge tone={SEVERITY_TONE[risk.severity]}>{risk.severity}</Badge>
-        <Badge tone="neutral">{humanizeLabel(risk.category)}</Badge>
         {risk.pass === "PASS_2" && <Badge tone="neutral">Cross-clause</Badge>}
         {risk.pass === "CONSISTENCY" && <Badge tone="neutral">Consistency</Badge>}
         {risk.reviewRequired && <Badge tone="review">Review required</Badge>}
@@ -45,7 +50,7 @@ export function RiskCard({ risk, highlighted = false }: { risk: Risk; highlighte
           rewritten, strengthened, or summarized. The backend's own
           non-definitive framing (see reasonFraming.ts) is the only
           framing this UI ever shows. */}
-      <p className="mt-2 text-sm leading-relaxed text-ink-700">{risk.reason}</p>
+      <p className="mt-2 text-sm leading-relaxed text-ink-600">{risk.reason}</p>
       <div className="mt-2">
         <EvidenceButton
           clauseIds={clauseIds}
@@ -75,7 +80,24 @@ export function RiskPanel({ risks, highlightId }: { risks: Risk[]; highlightId?:
       .filter((r): r is number => r !== null) ?? [];
 
   return (
-    <div className="flex flex-col gap-3 p-3">
+    <div className="flex flex-col gap-3 p-4">
+      {ruleBased.length > 0 && (
+        <div className="grid grid-cols-3 gap-2" aria-label="Findings by severity">
+          {SEVERITY_ORDER.map((sev) => (
+            <div
+              key={sev}
+              className={`rounded-md border border-l-4 border-ink-200 bg-paper-50 px-3 py-2 ${SEVERITY_EDGE[sev]}`}
+            >
+              <p className="text-lg font-semibold tabular-nums text-ink-800">
+                {ruleBased.filter((r) => r.severity === sev).length}
+              </p>
+              <p className="text-[11px] text-ink-400">
+                {sev.charAt(0) + sev.slice(1).toLowerCase()}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
       {/* Section 17: permanent, always-visible, never dismissible. */}
       <PermanentNotice>
         Risk findings identify provisions that may warrant review. They are not legal conclusions or

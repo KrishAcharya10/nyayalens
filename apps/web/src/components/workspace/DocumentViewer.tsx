@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, type ReactNode } from "react";
 import type { DocumentClause, Entity } from "@/lib/apiTypes";
-import { buildSegments, groupSegmentsByClause } from "@/lib/spans";
+import { buildSegments, groupSegmentsByClause, reflowForDisplay } from "@/lib/spans";
 import { useEvidenceFocus } from "./EvidenceFocusContext";
 import { EmptyState } from "@/components/ui/States";
 
@@ -26,7 +26,8 @@ export function DocumentViewer({
 
   const blocks = useMemo(() => {
     if (!canonicalText) return [];
-    const segments = buildSegments(canonicalText, clauses, entities);
+    // Same length as canonicalText, so every span offset still applies.
+    const segments = buildSegments(reflowForDisplay(canonicalText), clauses, entities);
     return groupSegmentsByClause(segments);
   }, [canonicalText, clauses, entities]);
 

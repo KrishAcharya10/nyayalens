@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildSegments, groupSegmentsByClause } from "./spans";
+import { buildSegments, groupSegmentsByClause, reflowForDisplay } from "./spans";
 
 interface Clause {
   id: string;
@@ -114,5 +114,23 @@ describe("groupSegmentsByClause", () => {
     const segments = buildSegments(text, clauses, [] as Entity[]);
     const blocks = groupSegmentsByClause(segments);
     expect(blocks.map((b) => b.clause?.id ?? null)).toEqual([null, "c1", null]);
+  });
+});
+
+describe("reflowForDisplay", () => {
+  it("joins mid-sentence PDF wraps without changing the text length", () => {
+    const text =
+      "AGREEMENT TO SELL\nShri A, residing at\nHouse No. 982, Road\nNo. 9, Kazipet; and\n\n1. SUBJECT PREMISES\nThe said Property";
+    const out = reflowForDisplay(text);
+    expect(out).toHaveLength(text.length);
+    expect(out).toContain("residing at House No. 982, Road No. 9");
+    // Title, paragraph break and numbered heading keep their line breaks.
+    expect(out.startsWith("AGREEMENT TO SELL\n")).toBe(true);
+    expect(out).toContain("and\n\n1. SUBJECT PREMISES\nThe said");
+  });
+
+  it("keeps the break after a sentence or before a numbered clause", () => {
+    expect(reflowForDisplay("first sentence.\nSecond")).toBe("first sentence.\nSecond");
+    expect(reflowForDisplay("end of clause\n2. RENT")).toBe("end of clause\n2. RENT");
   });
 });

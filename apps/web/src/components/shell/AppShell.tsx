@@ -4,70 +4,93 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useAuth } from "@/lib/AuthProvider";
-import { Button } from "@/components/ui/Button";
+import { Icon, type IconName } from "@/components/ui/Icon";
 
-const NAV_ITEMS = [
-  { href: "/documents", label: "Documents" },
-  { href: "/compare", label: "Compare" },
+const NAV_ITEMS: { href: string; label: string; icon: IconName }[] = [
+  { href: "/documents", label: "Documents", icon: "documents" },
+  { href: "/compare", label: "Compare", icon: "compare" },
 ];
 
-// The global shell (Section 7): a compact sidebar, a slim top bar, and a
-// main workspace that gets the vast majority of the screen. Deliberately
-// not a wide generic-SaaS sidebar - it exists to orient, not to compete
-// with the document for attention.
-export function AppShell({ children }: { children: ReactNode }) {
+const SECONDARY_ITEMS: { href: string; label: string; icon: IconName }[] = [
+  { href: "/how-it-works", label: "How NyayaLens works", icon: "book" },
+  { href: "/research", label: "Research and evaluation", icon: "flask" },
+];
+
+// The signed-in frame: a dark navigation sidebar and the page. `compact`
+// (used by the document workspace) narrows the sidebar to an icon rail so
+// the document and its analysis get the width; labels stay available as
+// tooltips and to screen readers.
+export function AppShell({
+  children,
+  compact = false,
+}: {
+  children: ReactNode;
+  compact?: boolean;
+}) {
   const pathname = usePathname();
   const { logout } = useAuth();
 
+  const item = (href: string, label: string, icon: IconName, active: boolean) => (
+    <Link
+      key={href}
+      href={href}
+      title={compact ? label : undefined}
+      aria-current={active ? "page" : undefined}
+      className={`flex items-center gap-3 rounded-md text-sm transition-colors ${
+        compact ? "h-10 w-10 justify-center" : "px-3 py-2"
+      } ${
+        active ? "bg-ink-700 text-paper-50" : "text-ink-300 hover:bg-ink-800 hover:text-paper-50"
+      }`}
+    >
+      <Icon name={icon} size={18} />
+      <span className={compact ? "sr-only" : ""}>{label}</span>
+    </Link>
+  );
+
   return (
-    <div className="flex h-screen flex-col bg-paper-100">
-      <header className="flex h-12 shrink-0 items-center justify-between border-b border-ink-200 bg-paper-50 px-4">
-        <Link href="/documents" className="flex items-baseline gap-2">
-          <span className="text-sm font-semibold tracking-wide text-ink-800">NYAYALENS</span>
-          <span className="hidden text-xs text-ink-400 sm:inline">
-            Indian Legal Document Intelligence
-          </span>
-        </Link>
-        <Button size="sm" variant="ghost" onClick={logout}>
-          Sign out
-        </Button>
-      </header>
-      <div className="flex min-h-0 flex-1">
-        <nav
-          aria-label="Primary"
-          className="hidden w-44 shrink-0 flex-col gap-0.5 border-r border-ink-200 bg-paper-50 p-2 md:flex"
+    <div className="flex h-screen bg-paper-100">
+      <nav
+        aria-label="Primary"
+        className={`flex shrink-0 flex-col bg-ink-900 py-4 ${compact ? "w-16 items-center px-3" : "w-60 px-3"}`}
+      >
+        <Link
+          href="/documents"
+          className={`mb-6 flex items-center gap-2.5 ${compact ? "justify-center" : "px-3"}`}
+          title="NyayaLens"
         >
-          {NAV_ITEMS.map((item) => {
-            const active = pathname?.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`rounded px-2.5 py-1.5 text-sm transition-colors ${
-                  active ? "bg-ink-100 font-medium text-ink-800" : "text-ink-500 hover:bg-paper-200"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-          <div className="mt-auto border-t border-ink-200 pt-2">
-            <Link
-              href="/how-it-works"
-              className="block rounded px-2.5 py-1.5 text-xs text-ink-400 hover:bg-paper-200 hover:text-ink-600"
-            >
-              How NyayaLens works
-            </Link>
-            <Link
-              href="/research"
-              className="block rounded px-2.5 py-1.5 text-xs text-ink-400 hover:bg-paper-200 hover:text-ink-600"
-            >
-              Research and evaluation
-            </Link>
-          </div>
-        </nav>
-        <main className="min-w-0 flex-1 overflow-hidden">{children}</main>
-      </div>
+          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-saffron-500 font-serif text-base font-semibold text-ink-900">
+            N
+          </span>
+          {!compact && (
+            <span className="flex flex-col leading-tight">
+              <span className="text-sm font-semibold tracking-[0.16em] text-paper-50">
+                NYAYALENS
+              </span>
+              <span className="text-[11px] text-ink-400">Legal document intelligence</span>
+            </span>
+          )}
+        </Link>
+
+        <div className="flex flex-col gap-1">
+          {NAV_ITEMS.map((n) => item(n.href, n.label, n.icon, !!pathname?.startsWith(n.href)))}
+        </div>
+
+        <div className="mt-auto flex flex-col gap-1 border-t border-ink-800 pt-3">
+          {SECONDARY_ITEMS.map((n) => item(n.href, n.label, n.icon, pathname === n.href))}
+          <button
+            type="button"
+            onClick={logout}
+            title={compact ? "Sign out" : undefined}
+            className={`flex items-center gap-3 rounded-md text-sm text-ink-300 transition-colors hover:bg-ink-800 hover:text-paper-50 ${
+              compact ? "h-10 w-10 justify-center" : "px-3 py-2"
+            }`}
+          >
+            <Icon name="logout" size={18} />
+            <span className={compact ? "sr-only" : ""}>Sign out</span>
+          </button>
+        </div>
+      </nav>
+      <main className="min-w-0 flex-1 overflow-hidden">{children}</main>
     </div>
   );
 }

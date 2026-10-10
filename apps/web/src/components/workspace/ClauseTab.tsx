@@ -21,21 +21,26 @@ export function ClauseCard({
   return (
     <div
       ref={ref}
-      className={`rounded border bg-paper-50 p-2.5 transition-colors ${
-        highlighted ? "border-saffron-500 ring-1 ring-saffron-300" : "border-ink-100"
+      className={`flex gap-3 rounded-lg border bg-paper-50 p-3 transition-colors ${
+        highlighted ? "border-saffron-500 ring-1 ring-saffron-300" : "border-ink-200"
       }`}
     >
-      <div className="flex items-center gap-2">
-        {clause.clauseNumber && (
-          <span className="text-meta text-ink-400">#{clause.clauseNumber}</span>
+      <span
+        aria-hidden={!clause.clauseNumber}
+        className="flex h-7 min-w-[28px] items-center justify-center rounded-md bg-paper-200 px-1 text-xs font-semibold tabular-nums text-ink-600"
+      >
+        {clause.clauseNumber ? `#${clause.clauseNumber}` : "§"}
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-semibold text-ink-800">{humanizeLabel(clause.clauseType)}</p>
+        {clause.text && (
+          <p className="mt-1 line-clamp-2 font-serif text-[13px] leading-relaxed text-ink-500">
+            {clause.text.trim()}
+          </p>
         )}
-        <span className="text-clause-title text-ink-700">{humanizeLabel(clause.clauseType)}</span>
-      </div>
-      {clause.text && (
-        <p className="mt-1 line-clamp-2 text-sm text-ink-600">{clause.text.trim()}</p>
-      )}
-      <div className="mt-1.5">
-        <EvidenceButton clauseIds={[clause.id]} />
+        <div className="mt-1.5">
+          <EvidenceButton clauseIds={[clause.id]} />
+        </div>
       </div>
     </div>
   );
@@ -55,7 +60,7 @@ export function ClauseTab({
   }
 
   return (
-    <div className="flex flex-col gap-1.5 p-3">
+    <div className="flex flex-col gap-2 p-4">
       {ruleBased.map((clause) => (
         <ClauseCard key={clause.id} clause={clause} highlighted={clause.id === highlightId} />
       ))}

@@ -12,7 +12,8 @@ import type {
   Risk,
 } from "@/lib/apiTypes";
 import { getGraph, getObligations, getOverview } from "@/lib/api";
-import { Tabs, TabPanel } from "@/components/ui/Tabs";
+import { RailTabs, TabPanel } from "@/components/ui/Tabs";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { LoadingState, ErrorState } from "@/components/ui/States";
 import { OverviewTab } from "./OverviewTab";
 import { EntityTab } from "./EntityTab";
@@ -25,6 +26,57 @@ import { ConsistencyTab } from "./ConsistencyTab";
 
 type TabId =
   "overview" | "entities" | "clauses" | "obligations" | "risks" | "consistency" | "graph" | "ask";
+
+const TAB_META: Record<TabId, { label: string; title: string; hint: string; icon: IconName }> = {
+  overview: {
+    label: "Overview",
+    title: "Overview",
+    hint: "What this agreement says, and what needs review",
+    icon: "summary",
+  },
+  entities: {
+    label: "Entities",
+    title: "Extracted entities",
+    hint: "Every party, amount, date and detail found, grouped by type",
+    icon: "tag",
+  },
+  clauses: {
+    label: "Clauses",
+    title: "Clauses",
+    hint: "Each clause and what kind of provision it is",
+    icon: "clauses",
+  },
+  obligations: {
+    label: "Obligations",
+    title: "Obligations",
+    hint: "Who must do what, by when",
+    icon: "checklist",
+  },
+  risks: {
+    label: "Risks",
+    title: "Potential issues",
+    hint: "Provisions that may warrant review before signing",
+    icon: "alert",
+  },
+  consistency: {
+    label: "Consistency",
+    title: "Consistency",
+    hint: "Values the document states differently in different places",
+    icon: "scale",
+  },
+  graph: {
+    label: "Graph",
+    title: "Knowledge graph",
+    hint: "How parties, terms, obligations and findings connect",
+    icon: "graph",
+  },
+  ask: {
+    label: "Ask",
+    title: "Ask this document",
+    hint: "Answers come only from this document",
+    icon: "chat",
+  },
+};
 
 // Domain-aware example questions for the Ask tab, built from the
 // DomainPack's overview fields ("Who is the buyer?", "What is the sale
@@ -86,14 +138,22 @@ export function IntelligencePanel({
     };
   }, [document.id]);
 
+  // Loaded up front: the overview and the rail show the obligation count.
   useEffect(() => {
-    if (activeTab !== "obligations" || obligations) return;
+    let cancelled = false;
     getObligations(document.id)
-      .then(setObligations)
-      .catch((err: unknown) =>
-        setObligationsError(err instanceof Error ? err.message : "Could not load obligations"),
-      );
-  }, [activeTab, obligations, document.id]);
+      .then((o) => {
+        if (!cancelled) setObligations(o);
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) {
+          setObligationsError(err instanceof Error ? err.message : "Could not load obligations");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [document.id]);
 
   useEffect(() => {
     if (activeTab !== "graph" || graph) return;
@@ -118,99 +178,103 @@ export function IntelligencePanel({
     else setActiveTab("overview");
   }
 
+  const ruleRisks = risks.filter((r) => r.modelSource === "RULE_BASED");
+  const consistencyCount = ruleRisks.filter((r) => r.pass === "CONSISTENCY").length;
+  const counts: Partial<Record<TabId, number>> = {
+    entities: entities.filter((e) => e.modelSource === "RULE_BASED").length,
+    clauses: clauses.filter((c) => c.modelSource === "RULE_BASED").length,
+    obligations: obligations?.length ?? 0,
+    risks: ruleRisks.length,
+    consistency: consistencyCount,
+  };
+  const meta = TAB_META[activeTab];
+
   return (
-    <div className="flex h-full flex-col">
-      <Tabs
+    <div className="flex h-full">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <div className="shrink-0 border-b border-ink-200 bg-paper-50 px-4 py-3">
+          <h2 className="text-section-title text-ink-800">{meta.title}</h2>
+          <p className="mt-0.5 text-xs text-ink-400">{meta.hint}</p>
+        </div>
+        <TabPanel id="overview" activeId={activeTab}>
+          <OverviewTab
+            document={document}
+            entities={entities}
+            risks={risks}
+            overview={overview}
+            obligationCount={obligations?.length ?? null}
+            onNavigate={(tab) => setActiveTab(tab as TabId)}
+          />
+        </TabPanel>
+        <TabPanel id="entities" activeId={activeTab}>
+          <EntityTab entities={entities} highlightId={highlightId} />
+        </TabPanel>
+        <TabPanel id="clauses" activeId={activeTab}>
+          <ClauseTab clauses={clauses} highlightId={highlightId} />
+        </TabPanel>
+        <TabPanel id="obligations" activeId={activeTab}>
+          {obligationsError ? (
+            <ErrorState message={obligationsError} />
+          ) : obligations ? (
+            <ObligationsTab obligations={obligations} />
+          ) : (
+            <LoadingState label="Loading obligations..." />
+          )}
+        </TabPanel>
+        <TabPanel id="risks" activeId={activeTab}>
+          <RiskPanel risks={risks} highlightId={highlightId} />
+        </TabPanel>
+        <TabPanel id="consistency" activeId={activeTab}>
+          <ConsistencyTab risks={risks} highlightId={highlightId} />
+        </TabPanel>
+        <TabPanel id="graph" activeId={activeTab}>
+          {graphError ? (
+            <ErrorState message={graphError} />
+          ) : graph ? (
+            <GraphView
+              graph={graph}
+              onSelectNode={handleSelectGraphNode}
+              // The side panel is narrow: start with the document's terms,
+              // obligations and findings; clauses and references are a click away.
+              initialHidden={["CLAUSE", "LEGAL_REFERENCE"]}
+              showMiniMap={false}
+              onExpand={() => setGraphExpanded(true)}
+            />
+          ) : (
+            <LoadingState label="Building knowledge graph..." />
+          )}
+        </TabPanel>
+        {graphExpanded && graph && (
+          <GraphOverlay onClose={() => setGraphExpanded(false)}>
+            <GraphView
+              graph={graph}
+              onSelectNode={(node) => {
+                setGraphExpanded(false);
+                handleSelectGraphNode(node);
+              }}
+            />
+          </GraphOverlay>
+        )}
+        <TabPanel id="ask" activeId={activeTab}>
+          <AskPanel
+            documentId={document.id}
+            {...(exampleQuestionsFor(overview)
+              ? { exampleQuestions: exampleQuestionsFor(overview)! }
+              : {})}
+          />
+        </TabPanel>
+      </div>
+      <RailTabs
         activeId={activeTab}
         onChange={(id) => setActiveTab(id as TabId)}
-        tabs={[
-          { id: "overview", label: "Overview" },
-          {
-            id: "entities",
-            label: "Entities",
-            count: entities.filter((e) => e.modelSource === "RULE_BASED").length,
-          },
-          {
-            id: "clauses",
-            label: "Clauses",
-            count: clauses.filter((c) => c.modelSource === "RULE_BASED").length,
-          },
-          { id: "obligations", label: "Obligations" },
-          {
-            id: "risks",
-            label: "Risks",
-            count: risks.filter((r) => r.modelSource === "RULE_BASED").length,
-          },
-          {
-            id: "consistency",
-            label: "Consistency",
-            count: risks.filter((r) => r.modelSource === "RULE_BASED" && r.pass === "CONSISTENCY")
-              .length,
-          },
-          { id: "graph", label: "Graph" },
-          { id: "ask", label: "Ask" },
-        ]}
+        tabs={(Object.keys(TAB_META) as TabId[]).map((id) => ({
+          id,
+          label: TAB_META[id].label,
+          icon: <Icon name={TAB_META[id].icon} size={18} />,
+          ...(counts[id] !== undefined ? { count: counts[id] } : {}),
+          alert: id === "consistency" && consistencyCount > 0,
+        }))}
       />
-      <TabPanel id="overview" activeId={activeTab}>
-        <OverviewTab document={document} entities={entities} risks={risks} overview={overview} />
-      </TabPanel>
-      <TabPanel id="entities" activeId={activeTab}>
-        <EntityTab entities={entities} highlightId={highlightId} />
-      </TabPanel>
-      <TabPanel id="clauses" activeId={activeTab}>
-        <ClauseTab clauses={clauses} highlightId={highlightId} />
-      </TabPanel>
-      <TabPanel id="obligations" activeId={activeTab}>
-        {obligationsError ? (
-          <ErrorState message={obligationsError} />
-        ) : obligations ? (
-          <ObligationsTab obligations={obligations} />
-        ) : (
-          <LoadingState label="Loading obligations..." />
-        )}
-      </TabPanel>
-      <TabPanel id="risks" activeId={activeTab}>
-        <RiskPanel risks={risks} highlightId={highlightId} />
-      </TabPanel>
-      <TabPanel id="consistency" activeId={activeTab}>
-        <ConsistencyTab risks={risks} highlightId={highlightId} />
-      </TabPanel>
-      <TabPanel id="graph" activeId={activeTab}>
-        {graphError ? (
-          <ErrorState message={graphError} />
-        ) : graph ? (
-          <GraphView
-            graph={graph}
-            onSelectNode={handleSelectGraphNode}
-            // The side panel is narrow: start with the document's terms,
-            // obligations and findings; clauses and references are a click away.
-            initialHidden={["CLAUSE", "LEGAL_REFERENCE"]}
-            showMiniMap={false}
-            onExpand={() => setGraphExpanded(true)}
-          />
-        ) : (
-          <LoadingState label="Building knowledge graph..." />
-        )}
-      </TabPanel>
-      {graphExpanded && graph && (
-        <GraphOverlay onClose={() => setGraphExpanded(false)}>
-          <GraphView
-            graph={graph}
-            onSelectNode={(node) => {
-              setGraphExpanded(false);
-              handleSelectGraphNode(node);
-            }}
-          />
-        </GraphOverlay>
-      )}
-      <TabPanel id="ask" activeId={activeTab}>
-        <AskPanel
-          documentId={document.id}
-          {...(exampleQuestionsFor(overview)
-            ? { exampleQuestions: exampleQuestionsFor(overview)! }
-            : {})}
-        />
-      </TabPanel>
     </div>
   );
 }

@@ -79,3 +79,72 @@ export function TabPanel({
     </div>
   );
 }
+
+interface RailTabDef {
+  id: string;
+  label: string;
+  icon: ReactNode;
+  count?: number;
+  /** Draws the count in the risk tone (e.g. open inconsistencies). */
+  alert?: boolean;
+}
+
+// A vertical tab rail: every section stays visible however many there are
+// (eight in the workspace), each with an icon, a short label and an
+// optional count. Same ARIA tab semantics as Tabs, vertical orientation.
+export function RailTabs({
+  tabs,
+  activeId,
+  onChange,
+}: {
+  tabs: RailTabDef[];
+  activeId: string;
+  onChange: (id: string) => void;
+}) {
+  return (
+    <div
+      role="tablist"
+      aria-label="Intelligence panel sections"
+      aria-orientation="vertical"
+      className="flex w-[76px] shrink-0 flex-col gap-1 border-l border-ink-200 bg-paper-100 px-1.5 py-2"
+    >
+      {tabs.map((tab) => {
+        const active = tab.id === activeId;
+        return (
+          <button
+            key={tab.id}
+            type="button"
+            role="tab"
+            id={`tab-${tab.id}`}
+            aria-selected={active}
+            aria-controls={`tabpanel-${tab.id}`}
+            onClick={() => onChange(tab.id)}
+            className={`relative flex flex-col items-center gap-1 rounded-md px-1 py-2 text-[10.5px] font-medium leading-none transition-colors ${
+              active
+                ? "bg-paper-50 text-ink-900 shadow-subtle ring-1 ring-ink-200"
+                : "text-ink-400 hover:bg-paper-200 hover:text-ink-700"
+            }`}
+          >
+            {active && (
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-2 left-0 w-0.5 rounded-full bg-saffron-500"
+              />
+            )}
+            {tab.icon}
+            <span>{tab.label}</span>
+            {typeof tab.count === "number" && tab.count > 0 && (
+              <span
+                className={`absolute right-1 top-1 min-w-[16px] rounded-full px-1 py-0.5 text-[9px] tabular-nums ${
+                  tab.alert ? "bg-risk-strong text-paper-50" : "bg-ink-200 text-ink-600"
+                }`}
+              >
+                {tab.count}
+              </span>
+            )}
+          </button>
+        );
+      })}
+    </div>
+  );
+}

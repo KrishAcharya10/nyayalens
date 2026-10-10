@@ -79,10 +79,22 @@ export function ComparisonView({ comparison }: { comparison: DocumentComparison 
                 <tr key={f.label} className="border-t border-ink-100 align-top">
                   <td className="py-1.5 pr-2 text-ink-500">{f.displayName}</td>
                   <td className="break-words py-1.5 pr-2 text-ink-700">
-                    {f.a.length ? f.a.map((v) => v.text).join(", ") : dash}
+                    {f.a.length ? (
+                      <span className="line-clamp-3" title={f.a.map((v) => v.text).join(", ")}>
+                        {f.a.map((v) => v.text).join(", ")}
+                      </span>
+                    ) : (
+                      dash
+                    )}
                   </td>
                   <td className="break-words py-1.5 pr-2 text-ink-700">
-                    {f.b.length ? f.b.map((v) => v.text).join(", ") : dash}
+                    {f.b.length ? (
+                      <span className="line-clamp-3" title={f.b.map((v) => v.text).join(", ")}>
+                        {f.b.map((v) => v.text).join(", ")}
+                      </span>
+                    ) : (
+                      dash
+                    )}
                   </td>
                   <td className="py-1.5">
                     <StatusBadge status={f.status} />

@@ -89,3 +89,33 @@ export function groupSegmentsByClause<TClause extends SpanLike, TEntity extends 
   }
   return blocks;
 }
+
+// Display-only reflow for text extracted from PDFs, which arrives with hard
+// line wraps mid-sentence ("residing at / House No. 982, Road / No. 9"). A
+// wrap newline is replaced by a space - one character for one character, so
+// every offset into the text (clauses, entities, evidence) is unchanged.
+// A newline is kept when:
+//   - it is part of a blank line (paragraph break);
+//   - the line ends a sentence or bracket: . : ; ! ? ) " or a closing quote;
+//   - the line is all capitals (a title or heading);
+//   - the next line starts a numbered heading ("2. RENT", "3) TERM") or a
+//     capitalised heading word ("AND", "SCHEDULE").
+export function reflowForDisplay(text: string): string {
+  const lines = text.split("\n");
+  let out = "";
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]!;
+    out += line;
+    if (i === lines.length - 1) break;
+    const next = lines[i + 1]!;
+    const trimmed = line.trimEnd();
+    const keep =
+      trimmed === "" ||
+      next.trim() === "" ||
+      /[.:;!?)"”]$/.test(trimmed) ||
+      (/[A-Za-z]/.test(trimmed) && trimmed === trimmed.toUpperCase()) ||
+      /^\s*(?:\d+[.)]|[A-Z]{2,}\b)/.test(next);
+    out += keep ? "\n" : " ";
+  }
+  return out;
+}

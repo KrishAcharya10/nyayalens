@@ -12,10 +12,14 @@ import { humanizeLabel } from "@/lib/format";
 export function EntityCard({
   entity,
   highlighted = false,
+  mentionIds,
 }: {
   entity: Entity;
   highlighted?: boolean;
+  /** Every mention of the same value; "View" highlights all of them. */
+  mentionIds?: string[];
 }) {
+  const ids = mentionIds ?? [entity.id];
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (highlighted) ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -24,19 +28,23 @@ export function EntityCard({
   return (
     <div
       ref={ref}
-      className={`rounded border bg-paper-50 p-2.5 transition-colors ${
-        highlighted ? "border-saffron-500 ring-1 ring-saffron-300" : "border-ink-100"
+      className={`flex items-center justify-between gap-3 rounded-md px-2.5 py-1.5 transition-colors ${
+        highlighted ? "bg-saffron-100 ring-1 ring-saffron-300" : "hover:bg-paper-100"
       }`}
     >
-      <div className="flex items-center justify-between gap-2">
-        <span className="text-clause-title text-ink-700">{humanizeLabel(entity.label)}</span>
+      <p className="min-w-0 break-words text-sm text-ink-800">{entity.text ?? "—"}</p>
+      <div className="flex shrink-0 items-center gap-2">
         {entity.confidence !== null && (
-          <span className="text-meta text-ink-400">{Math.round(entity.confidence * 100)}%</span>
+          <span className="text-meta tabular-nums text-ink-300">
+            {Math.round(entity.confidence * 100)}%
+          </span>
         )}
-      </div>
-      <p className="mt-0.5 text-sm text-ink-800">{entity.text ?? "—"}</p>
-      <div className="mt-1.5">
-        <EvidenceButton entityIds={[entity.id]} />
+        {ids.length > 1 && (
+          <span className="rounded-full bg-paper-200 px-1.5 text-[10px] text-ink-500">
+            {ids.length} mentions
+          </span>
+        )}
+        <EvidenceButton entityIds={ids} label="View" />
       </div>
     </div>
   );
@@ -62,10 +70,37 @@ export function EntityTab({
     return <EmptyState title="No entities were extracted." />;
   }
 
+  // Grouped by label, in document order of each label's first mention.
+  // Within a label, repeated mentions of the same value are one row.
+  const groups = new Map<string, Map<string, Entity[]>>();
+  for (const e of [...ruleBased].sort((a, b) => (a.textStart ?? 0) - (b.textStart ?? 0))) {
+    const byValue = groups.get(e.label) ?? new Map<string, Entity[]>();
+    const key = (e.text ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+    byValue.set(key, [...(byValue.get(key) ?? []), e]);
+    groups.set(e.label, byValue);
+  }
+
   return (
-    <div className="flex flex-col gap-1 p-3">
-      {ruleBased.map((entity) => (
-        <EntityCard key={entity.id} entity={entity} highlighted={entity.id === highlightId} />
+    <div className="flex flex-col gap-3 p-4">
+      {[...groups.entries()].map(([label, items]) => (
+        <section key={label} className="rounded-lg border border-ink-200 bg-paper-50">
+          <h3 className="flex items-center justify-between border-b border-ink-100 px-3 py-2 text-xs font-semibold text-ink-600">
+            {humanizeLabel(label)}
+            <span className="rounded-full bg-paper-200 px-1.5 text-[10px] font-medium text-ink-500">
+              {items.size}
+            </span>
+          </h3>
+          <div className="flex flex-col p-1">
+            {[...items.values()].map((mentions) => (
+              <EntityCard
+                key={mentions[0]!.id}
+                entity={mentions[0]!}
+                mentionIds={mentions.map((m) => m.id)}
+                highlighted={mentions.some((m) => m.id === highlightId)}
+              />
+            ))}
+          </div>
+        </section>
       ))}
       {other.length > 0 && (
         <div className="mt-3">

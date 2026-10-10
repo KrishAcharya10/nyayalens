@@ -25,7 +25,7 @@ export function Tabs({
     <div
       role="tablist"
       aria-label="Intelligence panel sections"
-      className="flex shrink-0 gap-0.5 overflow-x-auto border-b border-ink-200 px-2"
+      className="flex shrink-0 flex-wrap gap-x-0.5 border-b border-ink-200 px-2"
     >
       {tabs.map((tab) => {
         const active = tab.id === activeId;

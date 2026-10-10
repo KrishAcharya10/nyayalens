@@ -58,6 +58,17 @@ describe("GraphView (Phase 7B, Section 18)", () => {
     expect(screen.getByText("Document")).toBeInTheDocument();
   });
 
+  it("hides and restores a node type from the legend, and starts with initialHidden types off", () => {
+    render(<GraphView graph={GRAPH} onSelectNode={vi.fn()} initialHidden={["CLAUSE"]} />);
+    expect(screen.queryByText("Rent Payment")).toBeNull();
+    const clauses = screen.getByRole("button", { name: /Clauses 1/ });
+    expect(clauses).toHaveAttribute("aria-pressed", "false");
+    fireEvent.click(clauses);
+    expect(screen.getByText("Rent Payment")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Entities 1/ }));
+    expect(screen.queryByText("Rs 30000")).toBeNull();
+  });
+
   it("shows a loading empty state, never fabricated nodes, while the graph is still null", () => {
     render(<GraphView graph={null} onSelectNode={vi.fn()} />);
     expect(screen.getByText("Loading graph...")).toBeInTheDocument();

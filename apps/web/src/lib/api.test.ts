@@ -11,6 +11,7 @@ function jsonResponse(status: number, body: unknown): Response {
 
 afterEach(() => {
   vi.unstubAllGlobals();
+  sessionStorage.clear();
 });
 
 describe("api.ts response classification", () => {
@@ -45,5 +46,34 @@ describe("api.ts response classification", () => {
       id: "doc-1",
       title: "Real Document",
     });
+  });
+
+  it("refreshes an expired access token once and retries the request", async () => {
+    sessionStorage.setItem("nyayalens_access_token", "expired");
+    sessionStorage.setItem("nyayalens_refresh_token", "refresh-1");
+    const document = { id: "doc-1", title: "Real Document" };
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(jsonResponse(401, { error: "Token expired" }))
+      .mockResolvedValueOnce(jsonResponse(200, { accessToken: "fresh", refreshToken: "refresh-2" }))
+      .mockResolvedValueOnce(jsonResponse(200, { document }));
+    vi.stubGlobal("fetch", fetchMock);
+    await expect(getDocument("doc-1")).resolves.toMatchObject({ id: "doc-1" });
+    expect(fetchMock.mock.calls[1]![0]).toMatch(/\/auth\/refresh$/);
+    const retried = fetchMock.mock.calls[2]![1] as RequestInit;
+    expect(new Headers(retried.headers).get("Authorization")).toBe("Bearer fresh");
+    expect(sessionStorage.getItem("nyayalens_refresh_token")).toBe("refresh-2");
+  });
+
+  it("still throws UnauthorizedError when the refresh token is rejected", async () => {
+    sessionStorage.setItem("nyayalens_refresh_token", "revoked");
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValueOnce(jsonResponse(401, { error: "Token expired" }))
+        .mockResolvedValueOnce(jsonResponse(401, { error: "Refresh token revoked" })),
+    );
+    await expect(getDocument("doc-1")).rejects.toBeInstanceOf(UnauthorizedError);
   });
 });

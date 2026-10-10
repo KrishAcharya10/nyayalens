@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/lib/AuthProvider";
 import { Button } from "@/components/ui/Button";
+import { AuthLayout } from "@/components/shell/AuthLayout";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -29,9 +30,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-paper-100 px-4">
+    <AuthLayout>
       <div className="w-full max-w-sm rounded-lg border border-ink-200 bg-paper-50 p-8 shadow-panel">
-        <p className="text-sm font-semibold tracking-wide text-ink-800">NYAYALENS</p>
+        <p className="text-sm font-semibold tracking-wide text-ink-800 lg:hidden">NYAYALENS</p>
         <h1 className="mt-1 text-page-title text-ink-900">Sign in</h1>
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3">
           <label className="flex flex-col gap-1 text-sm text-ink-600">
@@ -70,6 +71,6 @@ export default function LoginPage() {
           </Link>
         </p>
       </div>
-    </main>
+    </AuthLayout>
   );
 }

@@ -64,11 +64,47 @@ function getAccessToken(): string | null {
   return sessionStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
+// Access tokens live 15 minutes. On a 401 the client exchanges the stored
+// refresh token for a new pair (POST /auth/refresh rotates it) and retries
+// the request once, so a working session does not end mid-review. Only one
+// refresh runs at a time; concurrent 401s wait for the same one.
+let refreshInFlight: Promise<boolean> | null = null;
+
+async function refreshTokens(): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+  const refreshToken = sessionStorage.getItem(REFRESH_TOKEN_KEY);
+  if (!refreshToken) return false;
+  refreshInFlight ??= (async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/refresh`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refreshToken }),
+      });
+      if (!res.ok) return false;
+      const tokens = (await res.json()) as TokenResponse;
+      sessionStorage.setItem(ACCESS_TOKEN_KEY, tokens.accessToken);
+      sessionStorage.setItem(REFRESH_TOKEN_KEY, tokens.refreshToken);
+      return true;
+    } catch {
+      return false;
+    } finally {
+      refreshInFlight = null;
+    }
+  })();
+  return refreshInFlight;
+}
+
 async function authedFetch(path: string, init: RequestInit = {}): Promise<Response> {
-  const token = getAccessToken();
-  const headers = new Headers(init.headers);
-  if (token) headers.set("Authorization", `Bearer ${token}`);
-  return fetch(`${API_BASE_URL}${path}`, { ...init, headers });
+  const send = () => {
+    const token = getAccessToken();
+    const headers = new Headers(init.headers);
+    if (token) headers.set("Authorization", `Bearer ${token}`);
+    return fetch(`${API_BASE_URL}${path}`, { ...init, headers });
+  };
+  const res = await send();
+  if (res.status !== 401) return res;
+  return (await refreshTokens()) ? send() : res;
 }
 
 async function postJson<T>(path: string, body: unknown): Promise<T> {

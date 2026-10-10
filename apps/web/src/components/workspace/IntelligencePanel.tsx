@@ -66,6 +66,7 @@ export function IntelligencePanel({
   const [highlightId, setHighlightId] = useState<string | null>(null);
   const [graph, setGraph] = useState<DocumentGraph | null>(null);
   const [graphError, setGraphError] = useState<string | null>(null);
+  const [graphExpanded, setGraphExpanded] = useState(false);
   // Phase 8 semantic layer. A failure here never blocks the Phase 7B tabs:
   // the overview falls back to its original view and obligations show an
   // error state of their own.
@@ -178,11 +179,30 @@ export function IntelligencePanel({
         {graphError ? (
           <ErrorState message={graphError} />
         ) : graph ? (
-          <GraphView graph={graph} onSelectNode={handleSelectGraphNode} />
+          <GraphView
+            graph={graph}
+            onSelectNode={handleSelectGraphNode}
+            // The side panel is narrow: start with the document's terms,
+            // obligations and findings; clauses and references are a click away.
+            initialHidden={["CLAUSE", "LEGAL_REFERENCE"]}
+            showMiniMap={false}
+            onExpand={() => setGraphExpanded(true)}
+          />
         ) : (
           <LoadingState label="Building knowledge graph..." />
         )}
       </TabPanel>
+      {graphExpanded && graph && (
+        <GraphOverlay onClose={() => setGraphExpanded(false)}>
+          <GraphView
+            graph={graph}
+            onSelectNode={(node) => {
+              setGraphExpanded(false);
+              handleSelectGraphNode(node);
+            }}
+          />
+        </GraphOverlay>
+      )}
       <TabPanel id="ask" activeId={activeTab}>
         <AskPanel
           documentId={document.id}
@@ -191,6 +211,41 @@ export function IntelligencePanel({
             : {})}
         />
       </TabPanel>
+    </div>
+  );
+}
+
+// Full-screen view of the knowledge graph. Escape or the close button
+// returns to the workspace; clicking a node closes it and opens that
+// node's card in the panel.
+function GraphOverlay({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Knowledge graph"
+      className="fixed inset-0 z-50 flex flex-col bg-ink-900/40 p-4 backdrop-blur-[1px] sm:p-8"
+    >
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border border-ink-200 bg-paper-50 shadow-panel">
+        <div className="flex items-center justify-between border-b border-ink-200 px-4 py-2">
+          <p className="text-section-title text-ink-700">Knowledge graph</p>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded px-2 py-1 text-xs font-medium text-ink-500 hover:bg-paper-200"
+          >
+            Close (Esc)
+          </button>
+        </div>
+        <div className="min-h-0 flex-1">{children}</div>
+      </div>
     </div>
   );
 }

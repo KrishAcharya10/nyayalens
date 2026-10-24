@@ -1,0 +1,28 @@
+# MASTER SERVICES AGREEMENT
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.
+
+This Master Services Agreement is made on 23 August 2027 between Coastal Freight Lines Pvt. Ltd., 3 Port Road, Visakhapatnam (the "Customer") and Nimbus Cloud Services Pvt. Ltd., 21 Madhapur, Hyderabad (the "Supplier").
+
+1. Services
+The Supplier shall provide cloud hosting and support services described in each statement of work signed under this Agreement.
+
+2. Fees
+The Customer shall pay the fees in each statement of work. The first statement of work fixes a monthly fee of INR 2,50,000.
+
+3. Payment
+The Supplier shall invoice monthly. The Customer shall pay each undisputed invoice within 30 days of receipt.
+
+4. Confidentiality
+Each party shall keep the other's non-public information confidential during the term and for 3 years afterwards.
+
+5. Limitation of Liability
+Each party's total liability under this Agreement is limited to the fees paid in the 12 months before the claim. This limit does not apply to liability for breach of confidentiality or for wilful misconduct.
+
+6. Term and Termination
+This Agreement continues for 3 years from the date above. Either party may terminate it on 90 days written notice.
+
+7. Disputes
+The parties shall escalate any dispute to senior management and, failing resolution in 30 days, refer it to arbitration in Hyderabad.
+
+8. Jurisdiction
+The courts at Hyderabad have exclusive jurisdiction.

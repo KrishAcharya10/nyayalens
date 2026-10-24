@@ -24,7 +24,7 @@ export function EvidenceButton({
       type="button"
       disabled={disabled}
       onClick={() => focusEvidence(clauseIds, entityIds)}
-      className="text-left text-xs font-medium text-info-strong hover:underline disabled:cursor-not-allowed disabled:text-ink-300 disabled:no-underline"
+      className="text-left text-xs font-medium text-info-strong hover:underline disabled:cursor-not-allowed disabled:text-ink-400 disabled:no-underline"
     >
       {disabled ? "No document location available" : label}
     </button>

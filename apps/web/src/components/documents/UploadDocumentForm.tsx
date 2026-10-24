@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type DragEvent, type FormEvent } from "rea
 import { listDomainPacks, uploadDocument } from "@/lib/api";
 import type { DomainPackSummary } from "@/lib/apiTypes";
 import { Button } from "@/components/ui/Button";
+import { Dialog } from "@/components/ui/Dialog";
 import { Icon } from "@/components/ui/Icon";
 
 // Document types come from GET /domain-packs (the API's DomainPack
@@ -40,15 +41,6 @@ export function UploadDocumentForm({ onUploaded }: { onUploaded: () => void }) {
       cancelled = true;
     };
   }, [open, packs]);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !submitting) setOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, submitting]);
 
   function close() {
     setOpen(false);
@@ -93,114 +85,116 @@ export function UploadDocumentForm({ onUploaded }: { onUploaded: () => void }) {
         <Icon name="upload" />
         Add document
       </Button>
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="upload-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/40 p-4"
+      {/* Dialog: focus moves in, Tab stays inside, Escape and the backdrop close it
+          (not while an upload is in flight), and focus returns to this button. */}
+      <Dialog
+        open={open}
+        onClose={() => {
+          if (!submitting) close();
+        }}
+        labelledBy="upload-title"
+        className="w-full max-w-lg"
+      >
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-lg rounded-lg border border-ink-200 bg-paper-50 shadow-panel"
         >
-          <form
-            onSubmit={handleSubmit}
-            className="w-full max-w-lg rounded-lg border border-ink-200 bg-paper-50 shadow-panel"
-          >
-            <div className="flex items-start justify-between border-b border-ink-100 px-5 py-4">
-              <div>
-                <h2 id="upload-title" className="text-section-title text-ink-800">
-                  Add a document
-                </h2>
-                <p className="mt-0.5 text-xs text-ink-400">
-                  It is analysed on this machine; nothing is sent anywhere else.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={close}
-                disabled={submitting}
-                className="rounded p-1 text-ink-400 hover:bg-paper-200 hover:text-ink-700"
-              >
-                <Icon name="x" />
-                <span className="sr-only">Close</span>
-              </button>
+          <div className="flex items-start justify-between border-b border-ink-100 px-5 py-4">
+            <div>
+              <h2 id="upload-title" className="text-section-title text-ink-800">
+                Add a document
+              </h2>
+              <p className="mt-0.5 text-xs text-ink-500">
+                It is analysed on this machine; nothing is sent anywhere else.
+              </p>
             </div>
+            <button
+              type="button"
+              onClick={close}
+              disabled={submitting}
+              className="rounded p-1 text-ink-400 hover:bg-paper-200 hover:text-ink-700"
+            >
+              <Icon name="x" />
+              <span className="sr-only">Close</span>
+            </button>
+          </div>
 
-            <div className="flex flex-col gap-4 px-5 py-5">
-              <label className="flex flex-col gap-1.5 text-xs font-medium text-ink-600">
-                Document type
-                <select
-                  value={documentType}
-                  onChange={(e) => setDocumentType(e.target.value)}
-                  disabled={!packs}
-                  className="h-9 rounded border border-ink-200 bg-paper-50 px-2 text-sm font-normal text-ink-800"
-                >
-                  {!packs && <option value="">Loading…</option>}
-                  {packs?.map((pack) => (
-                    <optgroup key={pack.id} label={pack.name}>
-                      {pack.documentTypes.map((dt) => (
-                        <option key={dt.slug} value={dt.slug}>
-                          {dt.label}
-                        </option>
-                      ))}
-                    </optgroup>
-                  ))}
-                </select>
-              </label>
-
-              <label
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  setDragging(true);
-                }}
-                onDragLeave={() => setDragging(false)}
-                onDrop={handleDrop}
-                className={`flex cursor-pointer flex-col items-center gap-2 rounded-md border-2 border-dashed px-4 py-8 text-center transition-colors ${
-                  dragging
-                    ? "border-saffron-500 bg-saffron-100/50"
-                    : "border-ink-200 bg-paper-100 hover:border-ink-300"
-                }`}
+          <div className="flex flex-col gap-4 px-5 py-5">
+            <label className="flex flex-col gap-1.5 text-xs font-medium text-ink-600">
+              Document type
+              <select
+                value={documentType}
+                onChange={(e) => setDocumentType(e.target.value)}
+                disabled={!packs}
+                className="h-9 rounded border border-ink-200 bg-paper-50 px-2 text-sm font-normal text-ink-800"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-paper-50 text-ink-500 shadow-subtle">
-                  <Icon name="upload" size={18} />
+                {!packs && <option value="">Loading…</option>}
+                {packs?.map((pack) => (
+                  <optgroup key={pack.id} label={pack.name}>
+                    {pack.documentTypes.map((dt) => (
+                      <option key={dt.slug} value={dt.slug}>
+                        {dt.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+            </label>
+
+            <label
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragging(true);
+              }}
+              onDragLeave={() => setDragging(false)}
+              onDrop={handleDrop}
+              className={`flex cursor-pointer flex-col items-center gap-2 rounded-md border-2 border-dashed px-4 py-8 text-center transition-colors ${
+                dragging
+                  ? "border-saffron-500 bg-saffron-100/50"
+                  : "border-ink-200 bg-paper-100 hover:border-ink-300"
+              }`}
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-paper-50 text-ink-500 shadow-subtle">
+                <Icon name="upload" size={18} />
+              </span>
+              {fileName ? (
+                <span className="text-sm font-medium text-ink-800">{fileName}</span>
+              ) : (
+                <span className="text-sm text-ink-600">
+                  <span className="font-medium text-ink-800">Choose a file</span> or drag it here
                 </span>
-                {fileName ? (
-                  <span className="text-sm font-medium text-ink-800">{fileName}</span>
-                ) : (
-                  <span className="text-sm text-ink-600">
-                    <span className="font-medium text-ink-800">Choose a file</span> or drag it here
-                  </span>
-                )}
-                <span className="text-xs text-ink-400">File (.pdf or .docx), up to 20 MB</span>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".pdf,.docx"
-                  required
-                  onChange={(e) => setFileName(e.target.files?.[0]?.name ?? null)}
-                  className="sr-only"
-                />
-              </label>
-
-              {error && (
-                <p
-                  role="alert"
-                  className="rounded border border-risk-border bg-risk-bg px-3 py-2 text-xs text-risk-text"
-                >
-                  {error}
-                </p>
               )}
-            </div>
+              <span className="text-xs text-ink-400">File (.pdf or .docx), up to 20 MB</span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.docx"
+                required
+                onChange={(e) => setFileName(e.target.files?.[0]?.name ?? null)}
+                className="sr-only"
+              />
+            </label>
 
-            <div className="flex justify-end gap-2 border-t border-ink-100 px-5 py-3">
-              <Button type="button" variant="ghost" onClick={close} disabled={submitting}>
-                Cancel
-              </Button>
-              <Button type="submit" variant="primary" disabled={submitting || !documentType}>
-                {submitting ? "Uploading..." : "Upload"}
-              </Button>
-            </div>
-          </form>
-        </div>
-      )}
+            {error && (
+              <p
+                role="alert"
+                className="rounded border border-risk-border bg-risk-bg px-3 py-2 text-xs text-risk-text"
+              >
+                {error}
+              </p>
+            )}
+          </div>
+
+          <div className="flex justify-end gap-2 border-t border-ink-100 px-5 py-3">
+            <Button type="button" variant="ghost" onClick={close} disabled={submitting}>
+              Cancel
+            </Button>
+            <Button type="submit" variant="primary" disabled={submitting || !documentType}>
+              {submitting ? "Uploading..." : "Upload"}
+            </Button>
+          </div>
+        </form>
+      </Dialog>
     </>
   );
 }

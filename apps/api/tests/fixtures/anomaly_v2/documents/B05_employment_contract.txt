@@ -1,0 +1,32 @@
+# CONTRACT OF EMPLOYMENT
+
+This contract is made on 10 May 2027 between Kestrel Data Systems Pvt. Ltd., 17 Outer Ring Road, Bengaluru (the "Company") and Mr. Farhan Siddiqui of 6 Koramangala 4th Block, Bengaluru (the "Employee").
+
+1) DESIGNATION AND JOINING
+The Company employs the Employee as Product Analyst. The Employee shall join on 1 July 2027.
+
+2) REMUNERATION
+The annual cost to the Company (CTC) is INR 1,800,000. It is made up of a basic salary of INR 60,000 per month, house rent allowance of INR 30,000 per month and a special allowance of INR 40,000 per month.
+
+3) BONUS
+The Employee is eligible for an annual performance bonus of up to 10% of CTC, paid after the annual review. Any bonus is at the Company's discretion.
+
+4) PROBATION
+The Employee shall serve a probation of 3 months from joining. Confirmation will be communicated in writing.
+
+5) NOTICE
+After confirmation, either party shall give the other 60 days written notice to end this contract.
+
+6) CONFIDENTIALITY
+The Employee shall keep the Company's non-public information confidential during and after employment.
+
+7) INTELLECTUAL PROPERTY
+Work produced by the Employee in the course of employment belongs to the Company.
+
+8) TERMS OF SERVICE
+The Employee's probation period shall be 6 months, and the performance bonus is 15% of CTC. The Employee is entitled to 20 days of paid leave per year.
+
+9) JURISDICTION
+Courts at Bengaluru have jurisdiction.
+
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.

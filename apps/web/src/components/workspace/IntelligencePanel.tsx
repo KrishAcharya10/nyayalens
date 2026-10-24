@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type {
   DocumentClause,
   DocumentDetail,
@@ -13,8 +13,11 @@ import type {
 } from "@/lib/apiTypes";
 import { getGraph, getObligations, getOverview } from "@/lib/api";
 import { RailTabs, TabPanel } from "@/components/ui/Tabs";
+import { Dialog } from "@/components/ui/Dialog";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { LoadingState, ErrorState } from "@/components/ui/States";
+import { NODE_TAB } from "@/lib/graphLabels";
+import { rawId, type EvidenceTarget } from "@/lib/graphModel";
 import { OverviewTab } from "./OverviewTab";
 import { EntityTab } from "./EntityTab";
 import { ClauseTab } from "./ClauseTab";
@@ -23,6 +26,7 @@ import { GraphView } from "./GraphView";
 import { AskPanel } from "./AskPanel";
 import { ObligationsTab } from "./ObligationsTab";
 import { ConsistencyTab } from "./ConsistencyTab";
+import { useEvidenceFocus } from "./EvidenceFocusContext";
 
 type TabId =
   "overview" | "entities" | "clauses" | "obligations" | "risks" | "consistency" | "graph" | "ask";
@@ -96,87 +100,96 @@ export function exampleQuestionsFor(overview: DocumentOverview | null): string[]
   return qs.length > 0 ? qs : undefined;
 }
 
-// A graph node's id is namespaced by type ("entity:<id>", "clause:<id>",
-// "risk:<id>", "document:<id>" - see apps/api/src/graph/buildGraph.ts).
-function parseGraphNodeId(id: string): { type: string; rawId: string } {
-  const [type, ...rest] = id.split(":");
-  return { type: type ?? "", rawId: rest.join(":") };
-}
+const message = (err: unknown, fallback: string) => (err instanceof Error ? err.message : fallback);
 
 export function IntelligencePanel({
   document,
   entities,
   clauses,
   risks,
+  onWideChange,
 }: {
   document: DocumentDetail;
   entities: Entity[];
   clauses: DocumentClause[];
   risks: Risk[];
+  /** Told when the panel wants the room the document column would give it (the graph). */
+  onWideChange?: (wide: boolean) => void;
 }) {
+  const { focusEvidence } = useEvidenceFocus();
   const [activeTab, setActiveTab] = useState<TabId>("overview");
   const [highlightId, setHighlightId] = useState<string | null>(null);
   const [graph, setGraph] = useState<DocumentGraph | null>(null);
   const [graphError, setGraphError] = useState<string | null>(null);
   const [graphExpanded, setGraphExpanded] = useState(false);
   // Phase 8 semantic layer. A failure here never blocks the Phase 7B tabs:
-  // the overview falls back to its original view and obligations show an
-  // error state of their own.
+  // each one has its own error state with a retry.
   const [overview, setOverview] = useState<DocumentOverview | null>(null);
+  const [overviewFailed, setOverviewFailed] = useState(false);
   const [obligations, setObligations] = useState<Obligation[] | null>(null);
   const [obligationsError, setObligationsError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let cancelled = false;
+  const loadOverview = useCallback(() => {
+    setOverviewFailed(false);
     getOverview(document.id)
-      .then((o) => {
-        if (!cancelled) setOverview(o);
-      })
-      .catch(() => undefined);
-    return () => {
-      cancelled = true;
-    };
+      .then(setOverview)
+      .catch(() => setOverviewFailed(true));
   }, [document.id]);
+  useEffect(loadOverview, [loadOverview]);
 
   // Loaded up front: the overview and the rail show the obligation count.
-  useEffect(() => {
-    let cancelled = false;
+  const loadObligations = useCallback(() => {
+    setObligationsError(null);
     getObligations(document.id)
-      .then((o) => {
-        if (!cancelled) setObligations(o);
-      })
-      .catch((err: unknown) => {
-        if (!cancelled) {
-          setObligationsError(err instanceof Error ? err.message : "Could not load obligations");
-        }
-      });
-    return () => {
-      cancelled = true;
-    };
+      .then(setObligations)
+      .catch((err: unknown) => setObligationsError(message(err, "Could not load obligations")));
   }, [document.id]);
+  useEffect(loadObligations, [loadObligations]);
 
-  useEffect(() => {
-    if (activeTab !== "graph" || graph) return;
+  const loadGraph = useCallback(() => {
+    setGraphError(null);
     getGraph(document.id)
       .then(setGraph)
-      .catch((err: unknown) =>
-        setGraphError(err instanceof Error ? err.message : "Could not load graph"),
-      );
-  }, [activeTab, graph, document.id]);
+      .catch((err: unknown) => setGraphError(message(err, "Could not load the graph")));
+  }, [document.id]);
+  useEffect(() => {
+    if (activeTab === "graph" && !graph && !graphError) loadGraph();
+  }, [activeTab, graph, graphError, loadGraph]);
 
-  // Section 18: clicking a graph node opens its detail in the SAME
-  // intelligence panel used elsewhere - it switches to the relevant tab
-  // and highlights the exact card there, rather than rendering a second,
-  // inconsistent detail view.
-  function handleSelectGraphNode(node: GraphNode) {
-    const { type, rawId } = parseGraphNodeId(node.id);
-    setHighlightId(rawId);
-    if (type === "entity") setActiveTab("entities");
-    else if (type === "clause") setActiveTab("clauses");
-    else if (type === "risk") setActiveTab("risks");
-    else if (type === "obligation" || type === "event") setActiveTab("obligations");
-    else setActiveTab("overview");
-  }
+  useEffect(() => {
+    onWideChange?.(activeTab === "graph");
+  }, [activeTab, onWideChange]);
+
+  // The clause whose text contains an offset - how an obligation's sentence
+  // is traced to its clause.
+  const clauseAt = useCallback(
+    (offset: number) =>
+      clauses.find(
+        (c) =>
+          c.modelSource === "RULE_BASED" &&
+          c.textStart !== null &&
+          c.textEnd !== null &&
+          c.textStart <= offset &&
+          offset < c.textEnd,
+      )?.id ?? null,
+    [clauses],
+  );
+
+  // From a graph node to the same item in its workspace tab, highlighted.
+  const openInTab = useCallback((node: GraphNode) => {
+    const target = NODE_TAB[node.type];
+    if (!target) return;
+    setHighlightId(rawId(node.id));
+    setActiveTab(target.tab as TabId);
+    setGraphExpanded(false);
+  }, []);
+  const showInDocument = useCallback(
+    (t: EvidenceTarget) => {
+      focusEvidence(t.clauseIds, t.entityIds);
+      setGraphExpanded(false);
+    },
+    [focusEvidence],
+  );
 
   const ruleRisks = risks.filter((r) => r.modelSource === "RULE_BASED");
   const consistencyCount = ruleRisks.filter((r) => r.pass === "CONSISTENCY").length;
@@ -188,15 +201,41 @@ export function IntelligencePanel({
     consistency: consistencyCount,
   };
   const meta = TAB_META[activeTab];
+  const graphView = (expanded: boolean) =>
+    graph ? (
+      <GraphView
+        graph={graph}
+        clauseAt={clauseAt}
+        onShowInDocument={showInDocument}
+        onOpenInTab={openInTab}
+        showMiniMap={expanded}
+        {...(expanded ? {} : { onExpand: () => setGraphExpanded(true) })}
+      />
+    ) : null;
 
   return (
-    <div className="flex h-full">
-      <div className="flex min-w-0 flex-1 flex-col">
+    <div className="flex h-full flex-col md:flex-row">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
         <div className="shrink-0 border-b border-ink-200 bg-paper-50 px-4 py-3">
           <h2 className="text-section-title text-ink-800">{meta.title}</h2>
-          <p className="mt-0.5 text-xs text-ink-400">{meta.hint}</p>
+          <p className="mt-0.5 text-xs text-ink-500">{meta.hint}</p>
         </div>
         <TabPanel id="overview" activeId={activeTab}>
+          {overviewFailed && (
+            <div
+              role="alert"
+              className="m-4 mb-0 flex items-center justify-between gap-3 rounded border border-review-border bg-review-bg px-3 py-2 text-xs text-review-text"
+            >
+              <span>The domain-specific key terms could not be loaded.</span>
+              <button
+                type="button"
+                onClick={loadOverview}
+                className="shrink-0 font-medium underline hover:no-underline"
+              >
+                Retry
+              </button>
+            </div>
+          )}
           <OverviewTab
             document={document}
             entities={entities}
@@ -214,7 +253,7 @@ export function IntelligencePanel({
         </TabPanel>
         <TabPanel id="obligations" activeId={activeTab}>
           {obligationsError ? (
-            <ErrorState message={obligationsError} />
+            <ErrorState message={obligationsError} onRetry={loadObligations} />
           ) : obligations ? (
             <ObligationsTab obligations={obligations} />
           ) : (
@@ -229,32 +268,13 @@ export function IntelligencePanel({
         </TabPanel>
         <TabPanel id="graph" activeId={activeTab}>
           {graphError ? (
-            <ErrorState message={graphError} />
+            <ErrorState message={graphError} onRetry={loadGraph} />
           ) : graph ? (
-            <GraphView
-              graph={graph}
-              onSelectNode={handleSelectGraphNode}
-              // The side panel is narrow: start with the document's terms,
-              // obligations and findings; clauses and references are a click away.
-              initialHidden={["CLAUSE", "LEGAL_REFERENCE"]}
-              showMiniMap={false}
-              onExpand={() => setGraphExpanded(true)}
-            />
+            graphView(false)
           ) : (
             <LoadingState label="Building knowledge graph..." />
           )}
         </TabPanel>
-        {graphExpanded && graph && (
-          <GraphOverlay onClose={() => setGraphExpanded(false)}>
-            <GraphView
-              graph={graph}
-              onSelectNode={(node) => {
-                setGraphExpanded(false);
-                handleSelectGraphNode(node);
-              }}
-            />
-          </GraphOverlay>
-        )}
         <TabPanel id="ask" activeId={activeTab}>
           <AskPanel
             documentId={document.id}
@@ -275,41 +295,28 @@ export function IntelligencePanel({
           alert: id === "consistency" && consistencyCount > 0,
         }))}
       />
-    </div>
-  );
-}
-
-// Full-screen view of the knowledge graph. Escape or the close button
-// returns to the workspace; clicking a node closes it and opens that
-// node's card in the panel.
-function GraphOverlay({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Knowledge graph"
-      className="fixed inset-0 z-50 flex flex-col bg-ink-900/40 p-4 backdrop-blur-[1px] sm:p-8"
-    >
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border border-ink-200 bg-paper-50 shadow-panel">
-        <div className="flex items-center justify-between border-b border-ink-200 px-4 py-2">
-          <p className="text-section-title text-ink-700">Knowledge graph</p>
+      <Dialog
+        open={graphExpanded && graph !== null}
+        onClose={() => setGraphExpanded(false)}
+        labelledBy="graph-dialog-title"
+        backdropClassName="p-3 sm:p-8"
+        className="flex h-full max-h-full w-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-paper-50 shadow-panel"
+      >
+        <div className="flex shrink-0 items-center justify-between border-b border-ink-200 px-4 py-2">
+          <h2 id="graph-dialog-title" className="text-section-title text-ink-700">
+            Knowledge graph
+          </h2>
           <button
             type="button"
-            onClick={onClose}
-            className="rounded px-2 py-1 text-xs font-medium text-ink-500 hover:bg-paper-200"
+            data-autofocus
+            onClick={() => setGraphExpanded(false)}
+            className="rounded px-2 py-1 text-xs font-medium text-ink-600 hover:bg-paper-200"
           >
             Close (Esc)
           </button>
         </div>
-        <div className="min-h-0 flex-1">{children}</div>
-      </div>
+        <div className="min-h-0 flex-1">{graphExpanded ? graphView(true) : null}</div>
+      </Dialog>
     </div>
   );
 }

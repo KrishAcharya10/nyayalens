@@ -44,7 +44,7 @@ export function DocumentCard({ doc }: { doc: DocumentSummary }) {
           </p>
           <p className="mt-0.5 text-xs text-ink-500">
             {formatDocumentType(doc.documentType)}
-            <span className="text-ink-300"> · {domain.name}</span>
+            <span className="text-ink-400"> · {domain.name}</span>
           </p>
         </div>
         <Badge tone={STATUS_TONE[doc.processingStatus]}>

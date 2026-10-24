@@ -37,6 +37,13 @@ export function renderEvaluationMarkdown(results, dataset) {
     "- **Held-out templates.** Test documents use held-out clause templates on 50% of " +
       "draws; the generator's validator reports 0 template leakage and 0 train/test " +
       "near-duplicates (MinHash, Jaccard >= 0.8).",
+    "- **Four hand-written-style samples were used to fix defects.** Running the pipeline on four " +
+      "supplied agreements (rental, leave and licence, land lease, sale; `apps/api/tests/fixtures/samples`) " +
+      "exposed generalisation gaps (bracketed party definitions, `D Month YYYY` dates, short headings, " +
+      "risk phrasings) and one false positive. The fixes were general rules, checked against a separate " +
+      "seed-99 development set for regressions before this run, but those four documents are now " +
+      "demonstration cases, not independent evidence. Their end-to-end test is " +
+      "`apps/api/tests/sampleAgreements.test.ts`.",
     "- **No trained model.** Every number is from the rule-based pipeline " +
       "(`model_source = RULE_BASED`). No model was trained or fine-tuned in Phase 8.",
     "- **Same code as production.** The harness calls the same functions the upload pipeline " +

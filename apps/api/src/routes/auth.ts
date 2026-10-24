@@ -10,6 +10,7 @@ import {
   RefreshTokenError,
 } from "../lib/refreshToken.js";
 import { requireAuth } from "../middleware/auth.js";
+import { createLoginRateLimiter } from "../middleware/rateLimit.js";
 import { env } from "../config/env.js";
 
 const prisma = getPrismaClient();
@@ -63,7 +64,12 @@ authRouter.post("/register", async (req, res, next) => {
   }
 });
 
-authRouter.post("/login", async (req, res, next) => {
+const loginRateLimiter = createLoginRateLimiter({
+  maxFailures: env.AUTH_LOGIN_MAX_FAILURES,
+  windowMs: env.AUTH_LOGIN_WINDOW_MINUTES * 60_000,
+});
+
+authRouter.post("/login", loginRateLimiter, async (req, res, next) => {
   try {
     const parsed = loginSchema.safeParse(req.body);
     if (!parsed.success) {

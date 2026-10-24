@@ -119,7 +119,9 @@ export function runConsistency(input: ConsistencyInput): RiskFinding[] {
     (mentions.get(label) ?? []).map((m) => ({
       ...m,
       qualifier:
-        coreType.get(label) === "DURATION" ? qualifierFor(text, m.entity, pack.partyTerms) : "ANY",
+        coreType.get(label) === "DURATION" && /NOTICE/.test(label)
+          ? qualifierFor(text, m.entity, pack.partyTerms)
+          : "ANY",
     }));
 
   const findings: RiskFinding[] = [];
@@ -163,7 +165,8 @@ export function runConsistency(input: ConsistencyInput): RiskFinding[] {
           complete = false;
           break;
         }
-        const counted = singleValued.has(part) ? ms.slice(0, 1) : ms;
+        const counted =
+          singleValued.has(part) || rule.partsMultiplier !== undefined ? ms.slice(0, 1) : ms;
         for (const m of counted) {
           if ("amount" in m.value) {
             sum += m.value.amount;
@@ -171,14 +174,74 @@ export function runConsistency(input: ConsistencyInput): RiskFinding[] {
           }
         }
       }
-      if (!complete || sum === total.value.amount) continue;
+      if (!complete) continue;
+      if (rule.partsMultiplier !== undefined) {
+        // Parts quoted per period: every part must say so, and the sentence
+        // introducing them must present them as the whole.
+        const per = rule.partsPeriodCue;
+        if (
+          per &&
+          !used.every((m) => per.test(text.slice(m.entity.textEnd, m.entity.textEnd + 30)))
+        )
+          continue;
+        if (rule.completenessCue) {
+          const first = [...used].sort((a, b) => a.entity.textStart - b.entity.textStart)[0]!;
+          const sentence = sentences(text).find(
+            (s) => s.start <= first.entity.textStart && first.entity.textStart < s.end,
+          );
+          if (!sentence || !rule.completenessCue.test(sentence.text)) continue;
+        }
+        sum *= rule.partsMultiplier;
+      }
+      if (sum === total.value.amount) continue;
       add(
         rule,
-        `The amounts for ${rule.parts.map(humanize).join(" + ")} add up to INR ${sum.toLocaleString("en-IN")}, ` +
+        `The amounts for ${rule.parts.map(humanize).join(" + ")}${
+          rule.partsMultiplier ? ` (x ${rule.partsMultiplier})` : ""
+        } add up to INR ${sum.toLocaleString("en-IN")}, ` +
           `but the ${humanize(rule.total)} is stated as "${total.entity.text}". This is a potential ` +
           "payment mismatch - review required.",
         [...used, total].map((m) => evidence(documentId, m.entity)),
       );
+    } else if (rule.kind === "DURATION_SPAN") {
+      const dur = mentions.get(rule.durationLabel)?.[0];
+      const start = mentions.get(rule.startLabel)?.[0];
+      const end = mentions.get(rule.endLabel)?.[0];
+      if (!dur || !start || !end) continue;
+      if (!("days" in dur.value) || !("iso" in start.value) || !("iso" in end.value)) continue;
+      // The end date is the last day of the period, so the span includes it.
+      const span = (Date.parse(end.value.iso) - Date.parse(start.value.iso)) / 86_400_000 + 1;
+      if (span <= 0) continue; // an end before the start is a date-order finding, not this one
+      // Compared in months (calendar months have different lengths, "36 months" is "3 years");
+      // a gap of about a week is rounding, a gap of a month is not.
+      const monthLength = 30.4375;
+      const statedMonths =
+        dur.value.unit === "month"
+          ? dur.value.value
+          : dur.value.unit === "year"
+            ? dur.value.value * 12
+            : dur.value.days / monthLength;
+      if (Math.abs(span / monthLength - statedMonths) <= 0.3) continue;
+      add(
+        rule,
+        `The ${humanize(rule.durationLabel)} is stated as "${dur.entity.text}", but the dates given ` +
+          `("${start.entity.text}" to "${end.entity.text}") span about ${Math.round(span / 30.4)} months. ` +
+          "This is a potential inconsistency - review which is intended.",
+        [dur, start, end].map((m) => evidence(documentId, m.entity)),
+      );
+    } else if (rule.kind === "DURATION_AT_MOST") {
+      const limit = mentions.get(rule.limit)?.[0];
+      if (!limit || !("days" in limit.value)) continue;
+      for (const m of mentions.get(rule.label) ?? []) {
+        if (!("days" in m.value) || m.value.days <= limit.value.days) continue;
+        add(
+          rule,
+          `The ${humanize(rule.label)} ("${m.entity.text}") runs longer than the ${humanize(rule.limit)} ` +
+            `("${limit.entity.text}"). This may be intended, but the two provisions pull in different ` +
+            "directions - review required.",
+          [evidence(documentId, limit.entity), evidence(documentId, m.entity)],
+        );
+      }
     } else if (rule.kind === "DATE_ORDER") {
       const before = mentions.get(rule.before)?.[0];
       const after = mentions.get(rule.after)?.[0];

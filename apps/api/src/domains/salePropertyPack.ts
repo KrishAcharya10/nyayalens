@@ -275,7 +275,11 @@ export const salePropertyPack: DomainPack<RiskEngineContext, RiskFinding> = {
     missingClauseSeverity: MISSING_CLAUSE_SEVERITY,
     perClauseChecks: [
       makeOneSidedRemedyCheck(["DEFAULT", "TERMINATION"]),
-      makeMissingClauseCheckByDocumentType(EXPECTED_BY_DOCUMENT_TYPE, MISSING_CLAUSE_SEVERITY),
+      makeMissingClauseCheckByDocumentType(EXPECTED_BY_DOCUMENT_TYPE, MISSING_CLAUSE_SEVERITY, {
+        // Many agreements state the advance and the balance in one payment schedule.
+        ADVANCE: ["PAYMENT_SCHEDULE"],
+        BALANCE_PAYMENT: ["PAYMENT_SCHEDULE"],
+      }),
     ],
     comparisonChecks: [],
   },

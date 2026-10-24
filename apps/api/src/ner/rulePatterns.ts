@@ -134,7 +134,8 @@ const STANDALONE_PATTERNS: StandalonePattern[] = [
 // span) when it doesn't - degraded, not silently missed.
 // Phase 8: also "Rs. 25,000" / "INR 25,000" / "₹ 25,000". v1 documents only
 // ever use "₹25,000", so v1 output is unchanged.
-const AMOUNT_REGEX = /((?:₹\s?|Rs\.\s?|INR\s)[\d,]+(?:\.\d+)?)|(\d{1,3}(?:,\d{2,3})+(?:\.\d+)?)/dg;
+const AMOUNT_REGEX =
+  /((?:₹\s?|Rs\.\s?|INR\s)\d(?:[\d,]*\d)?(?:\.\d+)?)|(\d{1,3}(?:,\d{2,3})+(?:\.\d+)?)/dg;
 const AMOUNT_CONTEXT_WINDOW = 80;
 
 const AMOUNT_KEYWORDS: Array<{ label: string; keywords: RegExp }> = [
@@ -143,15 +144,37 @@ const AMOUNT_KEYWORDS: Array<{ label: string; keywords: RegExp }> = [
   { label: "RENT", keywords: /rent/i },
 ];
 
+function lastMatchIndex(text: string, pattern: RegExp): number {
+  const global = new RegExp(
+    pattern.source,
+    pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`,
+  );
+  let at = -1;
+  for (const m of text.matchAll(global)) at = m.index ?? at;
+  return at;
+}
+
 function extractAmountEntities(text: string): ExtractedEntityCandidate[] {
   const results: ExtractedEntityCandidate[] = [];
+  let previousEnd = 0;
   for (const match of text.matchAll(AMOUNT_REGEX)) {
     const start = match.index;
     const end = start + match[0].length;
-    const windowStart = Math.max(0, start - AMOUNT_CONTEXT_WINDOW);
+    // The window stops at the previous amount (its keyword belongs to it), and
+    // the nearest keyword wins ("a premium of X and an annual rent of Y").
+    const windowStart = Math.max(0, start - AMOUNT_CONTEXT_WINDOW, previousEnd);
+    previousEnd = end;
     const context = text.slice(windowStart, start);
 
-    const hit = AMOUNT_KEYWORDS.find((k) => k.keywords.test(context));
+    let hit: (typeof AMOUNT_KEYWORDS)[number] | undefined;
+    let nearest = -1;
+    for (const k of AMOUNT_KEYWORDS) {
+      const at = lastMatchIndex(context, k.keywords);
+      if (at > nearest) {
+        nearest = at;
+        hit = k;
+      }
+    }
     if (!hit) continue; // don't fabricate a label with no supporting context
 
     results.push({

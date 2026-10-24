@@ -20,13 +20,21 @@ import { clauseAt } from "../semantic/extract.js";
 import { pageAt, pageSpans } from "../semantic/facts.js";
 import { buildChunks } from "./chunking.js";
 import { DISCLAIMER } from "./extractiveLlmProvider.js";
-import { answerStructured, type EvidenceStatus } from "./structuredQa.js";
+import {
+  answerStructured,
+  uncoveredQuestionTerms,
+  vocabularyOf,
+  type EvidenceStatus,
+} from "./structuredQa.js";
 import { RAG_SYSTEM_INSTRUCTIONS } from "./systemInstructions.js";
 import type { ChunkType, LLMProvider, RetrievalProvider } from "./types.js";
 
 const prisma = getPrismaClient();
 
 const TOP_K = 3;
+
+const notMentioned = (terms: string[]): string =>
+  `The document does not mention ${terms.map((t) => `"${t}"`).join(", ")}, so this question cannot be answered from its text.`;
 // A BM25 score of exactly 0 means literally no query term matched that
 // chunk at all - excluded before it ever reaches the LLMProvider, so
 // "grounded: false" for a genuinely unanswerable question isn't riding on
@@ -93,7 +101,80 @@ export async function runAsk(
     }),
     prisma.risk.findMany({ where: { documentId, pass: "CONSISTENCY", modelSource } }),
   ]);
+  const findings: RiskFinding[] = consistency.map((r) => ({
+    category: r.category as RiskFinding["category"],
+    severity: r.severity,
+    reason: r.reason,
+    pass: "CONSISTENCY",
+    evidence: r.evidence as unknown as EvidenceSpan[],
+    ...(r.ruleId ? { ruleId: r.ruleId } : {}),
+  }));
+  return askFromFacts({
+    documentId,
+    documentType: document.documentType,
+    question,
+    clauses,
+    entities,
+    pages,
+    findings,
+    retrievalProvider,
+    llmProvider,
+  });
+}
+
+type StoredClause = {
+  id: string;
+  clauseType: string;
+  clauseNumber: string | null;
+  text: string | null;
+  textStart: number | null;
+  textEnd: number | null;
+};
+type StoredEntity = {
+  id: string;
+  label: string;
+  text: string | null;
+  textStart: number | null;
+  textEnd: number | null;
+};
+
+export interface AskFromFactsInput {
+  documentId: string;
+  documentType: string;
+  question: string;
+  clauses: StoredClause[];
+  entities: StoredEntity[];
+  pages: Array<{ pageNumber: number; text: string | null }>;
+  /** The document's consistency findings (pass CONSISTENCY). */
+  findings: RiskFinding[];
+  retrievalProvider: RetrievalProvider;
+  llmProvider: LLMProvider;
+}
+
+/**
+ * Everything runAsk does after loading the document: structured answering,
+ * then retrieval. Pure over its inputs, so the evaluation harness runs
+ * exactly the code the API runs.
+ */
+export async function askFromFacts(input: AskFromFactsInput): Promise<AskResult> {
+  const {
+    documentId,
+    documentType,
+    question,
+    clauses,
+    entities,
+    pages,
+    findings,
+    retrievalProvider,
+    llmProvider,
+  } = input;
   const spans = pageSpans(pages);
+  // Page text when stored; clause and entity text cover a document seeded without pages.
+  const documentText = [
+    ...pages.map((p) => p.text ?? ""),
+    ...clauses.map((c) => c.text ?? ""),
+    ...entities.map((e) => e.text ?? ""),
+  ].join(" ");
   const semanticClauses = clauses
     .filter((c) => c.textStart !== null && c.textEnd !== null)
     .map((c) => ({ ...c, textStart: c.textStart!, textEnd: c.textEnd! }));
@@ -112,15 +193,7 @@ export async function runAsk(
   // case retrieval is the only honest source.
   if (!CLAUSE_TEXT_REQUEST.test(question) && entities.length > 0) {
     const registry = getDomainPackRegistry();
-    const findings: RiskFinding[] = consistency.map((r) => ({
-      category: r.category as RiskFinding["category"],
-      severity: r.severity,
-      reason: r.reason,
-      pass: "CONSISTENCY",
-      evidence: r.evidence as unknown as EvidenceSpan[],
-      ...(r.ruleId ? { ruleId: r.ruleId } : {}),
-    }));
-    const pack = registry.forDocumentType(document.documentType);
+    const pack = registry.forDocumentType(documentType);
     const structured = answerStructured({
       question,
       pack,
@@ -130,12 +203,33 @@ export async function runAsk(
       findings,
       allPacks: registry.list(),
     });
+    // A question that asks about something the text never mentions is not answered
+    // by the nearest fact that happens to share a word with it.
+    const uncovered =
+      structured && structured.status === "GROUNDED" && structured.kind !== "consistency"
+        ? uncoveredQuestionTerms(
+            question,
+            documentText,
+            vocabularyOf(pack, structured.resolvedLabels),
+          )
+        : [];
+    if (uncovered.length > 0) {
+      return {
+        answer: notMentioned(uncovered),
+        grounded: false,
+        evidenceStatus: "NOT_SUFFICIENT",
+        method: "structured",
+        sources: [],
+      };
+    }
     if (structured) {
       const grounded = structured.status === "GROUNDED";
       return {
-        answer: grounded
-          ? `The document states: ${structured.answer} ${DISCLAIMER}`
-          : structured.answer,
+        answer: !grounded
+          ? structured.answer
+          : structured.kind === "conflict"
+            ? `${structured.answer} ${DISCLAIMER}`
+            : `The document states: ${structured.answer} ${DISCLAIMER}`,
         grounded,
         evidenceStatus: structured.status,
         method: "structured",
@@ -152,7 +246,18 @@ export async function runAsk(
     }
   }
 
-  // 2. Retrieval (Phase 7A path, unchanged).
+  // 2. Retrieval (Phase 7A path). A question about a term the document never
+  // uses is refused before retrieval can match it to something merely nearby.
+  const unmentioned = uncoveredQuestionTerms(question, documentText);
+  if (unmentioned.length > 0) {
+    return {
+      answer: notMentioned(unmentioned),
+      grounded: false,
+      evidenceStatus: "NOT_SUFFICIENT",
+      method: "retrieval",
+      sources: [],
+    };
+  }
   const chunks = buildChunks(documentId, clauses, entities);
   const retrieved = retrievalProvider
     .retrieve(question, chunks, TOP_K)

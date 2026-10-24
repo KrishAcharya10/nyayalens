@@ -1,0 +1,271 @@
+{
+  "version": "anomaly-v2-heldout",
+  "note": "Held-out set: written after the detection fixes and run once for the first reported numbers. Same schema and matching rules as ground_truth.json. Fictional documents.",
+  "matching": {
+    "finding": "A predicted finding matches an expected finding when it is on the same document, its category is in acceptedCategories, and its cited evidence (entity or clause text) contains every string in requiredEvidence (case- and whitespace-insensitive). Each expected finding is matched by at most one predicted finding. Predicted findings that match nothing are false positives; expected findings with no match are false negatives.",
+    "cleanControl": "Any predicted finding on a clean control is a false positive.",
+    "answer": "An answer is correct when its status equals expectStatus and its text contains every string in expectContains (case-insensitive).",
+    "conflict": "A conflict question is answered correctly only when the answer text contains every value in expectValues AND at least that many separate evidence citations each contain one of the values.",
+    "completenessChecklist": "Findings of category MISSING_CLAUSE that come from a pack's expected-clause checklist (no ruleId starting 'missing_term') are scored separately from anomalies. A flagged clause type is correct when it is listed in the document's absentClauseTypes (the clause really is not there) and wrong when the clause is present but was not recognised. A listed absent type that is not flagged is a miss. They are review prompts about completeness, never a statement that a term is legally required."
+  },
+  "documents": [
+    {
+      "docId": "H1",
+      "file": "H1_rental.docx",
+      "documentType": "residential_rental",
+      "family": "rental",
+      "role": "flawed",
+      "absentClauseTypes": ["DISPUTE_RESOLUTION"],
+      "findings": [
+        {
+          "id": "H1-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "conflicting_rent",
+          "acceptedCategories": ["FINANCIAL_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["18,000", "20,000"],
+          "ruleHint": "rent stated twice"
+        },
+        {
+          "id": "H1-F2",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "duration_vs_dates",
+          "acceptedCategories": ["DURATION_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["12 months"],
+          "ruleHint": "12-month period but dates span 11 months"
+        }
+      ],
+      "questions": [
+        {
+          "id": "H1-Q1",
+          "type": "fact",
+          "question": "What is the security deposit?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["54,000"]
+        },
+        {
+          "id": "H1-Q2",
+          "type": "conflict",
+          "question": "What is the monthly rent?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["18,000", "20,000"]
+        },
+        {
+          "id": "H1-Q3",
+          "type": "unanswerable",
+          "question": "What is the maintenance charge?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ]
+    },
+    {
+      "docId": "H2",
+      "file": "H2_offer_letter.docx",
+      "documentType": "offer_letter",
+      "family": "employment",
+      "role": "flawed",
+      "absentClauseTypes": [],
+      "findings": [
+        {
+          "id": "H2-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "ctc_arithmetic",
+          "acceptedCategories": ["PAYMENT_TOTAL_MISMATCH"],
+          "severity": "HIGH",
+          "requiredEvidence": ["9,60,000"],
+          "ruleHint": "components x 12 = 10,20,000"
+        },
+        {
+          "id": "H2-F2",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "probation_conflict",
+          "acceptedCategories": ["DURATION_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["6 months", "3 months"],
+          "ruleHint": "probation 6 vs 3 months"
+        }
+      ],
+      "questions": [
+        {
+          "id": "H2-Q1",
+          "type": "fact",
+          "question": "What is the job title?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Data Scientist"]
+        },
+        {
+          "id": "H2-Q2",
+          "type": "conflict",
+          "question": "What is the probation period?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["6 months", "3 months"]
+        },
+        {
+          "id": "H2-Q3",
+          "type": "fact",
+          "question": "What is the CTC?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["9,60,000"]
+        },
+        {
+          "id": "H2-Q4",
+          "type": "unanswerable",
+          "question": "What is the relocation bonus?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ]
+    },
+    {
+      "docId": "H3",
+      "file": "H3_service_agreement.docx",
+      "documentType": "service_agreement",
+      "family": "services",
+      "role": "flawed",
+      "absentClauseTypes": ["CONFIDENTIALITY"],
+      "findings": [
+        {
+          "id": "H3-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "payment_deadline",
+          "acceptedCategories": ["DURATION_CONTRADICTION", "FINANCIAL_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["21 days", "40 days"],
+          "ruleHint": "invoice payable in 21 vs 40 days"
+        },
+        {
+          "id": "H3-F2",
+          "kind": "AMBIGUOUS_REVIEW",
+          "benchmarkCategory": "uncapped_indemnity",
+          "acceptedCategories": ["UNCAPPED_LIABILITY"],
+          "severity": "HIGH",
+          "requiredEvidence": ["not subject to any cap"],
+          "ruleHint": "indemnity outside the liability cap"
+        }
+      ],
+      "questions": [
+        {
+          "id": "H3-Q1",
+          "type": "conflict",
+          "question": "When must invoices be paid?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["21 days", "40 days"]
+        },
+        {
+          "id": "H3-Q2",
+          "type": "cap",
+          "question": "What is the limit of the Service Provider's liability?",
+          "expectStatus": "GROUNDED",
+          "capState": "explicit_with_uncapped",
+          "expectContains": ["10,00,000", "not subject to any cap"]
+        },
+        {
+          "id": "H3-Q3",
+          "type": "fact",
+          "question": "Who is the Client?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Lotus Retail"]
+        }
+      ]
+    },
+    {
+      "docId": "H4",
+      "file": "H4_agreement_to_sell.docx",
+      "documentType": "agreement_to_sell",
+      "family": "sale",
+      "role": "clean",
+      "absentClauseTypes": [],
+      "findings": [],
+      "questions": [
+        {
+          "id": "H4-Q1",
+          "type": "fact",
+          "question": "What is the advance amount?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["5,50,000"]
+        },
+        {
+          "id": "H4-Q2",
+          "type": "fact",
+          "question": "When will possession be delivered?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["5 December 2027"]
+        },
+        {
+          "id": "H4-Q3",
+          "type": "unanswerable",
+          "question": "What home loan has been sanctioned?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ]
+    },
+    {
+      "docId": "H5",
+      "file": "H5_msa.docx",
+      "documentType": "msa",
+      "family": "services",
+      "role": "clean",
+      "absentClauseTypes": [],
+      "findings": [],
+      "questions": [
+        {
+          "id": "H5-Q1",
+          "type": "cap",
+          "question": "What is the limit of liability?",
+          "expectStatus": "GROUNDED",
+          "capState": "explicit_with_exceptions",
+          "expectContains": ["25,00,000", "fraud"]
+        },
+        {
+          "id": "H5-Q2",
+          "type": "fact",
+          "question": "What is the monthly fee?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["4,00,000"]
+        },
+        {
+          "id": "H5-Q3",
+          "type": "fact",
+          "question": "Who is the Supplier?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Delta Data"]
+        }
+      ]
+    },
+    {
+      "docId": "H6",
+      "file": "H6_nda.docx",
+      "documentType": "nda",
+      "family": "nda",
+      "role": "clean",
+      "absentClauseTypes": [],
+      "findings": [],
+      "questions": [
+        {
+          "id": "H6-Q1",
+          "type": "fact",
+          "question": "Who is the Receiving Party?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Ritika Sood"]
+        },
+        {
+          "id": "H6-Q2",
+          "type": "fact",
+          "question": "How long do the confidentiality obligations last?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["5 years"]
+        },
+        {
+          "id": "H6-Q3",
+          "type": "cap",
+          "question": "Is there a cap on liability?",
+          "expectStatus": "NOT_SUFFICIENT",
+          "capState": "absent"
+        }
+      ]
+    }
+  ],
+  "answerKeyCorrections": [
+    "H3 absentClauseTypes was [] in the first version of this key; the document has no confidentiality clause, so the system flag was correct. Corrected after the first run."
+  ]
+}

@@ -7,7 +7,10 @@ import { AppShell } from "@/components/shell/AppShell";
 import { useHandleUnauthorized, useRequireAuth } from "@/lib/AuthProvider";
 import { deleteDocument, getClauses, getDocument, getEntities, getRisks } from "@/lib/api";
 import type { DocumentClause, DocumentDetail, Entity, Risk } from "@/lib/apiTypes";
-import { EvidenceFocusProvider } from "@/components/workspace/EvidenceFocusContext";
+import {
+  EvidenceFocusProvider,
+  useEvidenceFocus,
+} from "@/components/workspace/EvidenceFocusContext";
 import { DocumentOutline } from "@/components/workspace/DocumentOutline";
 import { DocumentSearch } from "@/components/workspace/DocumentSearch";
 import { DocumentViewer } from "@/components/workspace/DocumentViewer";
@@ -115,9 +118,24 @@ function WorkspaceLayout({
   const clauses = data.clauses.filter((c) => c.modelSource === "RULE_BASED").length;
   const entities = data.entities.filter((e) => e.modelSource === "RULE_BASED").length;
 
+  // The graph needs room: while it is showing, the document narrows and the
+  // contents list steps aside. On a phone the two columns become two panes.
+  const [wide, setWide] = useState(false);
+  const [pane, setPane] = useState<"document" | "analysis">("analysis");
+  const { target } = useEvidenceFocus();
+  useEffect(() => {
+    // Evidence is always in the document: jump to it when only one pane shows.
+    if (target.requestId > 0) setPane("document");
+  }, [target.requestId]);
+
+  // Both panes stay laid out on a phone (one invisible), so scrolling the
+  // document to its evidence works before the pane is switched to.
+  const paneClass = (which: "document" | "analysis") =>
+    `max-md:col-start-1 max-md:row-start-1 ${pane === which ? "" : "max-md:invisible max-md:pointer-events-none"}`;
+
   return (
     <div className="flex h-full flex-col">
-      <header className="flex shrink-0 flex-wrap items-center gap-x-4 gap-y-2 border-b border-ink-200 bg-paper-50 px-5 py-3">
+      <header className="flex shrink-0 flex-wrap items-center gap-x-4 gap-y-2 border-b border-ink-200 bg-paper-50 px-3 py-3 sm:px-5">
         <Link
           href="/documents"
           title="All documents"
@@ -175,12 +193,45 @@ function WorkspaceLayout({
         </div>
       </header>
 
-      <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)_minmax(400px,42%)] lg:grid-cols-[200px_minmax(0,1fr)_minmax(420px,40%)]">
-        <aside className="hidden min-h-0 flex-col border-r border-ink-200 bg-paper-50 lg:flex">
+      <div
+        role="group"
+        aria-label="Show"
+        className="flex shrink-0 gap-1 border-b border-ink-200 bg-paper-50 px-3 py-2 md:hidden"
+      >
+        {(["analysis", "document"] as const).map((which) => (
+          <button
+            key={which}
+            type="button"
+            aria-pressed={pane === which}
+            onClick={() => setPane(which)}
+            className={`h-8 flex-1 rounded-md text-sm font-medium transition-colors ${
+              pane === which
+                ? "bg-ink-800 text-paper-50"
+                : "border border-ink-200 bg-paper-50 text-ink-700 hover:bg-paper-200"
+            }`}
+          >
+            {which === "analysis" ? "Analysis" : "Document"}
+          </button>
+        ))}
+      </div>
+
+      <div
+        className={`grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)] ${
+          wide
+            ? "md:grid-cols-[minmax(220px,30%)_minmax(0,1fr)] lg:grid-cols-[minmax(260px,28%)_minmax(0,1fr)]"
+            : "md:grid-cols-[minmax(0,1fr)_minmax(400px,42%)] lg:grid-cols-[200px_minmax(0,1fr)_minmax(420px,40%)]"
+        }`}
+      >
+        <aside
+          className={`hidden min-h-0 flex-col border-r border-ink-200 bg-paper-50 ${wide ? "" : "lg:flex"}`}
+        >
           <DocumentSearch clauses={data.clauses} entities={data.entities} />
           <DocumentOutline clauses={data.clauses} />
         </aside>
-        <section className="min-h-0 overflow-y-auto bg-paper-200/60 px-4 py-6">
+        <section
+          aria-label="Document text"
+          className={`min-h-0 overflow-y-auto bg-paper-200/60 px-2 py-4 sm:px-4 sm:py-6 ${paneClass("document")}`}
+        >
           <div className="mx-auto max-w-[780px] rounded-sm border border-ink-200 bg-paper-50 shadow-panel">
             <DocumentViewer
               canonicalText={document.canonicalText}
@@ -189,12 +240,16 @@ function WorkspaceLayout({
             />
           </div>
         </section>
-        <aside className="min-h-0 min-w-0 overflow-hidden border-l border-ink-200 bg-paper-50">
+        <aside
+          aria-label="Analysis"
+          className={`min-h-0 min-w-0 overflow-hidden border-ink-200 bg-paper-50 md:border-l ${paneClass("analysis")}`}
+        >
           <IntelligencePanel
             document={document}
             entities={data.entities}
             clauses={data.clauses}
             risks={data.risks}
+            onWideChange={setWide}
           />
         </aside>
       </div>

@@ -23,7 +23,7 @@ function StatusBadge({ status }: { status: DiffStatus }) {
   return <Badge tone={STATUS_TONE[status]}>{STATUS_LABEL[status]}</Badge>;
 }
 
-const dash = <span className="text-ink-300">-</span>;
+const dash = <span className="text-ink-400">-</span>;
 const inr = (n: number | null | undefined) =>
   n == null ? null : `INR ${n.toLocaleString("en-IN")}`;
 

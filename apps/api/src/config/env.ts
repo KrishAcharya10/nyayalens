@@ -10,6 +10,14 @@ const envSchema = z.object({
   JWT_ISSUER: z.string().min(1),
   JWT_AUDIENCE: z.string().min(1),
 
+  // Browser origins allowed to call the API (comma-separated). Requests with
+  // no Origin header (curl, server-to-server, tests) are unaffected.
+  CORS_ORIGINS: z.string().min(1).default("http://localhost:3000,http://127.0.0.1:3000"),
+  // Failed sign-ins allowed per (IP, email) within the window before
+  // POST /auth/login answers 429. Successful sign-ins are not counted.
+  AUTH_LOGIN_MAX_FAILURES: z.coerce.number().int().positive().default(10),
+  AUTH_LOGIN_WINDOW_MINUTES: z.coerce.number().int().positive().default(15),
+
   ACCESS_TOKEN_TTL_MINUTES: z.coerce.number().int().positive().default(15),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(30),
 

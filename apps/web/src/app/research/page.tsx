@@ -86,7 +86,7 @@ function Section({ n, title, children }: { n: number; title: string; children: R
   return (
     <section className="mt-10" aria-labelledby={id}>
       <h2 id={id} className="flex items-baseline gap-2 text-base font-semibold text-ink-800">
-        <span className="text-xs font-medium text-saffron-600">{String(n).padStart(2, "0")}</span>
+        <span className="text-xs font-medium text-saffron-700">{String(n).padStart(2, "0")}</span>
         {title}
       </h2>
       <div className="mt-2 text-sm leading-relaxed text-ink-600">{children}</div>
@@ -218,7 +218,7 @@ export default function ResearchPage() {
         </Link>
       </header>
       <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-saffron-600">
+        <p className="text-xs font-medium uppercase tracking-wide text-saffron-700">
           Research and engineering notes
         </p>
         <h1 className="mt-1 text-page-title text-ink-900">
@@ -320,7 +320,7 @@ export default function ResearchPage() {
           <ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4" data-testid="architecture">
             {PIPELINE.map((step, i) => (
               <li key={step.title} className="rounded border border-ink-200 bg-paper-50 p-3">
-                <span className="text-xs font-medium text-saffron-600">Stage {i + 1}</span>
+                <span className="text-xs font-medium text-saffron-700">Stage {i + 1}</span>
                 <p className="text-sm font-medium text-ink-800">{step.title}</p>
                 <p className="mt-0.5 text-xs text-ink-500">{step.body}</p>
               </li>

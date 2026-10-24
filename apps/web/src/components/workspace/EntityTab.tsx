@@ -35,7 +35,7 @@ export function EntityCard({
       <p className="min-w-0 break-words text-sm text-ink-800">{entity.text ?? "—"}</p>
       <div className="flex shrink-0 items-center gap-2">
         {entity.confidence !== null && (
-          <span className="text-meta tabular-nums text-ink-300">
+          <span className="text-meta tabular-nums text-ink-400">
             {Math.round(entity.confidence * 100)}%
           </span>
         )}

@@ -47,11 +47,46 @@ export function AppShell({
     </Link>
   );
 
+  // Below tablet width the sidebar becomes a compact bar across the top.
+  const barLink = (href: string, label: string, icon: IconName, active: boolean) => (
+    <Link
+      key={href}
+      href={href}
+      aria-current={active ? "page" : undefined}
+      className={`flex h-9 w-9 items-center justify-center rounded-md transition-colors ${
+        active ? "bg-ink-700 text-paper-50" : "text-ink-300 hover:bg-ink-800 hover:text-paper-50"
+      }`}
+    >
+      <Icon name={icon} size={18} />
+      <span className="sr-only">{label}</span>
+    </Link>
+  );
+
   return (
-    <div className="flex h-screen bg-paper-100">
+    <div className="flex h-dvh flex-col bg-paper-100 md:flex-row">
+      <header className="flex shrink-0 items-center justify-between bg-ink-900 px-3 py-2 md:hidden">
+        <Link href="/documents" className="flex items-center gap-2" title="NyayaLens">
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-saffron-500 font-serif text-sm font-semibold text-ink-900">
+            N
+          </span>
+          <span className="text-sm font-semibold tracking-[0.16em] text-paper-50">NYAYALENS</span>
+        </Link>
+        <nav aria-label="Primary" className="flex items-center gap-0.5">
+          {NAV_ITEMS.map((n) => barLink(n.href, n.label, n.icon, !!pathname?.startsWith(n.href)))}
+          {SECONDARY_ITEMS.map((n) => barLink(n.href, n.label, n.icon, pathname === n.href))}
+          <button
+            type="button"
+            onClick={logout}
+            className="flex h-9 w-9 items-center justify-center rounded-md text-ink-300 hover:bg-ink-800 hover:text-paper-50"
+          >
+            <Icon name="logout" size={18} />
+            <span className="sr-only">Sign out</span>
+          </button>
+        </nav>
+      </header>
       <nav
         aria-label="Primary"
-        className={`flex shrink-0 flex-col bg-ink-900 py-4 ${compact ? "w-16 items-center px-3" : "w-60 px-3"}`}
+        className={`hidden shrink-0 flex-col bg-ink-900 py-4 md:flex ${compact ? "w-16 items-center px-3" : "w-60 px-3"}`}
       >
         <Link
           href="/documents"
@@ -66,7 +101,7 @@ export function AppShell({
               <span className="text-sm font-semibold tracking-[0.16em] text-paper-50">
                 NYAYALENS
               </span>
-              <span className="text-[11px] text-ink-400">Legal document intelligence</span>
+              <span className="text-[11px] text-ink-300">Legal document intelligence</span>
             </span>
           )}
         </Link>

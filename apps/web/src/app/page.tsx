@@ -69,7 +69,7 @@ export default function HomePage() {
       <main className="mx-auto max-w-6xl px-4 sm:px-6">
         <section className="grid gap-10 py-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:py-20">
           <div>
-            <p className="text-xs font-medium uppercase tracking-wide text-saffron-600">
+            <p className="text-xs font-medium uppercase tracking-wide text-saffron-700">
               Indian legal document intelligence
             </p>
             <h1 className="mt-3 font-serif text-4xl leading-tight text-ink-900 sm:text-5xl">

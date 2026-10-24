@@ -13,6 +13,7 @@
 // "agrees to", ...) whose actor is a party term of this pack ("the Buyer",
 // "the Licensee", "you") becomes ACTOR -ACTION-> (amount, deadline,
 // frequency, condition), with the sentence as evidence.
+import { segmentClauses, type ClauseSegment } from "../clauses/clauseSegmenter.js";
 import type { DomainPack } from "../domains/registry.js";
 import { normalizeByCoreType, valueKey } from "./normalize.js";
 import { DEFAULT_VERB_PATTERNS } from "./obligationVerbs.js";
@@ -110,18 +111,51 @@ export interface Sentence {
   text: string;
 }
 
-/** Sentence spans over the original text (offsets valid in `text`). */
+/**
+ * Sentence spans over the original text (offsets valid in `text`).
+ *
+ * A sentence never crosses a clause boundary or swallows a heading: headings
+ * ("TITLE OF THE SELLER") carry no full stop, so without this the first
+ * sentence of a clause would begin with its heading, and the last one would
+ * end with the next clause's number ("... today. 3.").
+ */
 export function sentences(text: string): Sentence[] {
-  const unwrapped = text.replace(/(?<!\n)\n(?!\n)/g, " ");
+  const cuts = new Set<number>([0, text.length]);
+  for (const c of segmentClauses(text)) {
+    cuts.add(c.textStart);
+    cuts.add(headingEnd(text, c));
+  }
+  const bounds = [...cuts].sort((a, b) => a - b);
   const out: Sentence[] = [];
+  for (let i = 0; i + 1 < bounds.length; i++) {
+    sentencesWithin(text, bounds[i]!, bounds[i + 1]!, out);
+  }
+  return out;
+}
+
+// Where a clause's heading stops: the end of its first line, or - for an inline
+// heading ("4. Security Deposit: The Tenant shall ...") - just after its colon.
+function headingEnd(text: string, clause: ClauseSegment): number {
+  const lineEnd = text.indexOf("\n", clause.textStart);
+  const end = lineEnd < 0 || lineEnd > clause.textEnd ? clause.textEnd : lineEnd;
+  const line = text.slice(clause.textStart, end);
+  const at = line.indexOf(clause.heading);
+  const afterHeading = at < 0 ? -1 : at + clause.heading.length;
+  return afterHeading >= 0 && /^:\s+\S/.test(line.slice(afterHeading))
+    ? clause.textStart + afterHeading + 1
+    : end;
+}
+
+function sentencesWithin(text: string, from: number, to: number, out: Sentence[]): void {
+  const zone = text.slice(from, to);
+  const unwrapped = zone.replace(/(?<!\n)\n(?!\n)/g, " ");
   let start = 0;
   for (const m of unwrapped.matchAll(SENTENCE_END)) {
     const end = (m.index ?? 0) + m[0].trimEnd().length;
-    pushSentence(text, out, start, end);
+    pushSentence(text, out, from + start, from + end);
     start = (m.index ?? 0) + m[0].length;
   }
-  pushSentence(text, out, start, text.length);
-  return out;
+  pushSentence(text, out, from + start, to);
 }
 
 function pushSentence(text: string, out: Sentence[], start: number, end: number): void {

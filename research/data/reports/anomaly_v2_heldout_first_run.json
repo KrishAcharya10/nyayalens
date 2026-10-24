@@ -1,0 +1,534 @@
+{
+  "benchmark": "anomaly-v2",
+  "label": "first_run",
+  "generatedAt": "2026-10-21T00:49:48.463Z",
+  "scope": "Fictional synthetic documents. Not a measure of real-world legal accuracy; findings are review prompts, not legal conclusions.",
+  "models": {
+    "ruleEngine": "evaluated",
+    "transformerNer": "unavailable (ML_SERVICE_PYTHON not set); not evaluated",
+    "llm": "unavailable (extractive provider only); not evaluated"
+  },
+  "documents": {
+    "H1": {
+      "file": "H1_rental.docx",
+      "documentType": "residential_rental",
+      "role": "flawed",
+      "entities": 8,
+      "clauses": 4,
+      "expected": [
+        {
+          "id": "H1-F1",
+          "category": "conflicting_rent",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "FINANCIAL_CONTRADICTION",
+          "severity": "HIGH",
+          "expectedSeverity": "HIGH",
+          "ruleId": "rent_rent_single"
+        },
+        {
+          "id": "H1-F2",
+          "category": "duration_vs_dates",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "MEDIUM",
+          "ruleId": null
+        }
+      ],
+      "checklistFlagged": [
+        "TERMINATION",
+        "DISPUTE_RESOLUTION"
+      ],
+      "unexpectedFindings": []
+    },
+    "H2": {
+      "file": "H2_offer_letter.docx",
+      "documentType": "offer_letter",
+      "role": "flawed",
+      "entities": 12,
+      "clauses": 0,
+      "expected": [
+        {
+          "id": "H2-F1",
+          "category": "ctc_arithmetic",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "PAYMENT_TOTAL_MISMATCH",
+          "severity": "HIGH",
+          "expectedSeverity": "HIGH",
+          "ruleId": "emp_ctc_components_monthly"
+        },
+        {
+          "id": "H2-F2",
+          "category": "probation_conflict",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "DURATION_CONTRADICTION",
+          "severity": "MEDIUM",
+          "expectedSeverity": "MEDIUM",
+          "ruleId": "emp_probation_single"
+        }
+      ],
+      "checklistFlagged": [],
+      "unexpectedFindings": []
+    },
+    "H3": {
+      "file": "H3_service_agreement.docx",
+      "documentType": "service_agreement",
+      "role": "flawed",
+      "entities": 8,
+      "clauses": 7,
+      "expected": [
+        {
+          "id": "H3-F1",
+          "category": "payment_deadline",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "DURATION_CONTRADICTION",
+          "severity": "MEDIUM",
+          "expectedSeverity": "MEDIUM",
+          "ruleId": "nda_payment_term_single"
+        },
+        {
+          "id": "H3-F2",
+          "category": "uncapped_indemnity",
+          "kind": "AMBIGUOUS_REVIEW",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "HIGH",
+          "ruleId": null
+        }
+      ],
+      "checklistFlagged": [
+        "CONFIDENTIALITY"
+      ],
+      "unexpectedFindings": []
+    },
+    "H4": {
+      "file": "H4_agreement_to_sell.docx",
+      "documentType": "agreement_to_sell",
+      "role": "clean",
+      "entities": 10,
+      "clauses": 5,
+      "expected": [],
+      "checklistFlagged": [
+        "ADVANCE"
+      ],
+      "unexpectedFindings": []
+    },
+    "H5": {
+      "file": "H5_msa.docx",
+      "documentType": "msa",
+      "role": "clean",
+      "entities": 8,
+      "clauses": 7,
+      "expected": [],
+      "checklistFlagged": [],
+      "unexpectedFindings": []
+    },
+    "H6": {
+      "file": "H6_nda.docx",
+      "documentType": "nda",
+      "role": "clean",
+      "entities": 6,
+      "clauses": 6,
+      "expected": [],
+      "checklistFlagged": [],
+      "unexpectedFindings": []
+    }
+  },
+  "completenessChecklist": {
+    "definition": "Pack expected-clause findings ('No X clause was found'), scored against each document's absentClauseTypes. Correct = the clause really is absent. A false alarm is a clause that is present but was not recognised.",
+    "tp": 1,
+    "fp": 3,
+    "fn": 0,
+    "precision": 0.25,
+    "recall": 1,
+    "f1": 0.4,
+    "falseAlarms": [
+      "H1:TERMINATION",
+      "H3:CONFIDENTIALITY",
+      "H4:ADVANCE"
+    ]
+  },
+  "anomalyDetection": {
+    "definition": "TP: expected finding matched by a predicted finding (same document, accepted category, cited evidence contains the required strings; partial evidence still counts as detected but is scored separately). FP: any predicted finding that matches no expected finding, including every finding on a clean control. FN: expected finding with no match.",
+    "overall": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 2,
+      "precision": 1,
+      "recall": 0.6667,
+      "f1": 0.8
+    },
+    "byKind": {
+      "TRUE_ANOMALY": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.8,
+        "f1": 0.8889
+      },
+      "AMBIGUOUS_REVIEW": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": null,
+        "recall": 0,
+        "f1": null
+      }
+    },
+    "byFamily": {
+      "rental": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.5,
+        "f1": 0.6667
+      },
+      "employment": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "services": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.5,
+        "f1": 0.6667
+      }
+    },
+    "byCategory": {
+      "conflicting_rent": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "duration_vs_dates": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "ctc_arithmetic": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "probation_conflict": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "payment_deadline": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "uncapped_indemnity": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      }
+    },
+    "documentsFullyCorrect": {
+      "count": 3,
+      "of": 6,
+      "note": "all expected anomalies found, no unexpected anomaly, and the completeness checklist exactly right"
+    },
+    "cleanControls": {
+      "documents": 3,
+      "documentsWithAnyFinding": 0,
+      "documentFalsePositiveRate": 0,
+      "totalFalseFindings": 0
+    },
+    "evidence": {
+      "matchedFindings": 4,
+      "completeEvidence": 4,
+      "evidenceAccuracy": 1,
+      "severityAgreement": 1
+    }
+  },
+  "questionAnswering": {
+    "definition": "fact: status GROUNDED and the answer contains the expected value. conflict: the answer must contain every conflicting value AND each value must be cited by a source. unanswerable: status NOT_SUFFICIENT. cap: status and the expected terms. Answers come from askFromFacts (structured facts first, then BM25 retrieval with the extractive answerer).",
+    "fact": {
+      "total": 10,
+      "correct": 9,
+      "accuracy": 0.9
+    },
+    "conflictReporting": {
+      "total": 3,
+      "correct": 3,
+      "accuracy": 1
+    },
+    "unanswerable": {
+      "total": 3,
+      "correct": 3,
+      "accuracy": 1
+    },
+    "liabilityCap": {
+      "total": 3,
+      "correct": 1,
+      "accuracy": 0.3333,
+      "byState": {
+        "explicit_with_uncapped": {
+          "total": 1,
+          "correct": 0
+        },
+        "explicit_with_exceptions": {
+          "total": 1,
+          "correct": 0
+        },
+        "absent": {
+          "total": 1,
+          "correct": 1
+        }
+      }
+    },
+    "details": [
+      {
+        "id": "H1-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the security deposit?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Rs. 54,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H1-Q2",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the monthly rent?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document gives more than one rent: \"Rs. 18,000\" and \"Rs. 20,000\". It does not say which governs - review required. This is drawn directly from the document text, not a legal conclusion - consider professional review ",
+        "sources": 2,
+        "note": "values in answer: true; each value separately cited: true"
+      },
+      {
+        "id": "H1-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the maintenance charge?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "This residential rental agreement does not contain a maintenance charge - that is a term of a different kind of document.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "H2-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the job title?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Data Scientist This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H2-Q2",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the probation period?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document gives more than one probation period: \"6 months\" and \"3 months\". It does not say which governs - review required. This is drawn directly from the document text, not a legal conclusion - consider professional",
+        "sources": 2,
+        "note": "values in answer: true; each value separately cited: true"
+      },
+      {
+        "id": "H2-Q3",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the CTC?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 9,60,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H2-Q4",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the relocation bonus?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No bonus was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "H3-Q1",
+        "type": "conflict",
+        "capState": null,
+        "question": "When must invoices be paid?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document gives more than one invoice payment term: \"21 days\" and \"40 days\". It does not say which governs - review required. This is drawn directly from the document text, not a legal conclusion - consider profession",
+        "sources": 2,
+        "note": "values in answer: true; each value separately cited: true"
+      },
+      {
+        "id": "H3-Q2",
+        "type": "cap",
+        "capState": "explicit_with_uncapped",
+        "question": "What is the limit of the Service Provider's liability?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Liability cap: INR 10,00,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H3-Q3",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the Client?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Lotus Retail Pvt. Ltd. This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H4-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the advance amount?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 5,50,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H4-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "When will possession be delivered?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 5 December 2027 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H4-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What home loan has been sanctioned?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No loan was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "H5-Q1",
+        "type": "cap",
+        "capState": "explicit_with_exceptions",
+        "question": "What is the limit of liability?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Liability cap: INR 25,00,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H5-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the monthly fee?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No fee was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "H5-Q3",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the Supplier?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Delta Data Systems Pvt. Ltd. This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H6-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the Receiving Party?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Ritika Sood This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H6-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "How long do the confidentiality obligations last?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 5 years This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "H6-Q3",
+        "type": "cap",
+        "capState": "absent",
+        "question": "Is there a cap on liability?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No liability limit or liability cap or exception to the liability limit or indemnity without a limit was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      }
+    ]
+  }
+}

@@ -27,7 +27,7 @@ export function DocumentOutline({ clauses }: { clauses: DocumentClause[] }) {
                 onClick={() => focusEvidence([clause.id], [])}
                 className="flex w-full items-baseline gap-2 rounded px-2 py-1.5 text-left text-xs text-ink-600 hover:bg-paper-200 hover:text-ink-900"
               >
-                <span className="w-5 shrink-0 text-right tabular-nums text-ink-300">
+                <span className="w-5 shrink-0 text-right tabular-nums text-ink-400">
                   {clause.clauseNumber ?? "§"}
                 </span>
                 <span className="truncate">{humanizeLabel(clause.clauseType)}</span>

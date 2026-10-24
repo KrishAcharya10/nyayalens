@@ -27,7 +27,7 @@ function TermCard({ field }: { field: OverviewField }) {
         <p className="text-[11px] font-medium uppercase tracking-wide text-ink-400">
           {field.displayName}
         </p>
-        <p className="mt-1 text-xs text-ink-300">Not found in the document</p>
+        <p className="mt-1 text-xs text-ink-400">Not found in the document</p>
       </div>
     );
   }

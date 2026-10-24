@@ -1,0 +1,25 @@
+# MUTUAL NON-DISCLOSURE AGREEMENT
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.
+
+This Agreement is made on 9 August 2027 between Tessera Biosystems Pvt. Ltd., 14 Genome Valley, Hyderabad ("Party A") and Calder Instruments Pvt. Ltd., 60 Peenya Industrial Area, Bengaluru ("Party B").
+
+1. Purpose
+Each party may disclose confidential information to the other solely to assess a joint instrument development project.
+
+2. Confidential Information
+"Confidential Information" means non-public information disclosed by either party in any form that is marked confidential or would reasonably be understood to be confidential.
+
+3. Obligations
+Each party shall keep the other party's Confidential Information secret, use it only for the Purpose, and disclose it only to employees who need it and are bound by equivalent duties.
+
+4. Exclusions
+These obligations do not apply to information that is public, was lawfully known earlier, or is independently developed.
+
+5. Term
+This Agreement remains in force for 2 years from the date above. Each party's confidentiality duties continue for 3 years after it ends.
+
+6. Return
+Within 15 days of a written request, each party shall return or destroy the other's Confidential Information.
+
+7. Jurisdiction
+The courts at Bengaluru have exclusive jurisdiction.

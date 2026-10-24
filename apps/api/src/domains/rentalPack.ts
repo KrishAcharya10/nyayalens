@@ -12,6 +12,7 @@
 // (rather than leaving them in a shared, implicitly-scoped file) makes
 // that existing scoping explicit and registry-driven instead of implicit.
 import {
+  depositRefundDeadlineCheck,
   makeAsymmetricNoticeCheck,
   makeDiscretionCheck,
   makeLiabilityShiftCheck,
@@ -161,7 +162,8 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     { label: "JURISDICTION", displayName: "Jurisdiction", coreType: "LOCATION" },
   ],
 
-  partyTerms: { LANDLORD: ["Landlord"], TENANT: ["Tenant"] },
+  // The words documents use for the two sides; the first is the canonical name.
+  partyTerms: { LANDLORD: ["Landlord", "Lessor", "Owner"], TENANT: ["Tenant", "Lessee"] },
   // Shown on the workspace Overview card, in this order (first value of each).
   overviewFields: [
     "LANDLORD",
@@ -221,6 +223,10 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     },
     { clauseType: "DISPUTE_RESOLUTION", headingPattern: /ARBITRATION/i, priority: 111 },
     { clauseType: "JURISDICTION", headingPattern: /GOVERNING\s+LAW/i, priority: 121 },
+    // Short headings found on hand-written style agreements: a bare "TERM"
+    // (anchored to the whole heading, so TERMINATION is not caught) and "ACCESS".
+    { clauseType: "LEASE_DURATION", headingPattern: /^\s*(?:TERM|TENURE)\s*$/i, priority: 22 },
+    { clauseType: "ENTRY_AND_INSPECTION", headingPattern: /^\s*ACCESS\b/i, priority: 77 },
   ],
 
   // Subject "DOCUMENT" means the agreement itself.
@@ -285,8 +291,9 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     expectedClauseTypes: EXPECTED_CLAUSE_TYPES,
     missingClauseSeverity: MISSING_CLAUSE_SEVERITY,
     perClauseChecks: [
-      makeDiscretionCheck(["SECURITY_DEPOSIT"]),
-      makeLiabilityShiftCheck("MAINTENANCE", ["Tenant"]),
+      makeDiscretionCheck(["SECURITY_DEPOSIT", "TERMINATION"]),
+      makeLiabilityShiftCheck("MAINTENANCE", ["Tenant", "Lessee"]),
+      depositRefundDeadlineCheck,
       liabilityShiftCheck,
       unboundedDiscretionCheck,
       makeMissingClauseCheck(EXPECTED_CLAUSE_TYPES, MISSING_CLAUSE_SEVERITY),
@@ -295,7 +302,10 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
     // packs register the SAME check instance rather than one pack
     // arbitrarily owning it.
     comparisonChecks: [
-      makeAsymmetricNoticeCheck(["NOTICE_PERIOD"], { LANDLORD: ["Landlord"], TENANT: ["Tenant"] }),
+      makeAsymmetricNoticeCheck(["NOTICE_PERIOD", "TERMINATION"], {
+        LANDLORD: ["Landlord", "Lessor", "Owner"],
+        TENANT: ["Tenant", "Lessee"],
+      }),
       asymmetricObligationCheck,
     ],
   },
@@ -328,6 +338,15 @@ export const residentialRentalPack: DomainPack<RiskEngineContext, RiskFinding> =
       label: "NOTICE_PERIOD",
       category: "DURATION_CONTRADICTION",
       description: "A party's notice period should be stated consistently.",
+    },
+    {
+      id: "rent_term_matches_dates",
+      kind: "DURATION_SPAN",
+      durationLabel: "DURATION",
+      startLabel: "COMMENCEMENT_DATE",
+      endLabel: "EXPIRY_DATE",
+      category: "DURATION_CONTRADICTION",
+      description: "The stated tenancy term should match the dates given for it.",
     },
     {
       id: "rent_start_before_end",

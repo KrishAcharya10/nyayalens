@@ -1,0 +1,1222 @@
+{
+  "benchmark": "anomaly-v2",
+  "label": "baseline",
+  "generatedAt": "2026-10-20T15:34:02.440Z",
+  "scope": "Fictional synthetic documents. Not a measure of real-world legal accuracy; findings are review prompts, not legal conclusions.",
+  "models": {
+    "ruleEngine": "evaluated",
+    "transformerNer": "unavailable (ML_SERVICE_PYTHON not set); not evaluated",
+    "llm": "unavailable (extractive provider only); not evaluated"
+  },
+  "documents": {
+    "B01": {
+      "file": "B01_residential_rental.docx",
+      "documentType": "residential_rental",
+      "role": "flawed",
+      "entities": 14,
+      "clauses": 7,
+      "expected": [
+        {
+          "id": "B01-F1",
+          "category": "conflicting_rent",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "FINANCIAL_CONTRADICTION",
+          "severity": "HIGH",
+          "expectedSeverity": "HIGH",
+          "ruleId": "rent_rent_single"
+        },
+        {
+          "id": "B01-F2",
+          "category": "missing_deposit_refund_deadline",
+          "kind": "AMBIGUOUS_REVIEW",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "LOW",
+          "ruleId": null
+        },
+        {
+          "id": "B01-F3",
+          "category": "notice_asymmetry",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "ASYMMETRIC_OBLIGATION",
+          "severity": "MEDIUM",
+          "expectedSeverity": "MEDIUM",
+          "ruleId": "asymmetric_notice_generic"
+        }
+      ],
+      "checklistFlagged": [
+        "DISPUTE_RESOLUTION"
+      ],
+      "unexpectedFindings": [
+        {
+          "category": "FINANCIAL_CONTRADICTION",
+          "severity": "HIGH",
+          "ruleId": "rent_deposit_single",
+          "evidence": "inr 57,000 | inr 1,500",
+          "reason": "The document states the security deposit as \"INR 57,000\" and \"INR 1,500\". This is a potential inconsistency - review which value is intended"
+        }
+      ]
+    },
+    "B02": {
+      "file": "B02_leave_and_license.docx",
+      "documentType": "leave_and_license",
+      "role": "flawed",
+      "entities": 9,
+      "clauses": 5,
+      "expected": [
+        {
+          "id": "B02-F1",
+          "category": "date_chronology",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "DATE_CONTRADICTION",
+          "severity": "HIGH",
+          "expectedSeverity": "HIGH",
+          "ruleId": "ll_start_before_end"
+        }
+      ],
+      "checklistFlagged": [
+        "JURISDICTION"
+      ],
+      "unexpectedFindings": []
+    },
+    "B03": {
+      "file": "B03_land_lease.docx",
+      "documentType": "land_lease",
+      "role": "flawed",
+      "entities": 12,
+      "clauses": 5,
+      "expected": [
+        {
+          "id": "B03-F1",
+          "category": "property_identifier",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "PROPERTY_IDENTIFIER_CONTRADICTION",
+          "severity": "HIGH",
+          "expectedSeverity": "HIGH",
+          "ruleId": "land_survey_single"
+        },
+        {
+          "id": "B03-F2",
+          "category": "property_area",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "PROPERTY_AREA_CONTRADICTION",
+          "severity": "HIGH",
+          "expectedSeverity": "HIGH",
+          "ruleId": "land_area_single"
+        },
+        {
+          "id": "B03-F3",
+          "category": "duration_vs_dates",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "MEDIUM",
+          "ruleId": null
+        }
+      ],
+      "checklistFlagged": [
+        "RENT_PAYMENT",
+        "JURISDICTION"
+      ],
+      "unexpectedFindings": [
+        {
+          "category": "FINANCIAL_CONTRADICTION",
+          "severity": "HIGH",
+          "ruleId": "land_premium_single",
+          "evidence": "inr 3,00,000 | inr 2,10,000",
+          "reason": "The document states the lease premium as \"INR 3,00,000\" and \"INR 2,10,000\". This is a potential inconsistency - review which value is intend"
+        }
+      ]
+    },
+    "B04": {
+      "file": "B04_agreement_to_sell.docx",
+      "documentType": "agreement_to_sell",
+      "role": "flawed",
+      "entities": 7,
+      "clauses": 5,
+      "expected": [
+        {
+          "id": "B04-F1",
+          "category": "price_arithmetic",
+          "kind": "TRUE_ANOMALY",
+          "found": true,
+          "evidenceComplete": true,
+          "matchedCategory": "PAYMENT_TOTAL_MISMATCH",
+          "severity": "HIGH",
+          "expectedSeverity": "HIGH",
+          "ruleId": "sale_payment_total"
+        },
+        {
+          "id": "B04-F2",
+          "category": "possession_before_agreement",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "HIGH",
+          "ruleId": null
+        },
+        {
+          "id": "B04-F3",
+          "category": "property_identifier",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "HIGH",
+          "ruleId": null
+        }
+      ],
+      "checklistFlagged": [
+        "ADVANCE",
+        "BALANCE_PAYMENT",
+        "ENCUMBRANCE",
+        "JURISDICTION"
+      ],
+      "unexpectedFindings": []
+    },
+    "B05": {
+      "file": "B05_employment_contract.docx",
+      "documentType": "employment_contract",
+      "role": "flawed",
+      "entities": 10,
+      "clauses": 7,
+      "expected": [
+        {
+          "id": "B05-F1",
+          "category": "ctc_arithmetic",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "HIGH",
+          "ruleId": null
+        },
+        {
+          "id": "B05-F2",
+          "category": "probation_conflict",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "MEDIUM",
+          "ruleId": null
+        },
+        {
+          "id": "B05-F3",
+          "category": "bonus_conflict",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "HIGH",
+          "ruleId": null
+        }
+      ],
+      "checklistFlagged": [
+        "COMMENCEMENT"
+      ],
+      "unexpectedFindings": []
+    },
+    "B06": {
+      "file": "B06_nda.docx",
+      "documentType": "nda",
+      "role": "flawed",
+      "entities": 4,
+      "clauses": 7,
+      "expected": [
+        {
+          "id": "B06-F1",
+          "category": "confidentiality_duration",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "MEDIUM",
+          "ruleId": null
+        },
+        {
+          "id": "B06-F2",
+          "category": "retention_conflict",
+          "kind": "AMBIGUOUS_REVIEW",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "MEDIUM",
+          "ruleId": null
+        }
+      ],
+      "checklistFlagged": [
+        "CONFIDENTIALITY"
+      ],
+      "unexpectedFindings": []
+    },
+    "B07": {
+      "file": "B07_service_agreement.docx",
+      "documentType": "service_agreement",
+      "role": "flawed",
+      "entities": 5,
+      "clauses": 8,
+      "expected": [
+        {
+          "id": "B07-F1",
+          "category": "payment_deadline",
+          "kind": "TRUE_ANOMALY",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "MEDIUM",
+          "ruleId": null
+        },
+        {
+          "id": "B07-F2",
+          "category": "uncapped_indemnity",
+          "kind": "AMBIGUOUS_REVIEW",
+          "found": false,
+          "evidenceComplete": null,
+          "matchedCategory": null,
+          "severity": null,
+          "expectedSeverity": "HIGH",
+          "ruleId": null
+        }
+      ],
+      "checklistFlagged": [],
+      "unexpectedFindings": []
+    },
+    "C01": {
+      "file": "C01_sale_deed.docx",
+      "documentType": "sale_deed",
+      "role": "clean",
+      "entities": 7,
+      "clauses": 5,
+      "expected": [],
+      "checklistFlagged": [
+        "JURISDICTION"
+      ],
+      "unexpectedFindings": [
+        {
+          "category": "FINANCIAL_CONTRADICTION",
+          "severity": "HIGH",
+          "ruleId": "sale_advance_single",
+          "evidence": "inr 9,00,000 | inr 63,00,000 | inr 72,00,000",
+          "reason": "The document states the advance amount as \"INR 9,00,000\" and \"INR 63,00,000\" and \"INR 72,00,000\". This is a potential inconsistency - review"
+        }
+      ]
+    },
+    "C02": {
+      "file": "C02_builder_buyer.docx",
+      "documentType": "builder_buyer_agreement",
+      "role": "clean",
+      "entities": 7,
+      "clauses": 8,
+      "expected": [],
+      "checklistFlagged": [
+        "JURISDICTION"
+      ],
+      "unexpectedFindings": []
+    },
+    "C03": {
+      "file": "C03_offer_letter.docx",
+      "documentType": "offer_letter",
+      "role": "clean",
+      "entities": 10,
+      "clauses": 0,
+      "expected": [],
+      "checklistFlagged": [
+        "POSITION",
+        "COMMENCEMENT",
+        "COMPENSATION"
+      ],
+      "unexpectedFindings": [
+        {
+          "category": "FINANCIAL_CONTRADICTION",
+          "severity": "HIGH",
+          "ruleId": "emp_ctc_single",
+          "evidence": "inr 6,00,000 | inr 25,000 | inr 15,000 | inr 10,000",
+          "reason": "The document states the ctc as \"INR 6,00,000\" and \"INR 25,000\" and \"INR 15,000\" and \"INR 10,000\". This is a potential inconsistency - review"
+        }
+      ]
+    },
+    "C04": {
+      "file": "C04_appointment_letter.docx",
+      "documentType": "appointment_letter",
+      "role": "clean",
+      "entities": 5,
+      "clauses": 6,
+      "expected": [],
+      "checklistFlagged": [],
+      "unexpectedFindings": []
+    },
+    "C05": {
+      "file": "C05_mutual_nda.docx",
+      "documentType": "mutual_nda",
+      "role": "clean",
+      "entities": 3,
+      "clauses": 6,
+      "expected": [],
+      "checklistFlagged": [
+        "DEFINITIONS"
+      ],
+      "unexpectedFindings": []
+    },
+    "C06": {
+      "file": "C06_msa.docx",
+      "documentType": "msa",
+      "role": "clean",
+      "entities": 5,
+      "clauses": 8,
+      "expected": [],
+      "checklistFlagged": [
+        "TERMINATION"
+      ],
+      "unexpectedFindings": []
+    },
+    "C07": {
+      "file": "C07_residential_rental.docx",
+      "documentType": "residential_rental",
+      "role": "clean",
+      "entities": 8,
+      "clauses": 5,
+      "expected": [],
+      "checklistFlagged": [
+        "DISPUTE_RESOLUTION",
+        "JURISDICTION"
+      ],
+      "unexpectedFindings": []
+    }
+  },
+  "completenessChecklist": {
+    "definition": "Pack expected-clause findings ('No X clause was found'), scored against each document's absentClauseTypes. Correct = the clause really is absent. A false alarm is a clause that is present but was not recognised.",
+    "tp": 2,
+    "fp": 16,
+    "fn": 0,
+    "precision": 0.1111,
+    "recall": 1,
+    "f1": 0.2,
+    "falseAlarms": [
+      "B02:JURISDICTION",
+      "B03:RENT_PAYMENT",
+      "B04:ADVANCE",
+      "B04:BALANCE_PAYMENT",
+      "B04:ENCUMBRANCE",
+      "B04:JURISDICTION",
+      "B05:COMMENCEMENT",
+      "B06:CONFIDENTIALITY",
+      "C01:JURISDICTION",
+      "C02:JURISDICTION",
+      "C03:POSITION",
+      "C03:COMMENCEMENT",
+      "C03:COMPENSATION",
+      "C05:DEFINITIONS",
+      "C06:TERMINATION",
+      "C07:JURISDICTION"
+    ]
+  },
+  "anomalyDetection": {
+    "definition": "TP: expected finding matched by a predicted finding (same document, accepted category, cited evidence contains the required strings; partial evidence still counts as detected but is scored separately). FP: any predicted finding that matches no expected finding, including every finding on a clean control. FN: expected finding with no match.",
+    "overall": {
+      "tp": 6,
+      "fp": 4,
+      "fn": 11,
+      "precision": 0.6,
+      "recall": 0.3529,
+      "f1": 0.4444
+    },
+    "byKind": {
+      "TRUE_ANOMALY": {
+        "tp": 6,
+        "fp": 0,
+        "fn": 8,
+        "precision": 1,
+        "recall": 0.4286,
+        "f1": 0.6
+      },
+      "AMBIGUOUS_REVIEW": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": null,
+        "recall": 0,
+        "f1": null
+      }
+    },
+    "byFamily": {
+      "rental": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75
+      },
+      "land_lease": {
+        "tp": 2,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.6667,
+        "recall": 0.6667,
+        "f1": 0.6667
+      },
+      "sale": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 2,
+        "precision": 0.5,
+        "recall": 0.3333,
+        "f1": 0.4
+      },
+      "employment": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 3,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      "nda": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": null,
+        "recall": 0,
+        "f1": null
+      },
+      "services": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": null,
+        "recall": 0,
+        "f1": null
+      }
+    },
+    "byCategory": {
+      "conflicting_rent": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "missing_deposit_refund_deadline": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "notice_asymmetry": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "date_chronology": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "property_identifier": {
+        "detected": 1,
+        "expected": 2,
+        "recall": 0.5
+      },
+      "property_area": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "duration_vs_dates": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "price_arithmetic": {
+        "detected": 1,
+        "expected": 1,
+        "recall": 1
+      },
+      "possession_before_agreement": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "ctc_arithmetic": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "probation_conflict": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "bonus_conflict": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "confidentiality_duration": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "retention_conflict": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "payment_deadline": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      },
+      "uncapped_indemnity": {
+        "detected": 0,
+        "expected": 1,
+        "recall": 0
+      }
+    },
+    "documentsFullyCorrect": {
+      "count": 1,
+      "of": 14,
+      "note": "all expected anomalies found, no unexpected anomaly, and the completeness checklist exactly right"
+    },
+    "cleanControls": {
+      "documents": 7,
+      "documentsWithAnyFinding": 2,
+      "documentFalsePositiveRate": 0.2857,
+      "totalFalseFindings": 2
+    },
+    "evidence": {
+      "matchedFindings": 6,
+      "completeEvidence": 6,
+      "evidenceAccuracy": 1,
+      "severityAgreement": 1
+    }
+  },
+  "questionAnswering": {
+    "definition": "fact: status GROUNDED and the answer contains the expected value. conflict: the answer must contain every conflicting value AND each value must be cited by a source. unanswerable: status NOT_SUFFICIENT. cap: status and the expected terms. Answers come from askFromFacts (structured facts first, then BM25 retrieval with the extractive answerer).",
+    "fact": {
+      "total": 23,
+      "correct": 18,
+      "accuracy": 0.7826
+    },
+    "conflictReporting": {
+      "total": 8,
+      "correct": 0,
+      "accuracy": 0
+    },
+    "unanswerable": {
+      "total": 12,
+      "correct": 10,
+      "accuracy": 0.8333
+    },
+    "liabilityCap": {
+      "total": 4,
+      "correct": 1,
+      "accuracy": 0.25,
+      "byState": {
+        "absent": {
+          "total": 1,
+          "correct": 1
+        },
+        "explicit": {
+          "total": 1,
+          "correct": 0
+        },
+        "uncapped": {
+          "total": 1,
+          "correct": 0
+        },
+        "explicit_with_exceptions": {
+          "total": 1,
+          "correct": 0
+        }
+      }
+    },
+    "details": [
+      {
+        "id": "B01-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the landlord?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Sanjay Pillai This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B01-Q2",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the monthly rent?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 28,500, This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B01-Q3",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the notice period?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 15 days This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B01-Q4",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the probation period?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "This residential rental agreement does not contain a probation period - that is a term of a different kind of document.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B01-Q5",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What interest is charged on late rent?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 28,500, This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B02-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the licence fee?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 18,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B02-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the licensee?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Imran Qureshi This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B02-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the lock-in penalty?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No lock-in period was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B03-Q1",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the survey number of the leased land?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 118/3 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B03-Q2",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the area of the land?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 3.2 acres This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B03-Q3",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the annual rent?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No rent was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B03-Q4",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the price of the crop insurance?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "retrieval",
+        "answer": "The document does not contain enough information to answer this question.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B04-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the advance amount?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 8,00,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B04-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the buyer?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Rekha Iyer This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B04-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What home-loan amount has been sanctioned?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No loan was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B05-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the job title?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No job title was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B05-Q2",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the probation period?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No probation period was found in this document's extracted facts.",
+        "sources": 0,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B05-Q3",
+        "type": "conflict",
+        "capState": null,
+        "question": "What is the bonus percentage?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No bonus was found in this document's extracted facts.",
+        "sources": 0,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B05-Q4",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the relocation allowance?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "retrieval",
+        "answer": "\"2) REMUNERATION\n\nThe annual cost to the Company (CTC) is INR 1,800,000. It is made up of a basic salary of INR 60,000 per month, house rent allowance of INR 30,000 per month and a special allowance of INR 40,000 per mon",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B06-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the Recipient?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Tarun Bedi This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "B06-Q2",
+        "type": "conflict",
+        "capState": null,
+        "question": "How long do the confidentiality obligations last?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No confidentiality period was found in this document's extracted facts.",
+        "sources": 0,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B06-Q3",
+        "type": "cap",
+        "capState": "absent",
+        "question": "Is there a cap on liability?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No liability cap was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B07-Q1",
+        "type": "conflict",
+        "capState": null,
+        "question": "When must invoices be paid?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 30 days This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": "values in answer: false; each value separately cited: false"
+      },
+      {
+        "id": "B07-Q2",
+        "type": "cap",
+        "capState": "explicit",
+        "question": "What is the limit of the Supplier's liability?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No liability cap was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B07-Q3",
+        "type": "cap",
+        "capState": "uncapped",
+        "question": "Is the indemnity for data breaches subject to a cap?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No data was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "B07-Q4",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the Supplier?",
+        "correct": false,
+        "status": "GROUNDED",
+        "method": "retrieval",
+        "answer": "The document's relevant clauses state: \"ARTICLE IV - LATE INVOICES\n\nEach invoice is payable within 45 days of the invoice date, and the Supplier may not charge interest before that date.\" | \"ARTICLE VI - LIABILITY AND IN",
+        "sources": 3,
+        "note": ""
+      },
+      {
+        "id": "C01-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the total consideration?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 72,00,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C01-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the purchaser?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Leena Thomas This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C01-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the probation period?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "This sale of property does not contain a probation period - that is a term of a different kind of document.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C02-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the total price of the unit?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 85,00,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C02-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "When will possession be offered?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 31 March 2029 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C02-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the club-house membership fee?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "This builder-buyer agreement does not contain a fee - that is a term of a different kind of document.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C03-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the annual CTC?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 6,00,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C03-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "When is the joining date?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 14 June 2027 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C03-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the joining bonus?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No bonus was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C04-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the monthly salary?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 62,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C04-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is the employee?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: Gaurav Saxena This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C04-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the non-compete period?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No non-compete period was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C05-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is Party A?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No disclosing party was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C05-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "Who is Party B?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No disclosing party was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C05-Q3",
+        "type": "fact",
+        "capState": null,
+        "question": "How long is the term of the agreement?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: 2 years This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C06-Q1",
+        "type": "cap",
+        "capState": "explicit_with_exceptions",
+        "question": "What is the limit of liability?",
+        "correct": false,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "No liability cap was found in this document's extracted facts.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C06-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the monthly fee?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 2,50,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C06-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What uptime percentage is guaranteed?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "retrieval",
+        "answer": "The document does not contain enough information to answer this question.",
+        "sources": 0,
+        "note": ""
+      },
+      {
+        "id": "C07-Q1",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the monthly rent?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 22,000 This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C07-Q2",
+        "type": "fact",
+        "capState": null,
+        "question": "What is the security deposit?",
+        "correct": true,
+        "status": "GROUNDED",
+        "method": "structured",
+        "answer": "The document states: INR 66,000, This is drawn directly from the document text, not a legal conclusion - consider professional review for how it applies to your situation.",
+        "sources": 1,
+        "note": ""
+      },
+      {
+        "id": "C07-Q3",
+        "type": "unanswerable",
+        "capState": null,
+        "question": "What is the parking charge?",
+        "correct": true,
+        "status": "NOT_SUFFICIENT",
+        "method": "structured",
+        "answer": "This residential rental agreement does not contain a maintenance charge - that is a term of a different kind of document.",
+        "sources": 0,
+        "note": ""
+      }
+    ]
+  }
+}

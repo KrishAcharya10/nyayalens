@@ -1,0 +1,25 @@
+# MASTER SERVICES AGREEMENT
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.
+
+This Master Services Agreement is made on 20 September 2027 between Orion Pharma Pvt. Ltd., Hyderabad (the "Customer") and Delta Data Systems Pvt. Ltd., Bengaluru (the "Supplier").
+
+1. Services
+The Supplier shall provide data-management services under statements of work signed by both parties.
+
+2. Fees
+The monthly fee under the first statement of work is INR 4,00,000.
+
+3. Payment
+The Customer shall pay each undisputed invoice within 30 days of receipt.
+
+4. Confidentiality
+Each party shall keep the other's confidential information secret during the term and for 5 years afterwards.
+
+5. Liability
+The Supplier's aggregate liability shall not exceed INR 25,00,000. Nothing in this clause limits liability for fraud or wilful misconduct.
+
+6. Term and Termination
+This Agreement continues for 3 years. Either party may terminate it on 60 days written notice.
+
+7. Jurisdiction
+The courts at Hyderabad have exclusive jurisdiction.

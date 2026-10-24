@@ -56,6 +56,9 @@ export const employmentPack: DomainPack<RiskEngineContext, RiskFinding> = {
     { label: "SALARY", displayName: "Monthly gross salary", coreType: "MONEY" },
     { label: "BASE_SALARY", displayName: "Basic salary", coreType: "MONEY" },
     { label: "BONUS", displayName: "Bonus", coreType: "MONEY" },
+    { label: "BONUS_PERCENT", displayName: "Bonus (percent of CTC)", coreType: "PERCENT" },
+    { label: "HRA", displayName: "House rent allowance", coreType: "MONEY" },
+    { label: "SPECIAL_ALLOWANCE", displayName: "Special allowance", coreType: "MONEY" },
     { label: "JOINING_DATE", displayName: "Joining date", coreType: "DATE" },
     { label: "EXECUTION_DATE", displayName: "Letter / agreement date", coreType: "DATE" },
     { label: "EXPIRY_DATE", displayName: "End of fixed term", coreType: "DATE" },
@@ -256,7 +259,7 @@ export const employmentPack: DomainPack<RiskEngineContext, RiskFinding> = {
     ],
     comparisonChecks: [
       makeAsymmetricNoticeCheck(["NOTICE_PERIOD"], {
-        EMPLOYER: ["Company"],
+        EMPLOYER: ["Company", "Employer"],
         EMPLOYEE: ["Employee", "you"],
       }),
     ],
@@ -269,6 +272,37 @@ export const employmentPack: DomainPack<RiskEngineContext, RiskFinding> = {
       label: "CTC",
       category: "FINANCIAL_CONTRADICTION",
       description: "The annual CTC should be stated consistently.",
+    },
+    {
+      id: "emp_bonus_percent_single",
+      kind: "SINGLE_VALUE",
+      label: "BONUS_PERCENT",
+      category: "FINANCIAL_CONTRADICTION",
+      description: "The bonus percentage should be stated consistently.",
+    },
+    {
+      id: "emp_ctc_components_monthly",
+      kind: "SUM",
+      parts: ["BASE_SALARY", "HRA", "SPECIAL_ALLOWANCE"],
+      total: "CTC",
+      partsMultiplier: 12,
+      partsPeriodCue: /^\s*(?:per month|monthly|a month|p\.m\.?|\/month)/i,
+      completenessCue:
+        /made up of|comprises?|comprising|consists? of|composed of|broken down|split as/i,
+      category: "PAYMENT_TOTAL_MISMATCH",
+      description: "The CTC components, taken per month, should add up to the stated annual CTC.",
+    },
+    {
+      id: "emp_ctc_components_annual",
+      kind: "SUM",
+      parts: ["BASE_SALARY", "HRA", "SPECIAL_ALLOWANCE"],
+      total: "CTC",
+      partsMultiplier: 1,
+      partsPeriodCue: /^\s*(?:per annum|annually|per year|p\.a\.?|\/annum)/i,
+      completenessCue:
+        /made up of|comprises?|comprising|consists? of|composed of|broken down|split as/i,
+      category: "PAYMENT_TOTAL_MISMATCH",
+      description: "The CTC components, taken per year, should add up to the stated annual CTC.",
     },
     {
       id: "emp_salary_single",

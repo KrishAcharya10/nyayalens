@@ -30,6 +30,10 @@ export interface RiskEngineContext {
   documentType: string;
   clauses: ClauseInput[];
   entities: EntityInput[];
+  /** The whole canonical text, when the caller has it (lets absence checks read unclassified text). */
+  fullText?: string;
+  /** The pack's heading patterns by clause type (lets absence checks see multi-topic headings). */
+  clauseHeadings?: Record<string, RegExp[]>;
 }
 
 export type EvidenceSourceTable = "document_clauses" | "entities";

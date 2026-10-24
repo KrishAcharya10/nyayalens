@@ -4,9 +4,11 @@
 // fee, "no tenancy is created") rather than by any code path, which is why
 // this pack's detection signals and expected NO_TENANCY clause matter.
 import {
+  depositRefundDeadlineCheck,
   makeAsymmetricNoticeCheck,
   makeDiscretionCheck,
   makeLiabilityShiftCheck,
+  makeOneSidedRemedyCheck,
 } from "../risk/factChecks.js";
 import { LEAVE_AND_LICENSE_EXTRACTION } from "./extractionRules.js";
 import type { DomainPack } from "./registry.js";
@@ -205,12 +207,14 @@ export const leaveAndLicensePack: DomainPack<RiskEngineContext, RiskFinding> = {
     expectedClauseTypes: EXPECTED_CLAUSE_TYPES,
     missingClauseSeverity: MISSING_CLAUSE_SEVERITY,
     perClauseChecks: [
-      makeDiscretionCheck(["SECURITY_DEPOSIT"]),
+      makeDiscretionCheck(["SECURITY_DEPOSIT", "TERMINATION"]),
+      makeOneSidedRemedyCheck(["SECURITY_DEPOSIT", "TERMINATION"]),
       makeLiabilityShiftCheck("MAINTENANCE", ["Licensee"]),
+      depositRefundDeadlineCheck,
       makeMissingClauseCheck(EXPECTED_CLAUSE_TYPES, MISSING_CLAUSE_SEVERITY),
     ],
     comparisonChecks: [
-      makeAsymmetricNoticeCheck(["NOTICE_PERIOD"], {
+      makeAsymmetricNoticeCheck(["NOTICE_PERIOD", "TERMINATION"], {
         LICENSOR: ["Licensor"],
         LICENSEE: ["Licensee"],
       }),
@@ -252,6 +256,15 @@ export const leaveAndLicensePack: DomainPack<RiskEngineContext, RiskFinding> = {
       label: "COMMENCEMENT_DATE",
       category: "DATE_CONTRADICTION",
       description: "The commencement date should be stated consistently.",
+    },
+    {
+      id: "ll_period_matches_dates",
+      kind: "DURATION_SPAN",
+      durationLabel: "LICENSE_PERIOD",
+      startLabel: "COMMENCEMENT_DATE",
+      endLabel: "EXPIRY_DATE",
+      category: "DURATION_CONTRADICTION",
+      description: "The stated licence period should match the dates given for it.",
     },
     {
       id: "ll_start_before_end",

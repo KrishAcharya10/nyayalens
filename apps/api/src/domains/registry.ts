@@ -193,6 +193,34 @@ export interface SumRule extends ConsistencyRuleBase {
   kind: "SUM";
   parts: string[];
   total: string;
+  /**
+   * The parts are quoted per period and the total per year (CTC components
+   * stated "per month"): the parts are multiplied by this before comparing,
+   * and only when each part is followed by `partsPeriodCue`.
+   */
+  partsMultiplier?: number;
+  partsPeriodCue?: RegExp;
+  /**
+   * The rule fires only when the sentence introducing the parts says they are
+   * the whole ("made up of", "comprises"). A list of some components of a
+   * larger total is not a mismatch.
+   */
+  completenessCue?: RegExp;
+}
+
+/** A stated duration should match the span between the start and end dates stated for the same period. */
+export interface DurationSpanRule extends ConsistencyRuleBase {
+  kind: "DURATION_SPAN";
+  durationLabel: string;
+  startLabel: string;
+  endLabel: string;
+}
+
+/** A duration labelled `label` should not run longer than the one labelled `limit` (e.g. copies kept longer than the return deadline). */
+export interface DurationAtMostRule extends ConsistencyRuleBase {
+  kind: "DURATION_AT_MOST";
+  label: string;
+  limit: string;
 }
 
 /** The date labeled `before` must not fall after the date labeled `after`. */
@@ -211,7 +239,12 @@ export interface ExpectedActorRule extends ConsistencyRuleBase {
 }
 
 export type ConsistencyRuleDescriptor =
-  SingleValueRule | SumRule | DateOrderRule | ExpectedActorRule;
+  | SingleValueRule
+  | SumRule
+  | DateOrderRule
+  | ExpectedActorRule
+  | DurationSpanRule
+  | DurationAtMostRule;
 
 // --- Domain detection signals -------------------------------------------------
 // Deterministic, inspectable evidence for "which domain is this document"
@@ -262,6 +295,18 @@ export interface DomainPack<TContext = unknown, TFinding = unknown> {
   partyTerms: Record<string, string[]>;
   /** Entity labels summarised on the workspace Overview card, in order. */
   overviewFields: string[];
+  /**
+   * Question wording that names a fact the label vocabulary cannot ("is the
+   * indemnity capped" -> the liability picture). The first alias whose pattern
+   * matches decides the label; ordinary label matching is the fallback.
+   */
+  questionAliases?: Array<{ pattern: RegExp; label: string }>;
+  /**
+   * Facts that must be reported together with another one to answer it
+   * honestly: a liability limit is not a complete answer without the
+   * exceptions to it (label -> companion labels, shown in this order).
+   */
+  answerCompanions?: Record<string, string[]>;
   /**
    * Pack-driven extraction rules. For packs that also have legacy
    * rule patterns (rental, land lease), these only add labels the legacy

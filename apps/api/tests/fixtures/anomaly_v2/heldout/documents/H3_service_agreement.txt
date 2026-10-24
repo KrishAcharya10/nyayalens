@@ -1,0 +1,25 @@
+# AGREEMENT FOR PROFESSIONAL SERVICES
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.
+
+This Agreement is made on 11 August 2027 between Lotus Retail Pvt. Ltd., Ahmedabad (the "Client") and Kinetic Analytics LLP, Pune (the "Service Provider").
+
+ARTICLE I - SERVICES
+The Service Provider shall build and maintain a customer analytics platform for the Client.
+
+ARTICLE II - FEES
+The Client shall pay the Service Provider a fee of INR 14,00,000 for the platform.
+
+ARTICLE III - INVOICING AND PAYMENT
+Invoices shall be paid within 21 days of receipt of the invoice.
+
+ARTICLE IV - ADDITIONAL PAYMENT TERMS
+The Client shall settle each invoice within 40 days of the date of the invoice.
+
+ARTICLE V - LIABILITY
+The aggregate liability of the Service Provider under this Agreement shall not exceed INR 10,00,000. The indemnity given by the Service Provider for infringement of third-party rights is not subject to any cap.
+
+ARTICLE VI - TERMINATION
+Either party may terminate this Agreement on 45 days written notice.
+
+ARTICLE VII - JURISDICTION
+The courts at Ahmedabad have exclusive jurisdiction.

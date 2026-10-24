@@ -9,7 +9,11 @@
 // docs/phase8/step2_migration_notes.md for why removing it is safe): the
 // check now only ever runs at all when this pack is the one resolved for
 // a document, which is the pack-scoped replacement for that guard.
-import { makeAsymmetricNoticeCheck } from "../risk/factChecks.js";
+import {
+  makeAsymmetricNoticeCheck,
+  makeDiscretionCheck,
+  makeOneSidedRemedyCheck,
+} from "../risk/factChecks.js";
 import { LAND_LEASE_EXTRACTION } from "./extractionRules.js";
 import type { DomainPack } from "./registry.js";
 import { asymmetricObligationCheck } from "../risk/sharedChecks.js";
@@ -146,7 +150,8 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
     { label: "JURISDICTION", displayName: "Jurisdiction", coreType: "LOCATION" },
   ],
 
-  partyTerms: { LESSOR: ["Lessor"], LESSEE: ["Lessee"] },
+  // The words documents use for the two sides; the first is the canonical name.
+  partyTerms: { LESSOR: ["Lessor", "Owner", "Landowner"], LESSEE: ["Lessee", "Cultivator"] },
   // Shown on the workspace Overview card, in this order (first value of each).
   overviewFields: [
     "LESSOR",
@@ -211,6 +216,10 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
     },
     { clauseType: "DISPUTE_RESOLUTION", headingPattern: /ARBITRATION/i, priority: 111 },
     { clauseType: "JURISDICTION", headingPattern: /GOVERNING\s+LAW/i, priority: 121 },
+    // Short headings found on hand-written style agreements.
+    { clauseType: "LEASE_DURATION", headingPattern: /^\s*(?:TERM|TENURE)\s*$/i, priority: 22 },
+    { clauseType: "RENT_PAYMENT", headingPattern: /LEASE\s+(?:PAYMENT|AMOUNT)/i, priority: 41 },
+    { clauseType: "LAND_USE_RESTRICTION", headingPattern: /^\s*PURPOSE\b/i, priority: 82 },
     { clauseType: "SCHEDULE_PROPERTY", headingPattern: /^\s*SCHEDULE/i, priority: 125 },
   ],
 
@@ -281,13 +290,20 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
   riskSchema: {
     expectedClauseTypes: EXPECTED_CLAUSE_TYPES,
     missingClauseSeverity: MISSING_CLAUSE_SEVERITY,
-    perClauseChecks: [makeMissingClauseCheck(EXPECTED_CLAUSE_TYPES, MISSING_CLAUSE_SEVERITY)],
+    perClauseChecks: [
+      makeDiscretionCheck(["TERMINATION"]),
+      makeOneSidedRemedyCheck(["TERMINATION"]),
+      makeMissingClauseCheck(EXPECTED_CLAUSE_TYPES, MISSING_CLAUSE_SEVERITY),
+    ],
     // asymmetricObligationCheck is domain-agnostic (Step 1 audit) - both
     // packs register the SAME check instance rather than one pack
     // arbitrarily owning it. landUseContradictionCheck is land_lease-only
     // by registration, replacing its old inline documentType guard.
     comparisonChecks: [
-      makeAsymmetricNoticeCheck(["NOTICE_PERIOD"], { LESSOR: ["Lessor"], LESSEE: ["Lessee"] }),
+      makeAsymmetricNoticeCheck(["NOTICE_PERIOD", "TERMINATION"], {
+        LESSOR: ["Lessor", "Owner", "Landowner"],
+        LESSEE: ["Lessee", "Cultivator"],
+      }),
       asymmetricObligationCheck,
       landUseContradictionCheck,
     ],
@@ -328,6 +344,15 @@ export const landLeasePack: DomainPack<RiskEngineContext, RiskFinding> = {
       label: "DURATION",
       category: "DURATION_CONTRADICTION",
       description: "The lease term should be stated consistently.",
+    },
+    {
+      id: "land_term_matches_dates",
+      kind: "DURATION_SPAN",
+      durationLabel: "DURATION",
+      startLabel: "COMMENCEMENT_DATE",
+      endLabel: "EXPIRY_DATE",
+      category: "DURATION_CONTRADICTION",
+      description: "The stated lease term should match the dates given for it.",
     },
     {
       id: "land_start_before_end",

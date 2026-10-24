@@ -9,9 +9,19 @@
 // here. Every answer carries its evidence spans; when the document has no
 // fact for the question the answer is NOT_SUFFICIENT, never a guess.
 import type { DomainPack } from "../domains/registry.js";
-import { normalizeByCoreType, type NormalizedValue } from "../semantic/normalize.js";
+import { normalizeByCoreType, valueKey, type NormalizedValue } from "../semantic/normalize.js";
 import type { SemanticEntity } from "../semantic/types.js";
 import type { RiskFinding } from "../risk/types.js";
+
+// Core types whose value is stated once in a well-formed document.
+const SINGLE_VALUED_TYPES = new Set([
+  "MONEY",
+  "DURATION",
+  "DATE",
+  "PERCENT",
+  "AREA",
+  "PROPERTY_IDENTIFIER",
+]);
 
 export type EvidenceStatus = "GROUNDED" | "NOT_SUFFICIENT";
 
@@ -27,7 +37,7 @@ export interface StructuredAnswer {
   answer: string;
   /** What the question was resolved to, for transparency. */
   resolvedLabels: string[];
-  kind: "fact" | "list" | "difference" | "consistency" | "not_found";
+  kind: "fact" | "list" | "difference" | "consistency" | "conflict" | "not_found";
   normalized: NormalizedValue | NormalizedValue[] | null;
   evidence: StructuredEvidence[];
 }
@@ -84,6 +94,7 @@ function words(s: string): string[] {
   return s
     .toLowerCase()
     .replace(/licen[cs]e/g, "licence")
+    .replace(/\bparty\s+([a-z])\b/g, "party$1")
     .split(/[^a-z0-9]+/)
     .filter((w) => w.length > 1 && !STOP.has(w))
     .map(stem);
@@ -129,6 +140,102 @@ function cuesFor(question: string): string[] {
   return CUE_TYPES.filter(([re]) => re.test(question)).flatMap(([, t]) => t);
 }
 
+// Words that talk about the document or the act of asking rather than naming a term.
+const META_WORDS = new Set(
+  [
+    "clause",
+    "section",
+    "provision",
+    "say",
+    "state",
+    "mention",
+    "include",
+    "contain",
+    "cover",
+    "exactly",
+    "specific",
+    "precisely",
+    "applicable",
+    "mean",
+    "define",
+    "definition",
+    "agreed",
+    "exist",
+    "there",
+    "any",
+    "has",
+    "have",
+    "can",
+    "will",
+    "shall",
+    "must",
+    "should",
+    "whether",
+    "subject",
+    "percentage",
+    "percent",
+    "amount",
+    "rate",
+    "figure",
+    "value",
+    "total",
+    "monthly",
+    "annual",
+    "annually",
+    "yearly",
+    "weekly",
+    "daily",
+    "last",
+    "long",
+    "much",
+    "many",
+    "often",
+    "cap",
+    "capped",
+    "limit",
+    "limited",
+    "i",
+    "we",
+    "you",
+    "your",
+    "our",
+    "their",
+    "its",
+    "if",
+    "on",
+    "at",
+    "as",
+    "with",
+  ].map(stem),
+);
+
+/**
+ * Words of the question that neither the document nor the matched fact's
+ * vocabulary contains ("relocation" in a contract that never mentions
+ * relocation). A question that asks about something the text does not talk
+ * about cannot be answered from it, however close the nearest fact looks.
+ */
+export function uncoveredQuestionTerms(
+  question: string,
+  documentText: string,
+  matchedLabels: Iterable<{ vocab: ReadonlySet<string> }> = [],
+): string[] {
+  const covered = new Set(words(documentText));
+  for (const l of matchedLabels) for (const w of l.vocab) covered.add(w);
+  return [...new Set(words(question).filter((w) => !META_WORDS.has(w)))].filter(
+    (w) => !covered.has(w) && !/^\d+$/.test(w),
+  );
+}
+
+/** The vocabulary of the given labels of a pack (what a question may use to name them). */
+export function vocabularyOf(
+  pack: DomainPack<unknown, unknown>,
+  labels: readonly string[],
+): Array<{ vocab: ReadonlySet<string> }> {
+  const wanted = new Set(labels);
+  return labelVocab(pack).filter((v) => wanted.has(v.label));
+}
+
 /** The best-matching label of one pack and its score (score 0 = no match). */
 export function bestLabel(
   pack: DomainPack<unknown, unknown>,
@@ -146,6 +253,8 @@ export function bestLabel(
 
 /** Labels a question asks about, best first (empty when nothing in the ontology matches). */
 export function resolveLabels(pack: DomainPack<unknown, unknown>, question: string): string[] {
+  const alias = pack.questionAliases?.find((a) => a.pattern.test(question));
+  if (alias) return [alias.label];
   const parts = question.split(/\band\b/i);
   const pick = (q: string) => bestLabel(pack, q).label;
   if (parts.length > 1) {
@@ -322,8 +431,68 @@ export function answerStructured(input: StructuredQaInput): StructuredAnswer | n
 
   const label = labels[0]!;
   const found = mentions(label);
+
+  // A fact that has to be reported with others to be honest (a liability limit
+  // together with what sits outside it).
+  const companions = pack.answerCompanions?.[label];
+  if (companions) {
+    const groups = [label, ...companions]
+      .map((l) => ({ l, ms: mentions(l) }))
+      .filter((g) => g.ms.length > 0);
+    // A bare amount that restates a limit already quoted is not a second fact.
+    const spans = groups.filter((g) => g.l === label).flatMap((g) => g.ms);
+    const kept = groups
+      .map((g) => ({
+        ...g,
+        ms: g.ms.filter(
+          (m) =>
+            g.l === label ||
+            !spans.some((s) => s.textStart <= m.textStart && m.textEnd <= s.textEnd),
+        ),
+      }))
+      .filter((g) => g.ms.length > 0);
+    if (kept.length === 0) return notFound([label, ...companions]);
+    return {
+      status: "GROUNDED",
+      answer: kept
+        .map((g) => `${display.get(g.l) ?? g.l}: ${g.ms.map((m) => m.text).join(" / ")}`)
+        .join("; "),
+      resolvedLabels: kept.map((g) => g.l),
+      kind: "list",
+      normalized: null,
+      evidence: kept.flatMap((g) => g.ms.map(ev)),
+    };
+  }
+
   if (found.length === 0) return notFound([label]);
   const isParty = coreType.get(label) === "PARTY";
+
+  // A value that should be stated once but is stated differently in different
+  // places: report every distinct value with its own citation rather than
+  // silently choosing one. (Text, party and person labels legitimately repeat.)
+  if (SINGLE_VALUED_TYPES.has(coreType.get(label) ?? "")) {
+    const byKey = new Map<string, SemanticEntity>();
+    for (const m of found) {
+      const v = normalizeByCoreType(coreType.get(label) ?? "TEXT", m.text);
+      const k = v ? valueKey(v) : m.text.toLowerCase();
+      if (!byKey.has(k)) byKey.set(k, m);
+    }
+    if (byKey.size > 1) {
+      const distinct = [...byKey.values()];
+      return {
+        status: "GROUNDED",
+        answer:
+          `The document gives more than one ${(display.get(label) ?? label).toLowerCase()}: ` +
+          `${distinct.map((m) => `"${m.text}"`).join(" and ")}. It does not say which governs - review required.`,
+        resolvedLabels: [label],
+        kind: "conflict",
+        normalized: distinct
+          .map((m) => normalizeByCoreType(coreType.get(label) ?? "TEXT", m.text))
+          .filter((v): v is NormalizedValue => v !== null),
+        evidence: distinct.map(ev),
+      };
+    }
+  }
   // First mention of each distinct name (a Map built from all mentions
   // would keep the last one, citing the signature block or schedule).
   const firstByText = new Map<string, SemanticEntity>();

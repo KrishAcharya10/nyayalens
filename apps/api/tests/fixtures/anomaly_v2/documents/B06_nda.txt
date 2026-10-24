@@ -1,0 +1,28 @@
+# CONFIDENTIALITY AGREEMENT
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.
+
+This Agreement is made on 4 June 2027 between Helio Grid Energy Pvt. Ltd., 8 Sector 18, Noida (the "Disclosing Party") and Mr. Tarun Bedi, an independent consultant at 22 Lajpat Nagar, New Delhi (the "Recipient").
+
+1. Purpose
+The Disclosing Party will share confidential information with the Recipient only to evaluate a proposed grid-analytics engagement.
+
+2. Definition
+"Confidential Information" means non-public technical or business information disclosed by the Disclosing Party in any form.
+
+3. Obligations
+The Recipient shall keep the Confidential Information secret, use it only for the Purpose, and not disclose it to anyone else without written consent.
+
+4. Exclusions
+The obligations do not cover information that is public, already known to the Recipient, or independently developed.
+
+5. Duration
+The Recipient's confidentiality obligations continue for 3 years from the date of this Agreement.
+
+6. Return of Information
+Within 10 days of a written request, the Recipient shall return or destroy all Confidential Information. The Recipient may nevertheless keep archival copies for 6 years after the date of this Agreement.
+
+7. Further Term
+For the avoidance of doubt, the Recipient's duty of confidentiality continues for a period of 6 years from the date of this Agreement.
+
+8. Jurisdiction
+The courts at New Delhi have exclusive jurisdiction.

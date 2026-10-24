@@ -7,16 +7,20 @@ export function EmptyState({
   title,
   hint,
   icon,
+  action,
 }: {
   title: string;
   hint?: string;
   icon?: ReactNode;
+  /** A control that gets the user out of the empty state (a retry, a reset). */
+  action?: ReactNode;
 }) {
   return (
     <div className="flex flex-col items-center gap-1.5 px-4 py-10 text-center">
-      {icon && <div className="mb-1 text-ink-300">{icon}</div>}
-      <p className="text-sm font-medium text-ink-500">{title}</p>
-      {hint && <p className="max-w-xs text-xs text-ink-400">{hint}</p>}
+      {icon && <div className="mb-1 text-ink-400">{icon}</div>}
+      <p className="text-sm font-medium text-ink-600">{title}</p>
+      {hint && <p className="max-w-xs text-xs text-ink-500">{hint}</p>}
+      {action}
     </div>
   );
 }

@@ -67,6 +67,8 @@ export const ndaMsaPack: DomainPack<RiskEngineContext, RiskFinding> = {
     { label: "DISCLOSING_PARTY", displayName: "Disclosing party", coreType: "PARTY" },
     { label: "RECEIVING_PARTY", displayName: "Receiving party", coreType: "PARTY" },
     { label: "CONTRACTING_PARTY", displayName: "Party (mutual NDA)", coreType: "PARTY" },
+    { label: "PARTY_A", displayName: "Party A", coreType: "PARTY" },
+    { label: "PARTY_B", displayName: "Party B", coreType: "PARTY" },
     { label: "CLIENT", displayName: "Client", coreType: "PARTY" },
     { label: "SERVICE_PROVIDER", displayName: "Service provider", coreType: "PARTY" },
     {
@@ -79,6 +81,15 @@ export const ndaMsaPack: DomainPack<RiskEngineContext, RiskFinding> = {
     { label: "DELIVERABLE", displayName: "Deliverable", coreType: "TEXT" },
     { label: "FEE", displayName: "Fee", coreType: "MONEY" },
     { label: "LIABILITY_CAP", displayName: "Liability cap", coreType: "MONEY" },
+    { label: "LIABILITY_LIMIT", displayName: "Liability limit", coreType: "TEXT" },
+    {
+      label: "LIABILITY_EXCEPTION",
+      displayName: "Exception to the liability limit",
+      coreType: "TEXT",
+    },
+    { label: "UNCAPPED_INDEMNITY", displayName: "Indemnity without a limit", coreType: "TEXT" },
+    { label: "RETURN_PERIOD", displayName: "Return or destruction deadline", coreType: "DURATION" },
+    { label: "RETENTION_PERIOD", displayName: "Period copies may be kept", coreType: "DURATION" },
     { label: "PAYMENT_TERM", displayName: "Invoice payment term", coreType: "DURATION" },
     { label: "TERM", displayName: "Agreement term", coreType: "DURATION" },
     {
@@ -99,14 +110,29 @@ export const ndaMsaPack: DomainPack<RiskEngineContext, RiskFinding> = {
     DISCLOSING_PARTY: ["Disclosing Party"],
     RECEIVING_PARTY: ["Receiving Party", "Recipient"],
     CONTRACTING_PARTY: ["First Party", "Second Party"],
+    PARTY_A: ["Party A"],
+    PARTY_B: ["Party B"],
     CLIENT: ["Client", "Customer"],
-    SERVICE_PROVIDER: ["Service Provider", "Consultant", "Contractor"],
+    SERVICE_PROVIDER: ["Service Provider", "Supplier", "Consultant", "Contractor"],
+  },
+  // "Is the indemnity capped?", "what limits liability" are about the liability picture,
+  // which is a limit plus whatever sits outside it - never the limit alone.
+  questionAliases: [
+    {
+      pattern: /\b(?:liabilit(?:y|ies)|indemnit(?:y|ies)|indemnif\w*)\b|\bcap(?:ped)?\b/i,
+      label: "LIABILITY_LIMIT",
+    },
+  ],
+  answerCompanions: {
+    LIABILITY_LIMIT: ["LIABILITY_CAP", "LIABILITY_EXCEPTION", "UNCAPPED_INDEMNITY"],
   },
   // Shown on the workspace Overview card, in this order (first value of each).
   overviewFields: [
     "DISCLOSING_PARTY",
     "RECEIVING_PARTY",
     "CONTRACTING_PARTY",
+    "PARTY_A",
+    "PARTY_B",
     "CLIENT",
     "SERVICE_PROVIDER",
     "CONFIDENTIALITY_PERIOD",
@@ -290,6 +316,22 @@ export const ndaMsaPack: DomainPack<RiskEngineContext, RiskFinding> = {
       label: "TERM",
       category: "DURATION_CONTRADICTION",
       description: "The agreement term should be stated consistently.",
+    },
+    {
+      id: "nda_payment_term_single",
+      kind: "SINGLE_VALUE",
+      label: "PAYMENT_TERM",
+      category: "DURATION_CONTRADICTION",
+      description: "The invoice payment deadline should be stated consistently.",
+    },
+    {
+      id: "nda_return_vs_retention",
+      kind: "DURATION_AT_MOST",
+      label: "RETENTION_PERIOD",
+      limit: "RETURN_PERIOD",
+      category: "DURATION_CONTRADICTION",
+      description:
+        "Copies may be kept for longer than the deadline to return or destroy information.",
     },
     {
       id: "nda_termination_notice_single",

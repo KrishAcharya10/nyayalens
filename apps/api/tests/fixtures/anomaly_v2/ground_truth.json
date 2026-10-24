@@ -1,0 +1,648 @@
+{
+  "version": "anomaly-v2",
+  "note": "Answer key for the Anomaly Benchmark v2 fixtures. It is read only by the evaluation script and the tests; the system under test sees only documents/*.docx. All documents are fictional.",
+  "matching": {
+    "finding": "A predicted finding matches an expected finding when it is on the same document, its category is in acceptedCategories, and its cited evidence (entity or clause text) contains every string in requiredEvidence (case- and whitespace-insensitive). Each expected finding is matched by at most one predicted finding. Predicted findings that match nothing are false positives; expected findings with no match are false negatives.",
+    "cleanControl": "Any predicted finding on a clean control is a false positive.",
+    "answer": "An answer is correct when its status equals expectStatus and its text contains every string in expectContains (case-insensitive).",
+    "conflict": "A conflict question is answered correctly only when the answer text contains every value in expectValues AND at least that many separate evidence citations each contain one of the values.",
+    "completenessChecklist": "Findings of category MISSING_CLAUSE that come from a pack's expected-clause checklist (no ruleId starting 'missing_term') are scored separately from anomalies. A flagged clause type is correct when it is listed in the document's absentClauseTypes (the clause really is not there) and wrong when the clause is present but was not recognised. A listed absent type that is not flagged is a miss. They are review prompts about completeness, never a statement that a term is legally required."
+  },
+  "documents": [
+    {
+      "docId": "B01",
+      "file": "B01_residential_rental.docx",
+      "documentType": "residential_rental",
+      "family": "rental",
+      "role": "flawed",
+      "findings": [
+        {
+          "id": "B01-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "conflicting_rent",
+          "acceptedCategories": ["FINANCIAL_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["28,500", "31,000"],
+          "ruleHint": "single-value RENT consistency"
+        },
+        {
+          "id": "B01-F2",
+          "kind": "AMBIGUOUS_REVIEW",
+          "benchmarkCategory": "missing_deposit_refund_deadline",
+          "acceptedCategories": ["MISSING_CLAUSE"],
+          "severity": "LOW",
+          "requiredEvidence": ["refunded to the tenant after the tenant vacates"],
+          "ruleHint": "a term that is absent, not a contradiction"
+        },
+        {
+          "id": "B01-F3",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "notice_asymmetry",
+          "acceptedCategories": ["ASYMMETRIC_OBLIGATION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["15 days", "3 months"],
+          "ruleHint": "asymmetric notice"
+        }
+      ],
+      "questions": [
+        {
+          "id": "B01-Q1",
+          "type": "fact",
+          "question": "Who is the landlord?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Sanjay Pillai"]
+        },
+        {
+          "id": "B01-Q2",
+          "type": "conflict",
+          "question": "What is the monthly rent?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["28,500", "31,000"]
+        },
+        {
+          "id": "B01-Q3",
+          "type": "conflict",
+          "question": "What is the notice period?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["15 days", "3 months"]
+        },
+        {
+          "id": "B01-Q4",
+          "type": "unanswerable",
+          "question": "What is the probation period?",
+          "expectStatus": "NOT_SUFFICIENT"
+        },
+        {
+          "id": "B01-Q5",
+          "type": "unanswerable",
+          "question": "What interest is charged on late rent?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": ["DISPUTE_RESOLUTION"]
+    },
+    {
+      "docId": "B02",
+      "file": "B02_leave_and_license.docx",
+      "documentType": "leave_and_license",
+      "family": "rental",
+      "role": "flawed",
+      "findings": [
+        {
+          "id": "B02-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "date_chronology",
+          "acceptedCategories": ["DATE_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["1 April 2027", "31 March 2026"],
+          "ruleHint": "licence ends before it begins"
+        }
+      ],
+      "questions": [
+        {
+          "id": "B02-Q1",
+          "type": "fact",
+          "question": "What is the licence fee?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["18,000"]
+        },
+        {
+          "id": "B02-Q2",
+          "type": "fact",
+          "question": "Who is the licensee?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Imran Qureshi"]
+        },
+        {
+          "id": "B02-Q3",
+          "type": "unanswerable",
+          "question": "What is the lock-in penalty?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "B03",
+      "file": "B03_land_lease.docx",
+      "documentType": "land_lease",
+      "family": "land_lease",
+      "role": "flawed",
+      "findings": [
+        {
+          "id": "B03-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "property_identifier",
+          "acceptedCategories": ["PROPERTY_IDENTIFIER_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["118/3", "118/5"],
+          "ruleHint": "survey number stated twice differently"
+        },
+        {
+          "id": "B03-F2",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "property_area",
+          "acceptedCategories": ["PROPERTY_AREA_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["3.2 acres", "3.8 acres"],
+          "ruleHint": "area stated twice differently"
+        },
+        {
+          "id": "B03-F3",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "duration_vs_dates",
+          "acceptedCategories": ["DURATION_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["7 years"],
+          "ruleHint": "stated 7-year term but dates span 5 years"
+        }
+      ],
+      "questions": [
+        {
+          "id": "B03-Q1",
+          "type": "conflict",
+          "question": "What is the survey number of the leased land?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["118/3", "118/5"]
+        },
+        {
+          "id": "B03-Q2",
+          "type": "conflict",
+          "question": "What is the area of the land?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["3.2 acres", "3.8 acres"]
+        },
+        {
+          "id": "B03-Q3",
+          "type": "fact",
+          "question": "What is the annual rent?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["2,10,000"]
+        },
+        {
+          "id": "B03-Q4",
+          "type": "unanswerable",
+          "question": "What is the price of the crop insurance?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": [],
+      "toleratedMissingClauseTypes": ["JURISDICTION"]
+    },
+    {
+      "docId": "B04",
+      "file": "B04_agreement_to_sell.docx",
+      "documentType": "agreement_to_sell",
+      "family": "sale",
+      "role": "flawed",
+      "findings": [
+        {
+          "id": "B04-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "price_arithmetic",
+          "acceptedCategories": ["PAYMENT_TOTAL_MISMATCH"],
+          "severity": "HIGH",
+          "requiredEvidence": ["64,00,000", "8,00,000", "52,00,000"],
+          "ruleHint": "advance + balance != price"
+        },
+        {
+          "id": "B04-F2",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "possession_before_agreement",
+          "acceptedCategories": ["DATE_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["15 March 2027", "1 April 2027"],
+          "ruleHint": "possession date precedes agreement date"
+        },
+        {
+          "id": "B04-F3",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "property_identifier",
+          "acceptedCategories": ["PROPERTY_IDENTIFIER_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["14C", "14D"],
+          "ruleHint": "flat number differs between clauses"
+        }
+      ],
+      "questions": [
+        {
+          "id": "B04-Q1",
+          "type": "fact",
+          "question": "What is the advance amount?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["8,00,000"]
+        },
+        {
+          "id": "B04-Q2",
+          "type": "fact",
+          "question": "Who is the buyer?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Rekha Iyer"]
+        },
+        {
+          "id": "B04-Q3",
+          "type": "unanswerable",
+          "question": "What home-loan amount has been sanctioned?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "B05",
+      "file": "B05_employment_contract.docx",
+      "documentType": "employment_contract",
+      "family": "employment",
+      "role": "flawed",
+      "findings": [
+        {
+          "id": "B05-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "ctc_arithmetic",
+          "acceptedCategories": ["PAYMENT_TOTAL_MISMATCH"],
+          "severity": "HIGH",
+          "requiredEvidence": ["1,800,000"],
+          "ruleHint": "monthly components x 12 = 1,560,000, not the stated CTC"
+        },
+        {
+          "id": "B05-F2",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "probation_conflict",
+          "acceptedCategories": ["DURATION_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["3 months", "6 months"],
+          "ruleHint": "probation 3 vs 6 months"
+        },
+        {
+          "id": "B05-F3",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "bonus_conflict",
+          "acceptedCategories": ["FINANCIAL_CONTRADICTION"],
+          "severity": "HIGH",
+          "requiredEvidence": ["10%", "15%"],
+          "ruleHint": "bonus 10% vs 15% of CTC"
+        }
+      ],
+      "questions": [
+        {
+          "id": "B05-Q1",
+          "type": "fact",
+          "question": "What is the job title?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Product Analyst"]
+        },
+        {
+          "id": "B05-Q2",
+          "type": "conflict",
+          "question": "What is the probation period?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["3 months", "6 months"]
+        },
+        {
+          "id": "B05-Q3",
+          "type": "conflict",
+          "question": "What is the bonus percentage?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["10%", "15%"]
+        },
+        {
+          "id": "B05-Q4",
+          "type": "unanswerable",
+          "question": "What is the relocation allowance?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "B06",
+      "file": "B06_nda.docx",
+      "documentType": "nda",
+      "family": "nda",
+      "role": "flawed",
+      "findings": [
+        {
+          "id": "B06-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "confidentiality_duration",
+          "acceptedCategories": ["DURATION_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["3 years", "6 years"],
+          "ruleHint": "confidentiality duration 3 vs 6 years"
+        },
+        {
+          "id": "B06-F2",
+          "kind": "AMBIGUOUS_REVIEW",
+          "benchmarkCategory": "retention_conflict",
+          "acceptedCategories": ["DURATION_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["10 days", "6 years"],
+          "ruleHint": "return-or-destroy deadline (10 days) vs a right to keep copies for 6 years; the cited evidence is the two durations"
+        }
+      ],
+      "questions": [
+        {
+          "id": "B06-Q1",
+          "type": "fact",
+          "question": "Who is the Recipient?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Tarun Bedi"]
+        },
+        {
+          "id": "B06-Q2",
+          "type": "conflict",
+          "question": "How long do the confidentiality obligations last?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["3 years", "6 years"]
+        },
+        {
+          "id": "B06-Q3",
+          "type": "cap",
+          "capState": "absent",
+          "question": "Is there a cap on liability?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "B07",
+      "file": "B07_service_agreement.docx",
+      "documentType": "service_agreement",
+      "family": "services",
+      "role": "flawed",
+      "findings": [
+        {
+          "id": "B07-F1",
+          "kind": "TRUE_ANOMALY",
+          "benchmarkCategory": "payment_deadline",
+          "acceptedCategories": ["DURATION_CONTRADICTION", "FINANCIAL_CONTRADICTION"],
+          "severity": "MEDIUM",
+          "requiredEvidence": ["30 days", "45 days"],
+          "ruleHint": "invoice payable in 30 vs 45 days"
+        },
+        {
+          "id": "B07-F2",
+          "kind": "AMBIGUOUS_REVIEW",
+          "benchmarkCategory": "uncapped_indemnity",
+          "acceptedCategories": ["UNCAPPED_LIABILITY"],
+          "severity": "HIGH",
+          "requiredEvidence": ["without any limit"],
+          "ruleHint": "indemnity stated outside the liability cap"
+        }
+      ],
+      "questions": [
+        {
+          "id": "B07-Q1",
+          "type": "conflict",
+          "question": "When must invoices be paid?",
+          "expectStatus": "GROUNDED",
+          "expectValues": ["30 days", "45 days"]
+        },
+        {
+          "id": "B07-Q2",
+          "type": "cap",
+          "capState": "explicit",
+          "question": "What is the limit of the Supplier's liability?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["12 months"]
+        },
+        {
+          "id": "B07-Q3",
+          "type": "cap",
+          "capState": "uncapped",
+          "question": "Is the indemnity for data breaches subject to a cap?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["without any limit"]
+        },
+        {
+          "id": "B07-Q4",
+          "type": "fact",
+          "question": "Who is the Supplier?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Pixelcraft Digital"]
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "C01",
+      "file": "C01_sale_deed.docx",
+      "documentType": "sale_deed",
+      "family": "sale",
+      "role": "clean",
+      "findings": [],
+      "questions": [
+        {
+          "id": "C01-Q1",
+          "type": "fact",
+          "question": "What is the total consideration?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["72,00,000"]
+        },
+        {
+          "id": "C01-Q2",
+          "type": "fact",
+          "question": "Who is the purchaser?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Leena Thomas"]
+        },
+        {
+          "id": "C01-Q3",
+          "type": "unanswerable",
+          "question": "What is the probation period?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "C02",
+      "file": "C02_builder_buyer.docx",
+      "documentType": "builder_buyer_agreement",
+      "family": "sale",
+      "role": "clean",
+      "findings": [],
+      "questions": [
+        {
+          "id": "C02-Q1",
+          "type": "fact",
+          "question": "What is the total price of the unit?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["85,00,000"]
+        },
+        {
+          "id": "C02-Q2",
+          "type": "fact",
+          "question": "When will possession be offered?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["31 March 2029"]
+        },
+        {
+          "id": "C02-Q3",
+          "type": "unanswerable",
+          "question": "What is the club-house membership fee?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "C03",
+      "file": "C03_offer_letter.docx",
+      "documentType": "offer_letter",
+      "family": "employment",
+      "role": "clean",
+      "findings": [],
+      "questions": [
+        {
+          "id": "C03-Q1",
+          "type": "fact",
+          "question": "What is the annual CTC?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["6,00,000"]
+        },
+        {
+          "id": "C03-Q2",
+          "type": "fact",
+          "question": "When is the joining date?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["14 June 2027"]
+        },
+        {
+          "id": "C03-Q3",
+          "type": "unanswerable",
+          "question": "What is the joining bonus?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "C04",
+      "file": "C04_appointment_letter.docx",
+      "documentType": "appointment_letter",
+      "family": "employment",
+      "role": "clean",
+      "findings": [],
+      "questions": [
+        {
+          "id": "C04-Q1",
+          "type": "fact",
+          "question": "What is the monthly salary?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["62,000"]
+        },
+        {
+          "id": "C04-Q2",
+          "type": "fact",
+          "question": "Who is the employee?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Gaurav Saxena"]
+        },
+        {
+          "id": "C04-Q3",
+          "type": "unanswerable",
+          "question": "What is the non-compete period?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "C05",
+      "file": "C05_mutual_nda.docx",
+      "documentType": "mutual_nda",
+      "family": "nda",
+      "role": "clean",
+      "findings": [],
+      "questions": [
+        {
+          "id": "C05-Q1",
+          "type": "fact",
+          "question": "Who is Party A?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Tessera Biosystems"]
+        },
+        {
+          "id": "C05-Q2",
+          "type": "fact",
+          "question": "Who is Party B?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["Calder Instruments"]
+        },
+        {
+          "id": "C05-Q3",
+          "type": "fact",
+          "question": "How long is the term of the agreement?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["2 years"]
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "C06",
+      "file": "C06_msa.docx",
+      "documentType": "msa",
+      "family": "services",
+      "role": "clean",
+      "findings": [],
+      "questions": [
+        {
+          "id": "C06-Q1",
+          "type": "cap",
+          "capState": "explicit_with_exceptions",
+          "question": "What is the limit of liability?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["12 months", "confidentiality", "wilful misconduct"]
+        },
+        {
+          "id": "C06-Q2",
+          "type": "fact",
+          "question": "What is the monthly fee?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["2,50,000"]
+        },
+        {
+          "id": "C06-Q3",
+          "type": "unanswerable",
+          "question": "What uptime percentage is guaranteed?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": []
+    },
+    {
+      "docId": "C07",
+      "file": "C07_residential_rental.docx",
+      "documentType": "residential_rental",
+      "family": "rental",
+      "role": "clean",
+      "findings": [],
+      "questions": [
+        {
+          "id": "C07-Q1",
+          "type": "fact",
+          "question": "What is the monthly rent?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["22,000"]
+        },
+        {
+          "id": "C07-Q2",
+          "type": "fact",
+          "question": "What is the security deposit?",
+          "expectStatus": "GROUNDED",
+          "expectContains": ["66,000"]
+        },
+        {
+          "id": "C07-Q3",
+          "type": "unanswerable",
+          "question": "What is the parking charge?",
+          "expectStatus": "NOT_SUFFICIENT"
+        }
+      ],
+      "absentClauseTypes": ["DISPUTE_RESOLUTION"]
+    }
+  ]
+}

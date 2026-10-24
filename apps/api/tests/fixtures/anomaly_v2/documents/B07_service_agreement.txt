@@ -1,0 +1,28 @@
+# SERVICES AGREEMENT
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.
+
+This Services Agreement is made on 18 July 2027 between Ironbridge Foods Pvt. Ltd., 31 Ring Road, Surat, Gujarat (the "Customer") and Pixelcraft Digital LLP, 5 Pal Gam Road, Surat, Gujarat (the "Supplier").
+
+ARTICLE I - SERVICES
+The Supplier shall design and operate an inventory dashboard for the Customer as described in the attached statement of work.
+
+ARTICLE II - FEES
+The Customer shall pay the Supplier a fixed fee of INR 9,00,000 for the build and INR 40,000 per month for support.
+
+ARTICLE III - PAYMENT
+The Supplier shall invoice monthly. The Customer shall pay each invoice within 30 days of receiving it.
+
+ARTICLE IV - LATE INVOICES
+Each invoice is payable within 45 days of the invoice date, and the Supplier may not charge interest before that date.
+
+ARTICLE V - CONFIDENTIALITY
+Each party shall protect the other's non-public information and use it only for this Agreement.
+
+ARTICLE VI - LIABILITY AND INDEMNITY
+The Supplier's total liability for claims arising from the Services is limited to the fees paid in the preceding 12 months. The Supplier shall indemnify the Customer without any limit against all losses arising from data breaches caused by the Supplier.
+
+ARTICLE VII - TERMINATION
+Either party may terminate this Agreement on 60 days written notice.
+
+ARTICLE VIII - JURISDICTION
+The courts at Surat have exclusive jurisdiction.

@@ -25,11 +25,20 @@ function instrumentDate(label: string): ValueRule {
   return {
     label,
     type: "DATE",
-    before: /(?:executed at|made at)[\s\S]{0,40}?\son(?:\s+(?:this|the))?\s*$/i,
+    // "executed at Kochi on", "made at Pune on", "This Agreement is made on".
+    // A bare "Dated 1 April 2027." line also dates the instrument.
+    before:
+      /(?:(?:executed|made) at[\s\S]{0,40}?|\b(?:Agreement|Deed|Contract|Lease)\b[^.]{0,60}?\b(?:is|was) (?:made|executed|entered into|signed))\s+on(?:\s+(?:this|the))?\s*$|^\s*Dated(?:\s+this)?\s*:?\s*$/i,
   };
 }
 
 const NOTICE_AFTER = /^'?s?\s+(?:prior\s+)?(?:written\s+)?notice/;
+
+// Wording around a term's start and end dates ("shall commence on", "begins on",
+// "with effect from"; "ending on", "ends on", "expiring on").
+const COMMENCES_BEFORE =
+  /(?:commenc\w*\s+(?:on|from)|begin(?:s|ning)?\s+(?:on|from)|with effect from|starting(?:\s+(?:on|from))?|\bfrom)\s*$/;
+const ENDS_BEFORE = /(?:ending(?:\s+on)?|ends?\s+on|expir\w+\s+on|\bto)\s*$/;
 
 // --- residential rental (only labels the legacy v1 patterns never produce,
 // plus NOTICE_PERIOD phrasings they miss) ------------------------------------------
@@ -46,12 +55,8 @@ export const RENTAL_EXTRACTION: PackExtraction = {
   ],
   valueRules: [
     instrumentDate("EXECUTION_DATE"),
-    { label: "EXPIRY_DATE", type: "DATE", before: /(?:ending(?: on)?|expire on|\bto)\s*$/ },
-    {
-      label: "COMMENCEMENT_DATE",
-      type: "DATE",
-      before: /(?:commencing from|with effect from|starting|from)\s*$/,
-    },
+    { label: "EXPIRY_DATE", type: "DATE", before: ENDS_BEFORE },
+    { label: "COMMENCEMENT_DATE", type: "DATE", before: COMMENCES_BEFORE },
     {
       label: "ESCALATION_RATE",
       type: "PERCENT",
@@ -94,15 +99,17 @@ export const LAND_LEASE_EXTRACTION: PackExtraction = {
   valueRules: [
     instrumentDate("EXECUTION_DATE"),
     { label: "DURATION", type: "DURATION", before: /term of\s*$/ },
-    { label: "EXPIRY_DATE", type: "DATE", before: /expiring on\s*$/ },
-    {
-      label: "COMMENCEMENT_DATE",
-      type: "DATE",
-      before: /(?:commencing on|with effect from|from)\s*$/,
-    },
+    { label: "EXPIRY_DATE", type: "DATE", before: ENDS_BEFORE },
+    { label: "COMMENCEMENT_DATE", type: "DATE", before: COMMENCES_BEFORE },
     { label: "ESCALATION_RATE", type: "PERCENT", before: /enhanced by\s*$|revised by\s*$/ },
-    { label: "LAND_AREA", type: "AREA", before: /admeasuring\s*$/ },
+    { label: "LAND_AREA", type: "AREA", before: /admeasuring\s*$|area of\s*$/ },
     { label: "NOTICE_PERIOD", type: "DURATION", after: NOTICE_AFTER, before: /not less than\s*$/ },
+    // A recurring payment to the owner is rent ("shall pay the Owner INR 1,20,000 per year").
+    {
+      label: "RENT",
+      type: "MONEY",
+      after: /^\s+per\s+(?:agricultural\s+|calendar\s+)?(?:year|annum|month)/,
+    },
   ],
 };
 
@@ -126,12 +133,8 @@ export const LEAVE_AND_LICENSE_EXTRACTION: PackExtraction = {
   ],
   valueRules: [
     instrumentDate("EXECUTION_DATE"),
-    { label: "EXPIRY_DATE", type: "DATE", before: /(?:ending on|expire on|\bto)\s*$/ },
-    {
-      label: "COMMENCEMENT_DATE",
-      type: "DATE",
-      before: /(?:commencing from|with effect from|from)\s*$/,
-    },
+    { label: "EXPIRY_DATE", type: "DATE", before: ENDS_BEFORE },
+    { label: "COMMENCEMENT_DATE", type: "DATE", before: COMMENCES_BEFORE },
     { label: "SECURITY_DEPOSIT", type: "MONEY", before: /deposit of\s*$/ },
     {
       label: "LICENSE_FEE",
@@ -171,8 +174,16 @@ export const SALE_PROPERTY_EXTRACTION: PackExtraction = {
         /(?:by virtue of|acquired the same by|\) by(?! virtue))\s+([\s\S]+?)(?=;|, and (?:is|has))/g,
     },
     { label: "FLAT_NUMBER", regex: /being\s+Flat No\.\s*(\d+)/g },
+    // "sell Flat 14C", "possession of Flat No. 8B": the flat being sold, with an optional
+    // letter. Requires the sale context so a party's own address ("Flat 12, Lake View")
+    // is not read as the property.
+    {
+      label: "FLAT_NUMBER",
+      regex:
+        /(?<=\b(?:sells?|sale of|conveys?|transfers?|possession of|purchase of)\b[^.]{0,60}?)\bFlat\s+(?:No\.?\s*)?(\d+[A-Z]?)\b/g,
+    },
     { label: "PLOT_NUMBER", regex: /being\s+Plot No\.\s*(\d+)/g },
-    { label: "CTS_NUMBER", regex: /CTS No\.\s*([\d/]+)/g },
+    { label: "CTS_NUMBER", regex: /CTS No\.\s*(\d+[A-Z]?(?:\/\d+[A-Z]?)*)/g },
     {
       label: "SURVEY_NUMBER",
       regex:
@@ -204,8 +215,12 @@ export const SALE_PROPERTY_EXTRACTION: PackExtraction = {
     {
       label: "ADVANCE_AMOUNT",
       type: "MONEY",
-      after: /^[^.;]{0,40}?\b(?:as|towards) (?:advance|earnest money)/,
-      before: /advance|earnest|token/,
+      after: /^[^.;]{0,40}?\b(?:as|towards) (?:an? |the )?(?:\w+ ){0,2}?(?:advance|earnest money)/,
+      // The cue must sit right before the amount ("an advance of", "advance:"),
+      // or be a clause heading that names it ("Clause 3: Advance On signing ... shall pay"),
+      // so an earlier "advance" in the sentence does not claim a later amount.
+      before:
+        /(?:advance|earnest money|token)(?:\s+(?:payment|amount|money))?(?:\s*[:,-]|\s+(?:of|being|is|was|amounting to|equal to|paid|received))*\s*$|\b(?:Clause \d+:|\d+[.)])\s+Advance\s+[^.;]{0,100}\bpay\b[^.;]*$/,
     },
     {
       label: "BALANCE_AMOUNT",
@@ -299,7 +314,7 @@ export const EMPLOYMENT_EXTRACTION: PackExtraction = {
     {
       label: "JOB_TITLE",
       regex:
-        /(?:position of|appoint you as|designated as|appoints the Employee as|employment as)\s+([A-Z][A-Za-z ]+?)(?= with| on | and|,|\.)/g,
+        /(?:position of|appoint you as|designated as|appoints the Employee as|employs the Employee as|employs you as|engaged as|hired as|employment as)\s+([A-Z][A-Za-z ]+?)(?= with| on | and|,|\.)/g,
     },
     {
       label: "WORK_LOCATION",
@@ -322,8 +337,27 @@ export const EMPLOYMENT_EXTRACTION: PackExtraction = {
     { label: "BASE_SALARY", type: "MONEY", before: /basic salary/i },
     { label: "SALARY", type: "MONEY", before: /gross salary|monthly salary/i },
     { label: "BONUS", type: "MONEY", before: /bonus/ },
-    { label: "PROBATION_PERIOD", type: "DURATION", before: /probation for\s*$/ },
-    { label: "NON_COMPETE_PERIOD", type: "DURATION", after: /^\s+after leaving/ },
+    {
+      label: "BONUS_PERCENT",
+      type: "PERCENT",
+      before: /bonus[^.;]{0,60}?(?:of|is|equal to|at)\s*(?:up ?to\s*)?$/i,
+    },
+    {
+      label: "HRA",
+      type: "MONEY",
+      before: /(?:house rent allowance|\bHRA\b)(?:\s*\(HRA\))?(?:\s+of)?\s*$/i,
+    },
+    { label: "SPECIAL_ALLOWANCE", type: "MONEY", before: /special allowance(?:\s+of)?\s*$/i },
+    {
+      label: "PROBATION_PERIOD",
+      type: "DURATION",
+      before: /probation(?:\s+period)?(?:\s+(?:of|for|shall be|is|will be|being))?\s*$/i,
+    },
+    {
+      label: "NON_COMPETE_PERIOD",
+      type: "DURATION",
+      after: /^\s+after (?:leaving|(?:the )?employment (?:ends|ceases|terminates)|termination)/,
+    },
     { label: "LEAVE_ENTITLEMENT", type: "DURATION", after: /^\s+of paid leave/ },
     {
       label: "NOTICE_PERIOD",
@@ -352,20 +386,71 @@ export const NDA_MSA_EXTRACTION: PackExtraction = {
       regex: /(All (?:intellectual property|rights) in the [\s\S]+?) shall vest/g,
     },
     { label: "DATA", regex: /shall process\s+([\s\S]+?)\s+only on/g },
+    // What limits liability: the sentence that caps it, a sentence that lifts the
+    // cap for some kinds of loss, and an indemnity stated without a limit. Three
+    // separate facts, because "is there a cap" and "does anything sit outside it"
+    // are different questions.
+    {
+      label: "LIABILITY_LIMIT",
+      regex:
+        // A limit stated as an amount is already the LIABILITY_CAP value; this is the
+        // limit stated in words ("the fees paid in the preceding 12 months").
+        /((?![^.\n]*(?:₹|Rs\.?|INR)\s?\d)[A-Z][^.\n]*?\bliabilit(?:y|ies)\b[^.\n]*?\b(?:limited to|not (?:to )?exceed|capped at|restricted to)\b[^.\n]*)/g,
+    },
+    {
+      label: "LIABILITY_EXCEPTION",
+      regex:
+        /((?:This|The) (?:limit|cap|limitation)\b[^.\n]*?\b(?:does not|shall not|will not|do not)\s+apply\b[^.\n]*|Nothing in (?:this|the) (?:clause|section|Agreement)\b[^.\n]*?\b(?:limits|excludes|restricts)\b[^.\n]*)/g,
+    },
+    {
+      label: "UNCAPPED_INDEMNITY",
+      regex:
+        /([A-Z][^.\n]*?\bindemni(?:ty|ties|f(?:y|ies|ication))\b[^.\n]*?\b(?:without (?:any )?(?:limit|cap)|unlimited|uncapped|not (?:be )?subject to (?:any )?(?:limit|cap))[^.\n]*)/g,
+    },
     JURISDICTION,
   ],
   valueRules: [
     instrumentDate("EFFECTIVE_DATE"),
-    { label: "FEE", type: "MONEY", before: /fee of\s*$/ },
+    {
+      label: "FEE",
+      type: "MONEY",
+      before: /fee of\s*$|\bfees?\b[^.;]{0,60}?\b(?:is|are|of|shall be|will be)\s*$/i,
+    },
     { label: "LIABILITY_CAP", type: "MONEY", before: /exceed\s*$/ },
+    // A deadline to hand back information ("Within 10 days of a written request").
+    {
+      label: "RETURN_PERIOD",
+      type: "DURATION",
+      after: /^\s+of (?:a |any |the |its |such )?(?:written )?(?:request|demand|termination)/i,
+    },
+    // A period for which copies may be kept ("keep archival copies for 6 years").
+    {
+      label: "RETENTION_PERIOD",
+      type: "DURATION",
+      before:
+        /\b(?:keep|retain|hold|preserve|store|maintain)\b[^.;]{0,80}?\b(?:for|period of)\s*$/i,
+    },
     {
       label: "PAYMENT_TERM",
       type: "DURATION",
-      before: /invoice within\s*$/,
-      after: /^\s+of its receipt/,
+      before:
+        /invoice within\s*$|\b(?:invoices?|payments?|amounts?|fees?)\b[^.;]{0,80}?\bwithin\s*$|\b(?:pay|payable)\b[^.;]{0,60}?\bwithin\s*$/i,
+      after: /^\s+of (?:its |the |their )?(?:receipt|invoice date|date of (?:the )?invoice)/,
     },
-    { label: "TERM", type: "DURATION", before: /in force for\s*$/ },
-    { label: "CONFIDENTIALITY_PERIOD", type: "DURATION", before: /(?:survive|protected) for\s*$/ },
+    // How long the duty of confidentiality lasts. Listed before TERM so a sentence
+    // about confidentiality is not read as the agreement's own term.
+    {
+      label: "CONFIDENTIALITY_PERIOD",
+      type: "DURATION",
+      before:
+        /(?:survive|protected) for\s*$|\b(?:confidential\w*|secrecy|obligations?|dut(?:y|ies))\b[^.;]{0,100}?\b(?:continue|survive|remain|last|apply|bind|valid)\w*\b[^.;]{0,40}?\b(?:for|period of)\s*$|\bconfidential\w*\b[^.;]{0,80}?\band for\s*$/i,
+    },
+    {
+      label: "TERM",
+      type: "DURATION",
+      before:
+        /(?:in force|in effect|continues?|remains? valid|valid)\b[^.;]{0,20}?\b(?:for|period of|term of)\s*$/i,
+    },
     {
       label: "TERMINATION_NOTICE",
       type: "DURATION",

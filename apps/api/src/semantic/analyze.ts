@@ -5,6 +5,7 @@
 // (scripts/evaluate-v3.mjs) both call this, so what is evaluated is
 // exactly what runs.
 import type { DomainPack } from "../domains/registry.js";
+import { headingPatternsByType } from "../clauses/clauseTaxonomy.js";
 import { runConsistency } from "../consistency/engine.js";
 import { runPass1 } from "../risk/pass1PerClause.js";
 import { runPass2 } from "../risk/pass2CrossClause.js";
@@ -57,6 +58,8 @@ export function analyzeText(input: AnalyzeInput): AnalyzeResult {
       textEnd: c.textEnd,
     })),
     entities: entities.map((e) => ({ ...e })),
+    fullText: text,
+    clauseHeadings: headingPatternsByType(pack.clauseSchema),
   };
   const findings = dedupeFindings([
     ...runPass1(context, pack.riskSchema),

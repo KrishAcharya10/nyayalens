@@ -54,3 +54,37 @@ export function classifyHeading(
   const entry = taxonomy.find((e) => e.headingPattern.test(heading));
   return entry?.clauseType ?? null;
 }
+
+export function headingPatternsByType(
+  clauseSchema: readonly ClauseTypeDescriptor[],
+): Record<string, RegExp[]> {
+  const out: Record<string, RegExp[]> = {};
+  for (const c of clauseSchema) (out[c.clauseType] ??= []).push(c.headingPattern);
+  return out;
+}
+
+// Wording that shows a clause type is present even when its heading is not
+// one the heading patterns know ("Courts", "Obligations", "Payments"). Used
+// ONLY to avoid reporting an expected clause as missing - never to label a
+// clause - so a heading that is unusual cannot by itself produce an absence
+// finding. Each cue is deliberately specific to one clause type.
+export const BODY_CUES: Record<string, RegExp> = {
+  JURISDICTION:
+    /\bexclusive jurisdiction\b|\bcourts? (?:at|of|in)\b[^.]{0,80}\bjurisdiction\b|\bjurisdiction of the courts?\b|\bsubject to the jurisdiction\b/i,
+  CONFIDENTIALITY:
+    /\b(?:shall|must|will) keep\b[^.]{0,80}\b(?:confidential|secret)\b|\bnot disclose\b[^.]{0,80}\b(?:confidential|third part)/i,
+  DEFINITIONS: /["“][^"”]{3,60}["”]\s+means\b/i,
+  EXCLUSIONS:
+    /\b(?:do(?:es)? not (?:apply|cover)|exclud(?:es|ed|ing))\b[^.]{0,120}\b(?:public|already known|independently developed)\b/i,
+  POSITION:
+    /\b(?:appointed as|offer you the position|position of|designation|employs the employee as)\b/i,
+  COMMENCEMENT:
+    /\b(?:joining date|shall join on|will join on|date of joining|commence(?:s|ment)? (?:on|from))\b/i,
+  COMPENSATION:
+    /\b(?:CTC|cost to (?:the )?company|gross (?:monthly )?salary|annual remuneration|remuneration)\b/i,
+  ADVANCE: /\badvance (?:of|amount|payment)\b|\bpaid an advance\b|\bas (?:an )?advance\b/i,
+  TERMINATION:
+    /\b(?:either party|the (?:landlord|tenant|licensor|licensee|lessor|lessee|employer|employee|client|customer|supplier|company))\b[^.]{0,40}\b(?:may|can)\s+(?:terminate|end)\b/i,
+  BALANCE_PAYMENT: /\bbalance (?:of|amount|payment|consideration)\b/i,
+  ENCUMBRANCE: /\bfree from\b[^.]{0,80}\b(?:mortgage|lien|charge|litigation|encumbrance)/i,
+};

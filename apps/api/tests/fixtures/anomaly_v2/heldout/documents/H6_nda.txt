@@ -1,0 +1,25 @@
+# NON-DISCLOSURE AGREEMENT
+SYNTHETIC TEST DOCUMENT - NOT FOR LEGAL USE. All names, addresses, amounts and identifiers are invented.
+
+This Agreement is made on 7 October 2027 between Vega Semiconductors Pvt. Ltd., Chennai (the "Disclosing Party") and Ms. Ritika Sood of 12 Sector 15, Chandigarh (the "Receiving Party").
+
+1. Purpose
+The Disclosing Party will share confidential information with the Receiving Party only to evaluate a design-licensing arrangement.
+
+2. Definition
+"Confidential Information" means all non-public technical and commercial information the Disclosing Party discloses in any form.
+
+3. Duties
+The Receiving Party shall keep the Confidential Information secret and use it only for the stated purpose.
+
+4. Exclusions
+These duties do not cover information that is public, already known to the Receiving Party, or independently developed.
+
+5. Duration
+The Receiving Party's confidentiality obligations continue for 5 years from the date of this Agreement.
+
+6. Return
+Within 15 days of a written request, the Receiving Party shall return or destroy all Confidential Information.
+
+7. Jurisdiction
+The courts at Chennai have exclusive jurisdiction.
